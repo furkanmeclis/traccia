@@ -2067,6 +2067,144 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        ProductResponseMeta: {
+            request_id: string;
+        };
+        ProductHTTPError400: {
+            /** @constant */
+            success: false;
+            error: {
+                /** @enum {string} */
+                code: "VALIDATION_ERROR";
+                message: string;
+                details?: {
+                    field?: string;
+                    code?: string;
+                    message: string;
+                }[];
+            };
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductHTTPError401: {
+            /** @constant */
+            success: false;
+            error: {
+                /** @enum {string} */
+                code: "UNAUTHORIZED" | "UNAUTHENTICATED";
+                message: string;
+                details?: {
+                    field?: string;
+                    code?: string;
+                    message: string;
+                }[];
+            };
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductHTTPError403: {
+            /** @constant */
+            success: false;
+            error: {
+                /** @enum {string} */
+                code: "FORBIDDEN";
+                message: string;
+                details?: {
+                    field?: string;
+                    code?: string;
+                    message: string;
+                }[];
+            };
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductHTTPError404: {
+            /** @constant */
+            success: false;
+            error: {
+                /** @enum {string} */
+                code: "NOT_FOUND";
+                message: string;
+                details?: {
+                    field?: string;
+                    code?: string;
+                    message: string;
+                }[];
+            };
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductHTTPError408: {
+            /** @constant */
+            success: false;
+            error: {
+                /** @enum {string} */
+                code: "CANCELED";
+                message: string;
+                details?: {
+                    field?: string;
+                    code?: string;
+                    message: string;
+                }[];
+            };
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductHTTPError409: {
+            /** @constant */
+            success: false;
+            error: {
+                /** @enum {string} */
+                code: "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT";
+                message: string;
+                details?: {
+                    field?: string;
+                    code?: string;
+                    message: string;
+                }[];
+            };
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductHTTPError415: {
+            /** @constant */
+            success: false;
+            error: {
+                /** @enum {string} */
+                code: "UNSUPPORTED_MEDIA_TYPE";
+                message: string;
+                details?: {
+                    field?: string;
+                    code?: string;
+                    message: string;
+                }[];
+            };
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductHTTPError500: {
+            /** @constant */
+            success: false;
+            error: {
+                /** @enum {string} */
+                code: "INTERNAL_ERROR";
+                message: string;
+                details?: {
+                    field?: string;
+                    code?: string;
+                    message: string;
+                }[];
+            };
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductHTTPError503: {
+            /** @constant */
+            success: false;
+            error: {
+                /** @enum {string} */
+                code: "OPERATION_UNAVAILABLE";
+                message: string;
+                details?: {
+                    field?: string;
+                    code?: string;
+                    message: string;
+                }[];
+            };
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
         ProductActivityListOutput: {
             items: null | {
                 /** Format: uuid */
@@ -2084,11 +2222,23 @@ export interface components {
             has_more: boolean;
             next_cursor: string;
         };
+        ProductActivityListError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductActivityListDomainInput: {
+            limit: number;
+            after: string;
+        };
         ProductActivityListEnvelope: {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductActivityListOutput"];
-            meta: components["schemas"]["ResponseMeta"];
+            meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductCredentialsCreateInput: {
             name: string;
@@ -2115,11 +2265,27 @@ export interface components {
             };
             token: string;
         };
+        ProductCredentialsCreateError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCredentialsCreateDomainInput: {
+            name: string;
+            /** @enum {string} */
+            audience: "api" | "mcp";
+            scopes: null | ("workspace.read" | "workspace.write" | "credentials.read" | "credentials.manage")[];
+            /** Format: date-time */
+            expires_at: string;
+        };
         ProductCredentialsCreateEnvelope: {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductCredentialsCreateOutput"];
-            meta: components["schemas"]["ResponseMeta"];
+            meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductCredentialsListOutput: {
             items: null | {
@@ -2139,20 +2305,44 @@ export interface components {
             has_more: boolean;
             next_cursor: string;
         };
+        ProductCredentialsListError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCredentialsListDomainInput: {
+            limit: number;
+            after: string;
+        };
         ProductCredentialsListEnvelope: {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductCredentialsListOutput"];
-            meta: components["schemas"]["ResponseMeta"];
+            meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductCredentialsRevokeOutput: {
             revoked: boolean;
+        };
+        ProductCredentialsRevokeError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCredentialsRevokeDomainInput: {
+            /** Format: uuid */
+            credential_id: string;
         };
         ProductCredentialsRevokeEnvelope: {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductCredentialsRevokeOutput"];
-            meta: components["schemas"]["ResponseMeta"];
+            meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductDeliveriesListOutput: {
             items: null | {
@@ -2176,11 +2366,23 @@ export interface components {
             has_more: boolean;
             next_cursor: string;
         };
+        ProductDeliveriesListError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductDeliveriesListDomainInput: {
+            limit: number;
+            after: string;
+        };
         ProductDeliveriesListEnvelope: {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductDeliveriesListOutput"];
-            meta: components["schemas"]["ResponseMeta"];
+            meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductDeliveriesReplayInput: {
             /** Format: uuid */
@@ -2189,11 +2391,23 @@ export interface components {
         ProductDeliveriesReplayOutput: {
             replayed: boolean;
         };
+        ProductDeliveriesReplayError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductDeliveriesReplayDomainInput: {
+            /** Format: uuid */
+            delivery_id: string;
+        };
         ProductDeliveriesReplayEnvelope: {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductDeliveriesReplayOutput"];
-            meta: components["schemas"]["ResponseMeta"];
+            meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductWorkspacesCreateInput: {
             name: string;
@@ -2215,11 +2429,22 @@ export interface components {
                 manage_credentials: boolean;
             };
         };
+        ProductWorkspacesCreateError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductWorkspacesCreateDomainInput: {
+            name: string;
+        };
         ProductWorkspacesCreateEnvelope: {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductWorkspacesCreateOutput"];
-            meta: components["schemas"]["ResponseMeta"];
+            meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductWorkspacesGetOutput: {
             workspace: {
@@ -2238,11 +2463,20 @@ export interface components {
                 manage_credentials: boolean;
             };
         };
+        ProductWorkspacesGetError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductWorkspacesGetDomainInput: Record<string, never>;
         ProductWorkspacesGetEnvelope: {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductWorkspacesGetOutput"];
-            meta: components["schemas"]["ResponseMeta"];
+            meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductWorkspacesListOutput: {
             can_create: boolean;
@@ -2259,11 +2493,23 @@ export interface components {
             has_more: boolean;
             next_cursor: string;
         };
+        ProductWorkspacesListError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductWorkspacesListDomainInput: {
+            limit: number;
+            after: string;
+        };
         ProductWorkspacesListEnvelope: {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductWorkspacesListOutput"];
-            meta: components["schemas"]["ResponseMeta"];
+            meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductWorkspacesUpdateInput: {
             name: string;
@@ -2286,11 +2532,23 @@ export interface components {
                 manage_credentials: boolean;
             };
         };
+        ProductWorkspacesUpdateError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductWorkspacesUpdateDomainInput: {
+            name: string;
+            expected_version: number;
+        };
         ProductWorkspacesUpdateEnvelope: {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductWorkspacesUpdateOutput"];
-            meta: components["schemas"]["ResponseMeta"];
+            meta: components["schemas"]["ProductResponseMeta"];
         };
         TenantOrganization: {
             /** Format: uuid */
@@ -3727,7 +3985,7 @@ export interface operations {
         parameters: {
             query?: {
                 limit?: number;
-                /** @description UUID keyset cursor from next_cursor; omitted on first page. */
+                /** @description UUID keyset cursor from next_cursor; omitted on first page. Empty means first page. */
                 after?: string;
             };
             header?: never;
@@ -3748,18 +4006,85 @@ export interface operations {
                     "application/json": components["schemas"]["ProductActivityListEnvelope"];
                 };
             };
-            400: components["responses"]["BadRequest"];
-            401: components["responses"]["Unauthenticated"];
-            403: components["responses"]["Forbidden"];
-            404: components["responses"]["NotFound"];
-            500: components["responses"]["InternalError"];
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
         };
     };
     credentials_list: {
         parameters: {
             query?: {
                 limit?: number;
-                /** @description UUID keyset cursor from next_cursor; omitted on first page. */
+                /** @description UUID keyset cursor from next_cursor; omitted on first page. Empty means first page. */
                 after?: string;
             };
             header?: never;
@@ -3780,11 +4105,78 @@ export interface operations {
                     "application/json": components["schemas"]["ProductCredentialsListEnvelope"];
                 };
             };
-            400: components["responses"]["BadRequest"];
-            401: components["responses"]["Unauthenticated"];
-            403: components["responses"]["Forbidden"];
-            404: components["responses"]["NotFound"];
-            500: components["responses"]["InternalError"];
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
         };
     };
     credentials_create: {
@@ -3815,20 +4207,87 @@ export interface operations {
                     "application/json": components["schemas"]["ProductCredentialsCreateEnvelope"];
                 };
             };
-            400: components["responses"]["BadRequest"];
-            401: components["responses"]["Unauthenticated"];
-            403: components["responses"]["Forbidden"];
-            404: components["responses"]["NotFound"];
-            /** @description IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version. */
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
             409: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["ProductHTTPError409"];
                 };
             };
-            500: components["responses"]["InternalError"];
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
         };
     };
     credentials_revoke: {
@@ -3856,27 +4315,85 @@ export interface operations {
                     "application/json": components["schemas"]["ProductCredentialsRevokeEnvelope"];
                 };
             };
-            400: components["responses"]["BadRequest"];
-            401: components["responses"]["Unauthenticated"];
-            403: components["responses"]["Forbidden"];
-            404: components["responses"]["NotFound"];
-            /** @description IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version. */
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
             409: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["ProductHTTPError409"];
                 };
             };
-            500: components["responses"]["InternalError"];
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
         };
     };
     deliveries_list: {
         parameters: {
             query?: {
                 limit?: number;
-                /** @description UUID keyset cursor from next_cursor; omitted on first page. */
+                /** @description UUID keyset cursor from next_cursor; omitted on first page. Empty means first page. */
                 after?: string;
             };
             header?: never;
@@ -3897,11 +4414,78 @@ export interface operations {
                     "application/json": components["schemas"]["ProductDeliveriesListEnvelope"];
                 };
             };
-            400: components["responses"]["BadRequest"];
-            401: components["responses"]["Unauthenticated"];
-            403: components["responses"]["Forbidden"];
-            404: components["responses"]["NotFound"];
-            500: components["responses"]["InternalError"];
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
         };
     };
     deliveries_replay: {
@@ -3932,27 +4516,94 @@ export interface operations {
                     "application/json": components["schemas"]["ProductDeliveriesReplayEnvelope"];
                 };
             };
-            400: components["responses"]["BadRequest"];
-            401: components["responses"]["Unauthenticated"];
-            403: components["responses"]["Forbidden"];
-            404: components["responses"]["NotFound"];
-            /** @description IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version. */
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
             409: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["ProductHTTPError409"];
                 };
             };
-            500: components["responses"]["InternalError"];
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
         };
     };
     workspaces_list: {
         parameters: {
             query?: {
                 limit?: number;
-                /** @description UUID keyset cursor from next_cursor; omitted on first page. */
+                /** @description UUID keyset cursor from next_cursor; omitted on first page. Empty means first page. */
                 after?: string;
             };
             header?: never;
@@ -3971,11 +4622,78 @@ export interface operations {
                     "application/json": components["schemas"]["ProductWorkspacesListEnvelope"];
                 };
             };
-            400: components["responses"]["BadRequest"];
-            401: components["responses"]["Unauthenticated"];
-            403: components["responses"]["Forbidden"];
-            404: components["responses"]["NotFound"];
-            500: components["responses"]["InternalError"];
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
         };
     };
     workspaces_create: {
@@ -4004,20 +4722,87 @@ export interface operations {
                     "application/json": components["schemas"]["ProductWorkspacesCreateEnvelope"];
                 };
             };
-            400: components["responses"]["BadRequest"];
-            401: components["responses"]["Unauthenticated"];
-            403: components["responses"]["Forbidden"];
-            404: components["responses"]["NotFound"];
-            /** @description IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version. */
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
             409: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["ProductHTTPError409"];
                 };
             };
-            500: components["responses"]["InternalError"];
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
         };
     };
     workspaces_get: {
@@ -4041,11 +4826,78 @@ export interface operations {
                     "application/json": components["schemas"]["ProductWorkspacesGetEnvelope"];
                 };
             };
-            400: components["responses"]["BadRequest"];
-            401: components["responses"]["Unauthenticated"];
-            403: components["responses"]["Forbidden"];
-            404: components["responses"]["NotFound"];
-            500: components["responses"]["InternalError"];
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
         };
     };
     workspaces_update: {
@@ -4076,20 +4928,87 @@ export interface operations {
                     "application/json": components["schemas"]["ProductWorkspacesUpdateEnvelope"];
                 };
             };
-            400: components["responses"]["BadRequest"];
-            401: components["responses"]["Unauthenticated"];
-            403: components["responses"]["Forbidden"];
-            404: components["responses"]["NotFound"];
-            /** @description IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version. */
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
             409: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["Error"];
+                    "application/json": components["schemas"]["ProductHTTPError409"];
                 };
             };
-            500: components["responses"]["InternalError"];
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
         };
     };
     getHealthz: {

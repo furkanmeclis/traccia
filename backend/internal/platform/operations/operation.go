@@ -15,6 +15,11 @@ import (
 	validator "github.com/santhosh-tekuri/jsonschema/v6"
 )
 
+// SchemaBaseURI is the original resource location used to compile each DTO.
+// Adapters embedding a DTO preserve this base so relative resource references
+// continue resolving within the same offline schema graph.
+const SchemaBaseURI = "https://traccia.invalid/operation.schema.json"
+
 type Validator[I any] func(I) []FieldError
 type Handler[I, O any] func(context.Context, Scope, I) (O, error)
 type SchemaRefiner func(input, output *jsonschema.Schema) error
@@ -149,10 +154,10 @@ func resolveSchema(schema *jsonschema.Schema) (*validator.Schema, json.RawMessag
 	}
 	compiler := validator.NewCompiler()
 	compiler.UseLoader(offlineLoader{})
-	if err := compiler.AddResource("https://traccia.invalid/operation.schema.json", doc); err != nil {
+	if err := compiler.AddResource(SchemaBaseURI, doc); err != nil {
 		return nil, nil, err
 	}
-	resolved, err := compiler.Compile("https://traccia.invalid/operation.schema.json")
+	resolved, err := compiler.Compile(SchemaBaseURI)
 	return resolved, raw, err
 }
 
@@ -161,6 +166,10 @@ type offlineLoader struct{}
 func (offlineLoader) Load(url string) (any, error) {
 	return nil, errors.New("operations: external schema resources are disabled")
 }
+
+// DecodeJSON validates one JSON value without duplicate keys, malformed Unicode or
+// number rounding. Transport wrappers use the same parser as operation DTOs.
+func DecodeJSON(raw []byte) (any, error) { return decodeJSON(raw) }
 
 func decodeJSON(raw []byte) (any, error) {
 	if !utf8.Valid(raw) {
