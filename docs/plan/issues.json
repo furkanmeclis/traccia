@@ -1,0 +1,1177 @@
+{
+  "schema_version": 1,
+  "plan_version": "traccia-plan-v1",
+  "approval_status": "approved",
+  "publish_to_linear": true,
+  "editor_decision": {
+    "library": "Plate.js",
+    "status": "user_selected",
+    "canonical_format": "versioned Plate JSON with revision and stable node IDs"
+  },
+  "approved_extensions": [
+    "workspace boundary",
+    "product/environment catalog",
+    "unified intake",
+    "linked documents and decisions",
+    "rules automation",
+    "release and deployment tracking",
+    "MCP/agent run history"
+  ],
+  "product_name": "Traccia",
+  "visibility": "public",
+  "issues": [
+    {
+      "plan_id": "T01",
+      "deduplication_key": "traccia-plan-v1:T01",
+      "phase": 1,
+      "title": "Ortak işlem envanteri ve API MCP şemalarını kur",
+      "priority": "high",
+      "scope": "Çalışma alanı, ekip, proje, issue, belge, dosya, görünüm, ürün/ortam, talep, kural, release/deploy, ajan kaydı, ayar ve entegrasyon işlemlerinin tek katalogunu tanımla.",
+      "acceptance_criteria": [
+        "Her işlem benzersiz kimlik ve giriş/çıkış/hata şemasına sahip",
+        "API ve MCP eşlemesi aynı katalogdan denetleniyor",
+        "Kalıcı kullanıcı tercihleri ve job işlemleri katalogda"
+      ],
+      "depends_on": [],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T02",
+      "deduplication_key": "traccia-plan-v1:T02",
+      "phase": 1,
+      "title": "Sahip hesabı ve bağımsız araç erişimini hazırla",
+      "priority": "high",
+      "scope": "Mevcut insan oturumunu koru; araç başına iptal edilebilir erişim ve OAuth bağlantı modelini ekle.",
+      "acceptance_criteria": [
+        "Bir aracın iptali diğer bağlantıyı kesmiyor",
+        "Token süresi, audience ve iptal durumu her çağrıda doğrulanıyor",
+        "İlk kurulumdan sonra uygulama işlemleri panel onayı gerektirmiyor",
+        "Kimlikten ayrı çalışma alanı yetkisi çözülür; seçilen workspace ID tek başına yetki vermez"
+      ],
+      "depends_on": [
+        "T01"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T03",
+      "deduplication_key": "traccia-plan-v1:T03",
+      "phase": 1,
+      "title": "Mutation tekrarlarını ve eşzamanlı düzenlemeyi güvenilir yap",
+      "priority": "high",
+      "scope": "Idempotency anahtarı, request fingerprint, önceki sonuç replay ve expected version sözleşmesini kur.",
+      "acceptance_criteria": [
+        "Yarışan aynı create tek kayıt ve aynı sonuç üretiyor",
+        "Aynı key farklı gövdede açık conflict dönüyor",
+        "Eski sürüm yazısı güncel veriyi ezmiyor"
+      ],
+      "depends_on": [
+        "T01"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T04",
+      "deduplication_key": "traccia-plan-v1:T04",
+      "phase": 1,
+      "title": "Kalıcı olay alımı ve tüketici teslimatını kur",
+      "priority": "high",
+      "scope": "PostgreSQL transaction içinde mutation/geçmiş/outbox; consumer delivery, retry ve replay kur.",
+      "acceptance_criteria": [
+        "Worker çökünce tamamlanmamış teslimat geri alınabiliyor",
+        "Aynı event iki kez işlense de çift yan etki yok",
+        "Bir tüketicinin hatası diğerlerinin başarı kaydını veya retry durumunu gizlemiyor"
+      ],
+      "depends_on": [
+        "T03"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T05",
+      "deduplication_key": "traccia-plan-v1:T05",
+      "phase": 1,
+      "title": "API şema ve MCP işlem kapsamını CI içinde denetle",
+      "priority": "high",
+      "scope": "HTTP method/path kapsamını giriş, çıkış, hata şemaları ve MCP işlem kapsamıyla CI içinde karşılaştır.",
+      "acceptance_criteria": [
+        "Yeni API veya MCP karşılığı eksik işlem CI hatası veriyor",
+        "Eksik HTTP metodu ve şema alanı fixture testinde yakalanıyor",
+        "Generic additionalProperties şeması tam kapsam kabul edilmiyor"
+      ],
+      "depends_on": [
+        "T01"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T06",
+      "deduplication_key": "traccia-plan-v1:T06",
+      "phase": 2,
+      "title": "Ekip durum etiket ve issue numara modelini ekle",
+      "priority": "normal",
+      "scope": "Ekip kodları, sayaçlar, sıralı workflow ve ortak/ekip etiketlerini geliştir.",
+      "acceptance_criteria": [
+        "Eşzamanlı numara tahsisi çakışmıyor",
+        "Durum ve etiketler doğru ekip sınırında doğrulanıyor",
+        "API MCP ile ekip ve workflow sıfırdan kurulabiliyor"
+      ],
+      "depends_on": [
+        "T01",
+        "T03",
+        "T41"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T07",
+      "deduplication_key": "traccia-plan-v1:T07",
+      "phase": 2,
+      "title": "Proje kilometre taşı ve doküman düzenini ekle",
+      "priority": "normal",
+      "scope": "Proje sorumlusu, tarihleri, ekip katkıları, milestone ve kaynak dokümanlarını kur.",
+      "acceptance_criteria": [
+        "Bir projeye birden fazla ekip katkı yapabiliyor",
+        "Milestone ataması ilgili projeyle doğrulanıyor",
+        "Proje ayarları ve kaynaklar API MCP üzerinden yönetiliyor"
+      ],
+      "depends_on": [
+        "T06"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T08",
+      "deduplication_key": "traccia-plan-v1:T08",
+      "phase": 3,
+      "title": "Issue temel yaşam döngüsünü geliştir",
+      "priority": "high",
+      "scope": "Başlık, öncelik, proje, milestone, tarih, efor, durum, arşiv ve geri yükleme işlemlerini oluştur.",
+      "acceptance_criteria": [
+        "Panel API MCP aynı alanları okuyup yazıyor",
+        "Taşıma sonrası eski issue kimliği ve linki çözülüyor",
+        "Değişiklik ve geçmiş aynı transaction ile yazılıyor"
+      ],
+      "depends_on": [
+        "T06",
+        "T07",
+        "T03",
+        "T04"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T09",
+      "deduplication_key": "traccia-plan-v1:T09",
+      "phase": 3,
+      "title": "Alt görev ve issue ilişkilerini geliştir",
+      "priority": "normal",
+      "scope": "Parent/sub-issue, blocks/blocked-by, related ve duplicate ilişkilerini ekle.",
+      "acceptance_criteria": [
+        "Döngüsel parent ve geçersiz ilişki engelleniyor",
+        "Karşılıklı ilişki okuması tutarlı",
+        "Arşiv taşıma ve geri yükleme ilişki kimliklerini bozmuyor"
+      ],
+      "depends_on": [
+        "T08"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T10",
+      "deduplication_key": "traccia-plan-v1:T10",
+      "phase": 3,
+      "title": "Plate.js editörünü sürümlü issue ve proje belgelerine bağla",
+      "priority": "high",
+      "scope": "Panel ve widget için ortak Plate.js plugin/node sözleşmesi kur; kanonik sürümlü Plate JSON, gerçek mention/ref ve güvenli HTML türetme ekle.",
+      "acceptance_criteria": [
+        "Tablo kod kontrol listesi Unicode ve satır sonları round-trip korunuyor",
+        "Belge sürümü ve node doğrulama sunucuda uygulanıyor",
+        "Markdown export farkları açık; tam JSON içerik API MCP ile alınabiliyor",
+        "Bölüm veya node düzenlemesi beklenen revision ile uygulanıyor ve tam belgeyi yeniden yazmadan sürüm bırakıyor",
+        "Panel ve widget aynı Plate.js belge şemasını kullanıyor; Lexical editör temeli taşınmıyor"
+      ],
+      "depends_on": [
+        "T08"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T11",
+      "deduplication_key": "traccia-plan-v1:T11",
+      "phase": 3,
+      "title": "Issue ekleri ve tam dosya aktarımını geliştir",
+      "priority": "normal",
+      "scope": "Attachment UUID, geçici upload, finalize, indirme, metadata ve devamlı listeleme ekle.",
+      "acceptance_criteria": [
+        "Dosya yükle indir hash eşitliği sağlanıyor",
+        "Yetkisiz veya başka taslağa ait attachment bağlanamıyor",
+        "Eksik upload ve büyük liste kesintisi devam bilgisiyle yönetiliyor",
+        "Çalışma alanı kapsamı giriş, sorgu ve sonuçta korunur; başka alana veri veya dosya sızması test edilir"
+      ],
+      "depends_on": [
+        "T08",
+        "T03"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T12",
+      "deduplication_key": "traccia-plan-v1:T12",
+      "phase": 3,
+      "title": "Yorum değişiklik geçmişi ve belge revision işlemlerini ekle",
+      "priority": "normal",
+      "scope": "Yorum, mention, düzenleme kaydı, belge revision ve geri yüklemeyi oluştur.",
+      "acceptance_criteria": [
+        "Yorum ve belge eski sürümü ayrı okunabiliyor",
+        "Restore yeni revision olarak kaydoluyor",
+        "Panelden ve MCPden yapılan değişiklik aynı zaman çizelgesinde görünüyor"
+      ],
+      "depends_on": [
+        "T08",
+        "T10",
+        "T04"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T13",
+      "deduplication_key": "traccia-plan-v1:T13",
+      "phase": 4,
+      "title": "Arama filtre ve kayıtlı görünüm işlemlerini ekle",
+      "priority": "normal",
+      "scope": "Issue/proje/ekip arama adapterleri, filtre dili, kararlı sıralama ve kişisel görünüm tercihlerini ekle.",
+      "acceptance_criteria": [
+        "Filtre sıralama ve sonuç sayısı aynı veri kümesini kullanıyor",
+        "Cursor veya export taraması değişen listede sessiz kayıt atlamıyor",
+        "Görünüm ve kolon tercihi API MCPden değiştirilebiliyor",
+        "Çalışma alanı kapsamı giriş, sorgu ve sonuçta korunur; başka alana veri veya dosya sızması test edilir"
+      ],
+      "depends_on": [
+        "T08"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T14",
+      "deduplication_key": "traccia-plan-v1:T14",
+      "phase": 4,
+      "title": "Traccia web kabuğu ve kişisel çalışma ekranını kur",
+      "priority": "normal",
+      "scope": "Ekip/proje geçişi, bana atananlar, favoriler, bildirim girişi ve komut menüsünü hazırla. Çalışma alanı seçici ve yalnız yetkili alanları açıkça birleştiren kişisel portföy görünümü ekle.",
+      "acceptance_criteria": [
+        "TR EN ve tema tercihi kalıcı",
+        "Klavye ve odak akışı erişilebilir",
+        "Mevcut auth ve ortak UI bileşenleri kullanılıyor"
+      ],
+      "depends_on": [
+        "T06",
+        "T07"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T15",
+      "deduplication_key": "traccia-plan-v1:T15",
+      "phase": 4,
+      "title": "Hızlı issue oluşturma ve detay düzenleme deneyimini kur",
+      "priority": "normal",
+      "scope": "Issue satırı/drawer, hızlı oluşturma, alan seçiciler, yorum ve ekleri birleştir.",
+      "acceptance_criteria": [
+        "Klavyeyle issue oluşturup düzenleme tamamlanıyor",
+        "Kaydetme hatasında taslak kaybolmuyor",
+        "Canlı güncelleme aktif düzenlemeyi ezmiyor"
+      ],
+      "depends_on": [
+        "T14",
+        "T08",
+        "T10",
+        "T11",
+        "T12"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T16",
+      "deduplication_key": "traccia-plan-v1:T16",
+      "phase": 4,
+      "title": "Kanban ve toplu issue işlemlerini kur",
+      "priority": "normal",
+      "scope": "Sürükle bırak durum değişimi, kolon grupları, toplu atama/etiket/proje/durum ve iş sonucu ekle.",
+      "acceptance_criteria": [
+        "Taşıma sunucu hatasında doğru duruma dönüyor",
+        "Filtreyle tümünü seçme hedefi açıkça gösteriliyor",
+        "Kısmi toplu hata item düzeyinde raporlanıyor ve MCPde okunabiliyor"
+      ],
+      "depends_on": [
+        "T15",
+        "T13"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T17",
+      "deduplication_key": "traccia-plan-v1:T17",
+      "phase": 4,
+      "title": "Mobil web issue akışlarını tamamla",
+      "priority": "normal",
+      "scope": "Mobil liste kartları, detay drawer, filtre ve dokunmatik durum değiştirme tasarla.",
+      "acceptance_criteria": [
+        "Telefon genişliğinde oluşturma düzenleme dosya ekleme tamamlanıyor",
+        "Sadece hover veya drag gerektiren zorunlu eylem yok",
+        "Klavye açılması ve safe area formu erişilemez yapmıyor"
+      ],
+      "depends_on": [
+        "T14",
+        "T15",
+        "T16"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T18",
+      "deduplication_key": "traccia-plan-v1:T18",
+      "phase": 5,
+      "title": "Resmî Go SDK ile MCP transport OAuth ve proxy kur",
+      "priority": "high",
+      "scope": "Resmî Go SDK ile Streamable HTTP, metadata, PKCE, rotation, revoke ve Next passthrough kur.",
+      "acceptance_criteria": [
+        "Gerçek istemciyle keşif bağlantı refresh revoke çalışıyor",
+        "Yanlış audience ve süresi geçmiş token reddediliyor",
+        "MCP protocol ve auth başlıkları doğru aktarılıyor; panel cookie taşınmıyor",
+        "Çalışma alanı kapsamı giriş, sorgu ve sonuçta korunur; başka alana veri veya dosya sızması test edilir"
+      ],
+      "depends_on": [
+        "T01",
+        "T02"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T19",
+      "deduplication_key": "traccia-plan-v1:T19",
+      "phase": 5,
+      "title": "Çekirdek ekip proje ve issue MCP araçlarını bağla",
+      "priority": "normal",
+      "scope": "Çekirdek okuma/yazma, ilişki, belge, yorum ve görünüm araçlarını ortak işlemlere bağla.",
+      "acceptance_criteria": [
+        "Panel açmadan ekip proje issue ve alt görev kurulabiliyor",
+        "Araç giriş/çıkışları katalog şemasıyla doğrulanıyor",
+        "Yazma sonucu PENDING_APPROVAL veya panel linkiyle ertelenmiyor",
+        "Bağlam ve entity keşfi gerçek işlem envanterinden geliyor; toplu çağrı satır başına sonucu raporluyor",
+        "Çalışma alanı kapsamı giriş, sorgu ve sonuçta korunur; başka alana veri veya dosya sızması test edilir"
+      ],
+      "depends_on": [
+        "T18",
+        "T06",
+        "T07",
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T20",
+      "deduplication_key": "traccia-plan-v1:T20",
+      "phase": 5,
+      "title": "Ayar tercih bildirim ve entegrasyon yönetimini MCPye aç",
+      "priority": "normal",
+      "scope": "Uygulamada var olan ayarların ve job işlemlerinin API MCP erişimini kur; sonraki faz işlemleri aynı kayıt düzeniyle eklensin.",
+      "acceptance_criteria": [
+        "Dil favori görünüm ve bildirim tercihi MCPden değişiyor",
+        "Secret create rotate revoke ve configured durumları aynı politikada",
+        "Kalıcı uygulama ayarının yalnız panele ait karşılığı kalmıyor",
+        "Çalışma alanı kapsamı giriş, sorgu ve sonuçta korunur; başka alana veri veya dosya sızması test edilir"
+      ],
+      "depends_on": [
+        "T18",
+        "T01"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T21",
+      "deduplication_key": "traccia-plan-v1:T21",
+      "phase": 5,
+      "title": "MCP büyük içerik dosya ve arka plan iş aktarımını tamamla",
+      "priority": "high",
+      "scope": "Tam içerik parçaları, kaynak okuma alternatifi, upload finalize/download, export/import job ve cursor erişimini ekle.",
+      "acceptance_criteria": [
+        "50den fazla kayıt ve 16 KiBden büyük gövde tamamen alınabiliyor",
+        "MCP upload download byte hash eşit",
+        "Uzun job sonucu bağlantı koptuktan sonra sorgulanabiliyor",
+        "Kaynak okuma ve get aracı aynı yetkiyi kullanıyor; offset kılıfı kararlı snapshot gibi sunulmuyor",
+        "Çalışma alanı kapsamı giriş, sorgu ve sonuçta korunur; başka alana veri veya dosya sızması test edilir"
+      ],
+      "depends_on": [
+        "T18",
+        "T10",
+        "T11",
+        "T04"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T22",
+      "deduplication_key": "traccia-plan-v1:T22",
+      "phase": 5,
+      "title": "Panel API MCP eşitliğini uçtan uca doğrula",
+      "priority": "high",
+      "scope": "Bütün işlem ailelerinde aynı senaryoyu farklı girişlerden yürütüp alan ve hata karşılaştır.",
+      "acceptance_criteria": [
+        "Kalıcı alanların tamamı manifest ile ölçülüyor",
+        "Hata conflict ve retry semantiği yüzeyler arasında tutarlı",
+        "Panelsiz tam kullanım senaryosu otomatik testte geçiyor",
+        "İki workspace ile API/MCP/panel scope reddi, cache ve dosya izolasyon testleri geçiyor"
+      ],
+      "depends_on": [
+        "T05",
+        "T19",
+        "T20",
+        "T21"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T23",
+      "deduplication_key": "traccia-plan-v1:T23",
+      "phase": 6,
+      "title": "GitHub App kurulum ve repo eşlemelerini ekle",
+      "priority": "normal",
+      "scope": "GitHub App manifest kurulumu, installation ve repo seçimi, şifreli token saklama ve rate limit yönetimini uygula; çalışma alanı, ekip ve proje eşlemelerine bağla.",
+      "acceptance_criteria": [
+        "GitHub login ve geliştirme entegrasyonu ayrı yönetiliyor",
+        "App yalnız seçilmiş depoları görüyor",
+        "Kurulum eşlemeleri API MCPden okunup değiştiriliyor",
+        "Çalışma alanı kapsamı giriş, sorgu ve sonuçta korunur; başka alana veri veya dosya sızması test edilir"
+      ],
+      "depends_on": [
+        "T02",
+        "T07"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T24",
+      "deduplication_key": "traccia-plan-v1:T24",
+      "phase": 6,
+      "title": "GitHub webhook alımını kalıcı ve tekrara dayanıklı yap",
+      "priority": "high",
+      "scope": "Ham gövde HMAC doğrulaması, delivery ID, kalıcı inbox, worker, retry ve replay uygula; webhook HTTP başarısını kalıcı alım sonrasında döndür.",
+      "acceptance_criteria": [
+        "Geçersiz imza işlenmiyor",
+        "Aynı delivery birden fazla yan etki üretmiyor",
+        "Kalıcı alındı olmadan başarılı cevap verilmiyor ve worker hatası izlenebiliyor"
+      ],
+      "depends_on": [
+        "T23",
+        "T04"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T25",
+      "deduplication_key": "traccia-plan-v1:T25",
+      "phase": 6,
+      "title": "Issue PR eşleştirme ve durum kurallarını geliştir",
+      "priority": "normal",
+      "scope": "PR/review/check modeli, branch/başlık/gövde/commit referansları ve issue durum kurallarını ekle; abonelik ve uygulanmış handler kapsamını test et.",
+      "acceptance_criteria": [
+        "Bir issue iki PR gerektiriyorsa ilk merge ile bitmiyor",
+        "Closed without merge Done üretmiyor",
+        "Referans ilişkisi ile kapatan ilişki ayrılıyor; manuel link/unlink API MCPde mevcut"
+      ],
+      "depends_on": [
+        "T24",
+        "T08",
+        "T09"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T26",
+      "deduplication_key": "traccia-plan-v1:T26",
+      "phase": 6,
+      "title": "GitHub uzlaştırma ve geliştirme durum ekranını ekle",
+      "priority": "normal",
+      "scope": "PR/CI için eksiksiz sayfalama, periyodik/manual sync, kaçan olay uzlaştırması ve geliştirme durum ekranını ekle.",
+      "acceptance_criteria": [
+        "Eski event yeni durumu geriye almıyor",
+        "Kaçan webhook resync ile düzeliyor",
+        "Resync ve hata/retry geçmişi panel API MCPde görülebiliyor"
+      ],
+      "depends_on": [
+        "T25",
+        "T03"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T27",
+      "deduplication_key": "traccia-plan-v1:T27",
+      "phase": 7,
+      "title": "Yerleşik widget kurulum modelini ve yönetimini ekle",
+      "priority": "normal",
+      "scope": "Public installation ID, hedef, ortam, origin, varsayılanlar, dil/görünüm, privacy ve durdurma ayarlarını ekle.",
+      "acceptance_criteria": [
+        "Aynı origin birden fazla kuruluma sahip olabiliyor",
+        "Duraklatılmış kurulum yeni bildirim kabul etmiyor",
+        "Yanlış ekip projesi ve workflow varsayılanı reddediliyor",
+        "Çalışma alanı kapsamı giriş, sorgu ve sonuçta korunur; başka alana veri veya dosya sızması test edilir",
+        "Kurulum yetkili workspace, ürün ve ortam kaydıyla ilişkilendirilebiliyor"
+      ],
+      "depends_on": [
+        "T06",
+        "T07",
+        "T01"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T28",
+      "deduplication_key": "traccia-plan-v1:T28",
+      "phase": 7,
+      "title": "Widget script ve React SDK deneyimini geliştir",
+      "priority": "normal",
+      "scope": "Mevcut loader deseninden CSS izolasyonu, lazy iframe, open/close/identify/setContext/destroy ve React bağlayıcısı oluştur.",
+      "acceptance_criteria": [
+        "Tekrarlı mount tek widget; destroy dinleyicileri temizliyor",
+        "SPA route değişimi bağlamı güncelliyor",
+        "Masaüstü mobil ve odak yönetimi çalışıyor"
+      ],
+      "depends_on": [
+        "T27"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T29",
+      "deduplication_key": "traccia-plan-v1:T29",
+      "phase": 7,
+      "title": "Widget ekran görüntüsü görsel ve bağlam akışını kur",
+      "priority": "normal",
+      "scope": "İsteğe bağlı screenshot, paste/drop/upload, önizleme/kaldırma/karartma ve temizlenmiş sayfa bağlamını ekle.",
+      "acceptance_criteria": [
+        "Screenshot hatasında dosya yükleme ile devam ediliyor",
+        "Hassas alan ve URL temizleme politikası test ediliyor",
+        "Boyut/adet sınırları ve iki yönlü message correlation uygulanıyor"
+      ],
+      "depends_on": [
+        "T28",
+        "T11"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T30",
+      "deduplication_key": "traccia-plan-v1:T30",
+      "phase": 7,
+      "title": "Doğrulanmış bildirici ve dar widget oturumunu ekle",
+      "priority": "high",
+      "scope": "Host sunucusu doğrulamasıyla kısa ömürlü create-only oturum ve kimlik bağlamı oluştur.",
+      "acceptance_criteria": [
+        "Public ID veya websiteUrl tek başına yetki vermiyor",
+        "Tam API token tarayıcıya çıkmıyor ve iframe cookieye bağlı değil",
+        "Yetki başka kurulum veya issue okuma için kullanılamıyor"
+      ],
+      "depends_on": [
+        "T27",
+        "T02"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T31",
+      "deduplication_key": "traccia-plan-v1:T31",
+      "phase": 7,
+      "title": "Widget taslak yükleme ve idempotent gönderim akışını tamamla",
+      "priority": "high",
+      "scope": "Native issue creation, upload sahipliği, kalıcı gönderim alındısı, durum sorgusu ve taslak retry ekle.",
+      "acceptance_criteria": [
+        "Timeout sonrası aynı gönderim tek issue döndürüyor",
+        "Tam başarıdan önce taslak silinmiyor",
+        "Sahipsiz upload temizleniyor; widget akışında Linear API çağrısı yok",
+        "Reddedilen veya kısmi gönderim kuyrukta hata durumuyla korunuyor; ekler sessizce düşürülmüyor"
+      ],
+      "depends_on": [
+        "T03",
+        "T04",
+        "T08",
+        "T11",
+        "T28",
+        "T29",
+        "T30"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T32",
+      "deduplication_key": "traccia-plan-v1:T32",
+      "phase": 7,
+      "title": "Widget kurulum ve bildirim araçlarını API MCPye aç",
+      "priority": "high",
+      "scope": "Kurulum CRUD, origin/defaults, pause/revoke, snippet, intake ve receipt işlemlerini tam katalogla sun.",
+      "acceptance_criteria": [
+        "Yalnız MCP ile kurulum açılıp snippet ve test bildirimi alınabiliyor",
+        "Başarı kaydı doğru issueya bağlanıyor",
+        "Panel ayar alanlarının MCP karşılığı kapsam testinde tam",
+        "Ürün/ortam ilişkisinin okuma ve değiştirme işlemleri API/MCP üzerinden tamamlanıyor"
+      ],
+      "depends_on": [
+        "T20",
+        "T27",
+        "T31"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T33",
+      "deduplication_key": "traccia-plan-v1:T33",
+      "phase": 8,
+      "title": "Cycle şablon ve tekrarlayan issue desteğini ekle",
+      "priority": "normal",
+      "scope": "Ekip dönemleri, efor/kapasite özeti, issue şablonları ve zamanlı tekrarlar oluştur.",
+      "acceptance_criteria": [
+        "Timezone geçişlerinde iş bir kez oluşuyor",
+        "Dönem taşıma ve şablon alanları doğrulanıyor",
+        "Cycle şablon ve tekrar yaşam döngüsü API MCPde tamam"
+      ],
+      "depends_on": [
+        "T08",
+        "T09",
+        "T04"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T34",
+      "deduplication_key": "traccia-plan-v1:T34",
+      "phase": 8,
+      "title": "Triage bildirim ve takip tercihlerini bağla",
+      "priority": "normal",
+      "scope": "Gelen işler için kabul/ret/duplicate ve kişisel bildirim takibini issue olaylarına bağla.",
+      "acceptance_criteria": [
+        "Widget kaynaklı issue doğru ilk duruma gidiyor",
+        "Aynı olay çift bildirim üretmiyor",
+        "Okunma ve takip tercihleri MCPden yönetiliyor"
+      ],
+      "depends_on": [
+        "T08",
+        "T12",
+        "T04"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T35",
+      "deduplication_key": "traccia-plan-v1:T35",
+      "phase": 8,
+      "title": "Proje ilerlemesi ve temel iş raporlarını ekle",
+      "priority": "normal",
+      "scope": "Proje/milestone ilerlemesi, geciken işler, cycle özeti ve aynı veri için export oluştur.",
+      "acceptance_criteria": [
+        "Rapor toplamı filtrelenen tam veri kümesinden hesaplanıyor",
+        "Arşiv ve iptal durumlarının etkisi açık",
+        "Rapor ve export jobları API MCPden kullanılabiliyor"
+      ],
+      "depends_on": [
+        "T07",
+        "T08",
+        "T13"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T36",
+      "deduplication_key": "traccia-plan-v1:T36",
+      "phase": 8,
+      "title": "Türkçe İngilizce ve genişletilebilir dil desteğini tamamla",
+      "priority": "normal",
+      "scope": "Önceki fazların çevirilerini doğrula; katalog kaydı, backend mesajları, tarih/sayı/çoğul ve widget dilini genelleştir.",
+      "acceptance_criteria": [
+        "TR EN eksik anahtar kontrolü geçiyor",
+        "Üçüncü test dili belgelenen sınırlı kayıt noktalarıyla ekleniyor",
+        "Dil değişimi issue IDlerini API alanlarını ve kalıcı veriyi değiştirmiyor",
+        "Yeni katalog, talep, belge, otomasyon, release ve ajan ekranları da dil kapsam kontrolüne dahil"
+      ],
+      "depends_on": [
+        "T10",
+        "T14",
+        "T28"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T37",
+      "deduplication_key": "traccia-plan-v1:T37",
+      "phase": 10,
+      "title": "VPS Compose proxy ve production env kurulumunu hazırla",
+      "priority": "normal",
+      "scope": "Sürümlü env üretme/upgrade, health/readiness, migrate sırası ve MCP/GitHub/widget dış yollarını hazırla.",
+      "acceptance_criteria": [
+        "Yeni kurulum ve upgrade smoke test geçiyor",
+        "Hedef CPU mimarisi build ile uyumlu",
+        "Örnek secretlar reddediliyor ve gerçek secret loglanmıyor",
+        "Çalışma alanı kapsamı giriş, sorgu ve sonuçta korunur; başka alana veri veya dosya sızması test edilir"
+      ],
+      "depends_on": [
+        "T18",
+        "T23",
+        "T27"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T38",
+      "deduplication_key": "traccia-plan-v1:T38",
+      "phase": 10,
+      "title": "Veri dosya yedeği ve geri yükleme provasını hazırla",
+      "priority": "normal",
+      "scope": "VPS dışı DB+object backup, tutarlı manifest, restore ve bakım runbook oluştur.",
+      "acceptance_criteria": [
+        "Temiz ortama issue ilişki revision ve dosyalar birlikte dönüyor",
+        "Dosya hashleri backup öncesiyle eşit",
+        "Yedek başarısızlığı ve retention görünür durumda",
+        "Çalışma alanı kapsamı giriş, sorgu ve sonuçta korunur; başka alana veri veya dosya sızması test edilir"
+      ],
+      "depends_on": [
+        "T11",
+        "T37"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T39",
+      "deduplication_key": "traccia-plan-v1:T39",
+      "phase": 10,
+      "title": "Bağımsız host uygulamalarda widget kabul testlerini kur",
+      "priority": "normal",
+      "scope": "HTML/SPA ve Next.js fixture hostlarında kurulum, giriş, screenshot, mobil ve retry senaryolarını doğrula.",
+      "acceptance_criteria": [
+        "Cross-origin ve üçüncü taraf cookie kapalı senaryosu geçiyor",
+        "Bağımsız fixture host uygulamalarıyla doğrulanıyor",
+        "Public IDde secret olmadığı ve sahte mesajın reddi test ediliyor",
+        "Çalışma alanı kapsamı giriş, sorgu ve sonuçta korunur; başka alana veri veya dosya sızması test edilir"
+      ],
+      "depends_on": [
+        "T28",
+        "T29",
+        "T30",
+        "T31",
+        "T32"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T40",
+      "deduplication_key": "traccia-plan-v1:T40",
+      "phase": 11,
+      "title": "Traccia tam kullanım ve kayıpsızlık kabul paketini çalıştır",
+      "priority": "high",
+      "scope": "Panel/API/MCP, GitHub ve widget zincirini büyük veri ve hata senaryolarıyla birlikte doğrula. Onaylanan yedi genişleme için uçtan uca ürün/ortam→talep→issue→PR→release/deploy→otomasyon/ajan izi ve workspace izolasyonu kabul edilir.",
+      "acceptance_criteria": [
+        "Widget issue bildirimi PR merge ve bildirim zinciri tamam",
+        "50+ kayıt 16KiB+ gövde 5000+ storage metadata ve dosya hash testi geçiyor",
+        "Go frontend i18n schema parity ve restore kontrolleri raporlanıyor"
+      ],
+      "depends_on": [
+        "T22",
+        "T26",
+        "T33",
+        "T34",
+        "T35",
+        "T36",
+        "T37",
+        "T38",
+        "T39",
+        "T17",
+        "T42",
+        "T44",
+        "T46",
+        "T47",
+        "T49",
+        "T51",
+        "T53"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T41",
+      "deduplication_key": "traccia-plan-v1:T41",
+      "phase": 1,
+      "title": "Çalışma alanı kapsamını ve veri sınırlarını kur",
+      "priority": "high",
+      "scope": "Varsayılan kişisel çalışma alanı → ekip → proje hiyerarşisi; ortak scope resolver, üyelik kontrolü, scoped SQL/composite FK, cache, dosya, arama, job ve canlı kanal sözleşmeleri.",
+      "acceptance_criteria": [
+        "İki çalışma alanı aynı kullanıcıda ayrı veriyi ve ayarları koruyor",
+        "API/MCP/worker girişinde doğrulanmış scope zorunlu; eksik kapsam güvenli biçimde reddediliyor",
+        "Çapraz workspace parent ilişkileri DB constraint ve servis kontrolüyle reddediliyor",
+        "Görünür rol matrisi veya kiralama/şube modeli eklenmiyor",
+        "Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil"
+      ],
+      "depends_on": [
+        "T01",
+        "T02"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T42",
+      "deduplication_key": "traccia-plan-v1:T42",
+      "phase": 5,
+      "title": "Tenant izolasyon ve iptal kabul paketini kur",
+      "priority": "high",
+      "scope": "Çalışma alanı kapsam desenini fixture üzerinden ispatla; cache invalidation, çoklu sekme, job actor iptali, canlı kanal ve dosya sahipliği için semantik izolasyon testleri.",
+      "acceptance_criteria": [
+        "İki workspace fixture ile HTTP/API/MCP yetkisiz okuma/yazma testleri geçiyor",
+        "Cache invalidation ve kuyrukta bekleyen işin aktör erişimi iptalinde kapsam aşılmıyor",
+        "Dosya, export, arama ve canlı kanal testleri başka alan verisini göstermiyor",
+        "Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil"
+      ],
+      "depends_on": [
+        "T41",
+        "T04",
+        "T11",
+        "T13",
+        "T18"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T43",
+      "deduplication_key": "traccia-plan-v1:T43",
+      "phase": 2,
+      "title": "Ürün ve ortam kataloğunu geliştir",
+      "priority": "high",
+      "scope": "Ürünü repo, projeler, production/staging/local ortam adresleri ve deploy bağlantılarıyla ilişkilendir; web/mobil CRUD ve arşivleme, aynı ortak işlemlerin API/MCP karşılıkları.",
+      "acceptance_criteria": [
+        "Ürün ve ortamların tüm yaşam döngüsü panel/API/MCP ile tamamlanıyor",
+        "URL/ortam isimleri workspace kapsamında doğrulanıyor; secret kasası eklenmiyor",
+        "Arşivleme geçmiş ilişkiyi bozmuyor; filtreleme ve devam sayfaları tam veriyi sağlıyor",
+        "Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil"
+      ],
+      "depends_on": [
+        "T41",
+        "T07",
+        "T03"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T44",
+      "deduplication_key": "traccia-plan-v1:T44",
+      "phase": 7,
+      "title": "Widget ve issue bağlamını ürün ve ortama bağla",
+      "priority": "normal",
+      "scope": "Kurulum varsayılanı ürün/ortam/release bağlamını güvenilir sunucu çözümüyle issue kaydına bağla; host kullanıcı bağlamı doğrulanmış kurulum eşlemesini geçersiz kılamaz.",
+      "acceptance_criteria": [
+        "Aynı ürünün staging ve production bildirimleri ayrılıyor",
+        "Sahte host bağlamı başka workspace veya ürün ilişkisi oluşturamıyor",
+        "Kurulum ve issue bağlamı API/MCP üzerinden tam okunup yönetilebiliyor",
+        "Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil"
+      ],
+      "depends_on": [
+        "T43",
+        "T27",
+        "T30",
+        "T31"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T45",
+      "deduplication_key": "traccia-plan-v1:T45",
+      "phase": 8,
+      "title": "Ortak talep havuzu ve yönlendirmeyi geliştir",
+      "priority": "high",
+      "scope": "Widget, panel, API/MCP ve doğrulanmış webhook girişlerini ortak issue çekirdeği üstünde bug/özellik/fikir/operasyon tipleriyle havuza al; sınıflandır, birleştir ve projeye yönlendir.",
+      "acceptance_criteria": [
+        "Her kaynağın talebi izlenebilir kaynak ve idempotent kimlikle kaydoluyor",
+        "Benzer talepleri birleştirme kaynak geçmişi ve dosyaları kaybetmiyor",
+        "Yönlendirme/yeniden açma/birleştirme panel/API/MCP eşdeğer sonuç veriyor",
+        "Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil"
+      ],
+      "depends_on": [
+        "T08",
+        "T34",
+        "T43",
+        "T03",
+        "T04"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T46",
+      "deduplication_key": "traccia-plan-v1:T46",
+      "phase": 8,
+      "title": "Talep havuzu deneyimini ve kaynak doğrulamasını tamamla",
+      "priority": "normal",
+      "scope": "Mobil uyumlu havuz, kaynak/ürün/ortam filtreleri, bulk yönlendirme ve talep→issue bağlantıları; imzalı webhook alımı ile hata/retry yönetimi.",
+      "acceptance_criteria": [
+        "Widget ve imzalı webhook talepleri projeye yalnız MCP ile yönlendirilebiliyor",
+        "Aynı delivery tekrarında tek talep ve tek issue oluşuyor",
+        "Çapraz workspace merge ve bulk işlem reddi fixture ile test ediliyor",
+        "Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil"
+      ],
+      "depends_on": [
+        "T45",
+        "T16",
+        "T44"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T47",
+      "deduplication_key": "traccia-plan-v1:T47",
+      "phase": 3,
+      "title": "Bağlantılı Plate belgeleri ve karar şablonlarını geliştir",
+      "priority": "normal",
+      "scope": "Proje notu, ADR/teknik karar, runbook ve kontrol listesi şablonlarını ortak sürümlü Plate JSON ile oluştur; issue, PR ve release için typed link/backlink sözleşmesi.",
+      "acceptance_criteria": [
+        "Belge oluşturma, revision, geri yükleme, ilişki ve backlink işlemleri panel/API/MCP kapsamında",
+        "Issue/PR/release link türleri kimlik ve workspace sınırı doğrulanarak bağlanıyor",
+        "Büyük Plate JSON ve özel node içeriği tam round-trip testiyle korunuyor",
+        "Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil"
+      ],
+      "depends_on": [
+        "T07",
+        "T10",
+        "T12"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T48",
+      "deduplication_key": "traccia-plan-v1:T48",
+      "phase": 9,
+      "title": "Olay koşul eylem otomasyon çekirdeğini kur",
+      "priority": "normal",
+      "scope": "Hazır olay/koşul/eylem seti, kural sürümü, devreye alma/durdurma ve dry-run önizleme; ortak servisleri kullanan kalıcı yürütme modeli.",
+      "acceptance_criteria": [
+        "Production bug→öncelik/ekip yönlendirme hazır kuralı çalışıyor",
+        "Kural preview ve yönetimi panel/API/MCP ile aynı planı üretiyor",
+        "Eylem izinleri çalışma anında doğrulanıyor; keyfi kod çalıştırılmıyor",
+        "Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil"
+      ],
+      "depends_on": [
+        "T04",
+        "T08",
+        "T43",
+        "T45",
+        "T25"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T49",
+      "deduplication_key": "traccia-plan-v1:T49",
+      "phase": 9,
+      "title": "Otomasyon tekrar döngü ve hata yönetimini tamamla",
+      "priority": "normal",
+      "scope": "Olay/kurala bağlı idempotency, recursion/depth limiti, cooldown, kalıcı çalıştırma geçmişi, retry ve hata inceleme.",
+      "acceptance_criteria": [
+        "Tek olay retry edildiğinde yan etki çoğalmıyor",
+        "Birbirini tetikleyen kurallar belirlenen sınırda duruyor",
+        "Başarı/hata/atlanan koşul ve retry geçmişi API/MCP üzerinden eksiksiz sorgulanıyor",
+        "Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil"
+      ],
+      "depends_on": [
+        "T48",
+        "T03"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T50",
+      "deduplication_key": "traccia-plan-v1:T50",
+      "phase": 9,
+      "title": "Release ve deploy veri akışını geliştir",
+      "priority": "normal",
+      "scope": "Issue→PR→commit→release→ortam/deploy ilişkisi; GitHub deployment/status/release olaylarını kalıcı inbox üzerinden ilişkilendir; deploy durumu merge durumundan ayrılır.",
+      "acceptance_criteria": [
+        "PR merge edilmesi production deploy olarak gösterilmiyor",
+        "Sırasız veya yinelenen deploy/status olayları güncel durumu geriletmiyor",
+        "Release/deploy ilişki ve durumları panel/API/MCP ile tam okunup yönetiliyor",
+        "Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil"
+      ],
+      "depends_on": [
+        "T24",
+        "T25",
+        "T43",
+        "T04"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T51",
+      "deduplication_key": "traccia-plan-v1:T51",
+      "phase": 9,
+      "title": "Release notları ve ortam görünürlüğünü tamamla",
+      "priority": "normal",
+      "scope": "Sürüm notlarını Plate belgeleriyle ilişkilendir; ortamda çalışan sürüm, ilgili issue/PR, deploy ve rollback bağlantılarını mobil uyumlu sun; otomasyon koşullarına deploy sonucunu ekle.",
+      "acceptance_criteria": [
+        "Bir issue hangi ortam ve sürümde yayında sorusu cevaplanıyor",
+        "Release notu ve rollback bağlantısı API/MCP üzerinden yönetiliyor",
+        "PR merge + başarılı production deploy kuralı fixture ile doğrulanıyor; otomatik merge veya VPS kontrol paneli eklenmiyor",
+        "Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil"
+      ],
+      "depends_on": [
+        "T50",
+        "T47",
+        "T48"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T52",
+      "deduplication_key": "traccia-plan-v1:T52",
+      "phase": 9,
+      "title": "MCP ve ajan işlem geçmişini ilişkilendir",
+      "priority": "normal",
+      "scope": "İstemci, aktör, workspace, operation, correlation/run ID, durum, bağlı issue/PR ve güvenli hata bilgisiyle kalıcı run/event kaydı; mevcut ajan araçlarını izle, yeni ajan runtime kurma.",
+      "acceptance_criteria": [
+        "İstemcinin run correlation ID alanı varsa birden fazla araç çağrısı aynı run altında bağlanıyor",
+        "Secret ve ham tokenlar kayda alınmıyor; actor/workspace sınırı korunuyor",
+        "Run ve event kayıtları devam sayfası ve tam içerik referansıyla API/MCP üzerinden okunabiliyor",
+        "Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil"
+      ],
+      "depends_on": [
+        "T18",
+        "T01",
+        "T04",
+        "T08"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    },
+    {
+      "plan_id": "T53",
+      "deduplication_key": "traccia-plan-v1:T53",
+      "phase": 9,
+      "title": "Ajan run ekranı ve güvenli retry izini tamamla",
+      "priority": "normal",
+      "scope": "Run durumu, hata, issue/PR ilişkileri ve retry zincirini web/mobil göster; retry aynı yetki/idempotency kurallarıyla orijinal işleme gider; süresi dolan/yarıda kalan kayıtları uzlaştır.",
+      "acceptance_criteria": [
+        "Retry yeni bir yan etkiyi yanlışlıkla çoğaltmıyor; üst işlem/deneme ilişkisi korunuyor",
+        "Panelsiz istemci run oluşturma, ilişkilendirme, sonuç bildirme ve geçmiş okumayı tamamlıyor",
+        "Crash/timeout ve erişim iptali testleri açık sonuç üretiyor",
+        "Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil"
+      ],
+      "depends_on": [
+        "T52",
+        "T03",
+        "T21"
+      ],
+      "initial_status": "backlog",
+      "linear_issue_id": null,
+      "linear_issue_url": null
+    }
+  ]
+}
