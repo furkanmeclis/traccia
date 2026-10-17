@@ -52,6 +52,13 @@ export const workspaceService = {
       }),
     );
   },
+  async activity(id: string, after?: string) {
+    return unwrap<Schemas["ProductActivityListOutput"]>(
+      await apiClient.GET("/v1/workspaces/{workspaceID}/activity", {
+        params: { path: { workspaceID: id }, query: { limit: 20, after } },
+      }),
+    );
+  },
   async credentials(id: string, after?: string) {
     return unwrap<Schemas["ProductCredentialsListOutput"]>(
       await apiClient.GET("/v1/workspaces/{workspaceID}/credentials", {

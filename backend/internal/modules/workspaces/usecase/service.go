@@ -82,7 +82,7 @@ func (s *Service) Authorize(ctx context.Context, req operations.AuthorizationReq
 	if req.WorkspaceID != uuid.Nil && req.Operation.Effect == operations.Write && a.Role != "owner" {
 		return operations.Identity{}, denied(operations.Forbidden)
 	}
-	if strings.HasPrefix(req.Operation.Permission, "credentials.") && a.Role != "owner" {
+	if (strings.HasPrefix(req.Operation.Permission, "credentials.") || strings.HasPrefix(req.Operation.ID, "deliveries.")) && a.Role != "owner" {
 		return operations.Identity{}, denied(operations.Forbidden)
 	}
 	if req.Operation.ID == "credentials.create" && a.Audience != "" {
@@ -126,6 +126,9 @@ func (s *Service) create(ctx context.Context, scope operations.Scope, in CreateI
 	if err != nil {
 		return WorkspaceOutput{}, err
 	}
+	if err := s.repo.RecordWorkspaceEvent(ctx, scope.ActorID(), w, "workspaces.created"); err != nil {
+		return WorkspaceOutput{}, err
+	}
 	return s.workspaceOutput(ctx, scope.ActorID(), w)
 }
 func (s *Service) list(ctx context.Context, scope operations.Scope, in ListInput) (WorkspaceList, error) {
@@ -159,6 +162,9 @@ func (s *Service) get(ctx context.Context, scope operations.Scope, _ EmptyInput)
 func (s *Service) update(ctx context.Context, scope operations.Scope, in UpdateInput) (WorkspaceOutput, error) {
 	w, err := s.repo.Update(ctx, scope.WorkspaceID(), in.Name, in.ExpectedVersion)
 	if err != nil {
+		return WorkspaceOutput{}, err
+	}
+	if err := s.repo.RecordWorkspaceEvent(ctx, scope.ActorID(), w, "workspaces.updated"); err != nil {
 		return WorkspaceOutput{}, err
 	}
 	return s.workspaceOutput(ctx, scope.ActorID(), w)
@@ -257,4 +263,29 @@ func (s *Service) workspaceOutput(ctx context.Context, actor uuid.UUID, w Worksp
 		return a.Role == "owner" && (a.Audience == "" || slices.Contains(a.Scopes, permission))
 	}
 	return WorkspaceOutput{Workspace: w, Capabilities: WorkspaceCapabilities{Update: allowed("workspace.write"), ReadCredentials: allowed("credentials.read"), ManageCredentials: allowed("credentials.manage")}}, nil
+}
+
+func (s *Service) activity(ctx context.Context, scope operations.Scope, in ListInput) (ActivityList, error) {
+	rows, err := s.repo.ListActivity(ctx, scope.WorkspaceID(), cursor(in.After), in.Limit+1)
+	out := ActivityList{Items: rows}
+	if len(rows) > int(in.Limit) {
+		out.Items = rows[:in.Limit]
+		out.HasMore = true
+		out.NextCursor = out.Items[len(out.Items)-1].ID.String()
+	}
+	return out, err
+}
+func (s *Service) deliveries(ctx context.Context, scope operations.Scope, in ListInput) (DeliveryList, error) {
+	rows, err := s.repo.ListDeliveries(ctx, scope.WorkspaceID(), cursor(in.After), in.Limit+1)
+	out := DeliveryList{Items: rows}
+	if len(rows) > int(in.Limit) {
+		out.Items = rows[:in.Limit]
+		out.HasMore = true
+		out.NextCursor = out.Items[len(out.Items)-1].ID.String()
+	}
+	return out, err
+}
+func (s *Service) replayDelivery(ctx context.Context, scope operations.Scope, in ReplayDeliveryInput) (ReplayDeliveryOutput, error) {
+	err := s.repo.ReplayDelivery(ctx, scope.WorkspaceID(), in.DeliveryID)
+	return ReplayDeliveryOutput{Replayed: err == nil}, err
 }

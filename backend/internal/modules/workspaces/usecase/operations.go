@@ -53,6 +53,21 @@ func (s *Service) Registry() (*operations.Registry, error) {
 	if err := add(operations.New(meta("credentials.revoke", "credentials.manage", "/v1/workspaces/{workspaceID}/credentials/{credentialID}", "DELETE", "revoke_workspace_credential", operations.WorkspaceScope, operations.Write), validateRevoke, s.revoke, refineSchemas)); err != nil {
 		return nil, err
 	}
+
+	if err := add(operations.New(meta("activity.list", "workspace.read", "/v1/workspaces/{workspaceID}/activity", "GET", "list_workspace_activity", operations.WorkspaceScope, operations.Read), validatePage, s.activity, refineSchemas)); err != nil {
+		return nil, err
+	}
+	if err := add(operations.New(meta("deliveries.list", "workspace.read", "/v1/workspaces/{workspaceID}/deliveries", "GET", "list_workspace_deliveries", operations.WorkspaceScope, operations.Read), validatePage, s.deliveries, refineSchemas)); err != nil {
+		return nil, err
+	}
+	if err := add(operations.New(meta("deliveries.replay", "workspace.write", "/v1/workspaces/{workspaceID}/deliveries/replay", "POST", "replay_workspace_delivery", operations.WorkspaceScope, operations.Write), func(in ReplayDeliveryInput) []operations.FieldError {
+		if in.DeliveryID == uuid.Nil {
+			return []operations.FieldError{{Field: "delivery_id", Code: "invalid"}}
+		}
+		return nil
+	}, s.replayDelivery, refineSchemas)); err != nil {
+		return nil, err
+	}
 	r, err := operations.NewRegistry(s, bindings...)
 	if err != nil {
 		return nil, err
@@ -74,7 +89,7 @@ func refineSchemas(input, output *jsonschema.Schema) error {
 			return
 		}
 		for key, child := range schema.Properties {
-			if key == "id" || key == "credential_id" {
+			if key == "id" || key == "credential_id" || key == "actor_id" || key == "workspace_id" || key == "event_id" || key == "delivery_id" {
 				*child = jsonschema.Schema{Type: "string", Format: "uuid"}
 			}
 			if key == "name" {
@@ -91,7 +106,7 @@ func refineSchemas(input, output *jsonschema.Schema) error {
 				child.Minimum = &low
 				child.Maximum = &high
 			}
-			if key == "created_at" || key == "updated_at" || key == "expires_at" || key == "revoked_at" {
+			if key == "created_at" || key == "updated_at" || key == "expires_at" || key == "revoked_at" || key == "occurred_at" || key == "available_at" || key == "lease_until" || key == "succeeded_at" {
 				child.Format = "date-time"
 			}
 			if key == "scopes" {

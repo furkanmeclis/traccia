@@ -21,6 +21,7 @@ import {
 import { useLocale } from "@/providers/locale-provider";
 import { useWorkspace, workspaceKeys } from "./queries";
 import { workspaceService, type Workspace } from "./workspace.service";
+import { WorkspaceActivity } from "./workspace-activity";
 import { WorkspaceCredentials } from "./workspace-credentials";
 function WorkspaceSettings({ workspace }: { workspace: Workspace }) {
   const { t } = useLocale();
@@ -198,6 +199,10 @@ export function WorkspaceDetail({ workspaceId }: { workspaceId: string }) {
               workspace={result.data.workspace}
             />
           )}
+          <WorkspaceActivity
+            key={`activity:${workspaceId}`}
+            workspaceId={workspaceId}
+          />
           {(result.data.capabilities.read_credentials ||
             result.data.capabilities.manage_credentials) && (
             <WorkspaceCredentials

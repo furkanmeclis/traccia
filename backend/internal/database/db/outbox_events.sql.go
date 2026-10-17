@@ -8,162 +8,64 @@ package db
 import (
 	"context"
 
+	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
-const claimOutboxEvents = `-- name: ClaimOutboxEvents :many
-WITH picked AS (
-    SELECT id
-    FROM outbox_events
-    WHERE status = 'pending'
-      AND available_at <= NOW()
-    ORDER BY available_at ASC, id ASC
-    LIMIT $2
-    FOR UPDATE SKIP LOCKED
-)
-UPDATE outbox_events o
-SET available_at = NOW() + ($1::bigint * INTERVAL '1 millisecond')
-FROM picked
-WHERE o.id = picked.id
-RETURNING o.id, o.uuid, o.event_name, o.payload, o.status, o.attempts, o.last_error, o.available_at, o.published_at, o.created_at
+const databaseTime = `-- name: DatabaseTime :one
+SELECT clock_timestamp()::timestamptz
 `
 
-type ClaimOutboxEventsParams struct {
-	LeaseMs    int64 `json:"lease_ms"`
-	BatchLimit int32 `json:"batch_limit"`
-}
-
-func (q *Queries) ClaimOutboxEvents(ctx context.Context, arg ClaimOutboxEventsParams) ([]OutboxEvent, error) {
-	rows, err := q.db.Query(ctx, claimOutboxEvents, arg.LeaseMs, arg.BatchLimit)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-	items := []OutboxEvent{}
-	for rows.Next() {
-		var i OutboxEvent
-		if err := rows.Scan(
-			&i.ID,
-			&i.Uuid,
-			&i.EventName,
-			&i.Payload,
-			&i.Status,
-			&i.Attempts,
-			&i.LastError,
-			&i.AvailableAt,
-			&i.PublishedAt,
-			&i.CreatedAt,
-		); err != nil {
-			return nil, err
-		}
-		items = append(items, i)
-	}
-	if err := rows.Err(); err != nil {
-		return nil, err
-	}
-	return items, nil
-}
-
-const countOutboxByStatus = `-- name: CountOutboxByStatus :one
-SELECT COUNT(*)::bigint
-FROM outbox_events
-WHERE status = $1
-`
-
-func (q *Queries) CountOutboxByStatus(ctx context.Context, status string) (int64, error) {
-	row := q.db.QueryRow(ctx, countOutboxByStatus, status)
-	var column_1 int64
+func (q *Queries) DatabaseTime(ctx context.Context) (pgtype.Timestamptz, error) {
+	row := q.db.QueryRow(ctx, databaseTime)
+	var column_1 pgtype.Timestamptz
 	err := row.Scan(&column_1)
 	return column_1, err
 }
 
-const insertOutboxEvent = `-- name: InsertOutboxEvent :one
-INSERT INTO outbox_events (event_name, payload, status, available_at)
-VALUES ($1, $2, 'pending', NOW())
-RETURNING id, uuid, event_name, payload, status, attempts, last_error, available_at, published_at, created_at
+const insertOutboxEvent = `-- name: InsertOutboxEvent :execrows
+INSERT INTO outbox_events(uuid,event_name,payload,workspace_uuid,actor_uuid,event_version,occurred_at)
+VALUES($1,$2,$3,$4,$5,$6,$7) ON CONFLICT(uuid) DO NOTHING
 `
 
 type InsertOutboxEventParams struct {
-	EventName string `json:"event_name"`
-	Payload   []byte `json:"payload"`
+	Uuid          uuid.UUID          `json:"uuid"`
+	EventName     string             `json:"event_name"`
+	Payload       []byte             `json:"payload"`
+	WorkspaceUuid pgtype.UUID        `json:"workspace_uuid"`
+	ActorUuid     pgtype.UUID        `json:"actor_uuid"`
+	EventVersion  int32              `json:"event_version"`
+	OccurredAt    pgtype.Timestamptz `json:"occurred_at"`
 }
 
-func (q *Queries) InsertOutboxEvent(ctx context.Context, arg InsertOutboxEventParams) (OutboxEvent, error) {
-	row := q.db.QueryRow(ctx, insertOutboxEvent, arg.EventName, arg.Payload)
-	var i OutboxEvent
-	err := row.Scan(
-		&i.ID,
-		&i.Uuid,
-		&i.EventName,
-		&i.Payload,
-		&i.Status,
-		&i.Attempts,
-		&i.LastError,
-		&i.AvailableAt,
-		&i.PublishedAt,
-		&i.CreatedAt,
+func (q *Queries) InsertOutboxEvent(ctx context.Context, arg InsertOutboxEventParams) (int64, error) {
+	result, err := q.db.Exec(ctx, insertOutboxEvent,
+		arg.Uuid,
+		arg.EventName,
+		arg.Payload,
+		arg.WorkspaceUuid,
+		arg.ActorUuid,
+		arg.EventVersion,
+		arg.OccurredAt,
 	)
-	return i, err
+	if err != nil {
+		return 0, err
+	}
+	return result.RowsAffected(), nil
 }
 
-const markOutboxFailed = `-- name: MarkOutboxFailed :exec
-UPDATE outbox_events
-SET status = 'failed',
-    attempts = $2,
-    last_error = $3,
-    available_at = NOW()
-WHERE id = $1
-  AND status = 'pending'
+const outboxPayloadMatches = `-- name: OutboxPayloadMatches :one
+SELECT payload=$1::jsonb FROM outbox_events WHERE uuid=$2
 `
 
-type MarkOutboxFailedParams struct {
-	ID        int64       `json:"id"`
-	Attempts  int32       `json:"attempts"`
-	LastError pgtype.Text `json:"last_error"`
+type OutboxPayloadMatchesParams struct {
+	Payload []byte    `json:"payload"`
+	Uuid    uuid.UUID `json:"uuid"`
 }
 
-func (q *Queries) MarkOutboxFailed(ctx context.Context, arg MarkOutboxFailedParams) error {
-	_, err := q.db.Exec(ctx, markOutboxFailed, arg.ID, arg.Attempts, arg.LastError)
-	return err
-}
-
-const markOutboxPublished = `-- name: MarkOutboxPublished :exec
-UPDATE outbox_events
-SET status = 'published',
-    published_at = NOW(),
-    last_error = NULL
-WHERE id = $1
-  AND status = 'pending'
-`
-
-func (q *Queries) MarkOutboxPublished(ctx context.Context, id int64) error {
-	_, err := q.db.Exec(ctx, markOutboxPublished, id)
-	return err
-}
-
-const markOutboxRetry = `-- name: MarkOutboxRetry :exec
-UPDATE outbox_events
-SET status = 'pending',
-    attempts = $2,
-    last_error = $3,
-    available_at = $4
-WHERE id = $1
-  AND status = 'pending'
-`
-
-type MarkOutboxRetryParams struct {
-	ID          int64              `json:"id"`
-	Attempts    int32              `json:"attempts"`
-	LastError   pgtype.Text        `json:"last_error"`
-	AvailableAt pgtype.Timestamptz `json:"available_at"`
-}
-
-func (q *Queries) MarkOutboxRetry(ctx context.Context, arg MarkOutboxRetryParams) error {
-	_, err := q.db.Exec(ctx, markOutboxRetry,
-		arg.ID,
-		arg.Attempts,
-		arg.LastError,
-		arg.AvailableAt,
-	)
-	return err
+func (q *Queries) OutboxPayloadMatches(ctx context.Context, arg OutboxPayloadMatchesParams) (bool, error) {
+	row := q.db.QueryRow(ctx, outboxPayloadMatches, arg.Payload, arg.Uuid)
+	var column_1 bool
+	err := row.Scan(&column_1)
+	return column_1, err
 }

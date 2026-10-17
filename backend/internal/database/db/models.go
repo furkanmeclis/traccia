@@ -92,6 +92,31 @@ type BulkJob struct {
 	OrganizationID pgtype.Int8        `json:"organization_id"`
 }
 
+type EventConsumer struct {
+	Name       string             `json:"name"`
+	Version    int32              `json:"version"`
+	EventNames []string           `json:"event_names"`
+	CreatedAt  pgtype.Timestamptz `json:"created_at"`
+}
+
+type EventDelivery struct {
+	ID              int64              `json:"id"`
+	Uuid            uuid.UUID          `json:"uuid"`
+	EventID         int64              `json:"event_id"`
+	WorkspaceUuid   uuid.UUID          `json:"workspace_uuid"`
+	ConsumerName    string             `json:"consumer_name"`
+	ConsumerVersion int32              `json:"consumer_version"`
+	Status          string             `json:"status"`
+	Attempts        int32              `json:"attempts"`
+	AvailableAt     pgtype.Timestamptz `json:"available_at"`
+	LeaseUntil      pgtype.Timestamptz `json:"lease_until"`
+	LeaseToken      pgtype.UUID        `json:"lease_token"`
+	ErrorCode       string             `json:"error_code"`
+	SucceededAt     pgtype.Timestamptz `json:"succeeded_at"`
+	CreatedAt       pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt       pgtype.Timestamptz `json:"updated_at"`
+}
+
 type ExportJob struct {
 	ID             int64              `json:"id"`
 	Uuid           uuid.UUID          `json:"uuid"`
@@ -334,16 +359,20 @@ type OtpCode struct {
 }
 
 type OutboxEvent struct {
-	ID          int64              `json:"id"`
-	Uuid        uuid.UUID          `json:"uuid"`
-	EventName   string             `json:"event_name"`
-	Payload     []byte             `json:"payload"`
-	Status      string             `json:"status"`
-	Attempts    int32              `json:"attempts"`
-	LastError   pgtype.Text        `json:"last_error"`
-	AvailableAt pgtype.Timestamptz `json:"available_at"`
-	PublishedAt pgtype.Timestamptz `json:"published_at"`
-	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	ID            int64              `json:"id"`
+	Uuid          uuid.UUID          `json:"uuid"`
+	EventName     string             `json:"event_name"`
+	Payload       []byte             `json:"payload"`
+	Status        string             `json:"status"`
+	Attempts      int32              `json:"attempts"`
+	LastError     pgtype.Text        `json:"last_error"`
+	AvailableAt   pgtype.Timestamptz `json:"available_at"`
+	PublishedAt   pgtype.Timestamptz `json:"published_at"`
+	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+	WorkspaceUuid pgtype.UUID        `json:"workspace_uuid"`
+	ActorUuid     pgtype.UUID        `json:"actor_uuid"`
+	EventVersion  int32              `json:"event_version"`
+	OccurredAt    pgtype.Timestamptz `json:"occurred_at"`
 }
 
 type Permission struct {
@@ -557,6 +586,25 @@ type Workspace struct {
 	CreatedAt pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt pgtype.Timestamptz `json:"updated_at"`
 	Version   int64              `json:"version"`
+}
+
+type WorkspaceActivity struct {
+	ID            int64              `json:"id"`
+	EventID       int64              `json:"event_id"`
+	WorkspaceUuid uuid.UUID          `json:"workspace_uuid"`
+	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+}
+
+type WorkspaceHistory struct {
+	ID            int64              `json:"id"`
+	EventID       int64              `json:"event_id"`
+	Uuid          uuid.UUID          `json:"uuid"`
+	WorkspaceUuid uuid.UUID          `json:"workspace_uuid"`
+	ActorUuid     uuid.UUID          `json:"actor_uuid"`
+	EventName     string             `json:"event_name"`
+	Name          string             `json:"name"`
+	Version       int64              `json:"version"`
+	OccurredAt    pgtype.Timestamptz `json:"occurred_at"`
 }
 
 type WorkspaceMember struct {

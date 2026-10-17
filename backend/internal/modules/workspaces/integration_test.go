@@ -74,7 +74,7 @@ func isolatedDatabase(t *testing.T) *pgxpool.Pool {
 	}
 	// Verify latest migration down/up while this throwaway schema contains no product data.
 	for _, suffix := range []string{"down", "up"} {
-		raw, err := os.ReadFile("../../../migrations/000032_operation_receipts." + suffix + ".sql")
+		raw, err := os.ReadFile("../../../migrations/000033_durable_event_deliveries." + suffix + ".sql")
 		if err != nil {
 			t.Fatal(err)
 		}

@@ -34,6 +34,10 @@ type Access struct {
 	ExpiresAt   time.Time
 }
 type Repository interface {
+	RecordWorkspaceEvent(context.Context, uuid.UUID, Workspace, string) error
+	ListActivity(context.Context, uuid.UUID, uuid.UUID, int32) ([]Activity, error)
+	ListDeliveries(context.Context, uuid.UUID, uuid.UUID, int32) ([]Delivery, error)
+	ReplayDelivery(context.Context, uuid.UUID, uuid.UUID) error
 	ActiveActor(context.Context, uuid.UUID) error
 	ActiveOwner(context.Context, uuid.UUID) error
 	Resolve(context.Context, uuid.UUID, uuid.UUID) (Access, error)
@@ -94,4 +98,43 @@ type RevokeInput struct {
 }
 type RevokeOutput struct {
 	Revoked bool `json:"revoked"`
+}
+
+type Activity struct {
+	ID          uuid.UUID `json:"id"`
+	EventName   string    `json:"event_name"`
+	ActorID     uuid.UUID `json:"actor_id"`
+	WorkspaceID uuid.UUID `json:"workspace_id"`
+	Name        string    `json:"name"`
+	Version     int64     `json:"version"`
+	OccurredAt  time.Time `json:"occurred_at"`
+}
+type ActivityList struct {
+	Items      []Activity `json:"items"`
+	HasMore    bool       `json:"has_more"`
+	NextCursor string     `json:"next_cursor"`
+}
+type Delivery struct {
+	ID              uuid.UUID  `json:"id"`
+	EventID         uuid.UUID  `json:"event_id"`
+	EventName       string     `json:"event_name"`
+	Consumer        string     `json:"consumer"`
+	ConsumerVersion int32      `json:"consumer_version"`
+	Status          string     `json:"status"`
+	Attempts        int32      `json:"attempts"`
+	AvailableAt     time.Time  `json:"available_at"`
+	LeaseUntil      *time.Time `json:"lease_until"`
+	SucceededAt     *time.Time `json:"succeeded_at"`
+	ErrorCode       string     `json:"error_code"`
+}
+type DeliveryList struct {
+	Items      []Delivery `json:"items"`
+	HasMore    bool       `json:"has_more"`
+	NextCursor string     `json:"next_cursor"`
+}
+type ReplayDeliveryInput struct {
+	DeliveryID uuid.UUID `json:"delivery_id"`
+}
+type ReplayDeliveryOutput struct {
+	Replayed bool `json:"replayed"`
 }
