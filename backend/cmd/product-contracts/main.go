@@ -7,11 +7,14 @@ import (
 	"fmt"
 	"os"
 
+	teams "github.com/furkanmeclis/traccia/backend/internal/modules/teams/usecase"
 	"github.com/furkanmeclis/traccia/backend/internal/modules/workspaces/usecase"
+	"github.com/furkanmeclis/traccia/backend/internal/product"
 )
 
 func main() {
-	registry, err := usecase.New(nil).Registry()
+	workspace := usecase.New(nil)
+	registry, err := product.Registry(workspace, teams.New(nil, workspace))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)

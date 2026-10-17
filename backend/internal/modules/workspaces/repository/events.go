@@ -53,7 +53,9 @@ func (r *Postgres) projectActivity(ctx context.Context, ev events.Event) error {
 	if _, ok := dbtx.Tx(ctx); !ok {
 		return errors.New("activity projection requires delivery transaction")
 	}
-	if ev.Name != "workspaces.created" && ev.Name != "workspaces.updated" {
+	switch ev.Name {
+	case "workspaces.created", "workspaces.updated", "teams.created", "teams.updated", "teams.archived", "workflow_statuses.created", "workflow_statuses.updated", "workflow_statuses.archived", "workflow_statuses.reordered", "labels.created", "labels.updated", "labels.archived":
+	default:
 		return errors.New("activity event is unsupported")
 	}
 	n, err := r.queries(ctx).ProjectWorkspaceActivity(ctx, db.ProjectWorkspaceActivityParams{Uuid: ev.EventID, WorkspaceUuid: ev.WorkspaceID})
@@ -77,7 +79,7 @@ func (r *Postgres) ListActivity(ctx context.Context, w, after uuid.UUID, limit i
 	rows, err := r.queries(ctx).ListWorkspaceActivity(ctx, db.ListWorkspaceActivityParams{WorkspaceUuid: w, AfterUuid: after, RowLimit: limit})
 	result := make([]usecase.Activity, 0, len(rows))
 	for _, row := range rows {
-		result = append(result, usecase.Activity{ID: row.Uuid, WorkspaceID: row.WorkspaceUuid, ActorID: row.ActorUuid, EventName: row.EventName, Name: row.Name, Version: row.Version, OccurredAt: row.OccurredAt.Time})
+		result = append(result, usecase.Activity{ID: row.Uuid, WorkspaceID: row.WorkspaceUuid, ActorID: row.ActorUuid, EventName: row.EventName, Name: row.Name, Version: row.Version, ResourceType: row.ResourceType, ResourceID: resourceID(row.ResourceUuid, row.WorkspaceUuid), TeamID: nullableUUID(row.TeamUuid), OccurredAt: row.OccurredAt.Time})
 	}
 	return result, err
 }
@@ -112,4 +114,17 @@ func (r *Postgres) ReplayDelivery(ctx context.Context, w, id uuid.UUID) error {
 		return &operations.Error{Code: operations.Conflict}
 	}
 	return err
+}
+
+func resourceID(id pgtype.UUID, fallback uuid.UUID) uuid.UUID {
+	if id.Valid {
+		return id.Bytes
+	}
+	return fallback
+}
+func nullableUUID(id pgtype.UUID) string {
+	if !id.Valid {
+		return ""
+	}
+	return uuid.UUID(id.Bytes).String()
 }

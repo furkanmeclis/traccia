@@ -1,6 +1,7 @@
 package contractcoverage
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 
@@ -82,56 +83,70 @@ func checkHTTP(m operations.Metadata, op, doc Object, input, output any, fail fu
 		}
 	}
 	expectedBinding := any("empty")
+	pathFields := operations.HTTPPathFields(m)
+	bindings := Object{}
+	for field, name := range pathFields {
+		bindings[field] = "path:" + name
+	}
+	props, _ := input.(Object)["properties"].(Object)
 	if m.HTTPMethod == "POST" || m.HTTPMethod == "PUT" || m.HTTPMethod == "PATCH" {
 		expectedBinding = "body"
+		expectedBody := input
+		if len(pathFields) > 0 {
+			raw, _ := json.Marshal(input)
+			clone, _ := Decode(raw)
+			properties := clone["properties"].(Object)
+			required, _ := clone["required"].([]any)
+			var kept []any
+			for _, field := range required {
+				if _, ok := pathFields[fmt.Sprint(field)]; !ok {
+					kept = append(kept, field)
+				}
+			}
+			for field := range pathFields {
+				delete(properties, field)
+			}
+			clone["required"] = kept
+			expectedBody = clone
+			bindings["body"] = "body"
+			expectedBinding = bindings
+		}
 		body, _ := op["requestBody"].(Object)
 		if body["required"] != true {
 			fail("%s HTTP body must be required", id)
 		}
-		compare(id, "HTTP/body", input, contentSchema(body), doc)
-	} else if op["requestBody"] != nil {
-		fail("%s unexpected HTTP body", id)
-	}
-	if strings.HasSuffix(id, ".list") {
-		expectedBinding = Object{"limit": "query:limit", "after": "query:after"}
-		props := input.(Object)["properties"].(Object)
-		for _, name := range []string{"limit", "after"} {
+		compare(id, "HTTP/body", expectedBody, contentSchema(body), doc)
+	} else {
+		if op["requestBody"] != nil {
+			fail("%s unexpected HTTP body", id)
+		}
+		for name, property := range props {
+			if _, ok := pathFields[name]; ok {
+				continue
+			}
+			if m.HTTPMethod != "GET" {
+				fail("%s unmapped input %s", id, name)
+				continue
+			}
+			bindings[name] = "query:" + name
 			p := consume("query:" + name)
 			if p != nil {
-				if p["required"] == true || Difference(props[name], p["schema"], name) != "" {
+				if p["required"] == true || Difference(property, p["schema"], name) != "" {
 					fail("%s HTTP query %s schema mismatch", id, name)
 				}
 				want := ""
 				if name == "limit" {
 					want = "20"
+				} else if property.(Object)["type"] == "boolean" {
+					want = "false"
 				}
 				if fmt.Sprint(p["x-binding-default"]) != want {
 					fail("%s HTTP query %s default mismatch", id, name)
 				}
 			}
 		}
-	}
-	if m.HTTPMethod == "DELETE" {
-		expectedBinding = Object{"credential_id": "path:credentialID"}
-	}
-	if expectedBinding != "body" {
-		expectedFields := map[string]bool{}
-		if strings.HasSuffix(id, ".list") {
-			expectedFields["limit"] = true
-			expectedFields["after"] = true
-		}
-		if m.HTTPMethod == "DELETE" {
-			expectedFields["credential_id"] = true
-		}
-		props, _ := input.(Object)["properties"].(Object)
-		if len(props) != len(expectedFields) {
-			fail("%s HTTP binding does not cover exact DTO fields", id)
-		} else {
-			for field := range props {
-				if !expectedFields[field] {
-					fail("%s HTTP binding has unmapped input field %s", id, field)
-				}
-			}
+		if len(bindings) > 0 {
+			expectedBinding = bindings
 		}
 	}
 	if d := Difference(expectedBinding, op["x-traccia-input-binding"], "binding"); d != "" {

@@ -178,6 +178,17 @@ type ImportJob struct {
 	OrganizationID pgtype.Int8        `json:"organization_id"`
 }
 
+type Label struct {
+	ID          int64       `json:"id"`
+	Uuid        uuid.UUID   `json:"uuid"`
+	WorkspaceID int64       `json:"workspace_id"`
+	TeamID      pgtype.Int8 `json:"team_id"`
+	Name        string      `json:"name"`
+	Color       string      `json:"color"`
+	Version     int64       `json:"version"`
+	Archived    bool        `json:"archived"`
+}
+
 type LogPurgeRule struct {
 	ID               int64              `json:"id"`
 	Uuid             uuid.UUID          `json:"uuid"`
@@ -527,6 +538,20 @@ type StorageTrash struct {
 	ExpiresAt   pgtype.Timestamptz `json:"expires_at"`
 }
 
+type Team struct {
+	ID              int64              `json:"id"`
+	Uuid            uuid.UUID          `json:"uuid"`
+	WorkspaceID     int64              `json:"workspace_id"`
+	Name            string             `json:"name"`
+	Code            string             `json:"code"`
+	Version         int64              `json:"version"`
+	WorkflowVersion int64              `json:"workflow_version"`
+	NextIssueNumber int64              `json:"next_issue_number"`
+	Archived        bool               `json:"archived"`
+	CreatedAt       pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt       pgtype.Timestamptz `json:"updated_at"`
+}
+
 type User struct {
 	ID              int64              `json:"id"`
 	Uuid            uuid.UUID          `json:"uuid"`
@@ -578,6 +603,19 @@ type WebauthnCredential struct {
 	UpdatedAt         pgtype.Timestamptz `json:"updated_at"`
 }
 
+type WorkflowStatus struct {
+	ID          int64     `json:"id"`
+	Uuid        uuid.UUID `json:"uuid"`
+	WorkspaceID int64     `json:"workspace_id"`
+	TeamID      int64     `json:"team_id"`
+	Name        string    `json:"name"`
+	Category    string    `json:"category"`
+	Color       string    `json:"color"`
+	Position    int64     `json:"position"`
+	Version     int64     `json:"version"`
+	Archived    bool      `json:"archived"`
+}
+
 type Workspace struct {
 	ID        int64              `json:"id"`
 	Uuid      uuid.UUID          `json:"uuid"`
@@ -605,6 +643,9 @@ type WorkspaceHistory struct {
 	Name          string             `json:"name"`
 	Version       int64              `json:"version"`
 	OccurredAt    pgtype.Timestamptz `json:"occurred_at"`
+	ResourceType  string             `json:"resource_type"`
+	ResourceUuid  pgtype.UUID        `json:"resource_uuid"`
+	TeamUuid      pgtype.UUID        `json:"team_uuid"`
 }
 
 type WorkspaceMember struct {

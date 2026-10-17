@@ -7,7 +7,7 @@ import (
 )
 
 // Registry is the common entry point for HTTP, future MCP, workers and other adapters.
-func (s *Service) Registry() (*operations.Registry, error) {
+func (s *Service) Operations() ([]*operations.Operation, error) {
 	var bindings []*operations.Operation
 	add := func(op *operations.Operation, err error) error {
 		if err != nil {
@@ -17,7 +17,11 @@ func (s *Service) Registry() (*operations.Registry, error) {
 		return nil
 	}
 	meta := func(id, permission, path, method, tool string, scope operations.ScopeKind, effect operations.Effect) operations.Metadata {
-		return operations.Metadata{ID: id, Version: 2, Idempotent: effect == operations.Write, SensitiveResult: id == "credentials.create", Permission: permission, Scope: scope, Effect: effect, HTTPPath: path, HTTPMethod: method, MCPName: tool}
+		version := 2
+		if id == "activity.list" {
+			version = 3
+		}
+		return operations.Metadata{ID: id, Version: version, Idempotent: effect == operations.Write, SensitiveResult: id == "credentials.create", Permission: permission, Scope: scope, Effect: effect, HTTPPath: path, HTTPMethod: method, MCPName: tool}
 	}
 	nameValidation := func(in CreateInput) []operations.FieldError { return validateName(in.Name) }
 	emptyValidation := func(EmptyInput) []operations.FieldError { return nil }
@@ -68,7 +72,15 @@ func (s *Service) Registry() (*operations.Registry, error) {
 	}, s.replayDelivery, refineSchemas)); err != nil {
 		return nil, err
 	}
-	r, err := operations.NewRegistry(s, bindings...)
+	return bindings, nil
+}
+
+func (s *Service) Registry(extra ...*operations.Operation) (*operations.Registry, error) {
+	bindings, err := s.Operations()
+	if err != nil {
+		return nil, err
+	}
+	r, err := operations.NewRegistry(s, append(bindings, extra...)...)
 	if err != nil {
 		return nil, err
 	}
@@ -89,7 +101,7 @@ func refineSchemas(input, output *jsonschema.Schema) error {
 			return
 		}
 		for key, child := range schema.Properties {
-			if key == "id" || key == "credential_id" || key == "actor_id" || key == "workspace_id" || key == "event_id" || key == "delivery_id" {
+			if key == "id" || key == "credential_id" || key == "actor_id" || key == "workspace_id" || key == "event_id" || key == "delivery_id" || key == "resource_id" {
 				*child = jsonschema.Schema{Type: "string", Format: "uuid"}
 			}
 			if key == "name" {

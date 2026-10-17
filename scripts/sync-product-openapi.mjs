@@ -37,7 +37,14 @@ for (const contract of catalog) {
   const output = cloneExactJSON(contract.output_schema);
   delete input.$schema;
   delete output.$schema;
-  if (["POST", "PATCH", "PUT"].includes(meta.http_method)) schemas[`${name}Input`] = embedSchema(`${name}Input`, input);
+  const pathFields = Object.fromEntries([...meta.http_path.matchAll(/\{([^}]+)ID\}/g)].filter((m) => m[1] !== "workspace").map((m) => [`${m[1]}_id`, `${m[1]}ID`]));
+  const bodyInput = cloneExactJSON(input);
+  for(const field of Object.keys(pathFields)) { delete bodyInput.properties[field]; bodyInput.required = bodyInput.required.filter((name) => name !== field); }
+  if (["POST", "PATCH", "PUT"].includes(meta.http_method)) schemas[`${name}Input`] = embedSchema(`${name}Input`, bodyInput);
+  const binding = Object.fromEntries(Object.entries(pathFields).map(([field,name])=>[field,`path:${name}`]));
+  const queryFields = meta.http_method === "GET" ? Object.keys(input.properties ?? {}).filter((field)=>!pathFields[field]) : [];
+  for(const field of queryFields) binding[field]=`query:${field}`;
+  const defaultFor = (field) => field === "limit" ? 20 : input.properties[field].type === "boolean" ? false : "";
   schemas[`${name}Output`] = embedSchema(`${name}Output`, output);
   const error = cloneExactJSON(contract.error_schema);
   delete error.$schema;
@@ -50,10 +57,7 @@ for (const contract of catalog) {
   const parameters = [...meta.http_path.matchAll(/\{([^}]+)\}/g)].map((match) => ({
     name: match[1], in: "path", required: true, schema: { type: "string", format: "uuid" },
   }));
-  if (meta.id.endsWith(".list")) {
-    parameters.push({ name: "limit", in: "query", schema: input.properties.limit, "x-binding-default": 20 });
-    parameters.push({ name: "after", in: "query", schema: input.properties.after, "x-binding-default": "", description: "UUID keyset cursor from next_cursor; omitted on first page. Empty means first page." });
-  }
+  for(const field of queryFields) parameters.push({ name:field, in:"query", schema:input.properties[field], "x-binding-default":defaultFor(field) });
   if(meta.idempotent) parameters.push({name:"Idempotency-Key",in:"header",required:true,schema:{type:"string",minLength:1,maxLength:200},description:"One stable key per complete immutable mutation input; retries replay the original result."});
   const status = meta.http_method === "POST" ? "201" : "200";
   const responses = { [status]: {
@@ -70,7 +74,7 @@ for (const contract of catalog) {
     summary: meta.id, "x-operation-id": meta.id, "x-operation-version": meta.version,
     "x-traccia-input-schema": ref(`${name}DomainInput`),
     "x-traccia-error-schema": ref(`${name}Error`),
-    "x-traccia-input-binding": meta.id.endsWith(".list") ? { limit: "query:limit", after: "query:after" } : meta.http_method === "DELETE" ? { credential_id: "path:credentialID" } : ["POST", "PATCH", "PUT"].includes(meta.http_method) ? "body" : "empty",
+    "x-traccia-input-binding": ["POST", "PATCH", "PUT"].includes(meta.http_method) ? (Object.keys(pathFields).length ? { ...binding, body: "body" } : "body") : Object.keys(binding).length ? binding : "empty",
     description: "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
     security: [{ bearerAuth: [] }, { productCredential: [] }], parameters, responses,
   };

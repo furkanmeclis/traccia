@@ -45,7 +45,7 @@ func RegisterRegistryRoutes(mux RouteRegistrar, registry *operations.Registry, t
 	human := middleware.Authenticate(tokens, loader)
 	for _, contract := range registry.Catalog() {
 		meta := contract.Metadata
-		handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { serveOperation(w, r, registry, meta) })
+		handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { serveOperation(w, r, registry, contract) })
 		authenticate := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			parts := strings.Fields(r.Header.Get("Authorization"))
 			if len(parts) == 2 && strings.EqualFold(parts[0], "Bearer") && strings.HasPrefix(parts[1], usecase.TokenPrefix) {
@@ -58,7 +58,8 @@ func RegisterRegistryRoutes(mux RouteRegistrar, registry *operations.Registry, t
 	}
 	return nil
 }
-func serveOperation(w http.ResponseWriter, r *http.Request, registry *operations.Registry, meta operations.Metadata) {
+func serveOperation(w http.ResponseWriter, r *http.Request, registry *operations.Registry, contract operations.Contract) {
+	meta := contract.Metadata
 	w.Header().Set("Cache-Control", "no-store")
 	var workspace uuid.UUID
 	if meta.Scope == operations.WorkspaceScope {
@@ -78,46 +79,98 @@ func serveOperation(w http.ResponseWriter, r *http.Request, registry *operations
 		}
 		key = values[0]
 	}
-	var raw []byte
-	switch {
-	case r.Method == "GET" && strings.HasSuffix(meta.ID, ".list"):
+	var schema struct {
+		Properties map[string]struct {
+			Type any `json:"type"`
+		} `json:"properties"`
+	}
+	if err := json.Unmarshal(contract.Input, &schema); err != nil {
+		writeError(w, r, err)
+		return
+	}
+	fields := map[string]any{}
+	paths := operations.HTTPPathFields(meta)
+	switch r.Method {
+	case "GET", "DELETE":
 		query := r.URL.Query()
-		for key := range query {
-			if (key != "limit" && key != "after") || len(query[key]) != 1 {
+		for key, values := range query {
+			_, known := schema.Properties[key]
+			_, pathField := paths[key]
+			if !known || pathField || len(values) != 1 {
 				writeError(w, r, &operations.Error{Code: operations.Validation})
 				return
 			}
 		}
-		limit := int64(20)
-		if val, ok := query["limit"]; ok {
-			parsed, err := strconv.ParseInt(val[0], 10, 32)
-			if err != nil {
-				writeError(w, r, &operations.Error{Code: operations.Validation})
-				return
+		for key, prop := range schema.Properties {
+			if _, ok := paths[key]; ok {
+				continue
 			}
-			limit = parsed
+			value := query.Get(key)
+			kind, _ := prop.Type.(string)
+			switch kind {
+			case "integer":
+				if value == "" && key == "limit" {
+					value = "20"
+				}
+				v, err := strconv.ParseInt(value, 10, 32)
+				if err != nil {
+					writeError(w, r, &operations.Error{Code: operations.Validation})
+					return
+				}
+				fields[key] = v
+			case "boolean":
+				if value == "" {
+					value = "false"
+				}
+				if value != "true" && value != "false" {
+					writeError(w, r, &operations.Error{Code: operations.Validation})
+					return
+				}
+				fields[key] = value == "true"
+			default:
+				fields[key] = value
+			}
 		}
-		raw, _ = json.Marshal(usecase.ListInput{Limit: int32(limit), After: query.Get("after")})
-	case r.Method == "GET":
-		raw = []byte("{}")
-	case r.Method == "DELETE":
-		id, err := uuid.Parse(r.PathValue("credentialID"))
-		if err != nil {
-			writeError(w, r, &operations.Error{Code: operations.Validation})
-			return
-		}
-		raw, _ = json.Marshal(usecase.RevokeInput{CredentialID: id})
 	default:
 		if r.Header.Get("Content-Type") != "application/json" && !strings.HasPrefix(r.Header.Get("Content-Type"), "application/json;") {
 			response.Error(w, r, 415, "UNSUPPORTED_MEDIA_TYPE", "application/json is required")
 			return
 		}
-		body, err := io.ReadAll(http.MaxBytesReader(w, r.Body, 16<<10))
+		body, err := io.ReadAll(http.MaxBytesReader(w, r.Body, 1<<20))
 		if err != nil {
 			writeError(w, r, &operations.Error{Code: operations.Validation})
 			return
 		}
-		raw = body
+		value, err := operations.DecodeJSON(body)
+		if err != nil {
+			writeError(w, r, &operations.Error{Code: operations.Validation})
+			return
+		}
+		var ok bool
+		fields, ok = value.(map[string]any)
+		if !ok {
+			writeError(w, r, &operations.Error{Code: operations.Validation})
+			return
+		}
+		for key := range paths {
+			if _, present := fields[key]; present {
+				writeError(w, r, &operations.Error{Code: operations.Validation})
+				return
+			}
+		}
+	}
+	for key, name := range paths {
+		id, err := uuid.Parse(r.PathValue(name))
+		if err != nil || id == uuid.Nil {
+			writeError(w, r, &operations.Error{Code: operations.Validation})
+			return
+		}
+		fields[key] = id.String()
+	}
+	raw, err := json.Marshal(fields)
+	if err != nil {
+		writeError(w, r, err)
+		return
 	}
 	output, err := registry.Execute(r.Context(), operations.Call{OperationID: meta.ID, Channel: operations.API, WorkspaceID: workspace, Input: raw, IdempotencyKey: key})
 	if err != nil {

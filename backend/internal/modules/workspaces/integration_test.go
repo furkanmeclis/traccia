@@ -72,9 +72,9 @@ func isolatedDatabase(t *testing.T) *pgxpool.Pool {
 			t.Fatalf("migration %s: %v", filepath.Base(file), err)
 		}
 	}
-	// Verify latest migration down/up while this throwaway schema contains no product data.
+	// Round-trip latest migration in a fresh private schema.
 	for _, suffix := range []string{"down", "up"} {
-		raw, err := os.ReadFile("../../../migrations/000033_durable_event_deliveries." + suffix + ".sql")
+		raw, err := os.ReadFile("../../../migrations/000034_teams_workflows_labels." + suffix + ".sql")
 		if err != nil {
 			t.Fatal(err)
 		}

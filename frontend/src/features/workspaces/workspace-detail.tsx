@@ -193,6 +193,24 @@ export function WorkspaceDetail({ workspaceId }: { workspaceId: string }) {
               {result.data.workspace.id}
             </p>
           </div>
+          <Card>
+            <CardHeader>
+              <CardTitle>{t("teams.title")}</CardTitle>
+              <CardDescription>
+                {t("teams.discover_description")}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-3">
+              <Button asChild>
+                <Link href={`/w/${workspaceId}/teams`}>{t("teams.title")}</Link>
+              </Button>
+              <Button variant="outline" asChild>
+                <Link href={`/w/${workspaceId}/labels`}>
+                  {t("teams.shared_labels")}
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
           {result.data.capabilities.update && (
             <WorkspaceSettings
               key={`settings:${result.data.workspace.id}`}

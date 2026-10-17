@@ -1,6 +1,6 @@
 # Product workspace and tool credential foundation
 
-This slice implements the persistent workspace boundary and ten shared application operations, including durable activity and delivery management. It is a partial delivery of T02/T41: OAuth client lifecycle, MCP transport, teams/projects and downstream storage/search/job/realtime isolation remain tracked roadmap work.
+This slice implements the persistent workspace boundary and twenty-five shared application operations, including durable activity and delivery management. It is a partial delivery of T02/T41: OAuth client lifecycle, network MCP transport, projects and downstream storage/search/job/realtime isolation remain tracked roadmap work.
 
 ## Installation owner
 
@@ -31,7 +31,7 @@ Workspace creation and initial owner membership commit in one transaction. Produ
 | `deliveries.list` | `GET /v1/workspaces/{workspaceID}/deliveries` | Current owner; `workspace.read` for credentials |
 | `deliveries.replay` | `POST /v1/workspaces/{workspaceID}/deliveries/replay` | Current owner; `workspace.write` for credentials |
 
-All routes execute the same typed operation registry. The five write routes require one `Idempotency-Key`; workspace PATCH requires `{name, expected_version}` and workspace results include `version`. The same key and complete input replay the original result. Changed input with that key returns `IDEMPOTENCY_CONFLICT`; a fresh key with a stale expected version returns `VERSION_CONFLICT` (both HTTP 409). The product authorizer reads current database state on every registry invocation, so future MCP adapters must call the registry with verified human context or untrusted bearer material through `WithToolCredential`, never construct their own membership grant. HTTP uses the API channel. MCP audience is accepted only when executing the MCP channel through the shared service; the network MCP server is not shipped in this slice.
+All routes execute the same typed operation registry. The original five workspace/credential/delivery write routes require one `Idempotency-Key`; workspace PATCH requires `{name, expected_version}` and workspace results include `version`. The same key and complete input replay the original result. Changed input with that key returns `IDEMPOTENCY_CONFLICT`; a fresh key with a stale expected version returns `VERSION_CONFLICT` (both HTTP 409). The product authorizer reads current database state on every registry invocation, so future MCP adapters must call the registry with verified human context or untrusted bearer material through `WithToolCredential`, never construct their own membership grant. HTTP uses the API channel. MCP audience is accepted only when executing the MCP channel through the shared service; the network MCP server is not shipped in this slice.
 
 Product capability names are local application policy, separate from global inherited `platform.*` RBAC grants. They are not platform permission slugs and do not grant administration access.
 
@@ -56,10 +56,15 @@ cd frontend && pnpm api:generate
 
 The first command derives the product OpenAPI blocks from the actual bound Go catalog without starting services. Typed input/output schemas are closed; UUID wire representations are explicitly strings. Inherited platform OpenAPI blocks are preserved.
 
-Run `go test ./internal/modules/workspaces/...` from `backend/`. Database acceptance requires `TEST_DATABASE_URL`; it creates a random private test schema, applies all migrations, round-trips migration 33 and cleans up only that schema. The test does not drop or migrate the shared database schema. Without the variable, the DB acceptance is explicitly skipped.
+Run `go test ./internal/modules/workspaces/...` from `backend/`. Database acceptance requires `TEST_DATABASE_URL`; it creates a random private test schema, applies all migrations, round-trips migration 34 and cleans up only that schema. The test does not drop or migrate the shared database schema. Without the variable, the DB acceptance is explicitly skipped.
 
 Coverage includes human JWT and scoped credentials, two workspaces, explicit installation ownership, a read-only member, global-administrator isolation, pagination, unknown actor fields, grant/audience/expiry non-escalation, hash-only storage, independent revocation and current user/member invalidation.
 
 ## Activity and delivery
 
 Creation and renaming record canonical history and durable consumer deliveries in the mutation transaction. The workspace activity panel uses shared `activity.list`; owners can inspect and replay eligible deliveries through shared API/MCP-described operations without a panel approval step. See [DELIVERY.md](DELIVERY.md) for full contracts and guarantees.
+
+
+## Teams, workflows and labels
+
+Workspace owners can create and manage teams through the team panel and the same HTTP/MCP application operations; members can read them. Shared labels belong to the workspace; scoped labels and ordered workflow statuses belong to one team. Team codes remain stable after archive. All mutable resources use version checks and durable retry keys. Team creation includes five Turkish default statuses; callers can build and reorder a workflow entirely through the API or SDK tools. See [team operation contracts](OPERATIONS.md#team-foundation-operations-t06--tec-796) for routes, concurrency, pagination and archive policy. The UI has workspace team/shared-label pages and team configuration pages. Real issue insertion and the counter integration into that transaction remain T08.
