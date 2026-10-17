@@ -8,14 +8,16 @@ import (
 type Code string
 
 const (
-	Unauthenticated Code = "UNAUTHORIZED"
-	Forbidden       Code = "FORBIDDEN"
-	Validation      Code = "VALIDATION_ERROR"
-	NotFound        Code = "NOT_FOUND"
-	Conflict        Code = "CONFLICT"
-	Unavailable     Code = "OPERATION_UNAVAILABLE"
-	Canceled        Code = "CANCELED"
-	Internal        Code = "INTERNAL_ERROR"
+	Unauthenticated     Code = "UNAUTHORIZED"
+	Forbidden           Code = "FORBIDDEN"
+	Validation          Code = "VALIDATION_ERROR"
+	NotFound            Code = "NOT_FOUND"
+	Conflict            Code = "CONFLICT"
+	IdempotencyConflict Code = "IDEMPOTENCY_CONFLICT"
+	VersionConflict     Code = "VERSION_CONFLICT"
+	Unavailable         Code = "OPERATION_UNAVAILABLE"
+	Canceled            Code = "CANCELED"
+	Internal            Code = "INTERNAL_ERROR"
 )
 
 type FieldError struct {
@@ -44,7 +46,7 @@ func publicError(err error) *Error {
 	var known *Error
 	if errors.As(err, &known) && known != nil {
 		switch known.Code {
-		case Unauthenticated, Forbidden, Validation, NotFound, Conflict, Unavailable, Canceled, Internal:
+		case Unauthenticated, Forbidden, Validation, NotFound, Conflict, IdempotencyConflict, VersionConflict, Unavailable, Canceled, Internal:
 			return &Error{Code: known.Code, Details: append([]FieldError(nil), known.Details...), cause: err}
 		}
 	}

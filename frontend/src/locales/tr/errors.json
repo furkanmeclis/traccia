@@ -39,5 +39,7 @@
   "sign_in": "Giriş yap",
   "back_to_login": "Girişe dön",
   "continue": "Devam et",
-  "area_requires": "Bu alan yalnızca {{area}} erişimi gerektirir."
+  "area_requires": "Bu alan yalnızca {{area}} erişimi gerektirir.",
+  "codes.IDEMPOTENCY_CONFLICT": "Bu istek önceki denemeden farklı. Değişikliklerini gözden geçirip yeniden gönder.",
+  "codes.VERSION_CONFLICT": "Sen düzenlerken çalışma alanı değişti. Yeniden kaydetmeden önce güncel adı incele."
 }

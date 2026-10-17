@@ -471,6 +471,11 @@ export async function proxyToUpstream(
   if (accept) headers.set("Accept", accept);
   else headers.set("Accept", "application/json");
   if (contentType) headers.set("Content-Type", contentType);
+  // Preserve the operation identity through the BFF and its auth retry.
+  if (path === "workspaces" || path.startsWith("workspaces/")) {
+    const operationKey = request.headers.get("Idempotency-Key");
+    if (operationKey !== null) headers.set("Idempotency-Key", operationKey);
+  }
   // Go rate limits and audit rows key on the client IP; without this every
   // request would share the BFF's address (one global bucket).
   const clientIp = clientIpFromHeaders(request.headers);

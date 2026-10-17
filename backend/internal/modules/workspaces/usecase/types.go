@@ -8,6 +8,7 @@ import (
 )
 
 type Workspace struct {
+	Version   int64     `json:"version"`
 	ID        uuid.UUID `json:"id"`
 	Name      string    `json:"name"`
 	CreatedAt time.Time `json:"created_at"`
@@ -40,7 +41,7 @@ type Repository interface {
 	Create(context.Context, uuid.UUID, string) (Workspace, error)
 	List(context.Context, uuid.UUID, uuid.UUID, int32) ([]Workspace, error)
 	Get(context.Context, uuid.UUID, uuid.UUID) (Workspace, error)
-	Update(context.Context, uuid.UUID, string) (Workspace, error)
+	Update(context.Context, uuid.UUID, string, int64) (Workspace, error)
 	CreateCredential(context.Context, uuid.UUID, uuid.UUID, CreateCredentialInput, []byte) (Credential, error)
 	ListCredentials(context.Context, uuid.UUID, uuid.UUID, int32) ([]Credential, error)
 	RevokeCredential(context.Context, uuid.UUID, uuid.UUID) (bool, error)
@@ -48,6 +49,10 @@ type Repository interface {
 
 type CreateInput struct {
 	Name string `json:"name"`
+}
+type UpdateInput struct {
+	Name            string `json:"name"`
+	ExpectedVersion int64  `json:"expected_version"`
 }
 type EmptyInput struct{}
 type ListInput struct {

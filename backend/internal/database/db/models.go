@@ -267,6 +267,20 @@ type OauthProviderSetting struct {
 	ApplePrivateKeyEnc pgtype.Text        `json:"apple_private_key_enc"`
 }
 
+type OperationReceipt struct {
+	ID               int64              `json:"id"`
+	ActorID          uuid.UUID          `json:"actor_id"`
+	WorkspaceID      pgtype.UUID        `json:"workspace_id"`
+	OperationID      string             `json:"operation_id"`
+	OperationVersion int64              `json:"operation_version"`
+	IdempotencyKey   string             `json:"idempotency_key"`
+	Fingerprint      []byte             `json:"fingerprint"`
+	Result           []byte             `json:"result"`
+	Encrypted        bool               `json:"encrypted"`
+	CreatedAt        pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt        pgtype.Timestamptz `json:"updated_at"`
+}
+
 type Organization struct {
 	ID             int64              `json:"id"`
 	Uuid           uuid.UUID          `json:"uuid"`
@@ -542,6 +556,7 @@ type Workspace struct {
 	Status    string             `json:"status"`
 	CreatedAt pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt pgtype.Timestamptz `json:"updated_at"`
+	Version   int64              `json:"version"`
 }
 
 type WorkspaceMember struct {

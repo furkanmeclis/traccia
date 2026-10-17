@@ -39,5 +39,7 @@
   "sign_in": "Sign in",
   "back_to_login": "Back to sign in",
   "continue": "Continue",
-  "area_requires": "This area requires {{area}} access."
+  "area_requires": "This area requires {{area}} access.",
+  "codes.IDEMPOTENCY_CONFLICT": "This request differs from the previous attempt. Review your changes and submit again.",
+  "codes.VERSION_CONFLICT": "This workspace changed while you were editing. Review the latest name before saving again."
 }

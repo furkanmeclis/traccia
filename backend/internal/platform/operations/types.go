@@ -34,14 +34,16 @@ const (
 // Metadata describes intended mappings, not registered HTTP routes or MCP tools.
 // Version changes when an operation's input, output or semantics break compatibility.
 type Metadata struct {
-	ID         string    `json:"id"`
-	Version    int       `json:"version"`
-	Scope      ScopeKind `json:"scope"`
-	Effect     Effect    `json:"effect"`
-	Permission string    `json:"permission"`
-	HTTPMethod string    `json:"http_method"`
-	HTTPPath   string    `json:"http_path"`
-	MCPName    string    `json:"mcp_name"`
+	ID              string    `json:"id"`
+	Version         int       `json:"version"`
+	Scope           ScopeKind `json:"scope"`
+	Effect          Effect    `json:"effect"`
+	Permission      string    `json:"permission"`
+	HTTPMethod      string    `json:"http_method"`
+	HTTPPath        string    `json:"http_path"`
+	MCPName         string    `json:"mcp_name"`
+	Idempotent      bool      `json:"idempotent,omitempty"`
+	SensitiveResult bool      `json:"sensitive_result,omitempty"`
 }
 
 // Contract contains concrete JSON Schema 2020-12 documents inferred from DTOs.
@@ -58,6 +60,7 @@ type AuthorizationRequest struct {
 	Operation   Metadata
 	WorkspaceID uuid.UUID
 	Channel     Channel
+	Input       json.RawMessage
 }
 
 // Identity is returned only after verifying the caller, token status and requested
@@ -85,8 +88,23 @@ func (s Scope) ActorID() uuid.UUID     { return s.actorID }
 func (s Scope) WorkspaceID() uuid.UUID { return s.workspaceID }
 
 type Call struct {
-	OperationID string
-	Channel     Channel
-	WorkspaceID uuid.UUID
-	Input       json.RawMessage
+	OperationID    string
+	Channel        Channel
+	WorkspaceID    uuid.UUID
+	Input          json.RawMessage
+	IdempotencyKey string
+}
+
+// MutationRunner owns one atomic transaction containing authorization, receipt,
+// handler, and validated output. It must never commit a pending claim.
+type MutationRunner interface {
+	RunMutation(context.Context, Mutation, func(context.Context) ([]byte, error)) ([]byte, error)
+}
+type Mutation struct {
+	Metadata       Metadata
+	Scope          Scope
+	Key            string
+	Fingerprint    []byte
+	Authorize      func(context.Context) error
+	ValidateResult func([]byte) error
 }

@@ -52,5 +52,10 @@
   "revoke_description": "“{{name}}” will no longer have access to this workspace. You can create new access if needed.",
   "cancel": "Cancel",
   "empty_readonly_title": "No accessible workspaces yet",
-  "empty_readonly_description": "Once the installation owner creates a workspace, workspaces you can access will appear here."
+  "empty_readonly_description": "Once the installation owner creates a workspace, workspaces you can access will appear here.",
+  "version_conflict": "This workspace changed while you were editing. Your draft is preserved. Review the latest name before saving again.",
+  "review_latest": "Review latest saved name",
+  "latest_name": "Current saved name: {{name}}",
+  "reconcile_description": "Keep your draft to replace this name when you next save. You can edit your draft first.",
+  "keep_draft": "Keep my draft and continue"
 }

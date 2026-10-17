@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"crypto/sha256"
 	"encoding/base64"
+	"encoding/json"
 	"errors"
 	"slices"
 	"strings"
@@ -84,6 +85,20 @@ func (s *Service) Authorize(ctx context.Context, req operations.AuthorizationReq
 	if strings.HasPrefix(req.Operation.Permission, "credentials.") && a.Role != "owner" {
 		return operations.Identity{}, denied(operations.Forbidden)
 	}
+	if req.Operation.ID == "credentials.create" && a.Audience != "" {
+		var input CreateCredentialInput
+		if err := json.Unmarshal(req.Input, &input); err != nil {
+			return operations.Identity{}, denied(operations.Validation)
+		}
+		if a.Audience != input.Audience || input.ExpiresAt.After(a.ExpiresAt) {
+			return operations.Identity{}, denied(operations.Forbidden)
+		}
+		for _, grant := range input.Scopes {
+			if !slices.Contains(a.Scopes, grant) {
+				return operations.Identity{}, denied(operations.Forbidden)
+			}
+		}
+	}
 	return operations.Identity{ActorID: a.UserID, WorkspaceID: req.WorkspaceID}, nil
 }
 
@@ -141,8 +156,8 @@ func (s *Service) get(ctx context.Context, scope operations.Scope, _ EmptyInput)
 	}
 	return s.workspaceOutput(ctx, scope.ActorID(), w)
 }
-func (s *Service) update(ctx context.Context, scope operations.Scope, in CreateInput) (WorkspaceOutput, error) {
-	w, err := s.repo.Update(ctx, scope.WorkspaceID(), in.Name)
+func (s *Service) update(ctx context.Context, scope operations.Scope, in UpdateInput) (WorkspaceOutput, error) {
+	w, err := s.repo.Update(ctx, scope.WorkspaceID(), in.Name, in.ExpectedVersion)
 	if err != nil {
 		return WorkspaceOutput{}, err
 	}
@@ -165,13 +180,16 @@ func validateCredential(in CreateCredentialInput) []operations.FieldError {
 		}
 		seen[scope] = true
 	}
-	now := time.Now()
-	if !in.ExpiresAt.After(now) || in.ExpiresAt.After(now.Add(365*24*time.Hour)) {
+	if in.ExpiresAt.IsZero() {
 		return []operations.FieldError{{Field: "expires_at", Code: "invalid"}}
 	}
 	return nil
 }
 func (s *Service) createCredential(ctx context.Context, scope operations.Scope, in CreateCredentialInput) (CreateCredentialOutput, error) {
+	now := time.Now()
+	if !in.ExpiresAt.After(now) || in.ExpiresAt.After(now.Add(365*24*time.Hour)) {
+		return CreateCredentialOutput{}, &operations.Error{Code: operations.Validation, Details: []operations.FieldError{{Field: "expires_at", Code: "invalid"}}}
+	}
 	// Delegation cannot add a scope, switch audience or extend the parent lifetime.
 	if raw, ok := ctx.Value(credentialContextKey{}).(string); ok {
 		hash := sha256.Sum256([]byte(raw))

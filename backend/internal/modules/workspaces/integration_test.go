@@ -18,6 +18,7 @@ import (
 	"github.com/furkanmeclis/traccia/backend/internal/modules/workspaces/repository"
 	"github.com/furkanmeclis/traccia/backend/internal/modules/workspaces/usecase"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/authctx"
+	"github.com/furkanmeclis/traccia/backend/internal/platform/crypto"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/jwt"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/operations"
 	"github.com/google/uuid"
@@ -52,6 +53,7 @@ func isolatedDatabase(t *testing.T) *pgxpool.Pool {
 		t.Fatal("database configuration failed")
 	}
 	cfg.ConnConfig.RuntimeParams["search_path"] = schema + ",public"
+	cfg.ConnConfig.RuntimeParams["application_name"] = schema
 	pool, err := pgxpool.NewWithConfig(ctx, cfg)
 	if err != nil {
 		t.Fatal("database connection failed")
@@ -72,7 +74,7 @@ func isolatedDatabase(t *testing.T) *pgxpool.Pool {
 	}
 	// Verify latest migration down/up while this throwaway schema contains no product data.
 	for _, suffix := range []string{"down", "up"} {
-		raw, err := os.ReadFile("../../../migrations/000031_product_workspaces." + suffix + ".sql")
+		raw, err := os.ReadFile("../../../migrations/000032_operation_receipts." + suffix + ".sql")
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -104,7 +106,11 @@ func TestWorkspaceCredentialIsolation(t *testing.T) {
 		}
 		return raw
 	}
-	service := usecase.New(repository.New(pool, db.New(pool)))
+	box, err := crypto.NewSecretBox("12345678901234567890123456789012")
+	if err != nil {
+		t.Fatal(err)
+	}
+	service := usecase.New(repository.New(pool, db.New(pool), box))
 	mux := http.NewServeMux()
 	if err := module.RegisterRoutes(mux, service, tokens, loader{}); err != nil {
 		t.Fatal(err)
@@ -128,6 +134,7 @@ func TestWorkspaceCredentialIsolation(t *testing.T) {
 		}
 		req := httptest.NewRequest(method, path, bytes.NewReader(content))
 		req.Header.Set("Content-Type", "application/json")
+		req.Header.Set("Idempotency-Key", uuid.NewString())
 		if token != "" {
 			req.Header.Set("Authorization", "Bearer "+token)
 		}
@@ -158,7 +165,7 @@ func TestWorkspaceCredentialIsolation(t *testing.T) {
 	path := "/v1/workspaces/" + w1.String()
 	other := "/v1/workspaces/" + w2.String()
 	call("GET", path, outsiderJWT, nil, 403) // Even platform super_admin is not a product member.
-	call("PATCH", other, ownerJWT, map[string]any{"name": "Second updated"}, 200)
+	call("PATCH", other, ownerJWT, map[string]any{"name": "Second updated", "expected_version": 1}, 200)
 	// An explicitly added read-only member can read, but cannot grant themselves owner access.
 	if _, err := pool.Exec(ctx, "INSERT INTO workspace_members (workspace_id,user_id,role) SELECT w.id,u.id,'member' FROM workspaces w CROSS JOIN users u WHERE w.uuid=$1 AND u.uuid=$2", w1, outsider); err != nil {
 		t.Fatal(err)
@@ -242,7 +249,7 @@ func TestWorkspaceCredentialIsolation(t *testing.T) {
 	call("GET", path, child.Token, nil, 200) // Each credential has independent lifecycle.
 	// Wrong audience is also rejected through the registry; MCP will use this same boundary.
 	registry, _ := service.Registry()
-	_, err := registry.Execute(usecase.WithToolCredential(ctx, mcp.Token), operations.Call{OperationID: "workspaces.get", Channel: operations.MCP, WorkspaceID: w1, Input: []byte("{}")})
+	_, err = registry.Execute(usecase.WithToolCredential(ctx, mcp.Token), operations.Call{OperationID: "workspaces.get", Channel: operations.MCP, WorkspaceID: w1, Input: []byte("{}")})
 	if err != nil {
 		t.Fatal(err)
 	}

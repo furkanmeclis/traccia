@@ -1,5 +1,5 @@
 "use client";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowLeft, Settings2 } from "lucide-react";
@@ -13,6 +13,11 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ApiError } from "@/lib/api";
+import {
+  prepareSubmission,
+  type OperationSubmission,
+} from "./operation-submission";
 import { useLocale } from "@/providers/locale-provider";
 import { useWorkspace, workspaceKeys } from "./queries";
 import { workspaceService, type Workspace } from "./workspace.service";
@@ -21,15 +26,39 @@ function WorkspaceSettings({ workspace }: { workspace: Workspace }) {
   const { t } = useLocale();
   const cache = useQueryClient();
   const [name, setName] = useState(workspace.name);
+  const [baseline, setBaseline] = useState(workspace);
+  const [conflict, setConflict] = useState(false);
+  const [latest, setLatest] = useState<Workspace | null>(null);
+  const input = { name: name.trim(), expected_version: baseline.version };
+  const submission = useRef<OperationSubmission<typeof input> | null>(null);
+  const review = useMutation({
+    mutationFn: () => workspaceService.get(workspace.id),
+    onSuccess: (result) => setLatest(result.workspace),
+  });
   const update = useMutation({
-    mutationFn: () => workspaceService.update(workspace.id, name.trim()),
-    onSuccess: async () => {
+    mutationFn: (operation: OperationSubmission<typeof input>) =>
+      workspaceService.update(workspace.id, operation.input, operation.key),
+    onError: (error) => {
+      if (error instanceof ApiError && error.code === "VERSION_CONFLICT")
+        setConflict(true);
+    },
+    onSuccess: async (result) => {
+      submission.current = null;
+      setBaseline(result.workspace);
+      setConflict(false);
+      setLatest(null);
       await cache.invalidateQueries({ queryKey: workspaceKeys.all });
     },
   });
   function submit(e: FormEvent) {
     e.preventDefault();
-    update.mutate();
+    if (conflict || update.isPending) return;
+    submission.current = prepareSubmission(
+      submission.current,
+      input,
+      () => input,
+    );
+    update.mutate(submission.current);
   }
   return (
     <Card>
@@ -48,22 +77,63 @@ function WorkspaceSettings({ workspace }: { workspace: Workspace }) {
             </Label>
             <Input
               id="workspace-settings-name"
+              disabled={update.isPending}
               required
               maxLength={100}
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
-                update.reset();
+                if (!conflict) update.reset();
               }}
             />
           </div>
+          {conflict && (
+            <div
+              role="alert"
+              className="space-y-3 rounded-lg border p-4 text-sm"
+            >
+              <p>{t("workspaces.version_conflict")}</p>
+              {!latest ? (
+                <Button
+                  type="button"
+                  variant="outline"
+                  disabled={review.isPending}
+                  onClick={() => review.mutate()}
+                >
+                  {t("workspaces.review_latest")}
+                </Button>
+              ) : (
+                <>
+                  <p>{t("workspaces.latest_name", { name: latest.name })}</p>
+                  <p>{t("workspaces.reconcile_description")}</p>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      setBaseline(latest);
+                      setConflict(false);
+                      setLatest(null);
+                      submission.current = null;
+                      update.reset();
+                    }}
+                  >
+                    {t("workspaces.keep_draft")}
+                  </Button>
+                </>
+              )}
+              {review.isError && (
+                <p className="text-destructive">{review.error.message}</p>
+              )}
+            </div>
+          )}
           <div className="flex flex-wrap items-center gap-3">
             <Button
               type="submit"
               disabled={
+                conflict ||
                 update.isPending ||
                 !name.trim() ||
-                name.trim() === workspace.name
+                name.trim() === baseline.name
               }
             >
               {update.isPending ? t("workspaces.saving") : t("workspaces.save")}
@@ -73,7 +143,7 @@ function WorkspaceSettings({ workspace }: { workspace: Workspace }) {
                 {t("workspaces.saved")}
               </p>
             )}
-            {update.isError && (
+            {update.isError && !conflict && (
               <p role="alert" className="text-destructive text-sm">
                 {update.error.message}
               </p>

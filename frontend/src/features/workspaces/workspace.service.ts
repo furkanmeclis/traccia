@@ -22,9 +22,12 @@ export const workspaceService = {
       }),
     );
   },
-  async create(name: string) {
+  async create(name: string, operationKey: string) {
     return unwrap<Schemas["ProductWorkspacesCreateOutput"]>(
-      await apiClient.POST("/v1/workspaces", { body: { name } }),
+      await apiClient.POST("/v1/workspaces", {
+        params: { header: { "Idempotency-Key": operationKey } },
+        body: { name },
+      }),
     );
   },
   async get(id: string) {
@@ -34,11 +37,18 @@ export const workspaceService = {
       }),
     );
   },
-  async update(id: string, name: string) {
+  async update(
+    id: string,
+    body: Schemas["ProductWorkspacesUpdateInput"],
+    operationKey: string,
+  ) {
     return unwrap<Schemas["ProductWorkspacesUpdateOutput"]>(
       await apiClient.PATCH("/v1/workspaces/{workspaceID}", {
-        params: { path: { workspaceID: id } },
-        body: { name },
+        params: {
+          path: { workspaceID: id },
+          header: { "Idempotency-Key": operationKey },
+        },
+        body,
       }),
     );
   },
@@ -49,19 +59,35 @@ export const workspaceService = {
       }),
     );
   },
-  async createCredential(id: string, body: CreateCredential) {
+  async createCredential(
+    id: string,
+    body: CreateCredential,
+    operationKey: string,
+  ) {
     return unwrap<Schemas["ProductCredentialsCreateOutput"]>(
       await apiClient.POST("/v1/workspaces/{workspaceID}/credentials", {
-        params: { path: { workspaceID: id } },
+        params: {
+          path: { workspaceID: id },
+          header: { "Idempotency-Key": operationKey },
+        },
         body,
       }),
     );
   },
-  async revokeCredential(id: string, credentialID: string) {
+  async revokeCredential(
+    id: string,
+    credentialID: string,
+    operationKey: string,
+  ) {
     return unwrap<Schemas["ProductCredentialsRevokeOutput"]>(
       await apiClient.DELETE(
         "/v1/workspaces/{workspaceID}/credentials/{credentialID}",
-        { params: { path: { workspaceID: id, credentialID } } },
+        {
+          params: {
+            path: { workspaceID: id, credentialID },
+            header: { "Idempotency-Key": operationKey },
+          },
+        },
       ),
     );
   },

@@ -28,7 +28,7 @@ Workspace creation and initial owner membership commit in one transaction. Produ
 | `credentials.list` | `GET /v1/workspaces/{workspaceID}/credentials` | Current owner; `credentials.read` for credentials |
 | `credentials.revoke` | `DELETE /v1/workspaces/{workspaceID}/credentials/{credentialID}` | Current owner; `credentials.manage` for credentials |
 
-All routes execute the same typed operation registry. The product authorizer reads current database state on every registry invocation, so future MCP adapters must call the registry with verified human context or untrusted bearer material through `WithToolCredential`, never construct their own membership grant. HTTP uses the API channel. MCP audience is accepted only when executing the MCP channel through the shared service; the network MCP server is not shipped in this slice.
+All routes execute the same typed operation registry. The four write routes require one `Idempotency-Key`; workspace PATCH requires `{name, expected_version}` and workspace results include `version`. The same key and complete input replay the original result. Changed input with that key returns `IDEMPOTENCY_CONFLICT`; a fresh key with a stale expected version returns `VERSION_CONFLICT` (both HTTP 409). The product authorizer reads current database state on every registry invocation, so future MCP adapters must call the registry with verified human context or untrusted bearer material through `WithToolCredential`, never construct their own membership grant. HTTP uses the API channel. MCP audience is accepted only when executing the MCP channel through the shared service; the network MCP server is not shipped in this slice.
 
 Product capability names are local application policy, separate from global inherited `platform.*` RBAC grants. They are not platform permission slugs and do not grant administration access.
 
@@ -36,7 +36,7 @@ Use `limit` (1–100, default 20) and `after` (last `next_cursor` UUID) for list
 
 ## Independent tool access
 
-The raw `trc_` token contains 256 random bits. Only its SHA-256 hash is stored. A raw token appears only in the create response and cannot be retrieved later; list responses return metadata. Product responses use `Cache-Control: no-store`. Never put these tokens into frontend query caches, local storage, URLs or widget configuration.
+The raw `trc_` token contains 256 random bits. Only its SHA-256 hash is stored. A raw token appears in the create result, including authorized retries with the same idempotency key and identical input; list responses return metadata. Issuance happens once. Exact create results are encrypted in durable receipts using `APP_ENCRYPTION_KEY`, with authenticated context binding; see [operation retry and key retention policy](OPERATIONS.md#sensitive-results-key-retention-and-disclosure). Product responses use `Cache-Control: no-store`. Never put these tokens into frontend query caches, local storage, URLs or widget configuration.
 
 Each credential binds one workspace and actor, an audience (`api` or `mcp`), explicit scopes, expiration and an independent revocation record. Allowed scopes in this slice are `workspace.read`, `workspace.write`, `credentials.read`, `credentials.manage`. The owner membership, active user, active workspace, expiration and revocation are checked from authoritative storage on every operation. The credential/member composite foreign key prevents attaching a credential to a user outside its workspace.
 
@@ -53,6 +53,6 @@ cd frontend && pnpm api:generate
 
 The first command derives the product OpenAPI blocks from the actual bound Go catalog without starting services. Typed input/output schemas are closed; UUID wire representations are explicitly strings. Inherited platform OpenAPI blocks are preserved.
 
-Run `go test ./internal/modules/workspaces/...` from `backend/`. Database acceptance requires `TEST_DATABASE_URL`; it creates a random private test schema, applies all migrations, round-trips migration 31 and cleans up only that schema. The test does not drop or migrate the shared database schema. Without the variable, the DB acceptance is explicitly skipped.
+Run `go test ./internal/modules/workspaces/...` from `backend/`. Database acceptance requires `TEST_DATABASE_URL`; it creates a random private test schema, applies all migrations, round-trips migration 32 and cleans up only that schema. The test does not drop or migrate the shared database schema. Without the variable, the DB acceptance is explicitly skipped.
 
 Coverage includes human JWT and scoped credentials, two workspaces, explicit installation ownership, a read-only member, global-administrator isolation, pagination, unknown actor fields, grant/audience/expiry non-escalation, hash-only storage, independent revocation and current user/member invalidation.
