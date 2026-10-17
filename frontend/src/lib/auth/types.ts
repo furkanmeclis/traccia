@@ -86,7 +86,6 @@ export function isCmsUser(user: AuthUser | null | undefined): boolean {
   return !isPlatformUser(user);
 }
 
-export function defaultHomeForUser(user: AuthUser): string {
-  if (isPlatformUser(user)) return "/platform";
-  return "/";
+export function defaultHomeForUser(_user: AuthUser): string {
+  return "/workspaces";
 }

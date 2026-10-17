@@ -345,10 +345,7 @@ export function LoginForm() {
       }
       await signIn(provider, {
         redirect: true,
-        callbackUrl: resolveNext(
-          searchParams.get("next"),
-          routes.platform.home,
-        ),
+        callbackUrl: resolveNext(searchParams.get("next"), "/workspaces"),
       });
     } catch {
       setFormError(t("auth.oauth.sign_in_error"));

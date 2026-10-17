@@ -1,30 +1,35 @@
 openapi: 3.1.0
 info:
-  title: App API
+  title: Traccia API
   version: 0.1.0
-  summary: Boilerplate HTTP API — auth, RBAC, users, roles, notifications, realtime
+  summary: Traccia product workspace API and inherited platform services
   description: |
-    Starter HTTP API for the Next.js + Go boilerplate.
+    Traccia HTTP API built on the Next.js + Go platform foundation.
 
     **In scope:** authentication, global RBAC, platform users/roles, notifications,
     Web Push (VAPID), passkeys, and Centrifugo realtime tokens.
 
-    **Out of scope:** tenants, workspaces, CRM, inbox, commerce, AI, tickets, reports.
-    Those product modules were stripped. Live Go routes (`internal/modules/**/routes.go`)
-    are the source of truth if a path below is missing from the router.
+    **Product surface implemented:** persistent workspaces, verified membership,
+    installation owner bootstrap and independently revocable scoped tool credentials.
+    Additional approved product modules are delivered incrementally; this document
+    describes implemented routes, not the entire roadmap.
 
     **Roles:**
     - `super_admin` — system role; assigned via `make create-super-admin`
     - `cms_user` — seed role for CMS access
     - Custom roles via `/v1/platform/roles`
 
-    **Auth:** Bearer JWT access tokens + opaque refresh tokens.
+    **Auth:** Bearer JWT access tokens + opaque refresh tokens. Product workspace
+    routes additionally accept opaque workspace credentials with API audience;
+    inherited platform routes continue accepting human access JWTs only.
     See `docs/auth.md` for the permission matrix and token claims.
     Error catalog: `docs/api/errors.md`.
 
     **Conventions:**
     - Success/error envelope: `{success,data|error,meta.request_id}` on all `/v1/*`.
-    - Lists: `{items,total,limit,offset}` under `data` (`limit`/`offset`/`q`/`sort`; never `page`/`search`).
+    - Platform lists: `{items,total,limit,offset}` under `data`.
+    - Product lists use UUID keyset cursors: `{items,has_more,next_cursor}` (`limit`/`after`).
+      Workspace lists additionally include the current owner's `can_create` capability.
     - Probes `/healthz` and `/readyz` are **not** enveloped.
     - See `API_CONVENTIONS.md` and `docs/api/errors.md`.
   contact:
@@ -38,6 +43,8 @@ servers:
     description: Local development
 
 tags:
+  - name: Workspaces
+    description: Traccia product workspaces and independent tool credentials
   - name: Health
     description: Liveness and readiness probes
   - name: Auth
@@ -54,6 +61,530 @@ tags:
     description: In-app notification center, preferences, and admin send
 
 paths:
+  # BEGIN GENERATED PRODUCT PATHS
+  /v1/workspaces/{workspaceID}/credentials:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "credentials_create",
+        "summary": "credentials.create",
+        "x-operation-id": "credentials.create",
+        "x-operation-version": 1,
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created. Raw credential token is returned once; no-store.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductCredentialsCreateEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductCredentialsCreateInput"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "credentials_list",
+        "summary": "credentials.list",
+        "x-operation-id": "credentials.list",
+        "x-operation-version": 1,
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "UUID keyset cursor from next_cursor; omitted on first page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductCredentialsListEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/credentials/{credentialID}:
+    {
+      "delete": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "credentials_revoke",
+        "summary": "credentials.revoke",
+        "x-operation-id": "credentials.revoke",
+        "x-operation-version": 1,
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "credentialID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductCredentialsRevokeEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          }
+        }
+      }
+    }
+
+  /v1/workspaces:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "workspaces_create",
+        "summary": "workspaces.create",
+        "x-operation-id": "workspaces.create",
+        "x-operation-version": 1,
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWorkspacesCreateEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWorkspacesCreateInput"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "workspaces_list",
+        "summary": "workspaces.list",
+        "x-operation-id": "workspaces.list",
+        "x-operation-version": 1,
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "UUID keyset cursor from next_cursor; omitted on first page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWorkspacesListEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "workspaces_get",
+        "summary": "workspaces.get",
+        "x-operation-id": "workspaces.get",
+        "x-operation-version": 1,
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWorkspacesGetEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "workspaces_update",
+        "summary": "workspaces.update",
+        "x-operation-id": "workspaces.update",
+        "x-operation-version": 1,
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWorkspacesUpdateEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWorkspacesUpdateInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  # END GENERATED PRODUCT PATHS
   /healthz:
     get:
       tags: [Health]
@@ -3135,6 +3666,11 @@ paths:
 
 components:
   securitySchemes:
+    productCredential:
+      type: http
+      scheme: bearer
+      bearerFormat: Opaque workspace credential
+      description: Revocable workspace credential; api audience on HTTP, bounded scopes.
     bearerAuth:
       type: http
       scheme: bearer
@@ -3250,6 +3786,665 @@ components:
             $ref: "#/components/schemas/Error"
 
   schemas:
+    # BEGIN GENERATED PRODUCT SCHEMAS
+    ProductCredentialsCreateInput:
+      {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "audience": {
+            "type": "string",
+            "enum": [
+              "api",
+              "mcp"
+            ]
+          },
+          "scopes": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string",
+              "enum": [
+                "workspace.read",
+                "workspace.write",
+                "credentials.read",
+                "credentials.manage"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 4,
+            "uniqueItems": true
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "name",
+          "audience",
+          "scopes",
+          "expires_at"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductCredentialsCreateOutput:
+      {
+        "type": "object",
+        "properties": {
+          "credential": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "audience": {
+                "type": "string",
+                "enum": [
+                  "api",
+                  "mcp"
+                ]
+              },
+              "scopes": {
+                "type": [
+                  "null",
+                  "array"
+                ],
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "workspace.read",
+                    "workspace.write",
+                    "credentials.read",
+                    "credentials.manage"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 4,
+                "uniqueItems": true
+              },
+              "expires_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "revoked_at": {
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "format": "date-time"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "audience",
+              "scopes",
+              "expires_at",
+              "revoked_at",
+              "created_at"
+            ],
+            "additionalProperties": false
+          },
+          "token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "credential",
+          "token"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductCredentialsCreateEnvelope:
+      {
+        "type": "object",
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductCredentialsCreateOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        }
+      }
+
+    ProductCredentialsListOutput:
+      {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "audience": {
+                  "type": "string",
+                  "enum": [
+                    "api",
+                    "mcp"
+                  ]
+                },
+                "scopes": {
+                  "type": [
+                    "null",
+                    "array"
+                  ],
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "workspace.read",
+                      "workspace.write",
+                      "credentials.read",
+                      "credentials.manage"
+                    ]
+                  },
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "uniqueItems": true
+                },
+                "expires_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "revoked_at": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "date-time"
+                },
+                "created_at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "audience",
+                "scopes",
+                "expires_at",
+                "revoked_at",
+                "created_at"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "has_more",
+          "next_cursor"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductCredentialsListEnvelope:
+      {
+        "type": "object",
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductCredentialsListOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        }
+      }
+
+    ProductCredentialsRevokeOutput:
+      {
+        "type": "object",
+        "properties": {
+          "revoked": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "revoked"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductCredentialsRevokeEnvelope:
+      {
+        "type": "object",
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductCredentialsRevokeOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        }
+      }
+
+    ProductWorkspacesCreateInput:
+      {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkspacesCreateOutput:
+      {
+        "type": "object",
+        "properties": {
+          "workspace": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "update": {
+                "type": "boolean"
+              },
+              "read_credentials": {
+                "type": "boolean"
+              },
+              "manage_credentials": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "update",
+              "read_credentials",
+              "manage_credentials"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "workspace",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkspacesCreateEnvelope:
+      {
+        "type": "object",
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductWorkspacesCreateOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        }
+      }
+
+    ProductWorkspacesGetOutput:
+      {
+        "type": "object",
+        "properties": {
+          "workspace": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "update": {
+                "type": "boolean"
+              },
+              "read_credentials": {
+                "type": "boolean"
+              },
+              "manage_credentials": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "update",
+              "read_credentials",
+              "manage_credentials"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "workspace",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkspacesGetEnvelope:
+      {
+        "type": "object",
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductWorkspacesGetOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        }
+      }
+
+    ProductWorkspacesListOutput:
+      {
+        "type": "object",
+        "properties": {
+          "can_create": {
+            "type": "boolean"
+          },
+          "items": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "created_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updated_at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "created_at",
+                "updated_at"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "can_create",
+          "items",
+          "has_more",
+          "next_cursor"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkspacesListEnvelope:
+      {
+        "type": "object",
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductWorkspacesListOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        }
+      }
+
+    ProductWorkspacesUpdateInput:
+      {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkspacesUpdateOutput:
+      {
+        "type": "object",
+        "properties": {
+          "workspace": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "update": {
+                "type": "boolean"
+              },
+              "read_credentials": {
+                "type": "boolean"
+              },
+              "manage_credentials": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "update",
+              "read_credentials",
+              "manage_credentials"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "workspace",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkspacesUpdateEnvelope:
+      {
+        "type": "object",
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductWorkspacesUpdateOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ResponseMeta"
+          }
+        }
+      }
+
+    # END GENERATED PRODUCT SCHEMAS
 
     TenantOrganization:
       type: object

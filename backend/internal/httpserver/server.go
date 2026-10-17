@@ -64,6 +64,9 @@ import (
 	storagehandler "github.com/furkanmeclis/traccia/backend/internal/modules/storage/handler"
 	storageusecase "github.com/furkanmeclis/traccia/backend/internal/modules/storage/usecase"
 	tenantmodule "github.com/furkanmeclis/traccia/backend/internal/modules/tenant"
+	workspacesmodule "github.com/furkanmeclis/traccia/backend/internal/modules/workspaces"
+	workspacesrepo "github.com/furkanmeclis/traccia/backend/internal/modules/workspaces/repository"
+	workspacesusecase "github.com/furkanmeclis/traccia/backend/internal/modules/workspaces/usecase"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/activity"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/appleauth"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/bulkengine"
@@ -250,6 +253,9 @@ func New(cfg config.Config, log *slog.Logger, deps Deps) (*Server, error) {
 	h.SetRateLimiter(ratelimit.New(deps.Redis, cfg.App.Env))
 	loader := identity.Loader{UC: uc}
 	authmodule.RegisterRoutes(mux, h, tokens, loader, stepUpSvc)
+	if err := workspacesmodule.RegisterRoutes(mux, workspacesusecase.New(workspacesrepo.New(deps.DB, deps.Queries)), tokens, loader); err != nil {
+		return nil, fmt.Errorf("httpserver: product workspaces: %w", err)
+	}
 
 	// Organizations (tenant core). Platform management is always mounted;
 	// the /v1/tenant/* shell only with TENANCY_ENABLED.

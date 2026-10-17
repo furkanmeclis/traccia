@@ -22,6 +22,7 @@ import {
   type OAuthConfigPayload,
 } from "@/lib/auth/go-adapter-client";
 import { logAuthError } from "@/lib/observability/auth-logger";
+import { authCookiePolicy } from "@/lib/server/auth-cookie-policy";
 import { clientIpFromHeaders } from "@/lib/server/upstream";
 import { fetchAppPublicConfig } from "@/services/app-config.service";
 
@@ -45,6 +46,12 @@ function isGuestAuthPath(pathname: string) {
 }
 
 function isProtectedPath(pathname: string) {
+  if (
+    pathname === "/workspaces" ||
+    pathname.startsWith("/workspaces/") ||
+    pathname.startsWith("/w/")
+  )
+    return true;
   if (pathname === routes.cms.root) return true;
   if (pathname.startsWith(`${routes.cms.profile.root}`)) return true;
   if (pathname === routes.platform.root) return true;
@@ -345,7 +352,7 @@ async function buildProviders(): Promise<Provider[]> {
 // sign-in failed with InvalidCheck. Over https those three cookies are
 // SameSite=None (which requires Secure). Fixed names keep them independent of
 // the proxy's http/https detection; the session cookie is left untouched.
-const secureOrigin = (process.env.AUTH_URL ?? "").startsWith("https://");
+const secureOrigin = authCookiePolicy.secure;
 const crossSiteCheckCookie = (name: string, maxAge?: number) => ({
   name,
   options: {
@@ -370,6 +377,7 @@ const oauthCheckCookies = secureOrigin
 const authHandlers = NextAuth(async () => ({
   adapter: goAdapter({ pendingGitHubLogins }),
   trustHost: process.env.AUTH_TRUST_HOST === "true",
+  useSecureCookies: authCookiePolicy.secure,
   session: { strategy: "jwt" },
   ...(oauthCheckCookies ? { cookies: oauthCheckCookies } : {}),
   logger: { error: logAuthError },

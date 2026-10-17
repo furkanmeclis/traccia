@@ -344,6 +344,12 @@ type PgExtension struct {
 	Extname string `json:"extname"`
 }
 
+type ProductInstallation struct {
+	ID          bool               `json:"id"`
+	OwnerUserID int64              `json:"owner_user_id"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+}
+
 type PushDevice struct {
 	ID             int64              `json:"id"`
 	Uuid           uuid.UUID          `json:"uuid"`
@@ -527,4 +533,37 @@ type WebauthnCredential struct {
 	LastUsedAt        pgtype.Timestamptz `json:"last_used_at"`
 	CreatedAt         pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt         pgtype.Timestamptz `json:"updated_at"`
+}
+
+type Workspace struct {
+	ID        int64              `json:"id"`
+	Uuid      uuid.UUID          `json:"uuid"`
+	Name      string             `json:"name"`
+	Status    string             `json:"status"`
+	CreatedAt pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt pgtype.Timestamptz `json:"updated_at"`
+}
+
+type WorkspaceMember struct {
+	ID          int64              `json:"id"`
+	WorkspaceID int64              `json:"workspace_id"`
+	UserID      int64              `json:"user_id"`
+	Role        string             `json:"role"`
+	Active      bool               `json:"active"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+type WorkspaceToolCredential struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	WorkspaceID int64              `json:"workspace_id"`
+	UserID      int64              `json:"user_id"`
+	Name        string             `json:"name"`
+	TokenHash   []byte             `json:"token_hash"`
+	Audience    string             `json:"audience"`
+	Scopes      []string           `json:"scopes"`
+	ExpiresAt   pgtype.Timestamptz `json:"expires_at"`
+	RevokedAt   pgtype.Timestamptz `json:"revoked_at"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
 }
