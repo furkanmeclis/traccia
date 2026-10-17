@@ -24,7 +24,7 @@ import { useLocale } from "@/providers/locale-provider";
 
 type RouteGuardProps = {
   children: ReactNode;
-  mode: "guest" | "platform" | "cms";
+  mode: "guest" | "platform" | "cms" | "product";
 };
 
 function PageLoader({ label }: { label: string }) {
@@ -71,7 +71,10 @@ export function RouteGuard({ children, mode }: RouteGuardProps) {
       return;
     }
 
-    if ((mode === "platform" || mode === "cms") && !isAuthenticated) {
+    if (
+      (mode === "platform" || mode === "cms" || mode === "product") &&
+      !isAuthenticated
+    ) {
       router.replace(routes.guest.login);
     }
   }, [bootstrapped, mode, isAuthenticated, user, router]);
@@ -83,7 +86,10 @@ export function RouteGuard({ children, mode }: RouteGuardProps) {
     return <PageLoader label={t("common.loading")} />;
   }
 
-  if ((mode === "platform" || mode === "cms") && !isAuthenticated) {
+  if (
+    (mode === "platform" || mode === "cms" || mode === "product") &&
+    !isAuthenticated
+  ) {
     return null;
   }
 

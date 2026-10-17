@@ -4,6 +4,98 @@
  */
 
 export interface paths {
+    "/v1/workspaces/{workspaceID}/credentials": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * credentials.list
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.
+         */
+        get: operations["credentials_list"];
+        put?: never;
+        /**
+         * credentials.create
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.
+         */
+        post: operations["credentials_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/credentials/{credentialID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * credentials.revoke
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.
+         */
+        delete: operations["credentials_revoke"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * workspaces.list
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.
+         */
+        get: operations["workspaces_list"];
+        put?: never;
+        /**
+         * workspaces.create
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.
+         */
+        post: operations["workspaces_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * workspaces.get
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.
+         */
+        get: operations["workspaces_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * workspaces.update
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.
+         */
+        patch: operations["workspaces_update"];
+        trace?: never;
+    };
     "/healthz": {
         parameters: {
             query?: never;
@@ -1915,6 +2007,162 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        ProductCredentialsCreateInput: {
+            name: string;
+            /** @enum {string} */
+            audience: "api" | "mcp";
+            scopes: null | ("workspace.read" | "workspace.write" | "credentials.read" | "credentials.manage")[];
+            /** Format: date-time */
+            expires_at: string;
+        };
+        ProductCredentialsCreateOutput: {
+            credential: {
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** @enum {string} */
+                audience: "api" | "mcp";
+                scopes: null | ("workspace.read" | "workspace.write" | "credentials.read" | "credentials.manage")[];
+                /** Format: date-time */
+                expires_at: string;
+                /** Format: date-time */
+                revoked_at: null | string;
+                /** Format: date-time */
+                created_at: string;
+            };
+            token: string;
+        };
+        ProductCredentialsCreateEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCredentialsCreateOutput"];
+            meta: components["schemas"]["ResponseMeta"];
+        };
+        ProductCredentialsListOutput: {
+            items: null | {
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** @enum {string} */
+                audience: "api" | "mcp";
+                scopes: null | ("workspace.read" | "workspace.write" | "credentials.read" | "credentials.manage")[];
+                /** Format: date-time */
+                expires_at: string;
+                /** Format: date-time */
+                revoked_at: null | string;
+                /** Format: date-time */
+                created_at: string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductCredentialsListEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCredentialsListOutput"];
+            meta: components["schemas"]["ResponseMeta"];
+        };
+        ProductCredentialsRevokeOutput: {
+            revoked: boolean;
+        };
+        ProductCredentialsRevokeEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCredentialsRevokeOutput"];
+            meta: components["schemas"]["ResponseMeta"];
+        };
+        ProductWorkspacesCreateInput: {
+            name: string;
+        };
+        ProductWorkspacesCreateOutput: {
+            workspace: {
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+            };
+            capabilities: {
+                update: boolean;
+                read_credentials: boolean;
+                manage_credentials: boolean;
+            };
+        };
+        ProductWorkspacesCreateEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductWorkspacesCreateOutput"];
+            meta: components["schemas"]["ResponseMeta"];
+        };
+        ProductWorkspacesGetOutput: {
+            workspace: {
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+            };
+            capabilities: {
+                update: boolean;
+                read_credentials: boolean;
+                manage_credentials: boolean;
+            };
+        };
+        ProductWorkspacesGetEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductWorkspacesGetOutput"];
+            meta: components["schemas"]["ResponseMeta"];
+        };
+        ProductWorkspacesListOutput: {
+            can_create: boolean;
+            items: null | {
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductWorkspacesListEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductWorkspacesListOutput"];
+            meta: components["schemas"]["ResponseMeta"];
+        };
+        ProductWorkspacesUpdateInput: {
+            name: string;
+        };
+        ProductWorkspacesUpdateOutput: {
+            workspace: {
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+            };
+            capabilities: {
+                update: boolean;
+                read_credentials: boolean;
+                manage_credentials: boolean;
+            };
+        };
+        ProductWorkspacesUpdateEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductWorkspacesUpdateOutput"];
+            meta: components["schemas"]["ResponseMeta"];
+        };
         TenantOrganization: {
             /** Format: uuid */
             uuid: string;
@@ -3346,6 +3594,219 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    credentials_list: {
+        parameters: {
+            query?: {
+                limit?: number;
+                /** @description UUID keyset cursor from next_cursor; omitted on first page. */
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCredentialsListEnvelope"];
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthenticated"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    credentials_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductCredentialsCreateInput"];
+            };
+        };
+        responses: {
+            /** @description Created. Raw credential token is returned once; no-store. */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCredentialsCreateEnvelope"];
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthenticated"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    credentials_revoke: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+                credentialID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCredentialsRevokeEnvelope"];
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthenticated"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    workspaces_list: {
+        parameters: {
+            query?: {
+                limit?: number;
+                /** @description UUID keyset cursor from next_cursor; omitted on first page. */
+                after?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductWorkspacesListEnvelope"];
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthenticated"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    workspaces_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductWorkspacesCreateInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductWorkspacesCreateEnvelope"];
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthenticated"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    workspaces_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductWorkspacesGetEnvelope"];
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthenticated"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    workspaces_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductWorkspacesUpdateInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductWorkspacesUpdateEnvelope"];
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthenticated"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            500: components["responses"]["InternalError"];
+        };
+    };
     getHealthz: {
         parameters: {
             query?: never;

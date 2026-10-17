@@ -44,62 +44,80 @@ function enqueueRefresh() {
   return refreshPromise;
 }
 
+// The transport consumes the original body before onResponse runs. Keep one
+// pre-fetch clone per request for either auth refresh or step-up, then release it.
+const requestReplays = new WeakMap<Request, Request>();
+
+function discardReplay(replay: Request | undefined) {
+  if (replay?.body && !replay.bodyUsed) {
+    void replay.body.cancel().catch(() => undefined);
+  }
+}
+
 const bffMiddleware: Middleware = {
   async onRequest({ request }) {
     const headers = new Headers(request.headers);
     if (!headers.has("Accept")) {
       headers.set("Accept", "application/json");
     }
-    return new Request(request, {
+    const outgoing = new Request(request, {
       headers,
       credentials: "include",
     });
+    requestReplays.set(outgoing, outgoing.clone());
+    return outgoing;
+  },
+
+  onError({ request }) {
+    const replay = requestReplays.get(request);
+    requestReplays.delete(request);
+    discardReplay(replay);
   },
 
   async onResponse({ request, response }) {
-    if (response.status === 403) {
-      const payload = (await response
-        .clone()
-        .json()
-        .catch(() => null)) as { error?: { code?: string } } | null;
-      if (payload?.error?.code === "STEP_UP_REQUIRED") {
-        const ok = await runStepUpEnsure();
-        if (ok) {
-          return fetch(
-            new Request(request, {
-              headers: request.headers,
-              credentials: "include",
-            }),
-          );
+    const replay = requestReplays.get(request);
+    requestReplays.delete(request);
+    try {
+      if (response.status === 403) {
+        const payload = (await response
+          .clone()
+          .json()
+          .catch(() => null)) as { error?: { code?: string } } | null;
+        if (payload?.error?.code === "STEP_UP_REQUIRED") {
+          const ok = await runStepUpEnsure();
+          if (ok && replay) {
+            return await fetch(replay);
+          }
         }
       }
-    }
 
-    if (response.status !== 401) {
-      return response;
-    }
+      if (response.status !== 401) {
+        return response;
+      }
 
-    const url = new URL(request.url);
-    if (
-      url.pathname.endsWith("/auth/login") ||
-      url.pathname.endsWith("/auth/refresh") ||
-      url.pathname.endsWith("/auth/logout")
-    ) {
-      return response;
-    }
+      const url = new URL(request.url);
+      if (
+        url.pathname.endsWith("/auth/login") ||
+        url.pathname.endsWith("/auth/refresh") ||
+        url.pathname.endsWith("/auth/logout")
+      ) {
+        return response;
+      }
 
-    const ok = await enqueueRefresh();
-    if (!ok) {
-      await onAuthFailure?.();
-      return response;
-    }
+      const ok = await enqueueRefresh();
+      if (!ok || !replay) {
+        await onAuthFailure?.();
+        return response;
+      }
 
-    return fetch(
-      new Request(request, {
-        headers: request.headers,
-        credentials: "include",
-      }),
-    );
+      const retried = await fetch(replay);
+      if (retried.status === 401) {
+        await onAuthFailure?.();
+      }
+      return retried;
+    } finally {
+      discardReplay(replay);
+    }
   },
 };
 

@@ -1,5 +1,10 @@
 "use client";
 
+import Link from "next/link";
+import { Layers3 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useLocale } from "@/providers/locale-provider";
+
 import {
   useEffect,
   useState,
@@ -27,6 +32,7 @@ export function Header({
   children,
   ...props
 }: HeaderProps) {
+  const { t } = useLocale();
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
@@ -59,6 +65,15 @@ export function Header({
         <Separator orientation="vertical" className="h-6" />
         <div className="flex min-w-0 flex-1 items-center">{children}</div>
         <div className="ms-auto flex items-center gap-1">
+          <Button asChild variant="ghost" size="icon">
+            <Link
+              href="/workspaces"
+              aria-label={t("workspaces.title")}
+              title={t("workspaces.title")}
+            >
+              <Layers3 />
+            </Link>
+          </Button>
           <SearchTrigger compact className="md:hidden" />
           <NotificationInbox />
           <LocaleSwitch />
