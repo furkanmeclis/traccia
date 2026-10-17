@@ -33,15 +33,17 @@ for (const contract of catalog) {
     parameters.push({ name: "limit", in: "query", schema: { type: "integer", minimum: 1, maximum: 100, default: 20 } });
     parameters.push({ name: "after", in: "query", schema: { type: "string", format: "uuid" }, description: "UUID keyset cursor from next_cursor; omitted on first page." });
   }
+  if(meta.idempotent) parameters.push({name:"Idempotency-Key",in:"header",required:true,schema:{type:"string",minLength:1,maxLength:200},description:"One stable key per complete immutable mutation input; retries replay the original result."});
   const status = meta.http_method === "POST" ? "201" : "200";
   const responses = { [status]: {
-    description: meta.id === "credentials.create" ? "Created. Raw credential token is returned once; no-store." : "Success",
+    description: meta.id === "credentials.create" ? "Created once. Exact token result may be replayed with the same authorized idempotency key; no-store." : "Success",
     headers: { "Cache-Control": { schema: { type: "string", const: "no-store" } } },
     content: { "application/json": { schema: ref(`${name}Envelope`) } },
   } };
   for (const [code, response] of [[400, "BadRequest"], [401, "Unauthenticated"], [403, "Forbidden"], [404, "NotFound"], [500, "InternalError"]]) {
     responses[code] = { $ref: `#/components/responses/${response}` };
   }
+  if(meta.idempotent) responses[409]={description:"IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version.",content:{"application/json":{schema:ref("Error")}}};
   const operation = {
     tags: ["Workspaces"], operationId: meta.id.replaceAll(".", "_"),
     summary: meta.id, "x-operation-id": meta.id, "x-operation-version": meta.version,

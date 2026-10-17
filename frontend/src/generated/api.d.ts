@@ -2076,6 +2076,7 @@ export interface components {
         };
         ProductWorkspacesCreateOutput: {
             workspace: {
+                version: number;
                 /** Format: uuid */
                 id: string;
                 name: string;
@@ -2098,6 +2099,7 @@ export interface components {
         };
         ProductWorkspacesGetOutput: {
             workspace: {
+                version: number;
                 /** Format: uuid */
                 id: string;
                 name: string;
@@ -2121,6 +2123,7 @@ export interface components {
         ProductWorkspacesListOutput: {
             can_create: boolean;
             items: null | {
+                version: number;
                 /** Format: uuid */
                 id: string;
                 name: string;
@@ -2140,9 +2143,11 @@ export interface components {
         };
         ProductWorkspacesUpdateInput: {
             name: string;
+            expected_version: number;
         };
         ProductWorkspacesUpdateOutput: {
             workspace: {
+                version: number;
                 /** Format: uuid */
                 id: string;
                 name: string;
@@ -3629,7 +3634,10 @@ export interface operations {
     credentials_create: {
         parameters: {
             query?: never;
-            header?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
             path: {
                 workspaceID: string;
             };
@@ -3641,7 +3649,7 @@ export interface operations {
             };
         };
         responses: {
-            /** @description Created. Raw credential token is returned once; no-store. */
+            /** @description Created once. Exact token result may be replayed with the same authorized idempotency key; no-store. */
             201: {
                 headers: {
                     "Cache-Control"?: "no-store";
@@ -3655,13 +3663,25 @@ export interface operations {
             401: components["responses"]["Unauthenticated"];
             403: components["responses"]["Forbidden"];
             404: components["responses"]["NotFound"];
+            /** @description IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
             500: components["responses"]["InternalError"];
         };
     };
     credentials_revoke: {
         parameters: {
             query?: never;
-            header?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
             path: {
                 workspaceID: string;
                 credentialID: string;
@@ -3684,6 +3704,15 @@ export interface operations {
             401: components["responses"]["Unauthenticated"];
             403: components["responses"]["Forbidden"];
             404: components["responses"]["NotFound"];
+            /** @description IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
             500: components["responses"]["InternalError"];
         };
     };
@@ -3720,7 +3749,10 @@ export interface operations {
     workspaces_create: {
         parameters: {
             query?: never;
-            header?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
             path?: never;
             cookie?: never;
         };
@@ -3744,6 +3776,15 @@ export interface operations {
             401: components["responses"]["Unauthenticated"];
             403: components["responses"]["Forbidden"];
             404: components["responses"]["NotFound"];
+            /** @description IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
             500: components["responses"]["InternalError"];
         };
     };
@@ -3778,7 +3819,10 @@ export interface operations {
     workspaces_update: {
         parameters: {
             query?: never;
-            header?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
             path: {
                 workspaceID: string;
             };
@@ -3804,6 +3848,15 @@ export interface operations {
             401: components["responses"]["Unauthenticated"];
             403: components["responses"]["Forbidden"];
             404: components["responses"]["NotFound"];
+            /** @description IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
             500: components["responses"]["InternalError"];
         };
     };

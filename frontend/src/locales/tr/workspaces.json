@@ -52,5 +52,10 @@
   "revoke_description": "“{{name}}” artık bu çalışma alanına erişemeyecek. Gerekirse yeni bir erişim oluşturabilirsin.",
   "cancel": "Vazgeç",
   "empty_readonly_title": "Henüz erişilebilir çalışma alanı yok",
-  "empty_readonly_description": "Kurulum sahibi bir çalışma alanı oluşturduğunda, erişimin olan alanlar burada görünecek."
+  "empty_readonly_description": "Kurulum sahibi bir çalışma alanı oluşturduğunda, erişimin olan alanlar burada görünecek.",
+  "version_conflict": "Sen düzenlerken çalışma alanı değişti. Taslağın korundu. Yeniden kaydetmeden önce güncel adı incele.",
+  "review_latest": "Güncel kayıtlı adı incele",
+  "latest_name": "Güncel kayıtlı ad: {{name}}",
+  "reconcile_description": "Taslağını korursan sonraki kaydetmede bu ad değiştirilecek. Önce taslağını düzenleyebilirsin.",
+  "keep_draft": "Taslağımı koru ve devam et"
 }

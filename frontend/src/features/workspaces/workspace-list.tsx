@@ -1,5 +1,5 @@
 "use client";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
@@ -18,6 +18,10 @@ import {
 } from "@/components/ui/dialog";
 import { useLocale } from "@/providers/locale-provider";
 import { useWorkspaces, workspaceKeys } from "./queries";
+import {
+  prepareSubmission,
+  type OperationSubmission,
+} from "./operation-submission";
 import { workspaceService } from "./workspace.service";
 export function WorkspaceList() {
   const { t } = useLocale();
@@ -26,10 +30,13 @@ export function WorkspaceList() {
   const list = useWorkspaces();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
+  const submission = useRef<OperationSubmission<{ name: string }> | null>(null);
   const create = useMutation({
-    mutationFn: () => workspaceService.create(name.trim()),
+    mutationFn: (operation: OperationSubmission<{ name: string }>) =>
+      workspaceService.create(operation.input.name, operation.key),
     onSuccess: async (result) => {
       await cache.invalidateQueries({ queryKey: workspaceKeys.all });
+      submission.current = null;
       setOpen(false);
       setName("");
       router.push(`/w/${result.workspace.id}`);
@@ -37,7 +44,13 @@ export function WorkspaceList() {
   });
   function submit(e: FormEvent) {
     e.preventDefault();
-    if (canCreate) create.mutate();
+    if (!canCreate || create.isPending) return;
+    submission.current = prepareSubmission(
+      submission.current,
+      { name: name.trim() },
+      () => ({ name: name.trim() }),
+    );
+    create.mutate(submission.current);
   }
   const items = list.isError
     ? []
@@ -140,7 +153,10 @@ export function WorkspaceList() {
       <Dialog
         open={open && canCreate}
         onOpenChange={(value) => {
-          if (!create.isPending) setOpen(value);
+          if (!create.isPending) {
+            setOpen(value);
+            if (!value) submission.current = null;
+          }
         }}
       >
         <DialogContent>
@@ -156,6 +172,7 @@ export function WorkspaceList() {
               <Input
                 id="workspace-name"
                 autoFocus
+                disabled={create.isPending}
                 required
                 maxLength={100}
                 value={name}

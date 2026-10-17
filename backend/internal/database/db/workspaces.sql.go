@@ -41,7 +41,7 @@ func (q *Queries) BootstrapProductOwner(ctx context.Context, argUuid uuid.UUID) 
 }
 
 const createProductWorkspace = `-- name: CreateProductWorkspace :one
-INSERT INTO workspaces (name) VALUES ($1) RETURNING id, uuid, name, status, created_at, updated_at
+INSERT INTO workspaces (name) VALUES ($1) RETURNING id, uuid, name, status, created_at, updated_at, version
 `
 
 func (q *Queries) CreateProductWorkspace(ctx context.Context, name string) (Workspace, error) {
@@ -54,6 +54,7 @@ func (q *Queries) CreateProductWorkspace(ctx context.Context, name string) (Work
 		&i.Status,
 		&i.CreatedAt,
 		&i.UpdatedAt,
+		&i.Version,
 	)
 	return i, err
 }
@@ -135,7 +136,7 @@ func (q *Queries) GetProductOwner(ctx context.Context, argUuid uuid.UUID) (GetPr
 }
 
 const listProductWorkspaces = `-- name: ListProductWorkspaces :many
-SELECT w.id, w.uuid, w.name, w.status, w.created_at, w.updated_at FROM workspaces w JOIN workspace_members m ON m.workspace_id = w.id
+SELECT w.id, w.uuid, w.name, w.status, w.created_at, w.updated_at, w.version FROM workspaces w JOIN workspace_members m ON m.workspace_id = w.id
 WHERE m.user_id = $1 AND m.active = TRUE AND w.status = 'active'
 AND w.uuid > $2::uuid ORDER BY w.uuid LIMIT $3
 `
@@ -162,6 +163,7 @@ func (q *Queries) ListProductWorkspaces(ctx context.Context, arg ListProductWork
 			&i.Status,
 			&i.CreatedAt,
 			&i.UpdatedAt,
+			&i.Version,
 		); err != nil {
 			return nil, err
 		}
@@ -218,7 +220,7 @@ func (q *Queries) ListWorkspaceToolCredentials(ctx context.Context, arg ListWork
 }
 
 const resolveProductWorkspace = `-- name: ResolveProductWorkspace :one
-SELECT w.id, w.uuid, w.name, w.status, w.created_at, w.updated_at, m.role FROM workspaces w
+SELECT w.id, w.uuid, w.name, w.status, w.created_at, w.updated_at, w.version, m.role FROM workspaces w
 JOIN workspace_members m ON m.workspace_id = w.id
 JOIN users u ON u.id = m.user_id
 WHERE w.uuid = $1 AND u.uuid = $2
@@ -237,6 +239,7 @@ type ResolveProductWorkspaceRow struct {
 	Status    string             `json:"status"`
 	CreatedAt pgtype.Timestamptz `json:"created_at"`
 	UpdatedAt pgtype.Timestamptz `json:"updated_at"`
+	Version   int64              `json:"version"`
 	Role      string             `json:"role"`
 }
 
@@ -250,6 +253,7 @@ func (q *Queries) ResolveProductWorkspace(ctx context.Context, arg ResolveProduc
 		&i.Status,
 		&i.CreatedAt,
 		&i.UpdatedAt,
+		&i.Version,
 		&i.Role,
 	)
 	return i, err
@@ -261,7 +265,7 @@ FROM workspace_tool_credentials c
 JOIN workspaces w ON w.id = c.workspace_id
 JOIN workspace_members m ON (m.workspace_id, m.user_id) = (c.workspace_id, c.user_id)
 JOIN users u ON u.id = c.user_id
-WHERE c.token_hash = $1 AND c.revoked_at IS NULL AND c.expires_at > NOW()
+WHERE c.token_hash = $1 AND c.revoked_at IS NULL AND c.expires_at > clock_timestamp()
 AND w.status = 'active' AND m.active = TRUE AND u.status = 'active' AND u.deleted_at IS NULL
 `
 
@@ -324,17 +328,18 @@ func (q *Queries) RevokeWorkspaceToolCredential(ctx context.Context, arg RevokeW
 }
 
 const updateProductWorkspace = `-- name: UpdateProductWorkspace :one
-UPDATE workspaces SET name = $1 WHERE uuid = $2
-RETURNING id, uuid, name, status, created_at, updated_at
+UPDATE workspaces SET name = $1, version=version+1 WHERE uuid = $2 AND version=$3 AND status='active'
+RETURNING id, uuid, name, status, created_at, updated_at, version
 `
 
 type UpdateProductWorkspaceParams struct {
-	Name          string    `json:"name"`
-	WorkspaceUuid uuid.UUID `json:"workspace_uuid"`
+	Name            string    `json:"name"`
+	WorkspaceUuid   uuid.UUID `json:"workspace_uuid"`
+	ExpectedVersion int64     `json:"expected_version"`
 }
 
 func (q *Queries) UpdateProductWorkspace(ctx context.Context, arg UpdateProductWorkspaceParams) (Workspace, error) {
-	row := q.db.QueryRow(ctx, updateProductWorkspace, arg.Name, arg.WorkspaceUuid)
+	row := q.db.QueryRow(ctx, updateProductWorkspace, arg.Name, arg.WorkspaceUuid, arg.ExpectedVersion)
 	var i Workspace
 	err := row.Scan(
 		&i.ID,
@@ -343,6 +348,7 @@ func (q *Queries) UpdateProductWorkspace(ctx context.Context, arg UpdateProductW
 		&i.Status,
 		&i.CreatedAt,
 		&i.UpdatedAt,
+		&i.Version,
 	)
 	return i, err
 }

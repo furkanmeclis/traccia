@@ -49,6 +49,15 @@ func serveOperation(w http.ResponseWriter, r *http.Request, registry *operations
 		}
 		workspace = id
 	}
+	var key string
+	if meta.Idempotent {
+		values := r.Header.Values("Idempotency-Key")
+		if len(values) != 1 || strings.Contains(values[0], ",") {
+			writeError(w, r, &operations.Error{Code: operations.Validation})
+			return
+		}
+		key = values[0]
+	}
 	var raw []byte
 	switch {
 	case r.Method == "GET" && (meta.ID == "workspaces.list" || meta.ID == "credentials.list"):
@@ -90,7 +99,7 @@ func serveOperation(w http.ResponseWriter, r *http.Request, registry *operations
 		}
 		raw = body
 	}
-	output, err := registry.Execute(r.Context(), operations.Call{OperationID: meta.ID, Channel: operations.API, WorkspaceID: workspace, Input: raw})
+	output, err := registry.Execute(r.Context(), operations.Call{OperationID: meta.ID, Channel: operations.API, WorkspaceID: workspace, Input: raw, IdempotencyKey: key})
 	if err != nil {
 		writeError(w, r, err)
 		return
@@ -117,7 +126,7 @@ func writeError(w http.ResponseWriter, r *http.Request, err error) {
 		status = 404
 	case operations.Validation:
 		status = 400
-	case operations.Conflict:
+	case operations.Conflict, operations.IdempotencyConflict, operations.VersionConflict:
 		status = 409
 	case operations.Unavailable:
 		status = 503

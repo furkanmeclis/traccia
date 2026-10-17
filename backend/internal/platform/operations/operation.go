@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io"
 	"reflect"
+	"strconv"
 	"unicode/utf8"
 
 	"github.com/google/jsonschema-go/jsonschema"
@@ -20,8 +21,10 @@ type SchemaRefiner func(input, output *jsonschema.Schema) error
 
 // Operation is immutable after construction and can be shared by transports.
 type Operation struct {
-	contract Contract
-	run      func(context.Context, Scope, json.RawMessage) (json.RawMessage, error)
+	validateResult func([]byte) error
+	contract       Contract
+	prepare        func(json.RawMessage) (func(context.Context, Scope) (json.RawMessage, error), error)
+	run            func(context.Context, Scope, json.RawMessage) (json.RawMessage, error)
 }
 
 // New infers concrete input/output schemas from struct DTOs. refine may add
@@ -62,16 +65,23 @@ func New[I, O any](meta Metadata, validate Validator[I], handler Handler[I, O], 
 	if err != nil {
 		return nil, fmt.Errorf("operations: infer error: %w", err)
 	}
-	errSchema.Properties["code"].Enum = []any{string(Unauthenticated), string(Forbidden), string(Validation), string(NotFound), string(Conflict), string(Unavailable), string(Canceled), string(Internal)}
+	errSchema.Properties["code"].Enum = []any{string(Unauthenticated), string(Forbidden), string(Validation), string(NotFound), string(Conflict), string(IdempotencyConflict), string(VersionConflict), string(Unavailable), string(Canceled), string(Internal)}
 	_, errJSON, err := resolveSchema(errSchema)
 	if err != nil {
 		return nil, fmt.Errorf("operations: error schema: %w", err)
 	}
 	op := &Operation{contract: Contract{Metadata: meta, Input: inJSON, Output: outJSON, Error: errJSON, Available: handler != nil}}
+	op.validateResult = func(raw []byte) error {
+		value, err := decodeJSON(raw)
+		if err != nil {
+			return err
+		}
+		return outSchema.Validate(value)
+	}
 	if handler == nil {
 		return op, nil
 	}
-	op.run = func(ctx context.Context, scope Scope, raw json.RawMessage) (json.RawMessage, error) {
+	op.prepare = func(raw json.RawMessage) (func(context.Context, Scope) (json.RawMessage, error), error) {
 		value, err := decodeJSON(raw)
 		if err != nil {
 			return nil, failure(Validation, err)
@@ -89,22 +99,31 @@ func New[I, O any](meta Metadata, validate Validator[I], handler Handler[I, O], 
 		if details := validate(input); len(details) > 0 {
 			return nil, &Error{Code: Validation, Details: details}
 		}
-		output, err := handler(ctx, scope, input)
+		return func(ctx context.Context, scope Scope) (json.RawMessage, error) {
+			output, err := handler(ctx, scope, input)
+			if err != nil {
+				return nil, publicError(err)
+			}
+			encoded, err := json.Marshal(output)
+			if err != nil {
+				return nil, failure(Internal, err)
+			}
+			value, err := decodeJSON(encoded)
+			if err != nil {
+				return nil, failure(Internal, err)
+			}
+			if err := outSchema.Validate(value); err != nil {
+				return nil, failure(Internal, err)
+			}
+			return encoded, nil
+		}, nil
+	}
+	op.run = func(ctx context.Context, scope Scope, raw json.RawMessage) (json.RawMessage, error) {
+		run, err := op.prepare(raw)
 		if err != nil {
-			return nil, publicError(err)
+			return nil, err
 		}
-		encoded, err := json.Marshal(output)
-		if err != nil {
-			return nil, failure(Internal, err)
-		}
-		value, err = decodeJSON(encoded)
-		if err != nil {
-			return nil, failure(Internal, err)
-		}
-		if err := outSchema.Validate(value); err != nil {
-			return nil, failure(Internal, err)
-		}
-		return encoded, nil
+		return run(ctx, scope)
 	}
 	return op, nil
 }
@@ -146,6 +165,9 @@ func (offlineLoader) Load(url string) (any, error) {
 func decodeJSON(raw []byte) (any, error) {
 	if !utf8.Valid(raw) {
 		return nil, errors.New("operations: JSON must contain valid UTF-8")
+	}
+	if err := validateUnicodeEscapes(raw); err != nil {
+		return nil, err
 	}
 	dec := json.NewDecoder(bytes.NewReader(raw))
 	dec.UseNumber() // Preserve integers larger than 2^53 during schema validation.
@@ -213,4 +235,49 @@ func readJSONValue(dec *json.Decoder) (any, error) {
 	default:
 		return nil, errors.New("operations: unexpected closing delimiter")
 	}
+}
+
+// encoding/json replaces unpaired surrogate escapes with U+FFFD. Reject them
+// rather than fingerprinting different malformed strings as the same input.
+func validateUnicodeEscapes(raw []byte) error {
+	inside := false
+	for i := 0; i < len(raw); i++ {
+		if raw[i] == '"' {
+			inside = !inside
+			continue
+		}
+		if !inside || raw[i] != '\\' {
+			continue
+		}
+		i++
+		if i >= len(raw) {
+			break
+		}
+		if raw[i] != 'u' {
+			continue
+		}
+		if i+4 >= len(raw) {
+			break
+		}
+		unit, err := strconv.ParseUint(string(raw[i+1:i+5]), 16, 16)
+		if err != nil {
+			continue
+		}
+		i += 4
+		if unit >= 0xDC00 && unit <= 0xDFFF {
+			return errors.New("operations: unpaired JSON surrogate")
+		}
+		if unit < 0xD800 || unit > 0xDBFF {
+			continue
+		}
+		if i+6 >= len(raw) || raw[i+1] != '\\' || raw[i+2] != 'u' {
+			return errors.New("operations: unpaired JSON surrogate")
+		}
+		low, err := strconv.ParseUint(string(raw[i+3:i+7]), 16, 16)
+		if err != nil || low < 0xDC00 || low > 0xDFFF {
+			return errors.New("operations: unpaired JSON surrogate")
+		}
+		i += 6
+	}
+	return nil
 }

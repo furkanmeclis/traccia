@@ -71,7 +71,7 @@ paths:
         "operationId": "credentials_create",
         "summary": "credentials.create",
         "x-operation-id": "credentials.create",
-        "x-operation-version": 1,
+        "x-operation-version": 2,
         "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
         "security": [
           {
@@ -90,11 +90,22 @@ paths:
               "type": "string",
               "format": "uuid"
             }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
           }
         ],
         "responses": {
           "201": {
-            "description": "Created. Raw credential token is returned once; no-store.",
+            "description": "Created once. Exact token result may be replayed with the same authorized idempotency key; no-store.",
             "headers": {
               "Cache-Control": {
                 "schema": {
@@ -123,6 +134,16 @@ paths:
           "404": {
             "$ref": "#/components/responses/NotFound"
           },
+          "409": {
+            "description": "IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "500": {
             "$ref": "#/components/responses/InternalError"
           }
@@ -145,7 +166,7 @@ paths:
         "operationId": "credentials_list",
         "summary": "credentials.list",
         "x-operation-id": "credentials.list",
-        "x-operation-version": 1,
+        "x-operation-version": 2,
         "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
         "security": [
           {
@@ -232,7 +253,7 @@ paths:
         "operationId": "credentials_revoke",
         "summary": "credentials.revoke",
         "x-operation-id": "credentials.revoke",
-        "x-operation-version": 1,
+        "x-operation-version": 2,
         "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
         "security": [
           {
@@ -260,6 +281,17 @@ paths:
               "type": "string",
               "format": "uuid"
             }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
           }
         ],
         "responses": {
@@ -293,6 +325,16 @@ paths:
           "404": {
             "$ref": "#/components/responses/NotFound"
           },
+          "409": {
+            "description": "IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "500": {
             "$ref": "#/components/responses/InternalError"
           }
@@ -309,7 +351,7 @@ paths:
         "operationId": "workspaces_create",
         "summary": "workspaces.create",
         "x-operation-id": "workspaces.create",
-        "x-operation-version": 1,
+        "x-operation-version": 2,
         "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
         "security": [
           {
@@ -319,7 +361,19 @@ paths:
             "productCredential": []
           }
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
         "responses": {
           "201": {
             "description": "Success",
@@ -351,6 +405,16 @@ paths:
           "404": {
             "$ref": "#/components/responses/NotFound"
           },
+          "409": {
+            "description": "IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "500": {
             "$ref": "#/components/responses/InternalError"
           }
@@ -373,7 +437,7 @@ paths:
         "operationId": "workspaces_list",
         "summary": "workspaces.list",
         "x-operation-id": "workspaces.list",
-        "x-operation-version": 1,
+        "x-operation-version": 2,
         "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
         "security": [
           {
@@ -451,7 +515,7 @@ paths:
         "operationId": "workspaces_get",
         "summary": "workspaces.get",
         "x-operation-id": "workspaces.get",
-        "x-operation-version": 1,
+        "x-operation-version": 2,
         "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
         "security": [
           {
@@ -515,7 +579,7 @@ paths:
         "operationId": "workspaces_update",
         "summary": "workspaces.update",
         "x-operation-id": "workspaces.update",
-        "x-operation-version": 1,
+        "x-operation-version": 2,
         "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
         "security": [
           {
@@ -534,6 +598,17 @@ paths:
               "type": "string",
               "format": "uuid"
             }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
           }
         ],
         "responses": {
@@ -566,6 +641,16 @@ paths:
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "409": {
+            "description": "IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           },
           "500": {
             "$ref": "#/components/responses/InternalError"
@@ -4106,6 +4191,10 @@ components:
           "workspace": {
             "type": "object",
             "properties": {
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
               "id": {
                 "type": "string",
                 "format": "uuid"
@@ -4125,6 +4214,7 @@ components:
               }
             },
             "required": [
+              "version",
               "id",
               "name",
               "created_at",
@@ -4189,6 +4279,10 @@ components:
           "workspace": {
             "type": "object",
             "properties": {
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
               "id": {
                 "type": "string",
                 "format": "uuid"
@@ -4208,6 +4302,7 @@ components:
               }
             },
             "required": [
+              "version",
               "id",
               "name",
               "created_at",
@@ -4280,6 +4375,10 @@ components:
             "items": {
               "type": "object",
               "properties": {
+                "version": {
+                  "type": "integer",
+                  "minimum": 1
+                },
                 "id": {
                   "type": "string",
                   "format": "uuid"
@@ -4299,6 +4398,7 @@ components:
                 }
               },
               "required": [
+                "version",
                 "id",
                 "name",
                 "created_at",
@@ -4353,10 +4453,15 @@ components:
             "type": "string",
             "minLength": 1,
             "maxLength": 100
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
           }
         },
         "required": [
-          "name"
+          "name",
+          "expected_version"
         ],
         "additionalProperties": false
       }
@@ -4368,6 +4473,10 @@ components:
           "workspace": {
             "type": "object",
             "properties": {
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
               "id": {
                 "type": "string",
                 "format": "uuid"
@@ -4387,6 +4496,7 @@ components:
               }
             },
             "required": [
+              "version",
               "id",
               "name",
               "created_at",

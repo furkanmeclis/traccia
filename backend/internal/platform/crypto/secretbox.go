@@ -52,6 +52,11 @@ func decodeKey(keyMaterial string) ([]byte, error) {
 
 // Encrypt returns base64(nonce|ciphertext).
 func (s *SecretBox) Encrypt(plaintext string) (string, error) {
+	return s.EncryptBound(plaintext, nil)
+}
+
+// EncryptBound authenticates receipt context as associated data.
+func (s *SecretBox) EncryptBound(plaintext string, context []byte) (string, error) {
 	if plaintext == "" {
 		return "", nil
 	}
@@ -59,12 +64,17 @@ func (s *SecretBox) Encrypt(plaintext string) (string, error) {
 	if _, err := io.ReadFull(rand.Reader, nonce); err != nil {
 		return "", fmt.Errorf("secretbox: nonce: %w", err)
 	}
-	sealed := s.gcm.Seal(nonce, nonce, []byte(plaintext), nil)
+	sealed := s.gcm.Seal(nonce, nonce, []byte(plaintext), context)
 	return base64.StdEncoding.EncodeToString(sealed), nil
 }
 
 // Decrypt reverses Encrypt.
 func (s *SecretBox) Decrypt(encoded string) (string, error) {
+	return s.DecryptBound(encoded, nil)
+}
+
+// DecryptBound rejects ciphertext copied to a different receipt context.
+func (s *SecretBox) DecryptBound(encoded string, context []byte) (string, error) {
 	if encoded == "" {
 		return "", nil
 	}
@@ -77,7 +87,7 @@ func (s *SecretBox) Decrypt(encoded string) (string, error) {
 		return "", ErrInvalidInput
 	}
 	nonce, ciphertext := sealed[:nonceSize], sealed[nonceSize:]
-	plain, err := s.gcm.Open(nil, nonce, ciphertext, nil)
+	plain, err := s.gcm.Open(nil, nonce, ciphertext, context)
 	if err != nil {
 		return "", ErrInvalidInput
 	}

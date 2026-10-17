@@ -253,7 +253,7 @@ func New(cfg config.Config, log *slog.Logger, deps Deps) (*Server, error) {
 	h.SetRateLimiter(ratelimit.New(deps.Redis, cfg.App.Env))
 	loader := identity.Loader{UC: uc}
 	authmodule.RegisterRoutes(mux, h, tokens, loader, stepUpSvc)
-	if err := workspacesmodule.RegisterRoutes(mux, workspacesusecase.New(workspacesrepo.New(deps.DB, deps.Queries)), tokens, loader); err != nil {
+	if err := workspacesmodule.RegisterRoutes(mux, workspacesusecase.New(workspacesrepo.New(deps.DB, deps.Queries, secretBox)), tokens, loader); err != nil {
 		return nil, fmt.Errorf("httpserver: product workspaces: %w", err)
 	}
 

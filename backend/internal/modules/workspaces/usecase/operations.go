@@ -17,7 +17,7 @@ func (s *Service) Registry() (*operations.Registry, error) {
 		return nil
 	}
 	meta := func(id, permission, path, method, tool string, scope operations.ScopeKind, effect operations.Effect) operations.Metadata {
-		return operations.Metadata{ID: id, Version: 1, Permission: permission, Scope: scope, Effect: effect, HTTPPath: path, HTTPMethod: method, MCPName: tool}
+		return operations.Metadata{ID: id, Version: 2, Idempotent: effect == operations.Write, SensitiveResult: id == "credentials.create", Permission: permission, Scope: scope, Effect: effect, HTTPPath: path, HTTPMethod: method, MCPName: tool}
 	}
 	nameValidation := func(in CreateInput) []operations.FieldError { return validateName(in.Name) }
 	emptyValidation := func(EmptyInput) []operations.FieldError { return nil }
@@ -30,7 +30,12 @@ func (s *Service) Registry() (*operations.Registry, error) {
 	if err := add(operations.New(meta("workspaces.get", "workspace.read", "/v1/workspaces/{workspaceID}", "GET", "get_workspace", operations.WorkspaceScope, operations.Read), emptyValidation, s.get, refineSchemas)); err != nil {
 		return nil, err
 	}
-	if err := add(operations.New(meta("workspaces.update", "workspace.write", "/v1/workspaces/{workspaceID}", "PATCH", "update_workspace", operations.WorkspaceScope, operations.Write), nameValidation, s.update, refineSchemas)); err != nil {
+	if err := add(operations.New(meta("workspaces.update", "workspace.write", "/v1/workspaces/{workspaceID}", "PATCH", "update_workspace", operations.WorkspaceScope, operations.Write), func(in UpdateInput) []operations.FieldError {
+		if in.ExpectedVersion < 1 {
+			return []operations.FieldError{{Field: "expected_version", Code: "invalid"}}
+		}
+		return validateName(in.Name)
+	}, s.update, refineSchemas)); err != nil {
 		return nil, err
 	}
 	if err := add(operations.New(meta("credentials.create", "credentials.manage", "/v1/workspaces/{workspaceID}/credentials", "POST", "create_workspace_credential", operations.WorkspaceScope, operations.Write), validateCredential, s.createCredential, refineSchemas)); err != nil {
@@ -48,7 +53,14 @@ func (s *Service) Registry() (*operations.Registry, error) {
 	if err := add(operations.New(meta("credentials.revoke", "credentials.manage", "/v1/workspaces/{workspaceID}/credentials/{credentialID}", "DELETE", "revoke_workspace_credential", operations.WorkspaceScope, operations.Write), validateRevoke, s.revoke, refineSchemas)); err != nil {
 		return nil, err
 	}
-	return operations.NewRegistry(s, bindings...)
+	r, err := operations.NewRegistry(s, bindings...)
+	if err != nil {
+		return nil, err
+	}
+	if runner, ok := s.repo.(operations.MutationRunner); ok {
+		r = r.WithMutationRunner(runner)
+	}
+	return r, nil
 }
 
 var _ operations.Authorizer = (*Service)(nil)
@@ -69,6 +81,10 @@ func refineSchemas(input, output *jsonschema.Schema) error {
 				low, high := 1, 100
 				child.MinLength = &low
 				child.MaxLength = &high
+			}
+			if key == "version" || key == "expected_version" {
+				low := float64(1)
+				child.Minimum = &low
 			}
 			if key == "limit" {
 				low, high := float64(1), float64(100)

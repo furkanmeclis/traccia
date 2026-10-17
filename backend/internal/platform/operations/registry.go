@@ -2,6 +2,9 @@ package operations
 
 import (
 	"context"
+	"crypto/sha256"
+	"encoding/binary"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"regexp"
@@ -16,6 +19,7 @@ var toolName = regexp.MustCompile(`^[a-z][a-z0-9_]*$`)
 
 // Registry is immutable: construct it once with explicit operation bindings.
 type Registry struct {
+	runner     MutationRunner
 	authorizer Authorizer
 	operations map[string]*Operation
 }
@@ -88,7 +92,7 @@ func (r *Registry) Execute(ctx context.Context, call Call) ([]byte, error) {
 	if (meta.Scope == WorkspaceScope && call.WorkspaceID == uuid.Nil) || (meta.Scope == AccountScope && call.WorkspaceID != uuid.Nil) {
 		return nil, failure(Validation, nil)
 	}
-	identity, err := r.authorizer.Authorize(ctx, AuthorizationRequest{Operation: meta, WorkspaceID: call.WorkspaceID, Channel: call.Channel})
+	identity, err := r.authorizer.Authorize(ctx, AuthorizationRequest{Operation: meta, WorkspaceID: call.WorkspaceID, Channel: call.Channel, Input: call.Input})
 	if err != nil {
 		return nil, publicError(err)
 	}
@@ -104,5 +108,59 @@ func (r *Registry) Execute(ctx context.Context, call Call) ([]byte, error) {
 	if err := ctx.Err(); err != nil {
 		return nil, publicError(err)
 	}
-	return op.run(ctx, Scope{actorID: identity.ActorID, workspaceID: identity.WorkspaceID}, call.Input)
+	scope := Scope{actorID: identity.ActorID, workspaceID: identity.WorkspaceID}
+	if !meta.Idempotent {
+		return op.run(ctx, scope, call.Input)
+	}
+	run, err := op.prepare(call.Input)
+	if err != nil {
+		return nil, err
+	}
+	if len(call.IdempotencyKey) < 1 || len(call.IdempotencyKey) > 200 || strings.TrimSpace(call.IdempotencyKey) != call.IdempotencyKey || strings.ContainsAny(call.IdempotencyKey, "\r\n\x00") {
+		return nil, failure(Validation, nil)
+	}
+	if r.runner == nil {
+		return nil, failure(Unavailable, nil)
+	}
+	value, err := decodeJSON(call.Input)
+	if err != nil {
+		return nil, failure(Validation, err)
+	}
+	canonical, err := json.Marshal(value)
+	if err != nil {
+		return nil, failure(Validation, err)
+	}
+	fingerprint := sha256.Sum256(lengthDelimited([]byte(meta.ID), []byte(fmt.Sprint(meta.Version)), []byte(call.WorkspaceID.String()), canonical))
+	authorize := func(txctx context.Context) error {
+		current, err := r.authorizer.Authorize(txctx, AuthorizationRequest{Operation: meta, WorkspaceID: call.WorkspaceID, Channel: call.Channel, Input: call.Input})
+		if err != nil {
+			return err
+		}
+		if current != identity {
+			return failure(Forbidden, nil)
+		}
+		return nil
+	}
+	output, err := r.runner.RunMutation(ctx, Mutation{Metadata: meta, Scope: scope, Key: call.IdempotencyKey, Fingerprint: fingerprint[:], Authorize: authorize, ValidateResult: op.validateResult}, func(txctx context.Context) ([]byte, error) { return run(txctx, scope) })
+	if err != nil {
+		return nil, publicError(err)
+	}
+	return output, nil
+}
+
+// WithMutationRunner returns a new registry binding the durable application boundary.
+func (r *Registry) WithMutationRunner(runner MutationRunner) *Registry {
+	copy := *r
+	copy.runner = runner
+	return &copy
+}
+
+// LengthDelimited avoids ambiguity between adjacent fingerprint fields.
+func lengthDelimited(fields ...[]byte) []byte {
+	var out []byte
+	for _, field := range fields {
+		out = binary.BigEndian.AppendUint64(out, uint64(len(field)))
+		out = append(out, field...)
+	}
+	return out
 }

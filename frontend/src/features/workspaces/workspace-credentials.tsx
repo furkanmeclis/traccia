@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Check, Copy, KeyRound, Plus, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
@@ -22,11 +22,16 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import {
+  prepareSubmission,
+  type OperationSubmission,
+} from "./operation-submission";
 import { useLocale } from "@/providers/locale-provider";
 import { useCredentials, workspaceKeys } from "./queries";
 import {
   credentialScopes,
   workspaceService,
+  type CreateCredential,
   type CredentialScope,
   type WorkspaceCredential,
 } from "./workspace.service";
@@ -65,14 +70,17 @@ export function WorkspaceCredentials({
   const [revokeTarget, setRevokeTarget] = useState<WorkspaceCredential | null>(
     null,
   );
+  const submission = useRef<OperationSubmission<CreateCredential> | null>(null);
+  const revokeSubmission = useRef<OperationSubmission<{ id: string }> | null>(
+    null,
+  );
   const create = useMutation({
-    mutationFn: async () => {
-      const result = await workspaceService.createCredential(workspaceId, {
-        name: name.trim(),
-        audience,
-        scopes,
-        expires_at: new Date(Date.now() + days * 86400000).toISOString(),
-      });
+    mutationFn: async (operation: OperationSubmission<CreateCredential>) => {
+      const result = await workspaceService.createCredential(
+        workspaceId,
+        operation.input,
+        operation.key,
+      );
       setToken(result.token);
       return result.credential;
     },
@@ -84,9 +92,14 @@ export function WorkspaceCredentials({
     gcTime: 0,
   });
   const revoke = useMutation({
-    mutationFn: (id: string) =>
-      workspaceService.revokeCredential(workspaceId, id),
+    mutationFn: (operation: OperationSubmission<{ id: string }>) =>
+      workspaceService.revokeCredential(
+        workspaceId,
+        operation.input.id,
+        operation.key,
+      ),
     onSuccess: async () => {
+      revokeSubmission.current = null;
       setRevokeTarget(null);
       await cache.invalidateQueries({
         queryKey: workspaceKeys.credentials(workspaceId),
@@ -96,6 +109,7 @@ export function WorkspaceCredentials({
   });
   function close() {
     if (create.isPending) return;
+    submission.current = null;
     setOpen(false);
     setToken(null);
     setCopied(false);
@@ -116,7 +130,15 @@ export function WorkspaceCredentials({
   }
   function submit(e: FormEvent) {
     e.preventDefault();
-    if (canManageNow) create.mutate();
+    if (!canManageNow || create.isPending) return;
+    const intent = { name: name.trim(), audience, scopes, days };
+    submission.current = prepareSubmission(submission.current, intent, () => ({
+      name: intent.name,
+      audience,
+      scopes,
+      expires_at: new Date(Date.now() + days * 86400000).toISOString(),
+    }));
+    create.mutate(submission.current);
   }
   const items =
     !canRead || list.isError
@@ -216,6 +238,7 @@ export function WorkspaceCredentials({
                     variant="outline"
                     size="sm"
                     onClick={() => {
+                      revokeSubmission.current = null;
                       revoke.reset();
                       setRevokeTarget(item);
                     }}
@@ -275,104 +298,106 @@ export function WorkspaceCredentials({
               </div>
             ) : (
               <form onSubmit={submit} className="space-y-5">
-                <div className="space-y-2">
-                  <Label htmlFor="credential-name">
-                    {t("workspaces.credential_name")}
-                  </Label>
-                  <Input
-                    id="credential-name"
-                    autoFocus
-                    required
-                    maxLength={100}
-                    autoComplete="off"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
+                <fieldset disabled={create.isPending} className="space-y-5">
                   <div className="space-y-2">
-                    <Label htmlFor="credential-audience">
-                      {t("workspaces.audience")}
+                    <Label htmlFor="credential-name">
+                      {t("workspaces.credential_name")}
                     </Label>
-                    <select
-                      id="credential-audience"
-                      className="border-input bg-background h-9 w-full rounded-md border px-3 text-sm"
-                      value={audience}
-                      onChange={(e) =>
-                        setAudience(e.target.value as "api" | "mcp")
-                      }
-                    >
-                      <option value="api">API</option>
-                      <option value="mcp">MCP</option>
-                    </select>
+                    <Input
+                      id="credential-name"
+                      autoFocus
+                      required
+                      maxLength={100}
+                      autoComplete="off"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="credential-lifetime">
-                      {t("workspaces.lifetime")}
-                    </Label>
-                    <select
-                      id="credential-lifetime"
-                      className="border-input bg-background h-9 w-full rounded-md border px-3 text-sm"
-                      value={days}
-                      onChange={(e) => setDays(Number(e.target.value))}
-                    >
-                      {[1, 7, 30, 90, 365].map((day) => (
-                        <option key={day} value={day}>
-                          {t("workspaces.days", { count: day })}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-                <fieldset className="space-y-3">
-                  <legend className="mb-3 text-sm font-medium">
-                    {t("workspaces.scopes")}
-                  </legend>
-                  {credentialScopes.map((scope) => (
-                    <label
-                      key={scope}
-                      className="flex cursor-pointer items-start gap-3"
-                    >
-                      <Checkbox
-                        checked={scopes.includes(scope)}
-                        onCheckedChange={(checked) =>
-                          setScopes((current) =>
-                            checked
-                              ? [...current, scope]
-                              : current.filter((value) => value !== scope),
-                          )
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="credential-audience">
+                        {t("workspaces.audience")}
+                      </Label>
+                      <select
+                        id="credential-audience"
+                        className="border-input bg-background h-9 w-full rounded-md border px-3 text-sm"
+                        value={audience}
+                        onChange={(e) =>
+                          setAudience(e.target.value as "api" | "mcp")
                         }
-                      />
-                      <span className="space-y-1 text-sm">
-                        <span className="block font-medium">
-                          {scopeLabels[scope]}
+                      >
+                        <option value="api">API</option>
+                        <option value="mcp">MCP</option>
+                      </select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="credential-lifetime">
+                        {t("workspaces.lifetime")}
+                      </Label>
+                      <select
+                        id="credential-lifetime"
+                        className="border-input bg-background h-9 w-full rounded-md border px-3 text-sm"
+                        value={days}
+                        onChange={(e) => setDays(Number(e.target.value))}
+                      >
+                        {[1, 7, 30, 90, 365].map((day) => (
+                          <option key={day} value={day}>
+                            {t("workspaces.days", { count: day })}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <fieldset className="space-y-3">
+                    <legend className="mb-3 text-sm font-medium">
+                      {t("workspaces.scopes")}
+                    </legend>
+                    {credentialScopes.map((scope) => (
+                      <label
+                        key={scope}
+                        className="flex cursor-pointer items-start gap-3"
+                      >
+                        <Checkbox
+                          checked={scopes.includes(scope)}
+                          onCheckedChange={(checked) =>
+                            setScopes((current) =>
+                              checked
+                                ? [...current, scope]
+                                : current.filter((value) => value !== scope),
+                            )
+                          }
+                        />
+                        <span className="space-y-1 text-sm">
+                          <span className="block font-medium">
+                            {scopeLabels[scope]}
+                          </span>
+                          <span className="text-muted-foreground block font-mono text-xs">
+                            {scope}
+                          </span>
                         </span>
-                        <span className="text-muted-foreground block font-mono text-xs">
-                          {scope}
-                        </span>
-                      </span>
-                    </label>
-                  ))}
+                      </label>
+                    ))}
+                  </fieldset>
+                  {create.isError && (
+                    <p role="alert" className="text-destructive text-sm">
+                      {create.error.message}
+                    </p>
+                  )}
+                  <Button
+                    type="submit"
+                    className="w-full"
+                    disabled={
+                      !canManageNow ||
+                      create.isPending ||
+                      !name.trim() ||
+                      !scopes.length
+                    }
+                  >
+                    {create.isPending
+                      ? t("workspaces.saving")
+                      : t("workspaces.credential_create")}
+                  </Button>
                 </fieldset>
-                {create.isError && (
-                  <p role="alert" className="text-destructive text-sm">
-                    {create.error.message}
-                  </p>
-                )}
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={
-                    !canManageNow ||
-                    create.isPending ||
-                    !name.trim() ||
-                    !scopes.length
-                  }
-                >
-                  {create.isPending
-                    ? t("workspaces.saving")
-                    : t("workspaces.credential_create")}
-                </Button>
               </form>
             )}
           </DialogContent>
@@ -408,9 +433,17 @@ export function WorkspaceCredentials({
               <Button
                 variant="destructive"
                 disabled={revoke.isPending}
-                onClick={() =>
-                  canManageNow && revokeTarget && revoke.mutate(revokeTarget.id)
-                }
+                onClick={() => {
+                  if (!canManageNow || !revokeTarget || revoke.isPending)
+                    return;
+                  const input = { id: revokeTarget.id };
+                  revokeSubmission.current = prepareSubmission(
+                    revokeSubmission.current,
+                    input,
+                    () => input,
+                  );
+                  revoke.mutate(revokeSubmission.current);
+                }}
               >
                 {t("workspaces.revoke")}
               </Button>
