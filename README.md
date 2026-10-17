@@ -35,7 +35,7 @@ make local-dev
 4. GitHub bağlantısı, yerleşik widget, ürün/ortam kataloğu ve talep havuzu.
 5. Otomasyonlar, release/deploy takibi ve ajan işlem geçmişi.
 
-Onaylanan kapsam: [ürün kararları](docs/PRODUCT.md). Onaylanan 53 işin ayrıntıları [yol haritasında](docs/plan/roadmap.md), makine tarafından okunabilir kayıtları [iş listesinde](docs/plan/issues.json) bulunur. Araştırılan özel depoların kaynak kodu ve yerel inceleme raporları bu depoya eklenmez.
+Onaylanan kapsam: [ürün kararları](docs/PRODUCT.md). Onaylanan 53 işin ayrıntıları [yol haritasında](docs/plan/roadmap.md), makine tarafından okunabilir kayıtları [iş listesinde](docs/plan/issues.json), Linear bağlantıları [takip tablosunda](docs/plan/linear.md) bulunur. Araştırılan özel depoların kaynak kodu ve yerel inceleme raporları bu depoya eklenmez.
 
 ## Doğrulama
 

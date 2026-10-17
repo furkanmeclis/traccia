@@ -34,8 +34,10 @@
       ],
       "depends_on": [],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "42b79906-56d4-40be-8c02-5730f4f7af3f",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-788/t01-ortak-islem-envanteri-ve-api-mcp-semalarini-kur",
+      "linear_issue_identifier": "TEC-788",
+      "current_status": "In Progress"
     },
     {
       "plan_id": "T02",
@@ -54,8 +56,10 @@
         "T01"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "89ff73ea-e936-4727-bf10-effdb1f1fb75",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-789/t02-sahip-hesabi-ve-bagimsiz-arac-erisimini-hazirla",
+      "linear_issue_identifier": "TEC-789",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T03",
@@ -73,8 +77,10 @@
         "T01"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "62e194e6-31d8-42a8-9396-c26240a3a841",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-790/t03-mutation-tekrarlarini-ve-eszamanli-duzenlemeyi-guvenilir-yap",
+      "linear_issue_identifier": "TEC-790",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T04",
@@ -92,8 +98,10 @@
         "T03"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "e352ec54-c395-45aa-862d-15d80a7f6bdd",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-791/t04-kalici-olay-alimi-ve-tuketici-teslimatini-kur",
+      "linear_issue_identifier": "TEC-791",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T05",
@@ -111,8 +119,10 @@
         "T01"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "64870b77-c147-481c-a9ea-df234386b4a1",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-792/t05-api-sema-ve-mcp-islem-kapsamini-ci-icinde-denetle",
+      "linear_issue_identifier": "TEC-792",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T06",
@@ -132,8 +142,10 @@
         "T41"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "6d5047b7-c707-4e92-b75d-96f6c5497049",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-796/t06-ekip-durum-etiket-ve-issue-numara-modelini-ekle",
+      "linear_issue_identifier": "TEC-796",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T07",
@@ -151,8 +163,10 @@
         "T06"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "e25baf43-e87c-4421-8e13-7a276b161c4f",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-797/t07-proje-kilometre-tasi-ve-dokuman-duzenini-ekle",
+      "linear_issue_identifier": "TEC-797",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T08",
@@ -173,8 +187,10 @@
         "T04"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "f94172d2-7037-4953-9aa6-d3d520313044",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-798/t08-issue-temel-yasam-dongusunu-gelistir",
+      "linear_issue_identifier": "TEC-798",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T09",
@@ -192,8 +208,10 @@
         "T08"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "fae9df59-615a-47d6-a86f-bf3a41b0952a",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-799/t09-alt-gorev-ve-issue-iliskilerini-gelistir",
+      "linear_issue_identifier": "TEC-799",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T10",
@@ -213,8 +231,10 @@
         "T08"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "7a954c5e-c1c8-492b-b53d-79bc3c16fd7a",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-800/t10-platejs-editorunu-surumlu-issue-ve-proje-belgelerine-bagla",
+      "linear_issue_identifier": "TEC-800",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T11",
@@ -234,8 +254,10 @@
         "T03"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "c032ba82-f494-48ad-b8f9-f23841bcaf8a",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-801/t11-issue-ekleri-ve-tam-dosya-aktarimini-gelistir",
+      "linear_issue_identifier": "TEC-801",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T12",
@@ -255,8 +277,10 @@
         "T04"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "bdb3a35e-e1ff-43db-8b0a-f348d5f8d850",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-802/t12-yorum-degisiklik-gecmisi-ve-belge-revision-islemlerini-ekle",
+      "linear_issue_identifier": "TEC-802",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T13",
@@ -275,8 +299,10 @@
         "T08"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "58878236-7807-48b9-a006-310b3c295869",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-803/t13-arama-filtre-ve-kayitli-gorunum-islemlerini-ekle",
+      "linear_issue_identifier": "TEC-803",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T14",
@@ -295,8 +321,10 @@
         "T07"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "8293920b-ba76-475b-9604-04203776c30d",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-804/t14-traccia-web-kabugu-ve-kisisel-calisma-ekranini-kur",
+      "linear_issue_identifier": "TEC-804",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T15",
@@ -318,8 +346,10 @@
         "T12"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "5f753839-e465-4d24-9c63-ba8ea0018fbd",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-805/t15-hizli-issue-olusturma-ve-detay-duzenleme-deneyimini-kur",
+      "linear_issue_identifier": "TEC-805",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T16",
@@ -338,8 +368,10 @@
         "T13"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "7812a639-2213-4d28-b615-9a00cad9bbef",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-806/t16-kanban-ve-toplu-issue-islemlerini-kur",
+      "linear_issue_identifier": "TEC-806",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T17",
@@ -359,8 +391,10 @@
         "T16"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "e47cd6d7-9496-4b97-88ae-b42596023afb",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-807/t17-mobil-web-issue-akislarini-tamamla",
+      "linear_issue_identifier": "TEC-807",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T18",
@@ -380,8 +414,10 @@
         "T02"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "0c6d8984-5e52-47b6-b442-4c1773d5b696",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-793/t18-resmi-go-sdk-ile-mcp-transport-oauth-ve-proxy-kur",
+      "linear_issue_identifier": "TEC-793",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T19",
@@ -409,8 +445,10 @@
         "T13"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "4d4fd7f9-cb76-433e-9bfc-1891203f1100",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-808/t19-cekirdek-ekip-proje-ve-issue-mcp-araclarini-bagla",
+      "linear_issue_identifier": "TEC-808",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T20",
@@ -430,8 +468,10 @@
         "T01"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "13139e56-a535-48c7-906c-93fff5e83fd5",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-794/t20-ayar-tercih-bildirim-ve-entegrasyon-yonetimini-mcpye-ac",
+      "linear_issue_identifier": "TEC-794",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T21",
@@ -454,8 +494,10 @@
         "T04"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "2f84ad4c-866a-42ab-aa05-f1ac392d41b7",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-809/t21-mcp-buyuk-icerik-dosya-ve-arka-plan-is-aktarimini-tamamla",
+      "linear_issue_identifier": "TEC-809",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T22",
@@ -477,8 +519,10 @@
         "T21"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "d2b1036d-63c8-49b5-b474-2e782174843c",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-810/t22-panel-api-mcp-esitligini-uctan-uca-dogrula",
+      "linear_issue_identifier": "TEC-810",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T23",
@@ -498,8 +542,10 @@
         "T07"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "2885a0c9-c277-4eeb-94b4-4c99f749caf8",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-811/t23-github-app-kurulum-ve-repo-eslemelerini-ekle",
+      "linear_issue_identifier": "TEC-811",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T24",
@@ -518,8 +564,10 @@
         "T04"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "7daae14d-768d-4597-8c93-5466eb0f54a5",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-812/t24-github-webhook-alimini-kalici-ve-tekrara-dayanikli-yap",
+      "linear_issue_identifier": "TEC-812",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T25",
@@ -539,8 +587,10 @@
         "T09"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "b00f3fdc-fd74-46c5-b5d6-853abed53b63",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-813/t25-issue-pr-eslestirme-ve-durum-kurallarini-gelistir",
+      "linear_issue_identifier": "TEC-813",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T26",
@@ -559,8 +609,10 @@
         "T03"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "720ecf80-dfb4-4cb6-87da-5c5382b3cd50",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-814/t26-github-uzlastirma-ve-gelistirme-durum-ekranini-ekle",
+      "linear_issue_identifier": "TEC-814",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T27",
@@ -582,8 +634,10 @@
         "T01"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "26be1e10-051f-43a2-b069-32c0b1cec8f1",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-815/t27-yerlesik-widget-kurulum-modelini-ve-yonetimini-ekle",
+      "linear_issue_identifier": "TEC-815",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T28",
@@ -601,8 +655,10 @@
         "T27"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "245245fd-249a-453b-9202-7d54d8f959bc",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-816/t28-widget-script-ve-react-sdk-deneyimini-gelistir",
+      "linear_issue_identifier": "TEC-816",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T29",
@@ -621,8 +677,10 @@
         "T11"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "9f4b333a-18e5-472d-9a73-095df833d4af",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-817/t29-widget-ekran-goruntusu-gorsel-ve-baglam-akisini-kur",
+      "linear_issue_identifier": "TEC-817",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T30",
@@ -641,8 +699,10 @@
         "T02"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "f5c540ba-c82e-41b5-948c-4a115a9d57de",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-818/t30-dogrulanmis-bildirici-ve-dar-widget-oturumunu-ekle",
+      "linear_issue_identifier": "TEC-818",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T31",
@@ -667,8 +727,10 @@
         "T30"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "dfc9d908-fd24-48e7-b120-d112bf395ec9",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-819/t31-widget-taslak-yukleme-ve-idempotent-gonderim-akisini-tamamla",
+      "linear_issue_identifier": "TEC-819",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T32",
@@ -689,8 +751,10 @@
         "T31"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "67000b32-ab80-4d6c-9d89-2193e840cd3d",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-820/t32-widget-kurulum-ve-bildirim-araclarini-api-mcpye-ac",
+      "linear_issue_identifier": "TEC-820",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T33",
@@ -710,8 +774,10 @@
         "T04"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "7ab6e69d-9963-443d-8984-2b456c7ccbe3",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-821/t33-cycle-sablon-ve-tekrarlayan-issue-destegini-ekle",
+      "linear_issue_identifier": "TEC-821",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T34",
@@ -731,8 +797,10 @@
         "T04"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "8aeba369-6e36-46c7-ba0d-0a267f7f5e19",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-822/t34-triage-bildirim-ve-takip-tercihlerini-bagla",
+      "linear_issue_identifier": "TEC-822",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T35",
@@ -752,8 +820,10 @@
         "T13"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "9f0c63be-8dd2-4aac-9f30-060e7e3410f5",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-823/t35-proje-ilerlemesi-ve-temel-is-raporlarini-ekle",
+      "linear_issue_identifier": "TEC-823",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T36",
@@ -774,8 +844,10 @@
         "T28"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "0d1417a6-8c4a-48cd-8618-685d33818a4f",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-824/t36-turkce-ingilizce-ve-genisletilebilir-dil-destegini-tamamla",
+      "linear_issue_identifier": "TEC-824",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T37",
@@ -796,8 +868,10 @@
         "T27"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "f4f5ffbb-cac5-41df-af9d-ebac417f50b5",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-825/t37-vps-compose-proxy-ve-production-env-kurulumunu-hazirla",
+      "linear_issue_identifier": "TEC-825",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T38",
@@ -817,8 +891,10 @@
         "T37"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "0d3b85fa-38ef-4389-b27f-b2606415c2c8",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-826/t38-veri-dosya-yedegi-ve-geri-yukleme-provasini-hazirla",
+      "linear_issue_identifier": "TEC-826",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T39",
@@ -841,8 +917,10 @@
         "T32"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "b874dee4-0eab-40ff-af5c-704167038755",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-827/t39-bagimsiz-host-uygulamalarda-widget-kabul-testlerini-kur",
+      "linear_issue_identifier": "TEC-827",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T40",
@@ -876,8 +954,10 @@
         "T53"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "475c7e4f-c764-477c-820e-f640d0905106",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-840/t40-traccia-tam-kullanim-ve-kayipsizlik-kabul-paketini-calistir",
+      "linear_issue_identifier": "TEC-840",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T41",
@@ -898,8 +978,10 @@
         "T02"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "8ea22c14-dc8b-41b0-89de-a1597fc30b4b",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-795/t41-calisma-alani-kapsamini-ve-veri-sinirlarini-kur",
+      "linear_issue_identifier": "TEC-795",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T42",
@@ -922,8 +1004,10 @@
         "T18"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "60662386-8ca5-4471-8eec-b20b24cc0ce9",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-828/t42-tenant-izolasyon-ve-iptal-kabul-paketini-kur",
+      "linear_issue_identifier": "TEC-828",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T43",
@@ -944,8 +1028,10 @@
         "T03"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "9ced1688-ef0f-4410-8dcd-f8ed29dab5e9",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-829/t43-urun-ve-ortam-katalogunu-gelistir",
+      "linear_issue_identifier": "TEC-829",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T44",
@@ -967,8 +1053,10 @@
         "T31"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "6771dbe7-8daa-41c5-b504-296468e9e32c",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-830/t44-widget-ve-issue-baglamini-urun-ve-ortama-bagla",
+      "linear_issue_identifier": "TEC-830",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T45",
@@ -991,8 +1079,10 @@
         "T04"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "6abe5dd7-0973-40f3-889d-d746fdb2128a",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-831/t45-ortak-talep-havuzu-ve-yonlendirmeyi-gelistir",
+      "linear_issue_identifier": "TEC-831",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T46",
@@ -1013,8 +1103,10 @@
         "T44"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "5aeff7d4-bdbc-4524-ba42-ba350eb3570e",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-832/t46-talep-havuzu-deneyimini-ve-kaynak-dogrulamasini-tamamla",
+      "linear_issue_identifier": "TEC-832",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T47",
@@ -1035,8 +1127,10 @@
         "T12"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "de85e819-0d9b-42ac-9237-92553aa1cbf4",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-833/t47-baglantili-plate-belgeleri-ve-karar-sablonlarini-gelistir",
+      "linear_issue_identifier": "TEC-833",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T48",
@@ -1059,8 +1153,10 @@
         "T25"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "00fa908a-1fbb-42f8-93ab-ce13594e6f82",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-834/t48-olay-kosul-eylem-otomasyon-cekirdegini-kur",
+      "linear_issue_identifier": "TEC-834",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T49",
@@ -1080,8 +1176,10 @@
         "T03"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "4eaa36bd-b19b-48ee-9289-bbc6d7612c25",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-835/t49-otomasyon-tekrar-dongu-ve-hata-yonetimini-tamamla",
+      "linear_issue_identifier": "TEC-835",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T50",
@@ -1103,8 +1201,10 @@
         "T04"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "4285bd89-6260-4596-b784-290d5a46b266",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-836/t50-release-ve-deploy-veri-akisini-gelistir",
+      "linear_issue_identifier": "TEC-836",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T51",
@@ -1125,8 +1225,10 @@
         "T48"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "395e4091-5c45-4db4-ae69-550c1e1336fb",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-837/t51-release-notlari-ve-ortam-gorunurlugunu-tamamla",
+      "linear_issue_identifier": "TEC-837",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T52",
@@ -1148,8 +1250,10 @@
         "T08"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "16dd7874-c3f9-4d66-ada7-ba0eba2dd91f",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-838/t52-mcp-ve-ajan-islem-gecmisini-iliskilendir",
+      "linear_issue_identifier": "TEC-838",
+      "current_status": "Backlog"
     },
     {
       "plan_id": "T53",
@@ -1170,8 +1274,16 @@
         "T21"
       ],
       "initial_status": "backlog",
-      "linear_issue_id": null,
-      "linear_issue_url": null
+      "linear_issue_id": "03a9b007-c98d-45dc-a3a3-69555fb73996",
+      "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-839/t53-ajan-run-ekrani-ve-guvenli-retry-izini-tamamla",
+      "linear_issue_identifier": "TEC-839",
+      "current_status": "Backlog"
     }
-  ]
+  ],
+  "linear_project": {
+    "id": "310cafb1-3a78-4e50-aa6f-0dd8156c8f6b",
+    "identifier": "P-TEC-13",
+    "url": "https://linear.app/technowide-furkan/project/traccia-fe089e718332"
+  },
+  "publication_status": "published_verified"
 }
