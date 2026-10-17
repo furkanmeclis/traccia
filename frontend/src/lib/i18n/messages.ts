@@ -57,6 +57,9 @@ import trStorage from "@/locales/tr/storage.json";
 import trTable from "@/locales/tr/table.json";
 import trUsers from "@/locales/tr/users.json";
 
+import enTeams from "@/locales/en/teams.json";
+import trTeams from "@/locales/tr/teams.json";
+
 import enWorkspaces from "@/locales/en/workspaces.json";
 import trWorkspaces from "@/locales/tr/workspaces.json";
 
@@ -66,6 +69,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
   tr: {
     common: trCommon,
     workspaces: trWorkspaces,
+    teams: trTeams,
     layout: trLayout,
     editor: trEditor,
     table: trTable,
@@ -97,6 +101,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
   en: {
     common: enCommon,
     workspaces: enWorkspaces,
+    teams: enTeams,
     layout: enLayout,
     editor: enEditor,
     table: enTable,

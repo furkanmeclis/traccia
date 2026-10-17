@@ -289,3 +289,21 @@ func (s *Service) replayDelivery(ctx context.Context, scope operations.Scope, in
 	err := s.repo.ReplayDelivery(ctx, scope.WorkspaceID(), in.DeliveryID)
 	return ReplayDeliveryOutput{Replayed: err == nil}, err
 }
+
+// CanManage is a current presentation hint, resolved by the same product policy.
+func (s *Service) CanManage(ctx context.Context, workspace uuid.UUID) (bool, error) {
+	channel := operations.API
+	if raw, ok := ctx.Value(credentialContextKey{}).(string); ok {
+		hash := sha256.Sum256([]byte(raw))
+		a, err := s.repo.ResolveCredential(ctx, hash[:])
+		if err != nil {
+			return false, err
+		}
+		channel = operations.Channel(a.Audience)
+	}
+	a, err := s.access(ctx, workspace, channel)
+	if err != nil {
+		return false, err
+	}
+	return a.Role == "owner" && (a.Audience == "" || slices.Contains(a.Scopes, "workspace.write")), nil
+}

@@ -71,7 +71,7 @@ paths:
         "operationId": "activity_list",
         "summary": "activity.list",
         "x-operation-id": "activity.list",
-        "x-operation-version": 2,
+        "x-operation-version": 3,
         "x-traccia-input-schema": {
           "$ref": "#/components/schemas/ProductActivityListDomainInput"
         },
@@ -117,8 +117,7 @@ paths:
             "schema": {
               "type": "string"
             },
-            "x-binding-default": "",
-            "description": "UUID keyset cursor from next_cursor; omitted on first page. Empty means first page."
+            "x-binding-default": ""
           }
         ],
         "responses": {
@@ -446,8 +445,7 @@ paths:
             "schema": {
               "type": "string"
             },
-            "x-binding-default": "",
-            "description": "UUID keyset cursor from next_cursor; omitted on first page. Empty means first page."
+            "x-binding-default": ""
           }
         ],
         "responses": {
@@ -770,8 +768,7 @@ paths:
             "schema": {
               "type": "string"
             },
-            "x-binding-default": "",
-            "description": "UUID keyset cursor from next_cursor; omitted on first page. Empty means first page."
+            "x-binding-default": ""
           }
         ],
         "responses": {
@@ -1048,6 +1045,2643 @@ paths:
       }
     }
 
+  /v1/workspaces/{workspaceID}/labels/{labelID}/archive:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "labels_archive",
+        "summary": "labels.archive",
+        "x-operation-id": "labels.archive",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductLabelsArchiveDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductLabelsArchiveError"
+        },
+        "x-traccia-input-binding": {
+          "label_id": "path:labelID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "labelID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductLabelsArchiveEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductLabelsArchiveInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/labels:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "labels_create",
+        "summary": "labels.create",
+        "x-operation-id": "labels.create",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductLabelsCreateDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductLabelsCreateError"
+        },
+        "x-traccia-input-binding": "body",
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductLabelsCreateEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductLabelsCreateInput"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "labels_list",
+        "summary": "labels.list",
+        "x-operation-id": "labels.list",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductLabelsListDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductLabelsListError"
+        },
+        "x-traccia-input-binding": {
+          "team_id": "query:team_id",
+          "limit": "query:limit",
+          "after": "query:after",
+          "archived": "query:archived"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "team_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "x-binding-default": 20
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "archived",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "x-binding-default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductLabelsListEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/labels/{labelID}:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "labels_get",
+        "summary": "labels.get",
+        "x-operation-id": "labels.get",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductLabelsGetDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductLabelsGetError"
+        },
+        "x-traccia-input-binding": {
+          "label_id": "path:labelID"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "labelID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductLabelsGetEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "labels_update",
+        "summary": "labels.update",
+        "x-operation-id": "labels.update",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductLabelsUpdateDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductLabelsUpdateError"
+        },
+        "x-traccia-input-binding": {
+          "label_id": "path:labelID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "labelID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductLabelsUpdateEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductLabelsUpdateInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/teams/{teamID}/archive:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "teams_archive",
+        "summary": "teams.archive",
+        "x-operation-id": "teams.archive",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductTeamsArchiveDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductTeamsArchiveError"
+        },
+        "x-traccia-input-binding": {
+          "team_id": "path:teamID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "teamID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTeamsArchiveEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductTeamsArchiveInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/teams:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "teams_create",
+        "summary": "teams.create",
+        "x-operation-id": "teams.create",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductTeamsCreateDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductTeamsCreateError"
+        },
+        "x-traccia-input-binding": "body",
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTeamsCreateEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductTeamsCreateInput"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "teams_list",
+        "summary": "teams.list",
+        "x-operation-id": "teams.list",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductTeamsListDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductTeamsListError"
+        },
+        "x-traccia-input-binding": {
+          "limit": "query:limit",
+          "after": "query:after",
+          "archived": "query:archived"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "x-binding-default": 20
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "archived",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "x-binding-default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTeamsListEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/teams/{teamID}:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "teams_get",
+        "summary": "teams.get",
+        "x-operation-id": "teams.get",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductTeamsGetDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductTeamsGetError"
+        },
+        "x-traccia-input-binding": {
+          "team_id": "path:teamID"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "teamID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTeamsGetEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "teams_update",
+        "summary": "teams.update",
+        "x-operation-id": "teams.update",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductTeamsUpdateDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductTeamsUpdateError"
+        },
+        "x-traccia-input-binding": {
+          "team_id": "path:teamID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "teamID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductTeamsUpdateEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductTeamsUpdateInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/teams/{teamID}/workflow-statuses/{statusID}/archive:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "workflow_statuses_archive",
+        "summary": "workflow_statuses.archive",
+        "x-operation-id": "workflow_statuses.archive",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductWorkflowStatusesArchiveDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductWorkflowStatusesArchiveError"
+        },
+        "x-traccia-input-binding": {
+          "team_id": "path:teamID",
+          "status_id": "path:statusID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "teamID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "statusID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWorkflowStatusesArchiveEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWorkflowStatusesArchiveInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/teams/{teamID}/workflow-statuses:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "workflow_statuses_create",
+        "summary": "workflow_statuses.create",
+        "x-operation-id": "workflow_statuses.create",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductWorkflowStatusesCreateDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductWorkflowStatusesCreateError"
+        },
+        "x-traccia-input-binding": {
+          "team_id": "path:teamID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "teamID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWorkflowStatusesCreateEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWorkflowStatusesCreateInput"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "workflow_statuses_list",
+        "summary": "workflow_statuses.list",
+        "x-operation-id": "workflow_statuses.list",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductWorkflowStatusesListDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductWorkflowStatusesListError"
+        },
+        "x-traccia-input-binding": {
+          "team_id": "path:teamID",
+          "limit": "query:limit",
+          "after": "query:after",
+          "archived": "query:archived"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "teamID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "x-binding-default": 20
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "archived",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "x-binding-default": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWorkflowStatusesListEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/teams/{teamID}/workflow-statuses/reorder:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "workflow_statuses_reorder",
+        "summary": "workflow_statuses.reorder",
+        "x-operation-id": "workflow_statuses.reorder",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductWorkflowStatusesReorderDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductWorkflowStatusesReorderError"
+        },
+        "x-traccia-input-binding": {
+          "team_id": "path:teamID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "teamID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWorkflowStatusesReorderEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWorkflowStatusesReorderInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/teams/{teamID}/workflow-statuses/{statusID}:
+    {
+      "patch": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "workflow_statuses_update",
+        "summary": "workflow_statuses.update",
+        "x-operation-id": "workflow_statuses.update",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductWorkflowStatusesUpdateDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductWorkflowStatusesUpdateError"
+        },
+        "x-traccia-input-binding": {
+          "team_id": "path:teamID",
+          "status_id": "path:statusID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "teamID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "statusID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWorkflowStatusesUpdateEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWorkflowStatusesUpdateInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
   /v1/workspaces:
     {
       "post": {
@@ -1252,8 +3886,7 @@ paths:
             "schema": {
               "type": "string"
             },
-            "x-binding-default": "",
-            "description": "UUID keyset cursor from next_cursor; omitted on first page. Empty means first page."
+            "x-binding-default": ""
           }
         ],
         "responses": {
@@ -5438,6 +8071,16 @@ components:
             "items": {
               "type": "object",
               "properties": {
+                "resource_type": {
+                  "type": "string"
+                },
+                "resource_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "team_id": {
+                  "type": "string"
+                },
                 "id": {
                   "type": "string",
                   "format": "uuid"
@@ -5468,6 +8111,9 @@ components:
                 }
               },
               "required": [
+                "resource_type",
+                "resource_id",
+                "team_id",
                 "id",
                 "event_name",
                 "actor_id",
@@ -6402,6 +9048,2739 @@ components:
           },
           "data": {
             "$ref": "#/components/schemas/ProductDeliveriesReplayOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductLabelsArchiveInput:
+      {
+        "type": "object",
+        "properties": {
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsArchiveOutput:
+      {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "name",
+              "color",
+              "version",
+              "archived"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "label"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsArchiveError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsArchiveDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "label_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "label_id",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsArchiveEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductLabelsArchiveOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductLabelsCreateInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          }
+        },
+        "required": [
+          "team_id",
+          "name",
+          "color"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsCreateOutput:
+      {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "name",
+              "color",
+              "version",
+              "archived"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "label"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsCreateError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsCreateDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          }
+        },
+        "required": [
+          "team_id",
+          "name",
+          "color"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsCreateEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductLabelsCreateOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductLabelsGetOutput:
+      {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "name",
+              "color",
+              "version",
+              "archived"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "label"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsGetError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsGetDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "label_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "label_id"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsGetEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductLabelsGetOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductLabelsListOutput:
+      {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "workspace_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "team_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9A-Fa-f]{6}$"
+                },
+                "version": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "archived": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "id",
+                "workspace_id",
+                "team_id",
+                "name",
+                "color",
+                "version",
+                "archived"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string"
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "manage": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "manage"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "items",
+          "has_more",
+          "next_cursor",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsListError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsListDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "after": {
+            "type": "string"
+          },
+          "archived": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "team_id",
+          "limit",
+          "after",
+          "archived"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsListEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductLabelsListOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductLabelsUpdateInput:
+      {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "name",
+          "color",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsUpdateOutput:
+      {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "name",
+              "color",
+              "version",
+              "archived"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "label"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsUpdateError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsUpdateDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "label_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "label_id",
+          "name",
+          "color",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductLabelsUpdateEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductLabelsUpdateOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductTeamsArchiveInput:
+      {
+        "type": "object",
+        "properties": {
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsArchiveOutput:
+      {
+        "type": "object",
+        "properties": {
+          "team": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "code": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9]{1,9}$"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "workflow_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string"
+              },
+              "updated_at": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "name",
+              "code",
+              "version",
+              "workflow_version",
+              "archived",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "manage": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "manage"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "team",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsArchiveError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsArchiveDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "team_id",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsArchiveEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductTeamsArchiveOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductTeamsCreateInput:
+      {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "code": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9]{1,9}$"
+          }
+        },
+        "required": [
+          "name",
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsCreateOutput:
+      {
+        "type": "object",
+        "properties": {
+          "team": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "code": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9]{1,9}$"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "workflow_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string"
+              },
+              "updated_at": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "name",
+              "code",
+              "version",
+              "workflow_version",
+              "archived",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "manage": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "manage"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "team",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsCreateError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsCreateDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "code": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9]{1,9}$"
+          }
+        },
+        "required": [
+          "name",
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsCreateEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductTeamsCreateOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductTeamsGetOutput:
+      {
+        "type": "object",
+        "properties": {
+          "team": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "code": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9]{1,9}$"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "workflow_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string"
+              },
+              "updated_at": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "name",
+              "code",
+              "version",
+              "workflow_version",
+              "archived",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "manage": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "manage"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "team",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsGetError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsGetDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "team_id"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsGetEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductTeamsGetOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductTeamsListOutput:
+      {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "workspace_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "code": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z][A-Za-z0-9]{1,9}$"
+                },
+                "version": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "workflow_version": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "archived": {
+                  "type": "boolean"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "workspace_id",
+                "name",
+                "code",
+                "version",
+                "workflow_version",
+                "archived",
+                "created_at",
+                "updated_at"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string"
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "manage": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "manage"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "items",
+          "has_more",
+          "next_cursor",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsListError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsListDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "after": {
+            "type": "string"
+          },
+          "archived": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "limit",
+          "after",
+          "archived"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsListEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductTeamsListOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductTeamsUpdateInput:
+      {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "name",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsUpdateOutput:
+      {
+        "type": "object",
+        "properties": {
+          "team": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "code": {
+                "type": "string",
+                "pattern": "^[A-Za-z][A-Za-z0-9]{1,9}$"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "workflow_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string"
+              },
+              "updated_at": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "name",
+              "code",
+              "version",
+              "workflow_version",
+              "archived",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "manage": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "manage"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "team",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsUpdateError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsUpdateDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "team_id",
+          "name",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductTeamsUpdateEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductTeamsUpdateOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductWorkflowStatusesArchiveInput:
+      {
+        "type": "object",
+        "properties": {
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "expected_workflow_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "expected_version",
+          "expected_workflow_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesArchiveOutput:
+      {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "backlog",
+                  "unstarted",
+                  "started",
+                  "completed",
+                  "canceled"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              },
+              "position": {
+                "type": "integer"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "name",
+              "category",
+              "color",
+              "position",
+              "version",
+              "archived"
+            ],
+            "additionalProperties": false
+          },
+          "workflow_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "status",
+          "workflow_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesArchiveError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesArchiveDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string"
+          },
+          "status_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "expected_workflow_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "team_id",
+          "status_id",
+          "expected_version",
+          "expected_workflow_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesArchiveEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductWorkflowStatusesArchiveOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductWorkflowStatusesCreateInput:
+      {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "backlog",
+              "unstarted",
+              "started",
+              "completed",
+              "canceled"
+            ]
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          },
+          "expected_workflow_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "name",
+          "category",
+          "color",
+          "expected_workflow_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesCreateOutput:
+      {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "backlog",
+                  "unstarted",
+                  "started",
+                  "completed",
+                  "canceled"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              },
+              "position": {
+                "type": "integer"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "name",
+              "category",
+              "color",
+              "position",
+              "version",
+              "archived"
+            ],
+            "additionalProperties": false
+          },
+          "workflow_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "status",
+          "workflow_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesCreateError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesCreateDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "backlog",
+              "unstarted",
+              "started",
+              "completed",
+              "canceled"
+            ]
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          },
+          "expected_workflow_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "team_id",
+          "name",
+          "category",
+          "color",
+          "expected_workflow_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesCreateEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductWorkflowStatusesCreateOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductWorkflowStatusesListOutput:
+      {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "workspace_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "team_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "backlog",
+                    "unstarted",
+                    "started",
+                    "completed",
+                    "canceled"
+                  ]
+                },
+                "color": {
+                  "type": "string",
+                  "pattern": "^#[0-9A-Fa-f]{6}$"
+                },
+                "position": {
+                  "type": "integer"
+                },
+                "version": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "archived": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "id",
+                "workspace_id",
+                "team_id",
+                "name",
+                "category",
+                "color",
+                "position",
+                "version",
+                "archived"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string"
+          },
+          "workflow_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "manage": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "manage"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "items",
+          "has_more",
+          "next_cursor",
+          "workflow_version",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesListError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesListDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "after": {
+            "type": "string"
+          },
+          "archived": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "team_id",
+          "limit",
+          "after",
+          "archived"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesListEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductWorkflowStatusesListOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductWorkflowStatusesReorderInput:
+      {
+        "type": "object",
+        "properties": {
+          "status_ids": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "maxItems": 10000,
+            "uniqueItems": true
+          },
+          "expected_workflow_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "status_ids",
+          "expected_workflow_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesReorderOutput:
+      {
+        "type": "object",
+        "properties": {
+          "workflow_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "workflow_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesReorderError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesReorderDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string"
+          },
+          "status_ids": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "maxItems": 10000,
+            "uniqueItems": true
+          },
+          "expected_workflow_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "team_id",
+          "status_ids",
+          "expected_workflow_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesReorderEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductWorkflowStatusesReorderOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductWorkflowStatusesUpdateInput:
+      {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "backlog",
+              "unstarted",
+              "started",
+              "completed",
+              "canceled"
+            ]
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "expected_workflow_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "name",
+          "category",
+          "color",
+          "expected_version",
+          "expected_workflow_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesUpdateOutput:
+      {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "backlog",
+                  "unstarted",
+                  "started",
+                  "completed",
+                  "canceled"
+                ]
+              },
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              },
+              "position": {
+                "type": "integer"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "name",
+              "category",
+              "color",
+              "position",
+              "version",
+              "archived"
+            ],
+            "additionalProperties": false
+          },
+          "workflow_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "status",
+          "workflow_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesUpdateError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesUpdateDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string"
+          },
+          "status_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "backlog",
+              "unstarted",
+              "started",
+              "completed",
+              "canceled"
+            ]
+          },
+          "color": {
+            "type": "string",
+            "pattern": "^#[0-9A-Fa-f]{6}$"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "expected_workflow_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "team_id",
+          "status_id",
+          "name",
+          "category",
+          "color",
+          "expected_version",
+          "expected_workflow_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductWorkflowStatusesUpdateEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductWorkflowStatusesUpdateOutput"
           },
           "meta": {
             "$ref": "#/components/schemas/ProductResponseMeta"

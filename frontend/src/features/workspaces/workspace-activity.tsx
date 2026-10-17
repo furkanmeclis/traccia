@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { History, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,6 +14,21 @@ import { ApiError } from "@/lib/api";
 import { useAuth } from "@/providers/auth-provider";
 import { useLocale } from "@/providers/locale-provider";
 import { useWorkspaceActivity } from "./queries";
+
+const activityActionKeys: Record<string, string> = {
+  "workspaces.created": "workspaces.activity_created",
+  "workspaces.updated": "workspaces.activity_updated",
+  "teams.created": "teams.activity_team_created",
+  "teams.updated": "teams.activity_team_updated",
+  "teams.archived": "teams.activity_team_archived",
+  "workflow_statuses.created": "teams.activity_status_created",
+  "workflow_statuses.updated": "teams.activity_status_updated",
+  "workflow_statuses.archived": "teams.activity_status_archived",
+  "workflow_statuses.reordered": "teams.activity_status_reordered",
+  "labels.created": "teams.activity_label_created",
+  "labels.updated": "teams.activity_label_updated",
+  "labels.archived": "teams.activity_label_archived",
+};
 
 export function WorkspaceActivity({ workspaceId }: { workspaceId: string }) {
   const { t, locale } = useLocale();
@@ -100,12 +116,44 @@ export function WorkspaceActivity({ workspaceId }: { workspaceId: string }) {
             {items.map((item) => (
               <li key={item.id} className="space-y-2 py-4 first:pt-0">
                 <p className="text-sm font-medium break-words">
-                  {item.event_name === "workspaces.created"
-                    ? t("workspaces.activity_created", { name: item.name })
-                    : item.event_name === "workspaces.updated"
-                      ? t("workspaces.activity_updated", { name: item.name })
-                      : t("workspaces.activity_changed")}
+                  {t(
+                    activityActionKeys[item.event_name] ??
+                      "workspaces.activity_changed",
+                    { name: item.name },
+                  )}
                 </p>
+                {item.resource_type === "teams" && item.resource_id && (
+                  <Link
+                    className="text-primary text-xs underline underline-offset-4"
+                    href={`/w/${workspaceId}/teams/${encodeURIComponent(item.resource_id)}`}
+                  >
+                    {t("teams.view_team")}
+                  </Link>
+                )}
+                {item.resource_type === "workflow_statuses" && item.team_id && (
+                  <Link
+                    className="text-primary text-xs underline underline-offset-4"
+                    href={`/w/${workspaceId}/teams/${encodeURIComponent(item.team_id)}#workflow`}
+                  >
+                    {t("teams.view_workflow")}
+                  </Link>
+                )}
+                {item.resource_type === "labels" && (
+                  <Link
+                    className="text-primary text-xs underline underline-offset-4"
+                    href={
+                      item.team_id
+                        ? `/w/${workspaceId}/teams/${encodeURIComponent(item.team_id)}#team-labels`
+                        : `/w/${workspaceId}/labels`
+                    }
+                  >
+                    {t(
+                      item.team_id
+                        ? "teams.team_labels"
+                        : "teams.shared_labels",
+                    )}
+                  </Link>
+                )}
                 <p className="text-muted-foreground flex flex-wrap gap-x-3 gap-y-1 text-xs">
                   <span>
                     {item.actor_id === user?.uuid

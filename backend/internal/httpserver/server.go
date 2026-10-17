@@ -1,6 +1,10 @@
 package httpserver
 
 import (
+	teamsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/teams/repository"
+	teamsusecase "github.com/furkanmeclis/traccia/backend/internal/modules/teams/usecase"
+	"github.com/furkanmeclis/traccia/backend/internal/product"
+
 	"context"
 	"encoding/json"
 	"fmt"
@@ -250,7 +254,12 @@ func New(cfg config.Config, log *slog.Logger, deps Deps) (*Server, error) {
 	h.SetRateLimiter(ratelimit.New(deps.Redis, cfg.App.Env))
 	loader := identity.Loader{UC: uc}
 	authmodule.RegisterRoutes(mux, h, tokens, loader, stepUpSvc)
-	if err := workspacesmodule.RegisterRoutes(mux, workspacesusecase.New(workspacesrepo.New(deps.DB, deps.Queries, secretBox)), tokens, loader); err != nil {
+	workspaceSvc := workspacesusecase.New(workspacesrepo.New(deps.DB, deps.Queries, secretBox))
+	productRegistry, err := product.Registry(workspaceSvc, teamsusecase.New(teamsrepo.New(deps.DB, deps.Queries), workspaceSvc))
+	if err != nil {
+		return nil, err
+	}
+	if err := workspacesmodule.RegisterRegistryRoutes(mux, productRegistry, tokens, loader); err != nil {
 		return nil, fmt.Errorf("httpserver: product workspaces: %w", err)
 	}
 
