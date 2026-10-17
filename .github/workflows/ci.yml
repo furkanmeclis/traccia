@@ -49,6 +49,10 @@ jobs:
         working-directory: frontend
     steps:
       - uses: actions/checkout@v7
+      # pnpm 11 needs the project Node runtime before setup-node queries its store.
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: frontend/.nvmrc
       - uses: pnpm/action-setup@v6
         with:
           version: 11.22.0

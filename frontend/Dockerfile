@@ -1,4 +1,4 @@
-FROM node:22.22.0-alpine3.23 AS base
+FROM node:24.22.0-alpine3.23 AS base
 
 ENV PNPM_HOME=/pnpm
 ENV PATH=$PNPM_HOME:$PATH
@@ -21,7 +21,7 @@ COPY . .
 
 RUN pnpm build
 
-FROM node:22.22.0-alpine3.23 AS runtime
+FROM node:24.22.0-alpine3.23 AS runtime
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
