@@ -15,6 +15,20 @@ concurrency:
 jobs:
   backend:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18-alpine
+        env:
+          POSTGRES_USER: traccia_test
+          POSTGRES_PASSWORD: synthetic_ci_only
+          POSTGRES_DB: traccia_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U traccia_test -d traccia_test"
+          --health-interval 5s --health-timeout 5s --health-retries 12
+    env:
+      TEST_DATABASE_URL: postgres://traccia_test:synthetic_ci_only@127.0.0.1:5432/traccia_test?sslmode=disable
     defaults:
       run:
         working-directory: backend
@@ -37,6 +51,10 @@ jobs:
         with:
           version: latest
           working-directory: backend
+      - name: Database extensions
+        env:
+          PGPASSWORD: synthetic_ci_only
+        run: psql -h 127.0.0.1 -U traccia_test -d traccia_test -v ON_ERROR_STOP=1 -c 'CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public; CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;'
       - name: Test
         run: go test ./...
       - name: OpenAPI lint
@@ -63,6 +81,8 @@ jobs:
           cache-dependency-path: frontend/pnpm-lock.yaml
       - name: Install
         run: pnpm install --frozen-lockfile
+      - name: Submission tests
+        run: node --test src/features/workspaces/*.test.mjs
       - name: Typecheck
         run: pnpm typecheck
       - name: Lint

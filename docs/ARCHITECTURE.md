@@ -32,11 +32,12 @@ This repo is a two-app monorepo plus Compose files. Dependencies point inward: H
 
 | Surface | Path | Who |
 |---------|------|-----|
+| Product | `/workspaces`, `/w/{workspaceID}` | Authenticated users with current product workspace membership; installation owner can create workspaces |
 | Platform | `/platform` | `super_admin` or any `platform.*` permission |
 | CMS | `/` | other authenticated users (`cms_user` seed, or any role without platform perms) |
 | Guest | `/platform/login` (aliases also exist at `/login`) | signed-out users |
 
-There is **no** tenant, workspace, or `/business` shell. JWT claims are `sub`, `roles`, `is_super_admin`, `exp`, optional `imp` (impersonator) — no `tid` / `wid`.
+The product shell is separate from inherited platform administration and uses the workspace as its tenancy boundary. Workspace membership and credential grants are resolved from PostgreSQL for every shared operation; selecting a workspace or holding a global platform role grants no product access. JWT claims are `sub`, `roles`, `is_super_admin`, `exp`, optional `imp` (impersonator), with no `tid` / `wid`.
 
 ## Request flow
 
@@ -57,7 +58,7 @@ Browser
 handler → usecase → repository interface → sqlc/pgx → PostgreSQL
 ```
 
-Cross-module signals go through `internal/platform/events` (in-process, fail-soft). Handlers never call SMTP or SMS; they enqueue via the notification service (`app:notification:deliver` on the `notifications` queue).
+Legacy cross-module signals use `internal/platform/events` (in-process, fail-soft). Product workspace mutations use the PostgreSQL transactional outbox and independently fenced consumer receipts; `cmd/worker` atomically commits the workspace activity projection and acknowledgement. See [DELIVERY.md](DELIVERY.md). Handlers never call SMTP or SMS; they enqueue via the notification service (`app:notification:deliver` on the `notifications` queue).
 
 Audit: `activity.Recorder.Record` (fail-soft). Application logs: `internal/modules/logs`.
 

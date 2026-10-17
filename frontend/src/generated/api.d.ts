@@ -4,6 +4,26 @@
  */
 
 export interface paths {
+    "/v1/workspaces/{workspaceID}/activity": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * activity.list
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.
+         */
+        get: operations["activity_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/workspaces/{workspaceID}/credentials": {
         parameters: {
             query?: never;
@@ -43,6 +63,46 @@ export interface paths {
          * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.
          */
         delete: operations["credentials_revoke"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/deliveries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * deliveries.list
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.
+         */
+        get: operations["deliveries_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/deliveries/replay": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * deliveries.replay
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.
+         */
+        post: operations["deliveries_replay"];
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -2007,6 +2067,29 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        ProductActivityListOutput: {
+            items: null | {
+                /** Format: uuid */
+                id: string;
+                event_name: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                name: string;
+                version: number;
+                /** Format: date-time */
+                occurred_at: string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductActivityListEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductActivityListOutput"];
+            meta: components["schemas"]["ResponseMeta"];
+        };
         ProductCredentialsCreateInput: {
             name: string;
             /** @enum {string} */
@@ -2069,6 +2152,47 @@ export interface components {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductCredentialsRevokeOutput"];
+            meta: components["schemas"]["ResponseMeta"];
+        };
+        ProductDeliveriesListOutput: {
+            items: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                event_id: string;
+                event_name: string;
+                consumer: string;
+                consumer_version: number;
+                status: string;
+                attempts: number;
+                /** Format: date-time */
+                available_at: string;
+                /** Format: date-time */
+                lease_until: null | string;
+                /** Format: date-time */
+                succeeded_at: null | string;
+                error_code: string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductDeliveriesListEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductDeliveriesListOutput"];
+            meta: components["schemas"]["ResponseMeta"];
+        };
+        ProductDeliveriesReplayInput: {
+            /** Format: uuid */
+            delivery_id: string;
+        };
+        ProductDeliveriesReplayOutput: {
+            replayed: boolean;
+        };
+        ProductDeliveriesReplayEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductDeliveriesReplayOutput"];
             meta: components["schemas"]["ResponseMeta"];
         };
         ProductWorkspacesCreateInput: {
@@ -3599,6 +3723,38 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    activity_list: {
+        parameters: {
+            query?: {
+                limit?: number;
+                /** @description UUID keyset cursor from next_cursor; omitted on first page. */
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductActivityListEnvelope"];
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthenticated"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            500: components["responses"]["InternalError"];
+        };
+    };
     credentials_list: {
         parameters: {
             query?: {
@@ -3698,6 +3854,82 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ProductCredentialsRevokeEnvelope"];
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthenticated"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            /** @description IDEMPOTENCY_CONFLICT: key reused with different input; VERSION_CONFLICT: stale expected_version. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deliveries_list: {
+        parameters: {
+            query?: {
+                limit?: number;
+                /** @description UUID keyset cursor from next_cursor; omitted on first page. */
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductDeliveriesListEnvelope"];
+                };
+            };
+            400: components["responses"]["BadRequest"];
+            401: components["responses"]["Unauthenticated"];
+            403: components["responses"]["Forbidden"];
+            404: components["responses"]["NotFound"];
+            500: components["responses"]["InternalError"];
+        };
+    };
+    deliveries_replay: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductDeliveriesReplayInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductDeliveriesReplayEnvelope"];
                 };
             };
             400: components["responses"]["BadRequest"];

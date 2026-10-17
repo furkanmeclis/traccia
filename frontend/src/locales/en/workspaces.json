@@ -57,5 +57,20 @@
   "review_latest": "Review latest saved name",
   "latest_name": "Current saved name: {{name}}",
   "reconcile_description": "Keep your draft to replace this name when you next save. You can edit your draft first.",
-  "keep_draft": "Keep my draft and continue"
+  "keep_draft": "Keep my draft and continue",
+  "activity": "Activity",
+  "activity_description": "Workspace changes may take a little time to appear here. This list checks for updates every 30 seconds while this page is visible.",
+  "activity_refresh": "Refresh",
+  "activity_refreshing": "Checking for updates…",
+  "activity_load_error": "Activity could not be loaded. Refresh to check your access and try again.",
+  "activity_more_error": "More activity could not be loaded. The entries already loaded are shown below.",
+  "activity_empty": "No activity is available yet. Recent changes may appear later.",
+  "activity_created": "Workspace “{{name}}” created",
+  "activity_updated": "Workspace name changed to “{{name}}”",
+  "activity_changed": "Workspace changed",
+  "activity_actor_you": "You",
+  "activity_actor_user": "Workspace user",
+  "activity_actor_system": "System",
+  "activity_time_unknown": "Time unavailable",
+  "activity_history_description": "Workspace changes may take a little time to appear here. Automatic checks pause while you browse older activity. Use Refresh to update the loaded entries."
 }

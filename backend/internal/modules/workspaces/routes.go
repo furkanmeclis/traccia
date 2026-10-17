@@ -60,7 +60,7 @@ func serveOperation(w http.ResponseWriter, r *http.Request, registry *operations
 	}
 	var raw []byte
 	switch {
-	case r.Method == "GET" && (meta.ID == "workspaces.list" || meta.ID == "credentials.list"):
+	case r.Method == "GET" && strings.HasSuffix(meta.ID, ".list"):
 		query := r.URL.Query()
 		for key := range query {
 			if (key != "limit" && key != "after") || len(query[key]) != 1 {

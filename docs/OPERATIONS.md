@@ -1,6 +1,6 @@
 # Shared operation contracts
 
-The shared registry implements the T01 contract foundation and T03 durable mutation boundary. Seven workspace and credential operations are bound to HTTP and the panel; the complete product inventory and network MCP transport remain roadmap work. Test fixture mappings are not live endpoints.
+The shared registry implements the T01 contract foundation, T03 durable mutation boundary and T04 workspace delivery path. Ten workspace, credential, activity and delivery operations are bound to the shared registry and HTTP with MCP-described mappings. The panel exposes workspace and credential controls plus the activity feed; delivery status and replay are available through the shared operations and HTTP API without a panel approval step. The complete product inventory and network MCP transport remain roadmap work. Test fixture mappings are not live endpoints.
 
 ## Contract and dispatch
 
@@ -26,9 +26,9 @@ The same binding executes for panel, API and MCP. It checks exactly one JSON val
 3. Bind real application services. Preserve workspace scope in repositories, object storage, search, jobs and realtime. The registry is not a substitute for scoped queries and constraints.
 4. Map HTTP path/query/body and MCP arguments to the same DTO. Emit the documented HTTP envelope, request IDs and localized user-facing messages. Register real routes in OpenAPI and generate frontend types in the same change.
 5. Reconcile declared mappings with the actual HTTP and MCP registrations in CI (T05). A catalog entry alone proves no transport coverage. Add real domain operations, preferences and job lifecycle contracts as those services are implemented.
-6. Bind every retryable mutation to the durable application runner described below. Audit and durable delivery remain T04 work; a write effect alone does not implement these policies.
+6. Bind every retryable mutation to the durable application runner described below. Workspace history and durable delivery are described in [DELIVERY.md](DELIVERY.md); a write effect alone does not implement these policies.
 
-Product authentication, workspace persistence and HTTP adapters are implemented for the seven workspace operations. The full approved operation inventory, network MCP adapter and channel coverage CI remain outstanding. Framework tests exercise shared dispatch, authorization/revocation, numeric fidelity, schema failures, error sanitization and unbound operations with test-only use cases.
+Product authentication, workspace persistence and HTTP adapters are implemented for the ten workspace operations. The full approved operation inventory, network MCP adapter and channel coverage CI remain outstanding. Framework tests exercise shared dispatch, authorization/revocation, numeric fidelity, schema failures, error sanitization and unbound operations with test-only use cases.
 
 
 ## Durable mutation retries and concurrency (T03 / TEC-790)
@@ -48,3 +48,7 @@ Authorization is current on every replay: revoked/expired credentials, disabled 
 Credential creation is one issuance with authorized idempotent replay, rather than a promise of one response delivery. The credential table still stores only SHA-256 token hashes and list operations expose metadata only. The exact validated create result is encrypted in its receipt with AES-256-GCM using `APP_ENCRYPTION_KEY`; authenticated associated data binds actor, workspace, operation/version, key and fingerprint. No raw token is written to receipt storage, logs, frontend query caches or durable browser storage. Only the creating component retains returned secret state; responses remain `Cache-Control: no-store`.
 
 Receipts have no automatic expiration or pruning in this slice. Operators must retain the encryption key while any receipt uses it. Key rotation requires an explicit migration that authenticates and reencrypts all affected receipts with old and new keys available before switching the configured key. Missing/wrong keys, modified ciphertext, context mismatch or incomplete receipts fail closed with `OPERATION_UNAVAILABLE`; they never rerun a successful mutation or mint a replacement token. Never delete successful receipts to recover from a lost key: doing so would violate one issuance. Encryption key loss prevents sensitive replay until the original key is restored. A future retention policy must retain a durable spent-key tombstone if response bytes are removed, and a multi-key rotation facility remains separate work.
+
+## Durable delivery
+
+Workspace create/update now commit canonical history and outbox ingestion with their operation receipt. Shared `activity.list`, owner-only `deliveries.list` and idempotent `deliveries.replay` use the same application boundary. See [DELIVERY.md](DELIVERY.md) for lease ownership, atomic effects, backoff, quarantine, replay and transport limits.

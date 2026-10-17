@@ -57,5 +57,20 @@
   "review_latest": "Güncel kayıtlı adı incele",
   "latest_name": "Güncel kayıtlı ad: {{name}}",
   "reconcile_description": "Taslağını korursan sonraki kaydetmede bu ad değiştirilecek. Önce taslağını düzenleyebilirsin.",
-  "keep_draft": "Taslağımı koru ve devam et"
+  "keep_draft": "Taslağımı koru ve devam et",
+  "activity": "Hareketler",
+  "activity_description": "Çalışma alanı değişikliklerinin burada görünmesi biraz zaman alabilir. Bu liste, sayfa görünürken 30 saniyede bir güncellemeleri kontrol eder.",
+  "activity_refresh": "Yenile",
+  "activity_refreshing": "Güncellemeler kontrol ediliyor…",
+  "activity_load_error": "Hareketler yüklenemedi. Erişimini kontrol etmek ve yeniden denemek için listeyi yenile.",
+  "activity_more_error": "Daha fazla hareket yüklenemedi. Yüklenen kayıtlar aşağıda gösteriliyor.",
+  "activity_empty": "Henüz gösterilecek hareket yok. Son değişiklikler daha sonra görünebilir.",
+  "activity_created": "“{{name}}” çalışma alanı oluşturuldu",
+  "activity_updated": "Çalışma alanının adı “{{name}}” olarak değiştirildi",
+  "activity_changed": "Çalışma alanı değiştirildi",
+  "activity_actor_you": "Sen",
+  "activity_actor_user": "Çalışma alanı kullanıcısı",
+  "activity_actor_system": "Sistem",
+  "activity_time_unknown": "Zaman bilgisi yok",
+  "activity_history_description": "Çalışma alanı değişikliklerinin burada görünmesi biraz zaman alabilir. Eski hareketlere göz atarken otomatik kontroller duraklatılır. Yüklenen kayıtları güncellemek için Yenile düğmesini kullan."
 }

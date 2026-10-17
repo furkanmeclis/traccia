@@ -80,7 +80,6 @@ import (
 	"github.com/furkanmeclis/traccia/backend/internal/platform/oidc"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/orgctx"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/orgctx/orgcache"
-	"github.com/furkanmeclis/traccia/backend/internal/platform/outbox"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/ratelimit"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/searchengine"
 	searchadapters "github.com/furkanmeclis/traccia/backend/internal/platform/searchengine/adapters"
@@ -116,8 +115,6 @@ type Server struct {
 	realtime      realtime.Publisher
 	worker        *queue.Worker
 	events        events.Bus
-	outboxPub     *outbox.Publisher
-	outboxStop    func()
 	searchClient  *searchengine.Client
 	searchIndexer *searchengine.Indexer
 	githubSvc     *githubusecase.Service
@@ -339,10 +336,6 @@ func New(cfg config.Config, log *slog.Logger, deps Deps) (*Server, error) {
 		loader,
 	)
 
-	outboxStore := outbox.NewStore(deps.DB, deps.Queries)
-	outboxPub := outbox.NewPublisher(outboxStore, eventBus, log)
-	s.outboxPub = outboxPub
-
 	s.http = &http.Server{
 		Addr:         cfg.HTTP.Addr,
 		Handler:      middleware.RequestID(middleware.ServerErrors(log)(mux)),
@@ -355,9 +348,6 @@ func New(cfg config.Config, log *slog.Logger, deps Deps) (*Server, error) {
 
 // Start listens until the server stops. Optionally starts an in-process queue worker.
 func (s *Server) Start() error {
-	if s.outboxPub != nil {
-		s.outboxStop = s.outboxPub.StartRun(context.Background())
-	}
 	if s.worker != nil {
 		go func() {
 			if err := s.worker.Start(); err != nil {
@@ -377,9 +367,6 @@ func (s *Server) Start() error {
 
 // Shutdown gracefully stops the HTTP server, queue worker, and queue client.
 func (s *Server) Shutdown(ctx context.Context) error {
-	if s.outboxStop != nil {
-		s.outboxStop()
-	}
 	if s.worker != nil {
 		s.worker.Shutdown()
 	}

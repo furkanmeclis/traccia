@@ -7,7 +7,7 @@ func TestConcreteRegistry(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(registry.Catalog()) != 7 {
-		t.Fatal("expected seven operations")
+	if len(registry.Catalog()) != 10 {
+		t.Fatal("expected ten operations")
 	}
 }

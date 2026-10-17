@@ -17,6 +17,7 @@ import (
 	notifmodule "github.com/furkanmeclis/traccia/backend/internal/modules/notifications"
 	"github.com/furkanmeclis/traccia/backend/internal/modules/notifications/providers"
 	notifusecase "github.com/furkanmeclis/traccia/backend/internal/modules/notifications/usecase"
+	workspacesrepo "github.com/furkanmeclis/traccia/backend/internal/modules/workspaces/repository"
 	"github.com/furkanmeclis/traccia/backend/internal/observability"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/activity"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/bulkengine"
@@ -54,10 +55,6 @@ func main() {
 		os.Exit(code)
 	}
 	log = slog.New(observability.NewSlogHandler(log.Handler()))
-	if !cfg.Queue.Enabled {
-		log.Error("queue_disabled")
-		exit(1)
-	}
 
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
@@ -68,6 +65,25 @@ func main() {
 		exit(1)
 	}
 	defer pool.Close()
+
+	queries := database.NewQueries(pool)
+	durableRegistry, err := workspacesrepo.New(pool, queries).DurableConsumers()
+	if err != nil {
+		log.Error("delivery_registry_failed", "error", err)
+		return
+	}
+	durableCtx, cancelDurable := context.WithCancel(ctx)
+	durableDone := make(chan struct{})
+	go func() {
+		defer close(durableDone)
+		outbox.NewWorker(outbox.NewStore(pool, queries), durableRegistry, log).Run(durableCtx)
+	}()
+	defer func() { cancelDurable(); <-durableDone }()
+	if !cfg.Queue.Enabled {
+		log.Info("durable_worker_started", "redis_queue_enabled", false)
+		<-ctx.Done()
+		return
+	}
 
 	store, err := storage.NewFromConfig(ctx, cfg.Storage)
 	if err != nil {
@@ -82,7 +98,6 @@ func main() {
 		publisher = realtime.NoopPublisher{}
 	}
 
-	queries := database.NewQueries(pool)
 	mailer := mail.NewSMTPSender(cfg.SMTP)
 	provs := []providers.Provider{
 		providers.InappProvider{},
@@ -101,10 +116,6 @@ func main() {
 
 	eventBus := events.NewBus(log)
 	notifmodule.RegisterEventHandlers(eventBus, notifSvc, log)
-	outboxStore := outbox.NewStore(pool, queries)
-	outboxPub := outbox.NewPublisher(outboxStore, eventBus, log)
-	outboxStop := outboxPub.StartRun(ctx)
-	defer outboxStop()
 
 	activityRec := activity.NewRecorder(queries, log)
 	ioReg := ioengine.NewRegistry(

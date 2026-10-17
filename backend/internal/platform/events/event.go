@@ -9,6 +9,9 @@ import (
 // Event is the standard envelope published on the platform bus.
 type Event struct {
 	Name        string
+	Version     int32
+	WorkspaceID uuid.UUID
+	ActorID     uuid.UUID
 	TenantID    *int64
 	ActorUserID *int64
 	EntityType  string
@@ -23,6 +26,7 @@ type Event struct {
 func New(name string) Event {
 	return Event{
 		Name:       name,
+		Version:    1,
 		Payload:    map[string]any{},
 		OccurredAt: time.Now().UTC(),
 		EventID:    uuid.New(),
