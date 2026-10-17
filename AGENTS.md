@@ -50,3 +50,9 @@ Canonical env is the **repo-root** `.env`. Compose files are `compose.local.yml`
 - Turkish is the default product language; keep all user-facing copy in the existing i18n system.
 - Do not publish secrets, private repository source, local analysis or machine paths. Public repository visibility does not select an open-source license.
 - Keep implementation status honest. Never claim an approved roadmap item is complete because its scaffolding exists.
+
+## Commit and pull request attribution
+
+- Use the configured human Git author. Never add AI assistant names, bot identities, generated-by signatures, or assistant co-author trailers to commit authors, committers, messages or pull request descriptions.
+- Before committing, check the proposed message with `node scripts/check-commit-message.mjs --file <message-file>`. Before pushing, run `node scripts/check-commit-message.mjs --all`.
+- Do not rewrite clean history. If unwanted attribution is found, preserve the complete file tree and human attribution, coordinate with other active agents, and use `--force-with-lease` only on the affected project refs with the user's authorization.
