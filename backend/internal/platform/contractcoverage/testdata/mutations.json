@@ -1,0 +1,233 @@
+[
+  {
+    "name": "missing HTTP operation",
+    "path": "/Routes",
+    "want": "missing HTTP operation",
+    "value": []
+  },
+  {
+    "name": "missing MCP operation",
+    "path": "/Tools",
+    "want": "missing MCP operation",
+    "value": []
+  },
+  {
+    "name": "missing catalog operation",
+    "path": "/Contracts",
+    "want": "absent from catalog",
+    "value": []
+  },
+  {
+    "name": "wrong HTTP method",
+    "path": "/Routes/0/Method",
+    "want": "HTTP method/path mismatch",
+    "value": "POST"
+  },
+  {
+    "name": "wrong HTTP path",
+    "path": "/Routes/0/Path",
+    "want": "HTTP method/path mismatch",
+    "value": "/v1/other"
+  },
+  {
+    "name": "missing OAS operation",
+    "path": "/OpenAPI/paths/~1v1~1fixture~1{workspaceID}~1notes/patch",
+    "want": "unclassified HTTP operation",
+    "value": {}
+  },
+  {
+    "name": "missing input field",
+    "path": "/Tools/0/Input/properties/input/properties/content/properties/body",
+    "want": "MCP/input/properties/input/properties/content/properties/body",
+    "remove": true
+  },
+  {
+    "name": "missing output field",
+    "path": "/Tools/0/Output/properties/items/items/properties/labels/items/properties/color",
+    "want": "MCP/output/properties/items/items/properties/labels/items/properties/color",
+    "remove": true
+  },
+  {
+    "name": "missing error field",
+    "path": "/Tools/0/Error/properties/details/items/properties/code",
+    "want": "MCP/error/properties/details/items/properties/code",
+    "remove": true
+  },
+  {
+    "name": "missing required",
+    "path": "/Tools/0/Input/properties/input/required",
+    "want": "MCP/input/properties/input/required",
+    "value": [
+      "name",
+      "expected_version",
+      "content"
+    ]
+  },
+  {
+    "name": "weakened enum",
+    "path": "/Tools/0/Input/properties/input/properties/state/enum",
+    "want": "MCP/input/properties/input/properties/state/enum",
+    "value": [
+      "draft",
+      "done",
+      "other"
+    ]
+  },
+  {
+    "name": "weakened constraint",
+    "path": "/Tools/0/Input/properties/input/properties/name/minLength",
+    "want": "MCP/input/properties/input/properties/name/minLength",
+    "value": 0
+  },
+  {
+    "name": "precise bound",
+    "path": "/Tools/0/Input/properties/input/properties/expected_version/maximum",
+    "want": "maximum",
+    "value": 9007199254740992
+  },
+  {
+    "name": "missing paging field",
+    "path": "/OpenAPI/paths/~1v1~1fixture~1{workspaceID}~1notes/patch/responses/200/content/application~1json/schema/properties/data/properties/next_cursor",
+    "want": "next_cursor",
+    "remove": true
+  },
+  {
+    "name": "generic root",
+    "path": "/Tools/0/Output",
+    "want": "additionalProperties",
+    "value": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  {
+    "name": "generic nested",
+    "path": "/Tools/0/Output/properties/items/items/properties/labels/items",
+    "want": "additionalProperties",
+    "value": {
+      "type": "object",
+      "additionalProperties": {}
+    }
+  },
+  {
+    "name": "opaque array item",
+    "path": "/Tools/0/Output/properties/items/items",
+    "want": "opaque schema",
+    "value": {}
+  },
+  {
+    "name": "missing key option",
+    "path": "/Tools/0/Input/properties/idempotency_key",
+    "want": "idempotency_key",
+    "remove": true
+  },
+  {
+    "name": "missing scope option",
+    "path": "/Tools/0/Input/properties/workspace_id",
+    "want": "workspace_id",
+    "remove": true
+  },
+  {
+    "name": "wrong identity",
+    "path": "/Tools/0/OperationID",
+    "want": "identity/version mismatch",
+    "value": "fixture.other"
+  },
+  {
+    "name": "missing media error",
+    "path": "/OpenAPI/paths/~1v1~1fixture~1{workspaceID}~1notes/patch/responses/415",
+    "want": "HTTP/response/415",
+    "remove": true
+  },
+  {
+    "name": "missing canceled error",
+    "path": "/OpenAPI/paths/~1v1~1fixture~1{workspaceID}~1notes/patch/responses/408",
+    "want": "HTTP/response/408",
+    "remove": true
+  },
+  {
+    "name": "missing unavailable error",
+    "path": "/OpenAPI/paths/~1v1~1fixture~1{workspaceID}~1notes/patch/responses/503",
+    "want": "HTTP/response/503",
+    "remove": true
+  },
+  {
+    "name": "wrong path parameter",
+    "path": "/OpenAPI/paths/~1v1~1fixture~1{workspaceID}~1notes/patch/parameters/0/schema/format",
+    "want": "path parameter",
+    "value": "date-time"
+  },
+  {
+    "name": "wrong HTTP error code",
+    "path": "/OpenAPI/paths/~1v1~1fixture~1{workspaceID}~1notes/patch/responses/409/content/application~1json/schema/properties/error/properties/code/enum",
+    "want": "HTTP/response/409",
+    "value": [
+      "CONFLICT"
+    ]
+  },
+  {
+    "name": "missing HTTP required body",
+    "path": "/OpenAPI/paths/~1v1~1fixture~1{workspaceID}~1notes/patch/requestBody/required",
+    "want": "HTTP body must be required",
+    "value": false
+  },
+  {
+    "name": "new unclassified OAS route",
+    "path": "/OpenAPI/paths/~1v1~1new",
+    "want": "unclassified HTTP operation",
+    "value": {
+      "post": {}
+    }
+  },
+  {
+    "name": "rogue product route",
+    "path": "/Routes/1",
+    "want": "HTTP operation absent from catalog",
+    "value": {
+      "OperationID": "fixture.rogue",
+      "Method": "GET",
+      "Path": "/v1/rogue"
+    }
+  },
+  {
+    "name": "unlisted MCP tool",
+    "path": "/Tools/1",
+    "want": "MCP operation absent from catalog",
+    "value": {
+      "Name": "rogue",
+      "OperationID": "fixture.rogue"
+    }
+  },
+  {
+    "name": "missing OAS input schema",
+    "path": "/OpenAPI/paths/~1v1~1fixture~1{workspaceID}~1notes/patch/x-traccia-input-schema",
+    "want": "HTTP/input",
+    "remove": true
+  },
+  {
+    "name": "missing OAS error schema",
+    "path": "/OpenAPI/paths/~1v1~1fixture~1{workspaceID}~1notes/patch/x-traccia-error-schema",
+    "want": "HTTP/error",
+    "remove": true
+  },
+  {
+    "name": "open nullable object",
+    "path": "/Tools/0/Output",
+    "value": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true
+    },
+    "want": "additionalProperties"
+  },
+  {
+    "name": "not-only opaque schema",
+    "path": "/Tools/0/Output",
+    "value": {
+      "not": false
+    },
+    "want": "concrete schema required"
+  }
+]

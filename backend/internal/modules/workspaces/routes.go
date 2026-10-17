@@ -17,11 +17,31 @@ import (
 	"github.com/google/uuid"
 )
 
-func RegisterRoutes(mux *http.ServeMux, s *usecase.Service, tokens *jwt.Manager, loader middleware.IdentityLoader) error {
+// RouteRegistrar permits observing the routes actually mounted by the product module.
+// Every product registration goes through this boundary; the live server uses ServeMux.
+type RouteRegistrar interface {
+	Handle(string, http.Handler)
+}
+
+type operationRoute struct {
+	http.Handler
+	id string
+}
+
+// OperationID identifies the application handler actually mounted at a route.
+func (h operationRoute) OperationID() string { return h.id }
+
+func RegisterRoutes(mux RouteRegistrar, s *usecase.Service, tokens *jwt.Manager, loader middleware.IdentityLoader) error {
 	registry, err := s.Registry()
 	if err != nil {
 		return err
 	}
+	return RegisterRegistryRoutes(mux, registry, tokens, loader)
+}
+
+// RegisterRegistryRoutes mounts the same production adapter with an explicitly
+// bound registry. Tests can verify transport mapping without starting storage.
+func RegisterRegistryRoutes(mux RouteRegistrar, registry *operations.Registry, tokens *jwt.Manager, loader middleware.IdentityLoader) error {
 	human := middleware.Authenticate(tokens, loader)
 	for _, contract := range registry.Catalog() {
 		meta := contract.Metadata
@@ -34,7 +54,7 @@ func RegisterRoutes(mux *http.ServeMux, s *usecase.Service, tokens *jwt.Manager,
 			}
 			human(handler).ServeHTTP(w, r)
 		})
-		mux.Handle(meta.HTTPMethod+" "+meta.HTTPPath, authenticate)
+		mux.Handle(meta.HTTPMethod+" "+meta.HTTPPath, operationRoute{Handler: authenticate, id: meta.ID})
 	}
 	return nil
 }
