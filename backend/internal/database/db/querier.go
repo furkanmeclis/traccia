@@ -16,6 +16,7 @@ type Querier interface {
 	AddOrganizationMember(ctx context.Context, arg AddOrganizationMemberParams) (OrganizationMember, error)
 	AddProductWorkspaceOwner(ctx context.Context, arg AddProductWorkspaceOwnerParams) error
 	AdvanceAttachmentUploadChunk(ctx context.Context, arg AdvanceAttachmentUploadChunkParams) (AttachmentUpload, error)
+	AdvanceComment(ctx context.Context, arg AdvanceCommentParams) (IssueComment, error)
 	AdvanceDocument(ctx context.Context, arg AdvanceDocumentParams) (Document, error)
 	AllProductProjects(ctx context.Context, arg AllProductProjectsParams) ([]AllProductProjectsRow, error)
 	AllProjectContributions(ctx context.Context, arg AllProjectContributionsParams) ([]AllProjectContributionsRow, error)
@@ -42,6 +43,9 @@ type Querier interface {
 	ClaimOperationReceipt(ctx context.Context, arg ClaimOperationReceiptParams) (int64, error)
 	ClearAppSettingsLogo(ctx context.Context) (AppSetting, error)
 	ClearIssueLabels(ctx context.Context, arg ClearIssueLabelsParams) error
+	CommentAnchorExists(ctx context.Context, arg CommentAnchorExistsParams) (bool, error)
+	CommentBacklinkAnchorExists(ctx context.Context, arg CommentBacklinkAnchorExistsParams) (bool, error)
+	CommentRevisionAnchorExists(ctx context.Context, arg CommentRevisionAnchorExistsParams) (bool, error)
 	CompleteEventDelivery(ctx context.Context, arg CompleteEventDeliveryParams) (int64, error)
 	CompleteOperationReceipt(ctx context.Context, arg CompleteOperationReceiptParams) error
 	ConfirmUserTOTP(ctx context.Context, arg ConfirmUserTOTPParams) (UserTotp, error)
@@ -94,6 +98,7 @@ type Querier interface {
 	CreateWorkflowStatus(ctx context.Context, arg CreateWorkflowStatusParams) (WorkflowStatus, error)
 	CreateWorkspaceToolCredential(ctx context.Context, arg CreateWorkspaceToolCredentialParams) (WorkspaceToolCredential, error)
 	DatabaseTime(ctx context.Context) (pgtype.Timestamptz, error)
+	DeactivateCommentReference(ctx context.Context, arg DeactivateCommentReferenceParams) error
 	DeactivateDocumentReference(ctx context.Context, arg DeactivateDocumentReferenceParams) error
 	DeactivateProductProjects(ctx context.Context, arg DeactivateProductProjectsParams) error
 	DeactivateProjectTeams(ctx context.Context, arg DeactivateProjectTeamsParams) error
@@ -191,6 +196,9 @@ type Querier interface {
 	InsertAttachmentHistory(ctx context.Context, arg InsertAttachmentHistoryParams) error
 	InsertAttachmentUploadHistory(ctx context.Context, arg InsertAttachmentUploadHistoryParams) error
 	InsertBulkChange(ctx context.Context, arg InsertBulkChangeParams) (BulkChange, error)
+	InsertComment(ctx context.Context, arg InsertCommentParams) (IssueComment, error)
+	InsertCommentReference(ctx context.Context, arg InsertCommentReferenceParams) error
+	InsertCommentRevision(ctx context.Context, arg InsertCommentRevisionParams) (CommentRevision, error)
 	InsertDocument(ctx context.Context, arg InsertDocumentParams) (Document, error)
 	InsertDocumentReference(ctx context.Context, arg InsertDocumentReferenceParams) error
 	InsertDocumentRevision(ctx context.Context, arg InsertDocumentRevisionParams) (DocumentRevision, error)
@@ -237,6 +245,9 @@ type Querier interface {
 	ListAttachmentUploads(ctx context.Context, arg ListAttachmentUploadsParams) ([]AttachmentUploadPublic, error)
 	ListBulkChangesForJob(ctx context.Context, jobID int64) ([]BulkChange, error)
 	ListBulkJobsForActor(ctx context.Context, arg ListBulkJobsForActorParams) ([]BulkJob, error)
+	ListCommentBacklinks(ctx context.Context, arg ListCommentBacklinksParams) ([]CommentReferencePublic, error)
+	ListCommentRevisions(ctx context.Context, arg ListCommentRevisionsParams) ([]CommentRevision, error)
+	ListCurrentCommentReferences(ctx context.Context, arg ListCurrentCommentReferencesParams) ([]CommentReferencePublic, error)
 	ListCurrentDocumentReferences(ctx context.Context, arg ListCurrentDocumentReferencesParams) ([]DocumentReferencePublic, error)
 	ListDocumentBacklinks(ctx context.Context, arg ListDocumentBacklinksParams) ([]DocumentReferencePublic, error)
 	ListDocumentRevisions(ctx context.Context, arg ListDocumentRevisionsParams) ([]DocumentRevision, error)
@@ -247,9 +258,11 @@ type Querier interface {
 	ListImportChangesForJob(ctx context.Context, jobID int64) ([]ImportChange, error)
 	ListImportJobsForActor(ctx context.Context, arg ListImportJobsForActorParams) ([]ImportJob, error)
 	ListIssueAttachments(ctx context.Context, arg ListIssueAttachmentsParams) ([]AttachmentPublic, error)
+	ListIssueComments(ctx context.Context, arg ListIssueCommentsParams) ([]IssueComment, error)
 	ListIssueHistory(ctx context.Context, arg ListIssueHistoryParams) ([]IssueHistory, error)
 	ListIssueRelationHistory(ctx context.Context, arg ListIssueRelationHistoryParams) ([]ListIssueRelationHistoryRow, error)
 	ListIssueRelations(ctx context.Context, arg ListIssueRelationsParams) ([]byte, error)
+	ListIssueTimeline(ctx context.Context, arg ListIssueTimelineParams) ([]ListIssueTimelineRow, error)
 	ListIssues(ctx context.Context, arg ListIssuesParams) ([][]byte, error)
 	ListLabels(ctx context.Context, arg ListLabelsParams) ([]ListLabelsRow, error)
 	ListLogPurgeRules(ctx context.Context) ([]LogPurgeRule, error)
@@ -310,6 +323,7 @@ type Querier interface {
 	ListWorkspaceToolCredentials(ctx context.Context, arg ListWorkspaceToolCredentialsParams) ([]WorkspaceToolCredential, error)
 	LockAttachment(ctx context.Context, arg LockAttachmentParams) (Attachment, error)
 	LockAttachmentUpload(ctx context.Context, arg LockAttachmentUploadParams) (AttachmentUpload, error)
+	LockComment(ctx context.Context, arg LockCommentParams) (IssueComment, error)
 	LockDocument(ctx context.Context, arg LockDocumentParams) (Document, error)
 	LockEventDelivery(ctx context.Context, arg LockEventDeliveryParams) (EventDelivery, error)
 	LockIssue(ctx context.Context, arg LockIssueParams) (Issue, error)
@@ -356,6 +370,8 @@ type Querier interface {
 	ReadAttachment(ctx context.Context, arg ReadAttachmentParams) (AttachmentPublic, error)
 	ReadAttachmentChunkRange(ctx context.Context, arg ReadAttachmentChunkRangeParams) ([]AttachmentChunk, error)
 	ReadAttachmentUpload(ctx context.Context, arg ReadAttachmentUploadParams) (AttachmentUploadPublic, error)
+	ReadComment(ctx context.Context, arg ReadCommentParams) (IssueComment, error)
+	ReadCommentRevision(ctx context.Context, arg ReadCommentRevisionParams) (CommentRevision, error)
 	ReadDocument(ctx context.Context, arg ReadDocumentParams) (Document, error)
 	ReadDocumentOwner(ctx context.Context, arg ReadDocumentOwnerParams) (DocumentOwner, error)
 	ReadDocumentOwnerByID(ctx context.Context, arg ReadDocumentOwnerByIDParams) (DocumentOwner, error)
@@ -369,6 +385,7 @@ type Querier interface {
 	ReadRelationIssue(ctx context.Context, arg ReadRelationIssueParams) ([]byte, error)
 	ReadRelationState(ctx context.Context, arg ReadRelationStateParams) ([]byte, error)
 	ReclaimExpiredEventDeliveries(ctx context.Context, maxAttempts int32) (int64, error)
+	ReconstructCommentJournal(ctx context.Context, arg ReconstructCommentJournalParams) ([]ReconstructCommentJournalRow, error)
 	ReconstructDocumentJournal(ctx context.Context, arg ReconstructDocumentJournalParams) ([]ReconstructDocumentJournalRow, error)
 	RelationAnchorExists(ctx context.Context, arg RelationAnchorExistsParams) (bool, error)
 	RelationIssueUUID(ctx context.Context, arg RelationIssueUUIDParams) (uuid.UUID, error)
@@ -398,6 +415,7 @@ type Querier interface {
 	ScheduleAttachmentCleanup(ctx context.Context, arg ScheduleAttachmentCleanupParams) error
 	SetAppSettingsLogo(ctx context.Context, logoObjectKey pgtype.Text) (AppSetting, error)
 	SetIssueArchived(ctx context.Context, arg SetIssueArchivedParams) (Issue, error)
+	SetOperationSourceChannel(ctx context.Context, dollar_1 string) error
 	SetOrganizationAccessWindow(ctx context.Context, arg SetOrganizationAccessWindowParams) (Organization, error)
 	SetOrganizationStatus(ctx context.Context, arg SetOrganizationStatusParams) (Organization, error)
 	SetProductArchived(ctx context.Context, arg SetProductArchivedParams) (Product, error)
@@ -409,9 +427,11 @@ type Querier interface {
 	SetUserEmailVerified(ctx context.Context, id int64) (User, error)
 	SlugExists(ctx context.Context, slug string) (bool, error)
 	SoftDeleteOrganization(ctx context.Context, argUuid uuid.UUID) (Organization, error)
+	TimelineAnchorExists(ctx context.Context, arg TimelineAnchorExistsParams) (bool, error)
 	TombstoneAttachmentUpload(ctx context.Context, arg TombstoneAttachmentUploadParams) (AttachmentUpload, error)
 	UpdateAppSettings(ctx context.Context, arg UpdateAppSettingsParams) (AppSetting, error)
 	UpdateAuthSettings(ctx context.Context, arg UpdateAuthSettingsParams) (AuthSetting, error)
+	UpdateCommentReference(ctx context.Context, arg UpdateCommentReferenceParams) error
 	UpdateDocumentReference(ctx context.Context, arg UpdateDocumentReferenceParams) error
 	UpdateGitHubAppSettings(ctx context.Context, arg UpdateGitHubAppSettingsParams) (GithubAppSetting, error)
 	UpdateImportJobFileKey(ctx context.Context, arg UpdateImportJobFileKeyParams) (ImportJob, error)

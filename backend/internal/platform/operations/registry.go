@@ -108,7 +108,7 @@ func (r *Registry) Execute(ctx context.Context, call Call) ([]byte, error) {
 	if err := ctx.Err(); err != nil {
 		return nil, publicError(err)
 	}
-	scope := Scope{actorID: identity.ActorID, workspaceID: identity.WorkspaceID}
+	scope := Scope{channel: call.Channel, actorID: identity.ActorID, workspaceID: identity.WorkspaceID}
 	if !meta.Idempotent {
 		return op.run(ctx, scope, call.Input)
 	}

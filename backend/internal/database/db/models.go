@@ -241,6 +241,62 @@ type BulkJob struct {
 	OrganizationID pgtype.Int8        `json:"organization_id"`
 }
 
+type CommentReference struct {
+	ID           int64              `json:"id"`
+	Uuid         uuid.UUID          `json:"uuid"`
+	WorkspaceID  int64              `json:"workspace_id"`
+	CommentID    int64              `json:"comment_id"`
+	NodeUuid     uuid.UUID          `json:"node_uuid"`
+	RevisionUuid uuid.UUID          `json:"revision_uuid"`
+	UserID       pgtype.Int8        `json:"user_id"`
+	IssueID      pgtype.Int8        `json:"issue_id"`
+	ProjectID    pgtype.Int8        `json:"project_id"`
+	Value        string             `json:"value"`
+	Active       bool               `json:"active"`
+	CreatedAt    pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt    pgtype.Timestamptz `json:"updated_at"`
+}
+
+type CommentReferencePublic struct {
+	ID            int64              `json:"id"`
+	Uuid          uuid.UUID          `json:"uuid"`
+	WorkspaceID   int64              `json:"workspace_id"`
+	CommentID     int64              `json:"comment_id"`
+	NodeUuid      uuid.UUID          `json:"node_uuid"`
+	RevisionUuid  uuid.UUID          `json:"revision_uuid"`
+	UserID        pgtype.Int8        `json:"user_id"`
+	IssueID       pgtype.Int8        `json:"issue_id"`
+	ProjectID     pgtype.Int8        `json:"project_id"`
+	Value         string             `json:"value"`
+	Active        bool               `json:"active"`
+	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt     pgtype.Timestamptz `json:"updated_at"`
+	WorkspaceUuid uuid.UUID          `json:"workspace_uuid"`
+	CommentUuid   uuid.UUID          `json:"comment_uuid"`
+	OwnerUuid     uuid.UUID          `json:"owner_uuid"`
+	TargetKind    string             `json:"target_kind"`
+	TargetUuid    uuid.UUID          `json:"target_uuid"`
+}
+
+type CommentRevision struct {
+	ID             int64              `json:"id"`
+	Uuid           uuid.UUID          `json:"uuid"`
+	WorkspaceID    int64              `json:"workspace_id"`
+	CommentID      int64              `json:"comment_id"`
+	ParentRevision pgtype.UUID        `json:"parent_revision"`
+	SourceRevision pgtype.UUID        `json:"source_revision"`
+	Version        int64              `json:"version"`
+	SchemaVersion  int32              `json:"schema_version"`
+	Kind           string             `json:"kind"`
+	Checkpoint     []byte             `json:"checkpoint"`
+	Patches        []byte             `json:"patches"`
+	Channel        string             `json:"channel"`
+	Deleted        bool               `json:"deleted"`
+	ActorUuid      uuid.UUID          `json:"actor_uuid"`
+	EventID        int64              `json:"event_id"`
+	OccurredAt     pgtype.Timestamptz `json:"occurred_at"`
+}
+
 type Document struct {
 	ID            int64              `json:"id"`
 	Uuid          uuid.UUID          `json:"uuid"`
@@ -437,6 +493,22 @@ type IssueAlias struct {
 	IssueID     int64 `json:"issue_id"`
 }
 
+type IssueComment struct {
+	ID             int64              `json:"id"`
+	Uuid           uuid.UUID          `json:"uuid"`
+	WorkspaceID    int64              `json:"workspace_id"`
+	IssueID        int64              `json:"issue_id"`
+	AuthorUuid     uuid.UUID          `json:"author_uuid"`
+	CreatedChannel string             `json:"created_channel"`
+	Deleted        bool               `json:"deleted"`
+	Format         string             `json:"format"`
+	SchemaVersion  int32              `json:"schema_version"`
+	HeadRevision   uuid.UUID          `json:"head_revision"`
+	Version        int64              `json:"version"`
+	CreatedAt      pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt      pgtype.Timestamptz `json:"updated_at"`
+}
+
 type IssueHistory struct {
 	ID          int64              `json:"id"`
 	Uuid        uuid.UUID          `json:"uuid"`
@@ -510,6 +582,29 @@ type IssueRelationRevision struct {
 	WorkspaceID int64 `json:"workspace_id"`
 	IssueID     int64 `json:"issue_id"`
 	Version     int64 `json:"version"`
+}
+
+type IssueTimelineEvent struct {
+	ID                int64              `json:"id"`
+	EventID           int64              `json:"event_id"`
+	Uuid              uuid.UUID          `json:"uuid"`
+	WorkspaceUuid     uuid.UUID          `json:"workspace_uuid"`
+	ActorUuid         uuid.UUID          `json:"actor_uuid"`
+	EventName         string             `json:"event_name"`
+	Name              string             `json:"name"`
+	Version           int64              `json:"version"`
+	OccurredAt        pgtype.Timestamptz `json:"occurred_at"`
+	ResourceType      string             `json:"resource_type"`
+	ResourceUuid      pgtype.UUID        `json:"resource_uuid"`
+	TeamUuid          pgtype.UUID        `json:"team_uuid"`
+	ProjectUuid       pgtype.UUID        `json:"project_uuid"`
+	ProductUuid       pgtype.UUID        `json:"product_uuid"`
+	EnvironmentUuid   pgtype.UUID        `json:"environment_uuid"`
+	IssueUuid         pgtype.UUID        `json:"issue_uuid"`
+	IssueIdentifier   string             `json:"issue_identifier"`
+	SourceChannel     string             `json:"source_channel"`
+	OwningIssueID     int64              `json:"owning_issue_id"`
+	OwningWorkspaceID int64              `json:"owning_workspace_id"`
 }
 
 type Label struct {
@@ -1110,6 +1205,7 @@ type WorkspaceHistory struct {
 	EnvironmentUuid pgtype.UUID        `json:"environment_uuid"`
 	IssueUuid       pgtype.UUID        `json:"issue_uuid"`
 	IssueIdentifier string             `json:"issue_identifier"`
+	SourceChannel   string             `json:"source_channel"`
 }
 
 type WorkspaceMember struct {

@@ -78,16 +78,20 @@ func isolatedDatabase(t *testing.T) *pgxpool.Pool {
 		if _, e = pool.Exec(ctx, string(raw)); e != nil {
 			t.Fatalf("migration %s: %v", filepath.Base(file), e)
 		}
-	}
-	for _, suffix := range []string{"down", "up"} {
-		raw, e := os.ReadFile("../../../migrations/000036_product_catalog." + suffix + ".sql")
-		if e != nil {
-			t.Fatal(e)
+		// Verify migration36 before applying later views that depend on its columns.
+		if filepath.Base(file) == "000036_product_catalog.up.sql" {
+			for _, suffix := range []string{"down", "up"} {
+				raw, e := os.ReadFile("../../../migrations/000036_product_catalog." + suffix + ".sql")
+				if e != nil {
+					t.Fatal(e)
+				}
+				if _, e = pool.Exec(ctx, string(raw)); e != nil {
+					t.Fatal(e)
+				}
+			}
 		}
-		if _, e = pool.Exec(ctx, string(raw)); e != nil {
-			t.Fatal(e)
-		}
 	}
+
 	return pool
 }
 func newProductFixture(t *testing.T) productFixture {

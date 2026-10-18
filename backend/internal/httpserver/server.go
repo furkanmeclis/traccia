@@ -3,6 +3,8 @@ package httpserver
 import (
 	attachmentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/repository"
 	attachmentsusecase "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/usecase"
+	commentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/comments/repository"
+	commentsusecase "github.com/furkanmeclis/traccia/backend/internal/modules/comments/usecase"
 	documentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/documents/repository"
 	documentsusecase "github.com/furkanmeclis/traccia/backend/internal/modules/documents/usecase"
 	issuesrepo "github.com/furkanmeclis/traccia/backend/internal/modules/issues/repository"
@@ -281,7 +283,7 @@ func New(cfg config.Config, log *slog.Logger, deps Deps) (*Server, error) {
 	if err != nil {
 		return nil, err
 	}
-	productRegistry, err := product.Registry(workspaceSvc, teamsusecase.New(teamsrepo.New(deps.DB, deps.Queries), workspaceSvc), projectsusecase.New(projectsrepo.New(deps.DB, deps.Queries), workspaceSvc), productsusecase.New(productsrepo.New(deps.DB, deps.Queries), workspaceSvc), issueSvc, relationsusecase.New(relationsrepo.New(deps.DB, deps.Queries), workspaceSvc), documentsusecase.New(documentsrepo.New(deps.DB, deps.Queries), workspaceSvc, issueSvc), attachmentSvc)
+	productRegistry, err := product.Registry(workspaceSvc, teamsusecase.New(teamsrepo.New(deps.DB, deps.Queries), workspaceSvc), projectsusecase.New(projectsrepo.New(deps.DB, deps.Queries), workspaceSvc), productsusecase.New(productsrepo.New(deps.DB, deps.Queries), workspaceSvc), issueSvc, relationsusecase.New(relationsrepo.New(deps.DB, deps.Queries), workspaceSvc), documentsusecase.New(documentsrepo.New(deps.DB, deps.Queries), workspaceSvc, issueSvc), attachmentSvc, commentsusecase.New(commentsrepo.New(deps.DB, deps.Queries), workspaceSvc))
 	if err != nil {
 		return nil, err
 	}

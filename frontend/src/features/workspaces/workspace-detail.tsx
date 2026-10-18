@@ -1,4 +1,5 @@
 "use client";
+import { CommentPendingOperations } from "@/features/comments/comment-operation";
 import { AttachmentShelf } from "@/features/attachments/attachment-panel";
 import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
@@ -247,6 +248,7 @@ export function WorkspaceDetail({ workspaceId }: { workspaceId: string }) {
           )}
           <RelationPendingOperations workspaceId={workspaceId} />
           <DocumentPendingOperations workspaceId={workspaceId} />
+          <CommentPendingOperations workspaceID={workspaceId} />
           <AttachmentShelf workspaceID={workspaceId} />
           <WorkspaceActivity
             key={`activity:${workspaceId}`}

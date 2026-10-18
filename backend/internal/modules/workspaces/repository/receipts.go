@@ -76,6 +76,13 @@ func (r *Postgres) RunMutation(ctx context.Context, m operations.Mutation, run f
 		if m.Metadata.SensitiveResult && r.box == nil {
 			return nil, &operations.Error{Code: operations.Unavailable}
 		}
+		channel := string(m.Scope.Channel())
+		if channel != "api" && channel != "mcp" && channel != "panel" {
+			channel = "unknown"
+		}
+		if err := q.SetOperationSourceChannel(ctx, channel); err != nil {
+			return nil, err
+		}
 		output, err = run(ctx)
 		if err != nil {
 			return nil, err

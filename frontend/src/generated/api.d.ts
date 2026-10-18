@@ -288,6 +288,210 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/workspaces/{workspaceID}/comment-backlinks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * comments.backlinks
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["comments_backlinks"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/issues/{issueID}/comments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * comments.list
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["comments_list"];
+        put?: never;
+        /**
+         * comments.create
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["comments_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/comments/{commentID}/delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * comments.delete
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["comments_delete"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/comments/{commentID}/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * comments.export
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["comments_export"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/comments/{commentID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * comments.get
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["comments_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/comments/{commentID}/revisions/{revisionID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * comments.get_revision
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["comments_get_revision"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/comments/{commentID}/patch": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * comments.patch
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["comments_patch"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/comments/{commentID}/replace": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * comments.replace
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["comments_replace"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/comments/{commentID}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * comments.restore
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["comments_restore"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/comments/{commentID}/revisions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * comments.revisions
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["comments_revisions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/workspaces/{workspaceID}/credentials": {
         parameters: {
             query?: never;
@@ -710,6 +914,26 @@ export interface paths {
          * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
          */
         post: operations["issue_relations_unlink_related"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/issues/{issueID}/timeline": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * issue_timeline.list
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["issue_timeline_list"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -4620,6 +4844,6694 @@ export interface components {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductAttachmentsRemoveOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductCommentsBacklinksOutputDefinition0: components["schemas"]["ProductCommentsBacklinksOutputDefinition11"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition18"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition19"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition20"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition17"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition14"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition2"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition15"];
+        ProductCommentsBacklinksOutputDefinition1: components["schemas"]["ProductCommentsBacklinksOutputDefinition4"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition7"];
+        ProductCommentsBacklinksOutputDefinition2: {
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsBacklinksOutputDefinition3: {
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsBacklinksOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsBacklinksOutputDefinition5: components["schemas"]["ProductCommentsBacklinksOutputDefinition11"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition18"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition19"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition20"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition17"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition14"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition2"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition3"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition9"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition10"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition15"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition13"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition4"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition7"];
+        ProductCommentsBacklinksOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsBacklinksOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsBacklinksOutputDefinition8: components["schemas"]["ProductCommentsBacklinksOutputDefinition16"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition9"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition10"];
+        ProductCommentsBacklinksOutputDefinition9: {
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsBacklinksOutputDefinition10: {
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsBacklinksOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsBacklinksOutputDefinition12: {
+            node: components["schemas"]["ProductCommentsBacklinksOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsBacklinksOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsBacklinksOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsBacklinksOutputDefinition13: {
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsBacklinksOutputDefinition14: {
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsBacklinksOutputDefinition15: {
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsBacklinksOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsBacklinksOutputDefinition17: {
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsBacklinksOutputDefinition18: {
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsBacklinksOutputDefinition19: {
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsBacklinksOutputDefinition20: {
+            children: components["schemas"]["ProductCommentsBacklinksOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsBacklinksOutput: {
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                comment_id: string;
+                /** Format: uuid */
+                issue_id: string;
+                /** Format: uuid */
+                node_id: string;
+                /** Format: uuid */
+                revision: string;
+                value: string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductCommentsBacklinksError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCommentsBacklinksDomainInputDefinition0: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition11"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition18"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition19"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition20"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition17"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition14"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition2"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition15"];
+        ProductCommentsBacklinksDomainInputDefinition1: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition4"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition7"];
+        ProductCommentsBacklinksDomainInputDefinition2: {
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsBacklinksDomainInputDefinition3: {
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsBacklinksDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsBacklinksDomainInputDefinition5: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition11"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition18"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition19"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition20"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition17"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition14"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition2"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition3"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition9"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition10"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition15"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition13"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition4"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition7"];
+        ProductCommentsBacklinksDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsBacklinksDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsBacklinksDomainInputDefinition8: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition16"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition9"] | components["schemas"]["ProductCommentsBacklinksDomainInputDefinition10"];
+        ProductCommentsBacklinksDomainInputDefinition9: {
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsBacklinksDomainInputDefinition10: {
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsBacklinksDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsBacklinksDomainInputDefinition12: {
+            node: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsBacklinksDomainInputDefinition13: {
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsBacklinksDomainInputDefinition14: {
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsBacklinksDomainInputDefinition15: {
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsBacklinksDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsBacklinksDomainInputDefinition17: {
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsBacklinksDomainInputDefinition18: {
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsBacklinksDomainInputDefinition19: {
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsBacklinksDomainInputDefinition20: {
+            children: components["schemas"]["ProductCommentsBacklinksDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsBacklinksDomainInput: {
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** Format: uuid */
+            target_id: string;
+            limit: number;
+            after: string;
+        };
+        ProductCommentsBacklinksEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCommentsBacklinksOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductCommentsCreateInputDefinition0: components["schemas"]["ProductCommentsCreateInputDefinition11"] | components["schemas"]["ProductCommentsCreateInputDefinition18"] | components["schemas"]["ProductCommentsCreateInputDefinition19"] | components["schemas"]["ProductCommentsCreateInputDefinition20"] | components["schemas"]["ProductCommentsCreateInputDefinition17"] | components["schemas"]["ProductCommentsCreateInputDefinition14"] | components["schemas"]["ProductCommentsCreateInputDefinition2"] | components["schemas"]["ProductCommentsCreateInputDefinition15"];
+        ProductCommentsCreateInputDefinition1: components["schemas"]["ProductCommentsCreateInputDefinition4"] | components["schemas"]["ProductCommentsCreateInputDefinition7"];
+        ProductCommentsCreateInputDefinition2: {
+            children: components["schemas"]["ProductCommentsCreateInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsCreateInputDefinition3: {
+            children: components["schemas"]["ProductCommentsCreateInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsCreateInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsCreateInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsCreateInputDefinition5: components["schemas"]["ProductCommentsCreateInputDefinition11"] | components["schemas"]["ProductCommentsCreateInputDefinition18"] | components["schemas"]["ProductCommentsCreateInputDefinition19"] | components["schemas"]["ProductCommentsCreateInputDefinition20"] | components["schemas"]["ProductCommentsCreateInputDefinition17"] | components["schemas"]["ProductCommentsCreateInputDefinition14"] | components["schemas"]["ProductCommentsCreateInputDefinition2"] | components["schemas"]["ProductCommentsCreateInputDefinition3"] | components["schemas"]["ProductCommentsCreateInputDefinition9"] | components["schemas"]["ProductCommentsCreateInputDefinition10"] | components["schemas"]["ProductCommentsCreateInputDefinition15"] | components["schemas"]["ProductCommentsCreateInputDefinition13"] | components["schemas"]["ProductCommentsCreateInputDefinition4"] | components["schemas"]["ProductCommentsCreateInputDefinition7"];
+        ProductCommentsCreateInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsCreateInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsCreateInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsCreateInputDefinition8: components["schemas"]["ProductCommentsCreateInputDefinition16"] | components["schemas"]["ProductCommentsCreateInputDefinition9"] | components["schemas"]["ProductCommentsCreateInputDefinition10"];
+        ProductCommentsCreateInputDefinition9: {
+            children: components["schemas"]["ProductCommentsCreateInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsCreateInputDefinition10: {
+            children: components["schemas"]["ProductCommentsCreateInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsCreateInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsCreateInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsCreateInputDefinition12: {
+            node: components["schemas"]["ProductCommentsCreateInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsCreateInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsCreateInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsCreateInputDefinition13: {
+            children: components["schemas"]["ProductCommentsCreateInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsCreateInputDefinition14: {
+            children: components["schemas"]["ProductCommentsCreateInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsCreateInputDefinition15: {
+            children: components["schemas"]["ProductCommentsCreateInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsCreateInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsCreateInputDefinition17: {
+            children: components["schemas"]["ProductCommentsCreateInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsCreateInputDefinition18: {
+            children: components["schemas"]["ProductCommentsCreateInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsCreateInputDefinition19: {
+            children: components["schemas"]["ProductCommentsCreateInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsCreateInputDefinition20: {
+            children: components["schemas"]["ProductCommentsCreateInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsCreateInput: {
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            content: components["schemas"]["ProductCommentsCreateInputDefinition0"][];
+        };
+        ProductCommentsCreateOutputDefinition0: components["schemas"]["ProductCommentsCreateOutputDefinition11"] | components["schemas"]["ProductCommentsCreateOutputDefinition18"] | components["schemas"]["ProductCommentsCreateOutputDefinition19"] | components["schemas"]["ProductCommentsCreateOutputDefinition20"] | components["schemas"]["ProductCommentsCreateOutputDefinition17"] | components["schemas"]["ProductCommentsCreateOutputDefinition14"] | components["schemas"]["ProductCommentsCreateOutputDefinition2"] | components["schemas"]["ProductCommentsCreateOutputDefinition15"];
+        ProductCommentsCreateOutputDefinition1: components["schemas"]["ProductCommentsCreateOutputDefinition4"] | components["schemas"]["ProductCommentsCreateOutputDefinition7"];
+        ProductCommentsCreateOutputDefinition2: {
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsCreateOutputDefinition3: {
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsCreateOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsCreateOutputDefinition5: components["schemas"]["ProductCommentsCreateOutputDefinition11"] | components["schemas"]["ProductCommentsCreateOutputDefinition18"] | components["schemas"]["ProductCommentsCreateOutputDefinition19"] | components["schemas"]["ProductCommentsCreateOutputDefinition20"] | components["schemas"]["ProductCommentsCreateOutputDefinition17"] | components["schemas"]["ProductCommentsCreateOutputDefinition14"] | components["schemas"]["ProductCommentsCreateOutputDefinition2"] | components["schemas"]["ProductCommentsCreateOutputDefinition3"] | components["schemas"]["ProductCommentsCreateOutputDefinition9"] | components["schemas"]["ProductCommentsCreateOutputDefinition10"] | components["schemas"]["ProductCommentsCreateOutputDefinition15"] | components["schemas"]["ProductCommentsCreateOutputDefinition13"] | components["schemas"]["ProductCommentsCreateOutputDefinition4"] | components["schemas"]["ProductCommentsCreateOutputDefinition7"];
+        ProductCommentsCreateOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsCreateOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsCreateOutputDefinition8: components["schemas"]["ProductCommentsCreateOutputDefinition16"] | components["schemas"]["ProductCommentsCreateOutputDefinition9"] | components["schemas"]["ProductCommentsCreateOutputDefinition10"];
+        ProductCommentsCreateOutputDefinition9: {
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsCreateOutputDefinition10: {
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsCreateOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsCreateOutputDefinition12: {
+            node: components["schemas"]["ProductCommentsCreateOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsCreateOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsCreateOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsCreateOutputDefinition13: {
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsCreateOutputDefinition14: {
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsCreateOutputDefinition15: {
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsCreateOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsCreateOutputDefinition17: {
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsCreateOutputDefinition18: {
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsCreateOutputDefinition19: {
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsCreateOutputDefinition20: {
+            children: components["schemas"]["ProductCommentsCreateOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsCreateOutput: {
+            comment: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                issue_id: string;
+                /** Format: uuid */
+                author_id: string;
+                /** @enum {string} */
+                created_channel: "api" | "mcp" | "panel" | "unknown";
+                /** Format: uuid */
+                revision: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                content: components["schemas"]["ProductCommentsCreateOutputDefinition0"][];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    replace: boolean;
+                    patch: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            };
+        };
+        ProductCommentsCreateError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCommentsCreateDomainInputDefinition0: components["schemas"]["ProductCommentsCreateDomainInputDefinition11"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition18"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition19"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition20"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition17"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition14"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition2"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition15"];
+        ProductCommentsCreateDomainInputDefinition1: components["schemas"]["ProductCommentsCreateDomainInputDefinition4"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition7"];
+        ProductCommentsCreateDomainInputDefinition2: {
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsCreateDomainInputDefinition3: {
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsCreateDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsCreateDomainInputDefinition5: components["schemas"]["ProductCommentsCreateDomainInputDefinition11"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition18"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition19"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition20"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition17"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition14"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition2"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition3"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition9"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition10"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition15"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition13"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition4"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition7"];
+        ProductCommentsCreateDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsCreateDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsCreateDomainInputDefinition8: components["schemas"]["ProductCommentsCreateDomainInputDefinition16"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition9"] | components["schemas"]["ProductCommentsCreateDomainInputDefinition10"];
+        ProductCommentsCreateDomainInputDefinition9: {
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsCreateDomainInputDefinition10: {
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsCreateDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsCreateDomainInputDefinition12: {
+            node: components["schemas"]["ProductCommentsCreateDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsCreateDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsCreateDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsCreateDomainInputDefinition13: {
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsCreateDomainInputDefinition14: {
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsCreateDomainInputDefinition15: {
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsCreateDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsCreateDomainInputDefinition17: {
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsCreateDomainInputDefinition18: {
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsCreateDomainInputDefinition19: {
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsCreateDomainInputDefinition20: {
+            children: components["schemas"]["ProductCommentsCreateDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsCreateDomainInput: {
+            /** Format: uuid */
+            issue_id: string;
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            content: components["schemas"]["ProductCommentsCreateDomainInputDefinition0"][];
+        };
+        ProductCommentsCreateEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCommentsCreateOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductCommentsDeleteInputDefinition0: components["schemas"]["ProductCommentsDeleteInputDefinition11"] | components["schemas"]["ProductCommentsDeleteInputDefinition18"] | components["schemas"]["ProductCommentsDeleteInputDefinition19"] | components["schemas"]["ProductCommentsDeleteInputDefinition20"] | components["schemas"]["ProductCommentsDeleteInputDefinition17"] | components["schemas"]["ProductCommentsDeleteInputDefinition14"] | components["schemas"]["ProductCommentsDeleteInputDefinition2"] | components["schemas"]["ProductCommentsDeleteInputDefinition15"];
+        ProductCommentsDeleteInputDefinition1: components["schemas"]["ProductCommentsDeleteInputDefinition4"] | components["schemas"]["ProductCommentsDeleteInputDefinition7"];
+        ProductCommentsDeleteInputDefinition2: {
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsDeleteInputDefinition3: {
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsDeleteInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsDeleteInputDefinition5: components["schemas"]["ProductCommentsDeleteInputDefinition11"] | components["schemas"]["ProductCommentsDeleteInputDefinition18"] | components["schemas"]["ProductCommentsDeleteInputDefinition19"] | components["schemas"]["ProductCommentsDeleteInputDefinition20"] | components["schemas"]["ProductCommentsDeleteInputDefinition17"] | components["schemas"]["ProductCommentsDeleteInputDefinition14"] | components["schemas"]["ProductCommentsDeleteInputDefinition2"] | components["schemas"]["ProductCommentsDeleteInputDefinition3"] | components["schemas"]["ProductCommentsDeleteInputDefinition9"] | components["schemas"]["ProductCommentsDeleteInputDefinition10"] | components["schemas"]["ProductCommentsDeleteInputDefinition15"] | components["schemas"]["ProductCommentsDeleteInputDefinition13"] | components["schemas"]["ProductCommentsDeleteInputDefinition4"] | components["schemas"]["ProductCommentsDeleteInputDefinition7"];
+        ProductCommentsDeleteInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsDeleteInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsDeleteInputDefinition8: components["schemas"]["ProductCommentsDeleteInputDefinition16"] | components["schemas"]["ProductCommentsDeleteInputDefinition9"] | components["schemas"]["ProductCommentsDeleteInputDefinition10"];
+        ProductCommentsDeleteInputDefinition9: {
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsDeleteInputDefinition10: {
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsDeleteInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsDeleteInputDefinition12: {
+            node: components["schemas"]["ProductCommentsDeleteInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsDeleteInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsDeleteInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsDeleteInputDefinition13: {
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsDeleteInputDefinition14: {
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsDeleteInputDefinition15: {
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsDeleteInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsDeleteInputDefinition17: {
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsDeleteInputDefinition18: {
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsDeleteInputDefinition19: {
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsDeleteInputDefinition20: {
+            children: components["schemas"]["ProductCommentsDeleteInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsDeleteInput: {
+            /** Format: uuid */
+            expected_revision: string;
+        };
+        ProductCommentsDeleteOutputDefinition0: components["schemas"]["ProductCommentsDeleteOutputDefinition11"] | components["schemas"]["ProductCommentsDeleteOutputDefinition18"] | components["schemas"]["ProductCommentsDeleteOutputDefinition19"] | components["schemas"]["ProductCommentsDeleteOutputDefinition20"] | components["schemas"]["ProductCommentsDeleteOutputDefinition17"] | components["schemas"]["ProductCommentsDeleteOutputDefinition14"] | components["schemas"]["ProductCommentsDeleteOutputDefinition2"] | components["schemas"]["ProductCommentsDeleteOutputDefinition15"];
+        ProductCommentsDeleteOutputDefinition1: components["schemas"]["ProductCommentsDeleteOutputDefinition4"] | components["schemas"]["ProductCommentsDeleteOutputDefinition7"];
+        ProductCommentsDeleteOutputDefinition2: {
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsDeleteOutputDefinition3: {
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsDeleteOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsDeleteOutputDefinition5: components["schemas"]["ProductCommentsDeleteOutputDefinition11"] | components["schemas"]["ProductCommentsDeleteOutputDefinition18"] | components["schemas"]["ProductCommentsDeleteOutputDefinition19"] | components["schemas"]["ProductCommentsDeleteOutputDefinition20"] | components["schemas"]["ProductCommentsDeleteOutputDefinition17"] | components["schemas"]["ProductCommentsDeleteOutputDefinition14"] | components["schemas"]["ProductCommentsDeleteOutputDefinition2"] | components["schemas"]["ProductCommentsDeleteOutputDefinition3"] | components["schemas"]["ProductCommentsDeleteOutputDefinition9"] | components["schemas"]["ProductCommentsDeleteOutputDefinition10"] | components["schemas"]["ProductCommentsDeleteOutputDefinition15"] | components["schemas"]["ProductCommentsDeleteOutputDefinition13"] | components["schemas"]["ProductCommentsDeleteOutputDefinition4"] | components["schemas"]["ProductCommentsDeleteOutputDefinition7"];
+        ProductCommentsDeleteOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsDeleteOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsDeleteOutputDefinition8: components["schemas"]["ProductCommentsDeleteOutputDefinition16"] | components["schemas"]["ProductCommentsDeleteOutputDefinition9"] | components["schemas"]["ProductCommentsDeleteOutputDefinition10"];
+        ProductCommentsDeleteOutputDefinition9: {
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsDeleteOutputDefinition10: {
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsDeleteOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsDeleteOutputDefinition12: {
+            node: components["schemas"]["ProductCommentsDeleteOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsDeleteOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsDeleteOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsDeleteOutputDefinition13: {
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsDeleteOutputDefinition14: {
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsDeleteOutputDefinition15: {
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsDeleteOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsDeleteOutputDefinition17: {
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsDeleteOutputDefinition18: {
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsDeleteOutputDefinition19: {
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsDeleteOutputDefinition20: {
+            children: components["schemas"]["ProductCommentsDeleteOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsDeleteOutput: {
+            comment: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                issue_id: string;
+                /** Format: uuid */
+                author_id: string;
+                /** @enum {string} */
+                created_channel: "api" | "mcp" | "panel" | "unknown";
+                /** Format: uuid */
+                revision: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                content: components["schemas"]["ProductCommentsDeleteOutputDefinition0"][];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    replace: boolean;
+                    patch: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            };
+        };
+        ProductCommentsDeleteError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCommentsDeleteDomainInputDefinition0: components["schemas"]["ProductCommentsDeleteDomainInputDefinition11"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition18"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition19"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition20"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition17"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition14"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition2"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition15"];
+        ProductCommentsDeleteDomainInputDefinition1: components["schemas"]["ProductCommentsDeleteDomainInputDefinition4"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition7"];
+        ProductCommentsDeleteDomainInputDefinition2: {
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsDeleteDomainInputDefinition3: {
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsDeleteDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsDeleteDomainInputDefinition5: components["schemas"]["ProductCommentsDeleteDomainInputDefinition11"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition18"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition19"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition20"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition17"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition14"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition2"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition3"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition9"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition10"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition15"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition13"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition4"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition7"];
+        ProductCommentsDeleteDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsDeleteDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsDeleteDomainInputDefinition8: components["schemas"]["ProductCommentsDeleteDomainInputDefinition16"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition9"] | components["schemas"]["ProductCommentsDeleteDomainInputDefinition10"];
+        ProductCommentsDeleteDomainInputDefinition9: {
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsDeleteDomainInputDefinition10: {
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsDeleteDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsDeleteDomainInputDefinition12: {
+            node: components["schemas"]["ProductCommentsDeleteDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsDeleteDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsDeleteDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsDeleteDomainInputDefinition13: {
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsDeleteDomainInputDefinition14: {
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsDeleteDomainInputDefinition15: {
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsDeleteDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsDeleteDomainInputDefinition17: {
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsDeleteDomainInputDefinition18: {
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsDeleteDomainInputDefinition19: {
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsDeleteDomainInputDefinition20: {
+            children: components["schemas"]["ProductCommentsDeleteDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsDeleteDomainInput: {
+            /** Format: uuid */
+            comment_id: string;
+            /** Format: uuid */
+            expected_revision: string;
+        };
+        ProductCommentsDeleteEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCommentsDeleteOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductCommentsExportOutputDefinition0: components["schemas"]["ProductCommentsExportOutputDefinition11"] | components["schemas"]["ProductCommentsExportOutputDefinition18"] | components["schemas"]["ProductCommentsExportOutputDefinition19"] | components["schemas"]["ProductCommentsExportOutputDefinition20"] | components["schemas"]["ProductCommentsExportOutputDefinition17"] | components["schemas"]["ProductCommentsExportOutputDefinition14"] | components["schemas"]["ProductCommentsExportOutputDefinition2"] | components["schemas"]["ProductCommentsExportOutputDefinition15"];
+        ProductCommentsExportOutputDefinition1: components["schemas"]["ProductCommentsExportOutputDefinition4"] | components["schemas"]["ProductCommentsExportOutputDefinition7"];
+        ProductCommentsExportOutputDefinition2: {
+            children: components["schemas"]["ProductCommentsExportOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsExportOutputDefinition3: {
+            children: components["schemas"]["ProductCommentsExportOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsExportOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsExportOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsExportOutputDefinition5: components["schemas"]["ProductCommentsExportOutputDefinition11"] | components["schemas"]["ProductCommentsExportOutputDefinition18"] | components["schemas"]["ProductCommentsExportOutputDefinition19"] | components["schemas"]["ProductCommentsExportOutputDefinition20"] | components["schemas"]["ProductCommentsExportOutputDefinition17"] | components["schemas"]["ProductCommentsExportOutputDefinition14"] | components["schemas"]["ProductCommentsExportOutputDefinition2"] | components["schemas"]["ProductCommentsExportOutputDefinition3"] | components["schemas"]["ProductCommentsExportOutputDefinition9"] | components["schemas"]["ProductCommentsExportOutputDefinition10"] | components["schemas"]["ProductCommentsExportOutputDefinition15"] | components["schemas"]["ProductCommentsExportOutputDefinition13"] | components["schemas"]["ProductCommentsExportOutputDefinition4"] | components["schemas"]["ProductCommentsExportOutputDefinition7"];
+        ProductCommentsExportOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsExportOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsExportOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsExportOutputDefinition8: components["schemas"]["ProductCommentsExportOutputDefinition16"] | components["schemas"]["ProductCommentsExportOutputDefinition9"] | components["schemas"]["ProductCommentsExportOutputDefinition10"];
+        ProductCommentsExportOutputDefinition9: {
+            children: components["schemas"]["ProductCommentsExportOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsExportOutputDefinition10: {
+            children: components["schemas"]["ProductCommentsExportOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsExportOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsExportOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsExportOutputDefinition12: {
+            node: components["schemas"]["ProductCommentsExportOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsExportOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsExportOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsExportOutputDefinition13: {
+            children: components["schemas"]["ProductCommentsExportOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsExportOutputDefinition14: {
+            children: components["schemas"]["ProductCommentsExportOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsExportOutputDefinition15: {
+            children: components["schemas"]["ProductCommentsExportOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsExportOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsExportOutputDefinition17: {
+            children: components["schemas"]["ProductCommentsExportOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsExportOutputDefinition18: {
+            children: components["schemas"]["ProductCommentsExportOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsExportOutputDefinition19: {
+            children: components["schemas"]["ProductCommentsExportOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsExportOutputDefinition20: {
+            children: components["schemas"]["ProductCommentsExportOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsExportOutput: {
+            /** Format: uuid */
+            comment_id: string;
+            /** Format: uuid */
+            revision: string;
+            /** @enum {string} */
+            format: "html" | "json" | "markdown";
+            content: string;
+            losses: string[];
+            renderer_version: number;
+        };
+        ProductCommentsExportError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCommentsExportDomainInputDefinition0: components["schemas"]["ProductCommentsExportDomainInputDefinition11"] | components["schemas"]["ProductCommentsExportDomainInputDefinition18"] | components["schemas"]["ProductCommentsExportDomainInputDefinition19"] | components["schemas"]["ProductCommentsExportDomainInputDefinition20"] | components["schemas"]["ProductCommentsExportDomainInputDefinition17"] | components["schemas"]["ProductCommentsExportDomainInputDefinition14"] | components["schemas"]["ProductCommentsExportDomainInputDefinition2"] | components["schemas"]["ProductCommentsExportDomainInputDefinition15"];
+        ProductCommentsExportDomainInputDefinition1: components["schemas"]["ProductCommentsExportDomainInputDefinition4"] | components["schemas"]["ProductCommentsExportDomainInputDefinition7"];
+        ProductCommentsExportDomainInputDefinition2: {
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsExportDomainInputDefinition3: {
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsExportDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsExportDomainInputDefinition5: components["schemas"]["ProductCommentsExportDomainInputDefinition11"] | components["schemas"]["ProductCommentsExportDomainInputDefinition18"] | components["schemas"]["ProductCommentsExportDomainInputDefinition19"] | components["schemas"]["ProductCommentsExportDomainInputDefinition20"] | components["schemas"]["ProductCommentsExportDomainInputDefinition17"] | components["schemas"]["ProductCommentsExportDomainInputDefinition14"] | components["schemas"]["ProductCommentsExportDomainInputDefinition2"] | components["schemas"]["ProductCommentsExportDomainInputDefinition3"] | components["schemas"]["ProductCommentsExportDomainInputDefinition9"] | components["schemas"]["ProductCommentsExportDomainInputDefinition10"] | components["schemas"]["ProductCommentsExportDomainInputDefinition15"] | components["schemas"]["ProductCommentsExportDomainInputDefinition13"] | components["schemas"]["ProductCommentsExportDomainInputDefinition4"] | components["schemas"]["ProductCommentsExportDomainInputDefinition7"];
+        ProductCommentsExportDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsExportDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsExportDomainInputDefinition8: components["schemas"]["ProductCommentsExportDomainInputDefinition16"] | components["schemas"]["ProductCommentsExportDomainInputDefinition9"] | components["schemas"]["ProductCommentsExportDomainInputDefinition10"];
+        ProductCommentsExportDomainInputDefinition9: {
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsExportDomainInputDefinition10: {
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsExportDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsExportDomainInputDefinition12: {
+            node: components["schemas"]["ProductCommentsExportDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsExportDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsExportDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsExportDomainInputDefinition13: {
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsExportDomainInputDefinition14: {
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsExportDomainInputDefinition15: {
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsExportDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsExportDomainInputDefinition17: {
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsExportDomainInputDefinition18: {
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsExportDomainInputDefinition19: {
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsExportDomainInputDefinition20: {
+            children: components["schemas"]["ProductCommentsExportDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsExportDomainInput: {
+            /** Format: uuid */
+            comment_id: string;
+            /** @enum {string} */
+            format: "html" | "json" | "markdown";
+        };
+        ProductCommentsExportEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCommentsExportOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductCommentsGetOutputDefinition0: components["schemas"]["ProductCommentsGetOutputDefinition11"] | components["schemas"]["ProductCommentsGetOutputDefinition18"] | components["schemas"]["ProductCommentsGetOutputDefinition19"] | components["schemas"]["ProductCommentsGetOutputDefinition20"] | components["schemas"]["ProductCommentsGetOutputDefinition17"] | components["schemas"]["ProductCommentsGetOutputDefinition14"] | components["schemas"]["ProductCommentsGetOutputDefinition2"] | components["schemas"]["ProductCommentsGetOutputDefinition15"];
+        ProductCommentsGetOutputDefinition1: components["schemas"]["ProductCommentsGetOutputDefinition4"] | components["schemas"]["ProductCommentsGetOutputDefinition7"];
+        ProductCommentsGetOutputDefinition2: {
+            children: components["schemas"]["ProductCommentsGetOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsGetOutputDefinition3: {
+            children: components["schemas"]["ProductCommentsGetOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsGetOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsGetOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsGetOutputDefinition5: components["schemas"]["ProductCommentsGetOutputDefinition11"] | components["schemas"]["ProductCommentsGetOutputDefinition18"] | components["schemas"]["ProductCommentsGetOutputDefinition19"] | components["schemas"]["ProductCommentsGetOutputDefinition20"] | components["schemas"]["ProductCommentsGetOutputDefinition17"] | components["schemas"]["ProductCommentsGetOutputDefinition14"] | components["schemas"]["ProductCommentsGetOutputDefinition2"] | components["schemas"]["ProductCommentsGetOutputDefinition3"] | components["schemas"]["ProductCommentsGetOutputDefinition9"] | components["schemas"]["ProductCommentsGetOutputDefinition10"] | components["schemas"]["ProductCommentsGetOutputDefinition15"] | components["schemas"]["ProductCommentsGetOutputDefinition13"] | components["schemas"]["ProductCommentsGetOutputDefinition4"] | components["schemas"]["ProductCommentsGetOutputDefinition7"];
+        ProductCommentsGetOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsGetOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsGetOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsGetOutputDefinition8: components["schemas"]["ProductCommentsGetOutputDefinition16"] | components["schemas"]["ProductCommentsGetOutputDefinition9"] | components["schemas"]["ProductCommentsGetOutputDefinition10"];
+        ProductCommentsGetOutputDefinition9: {
+            children: components["schemas"]["ProductCommentsGetOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsGetOutputDefinition10: {
+            children: components["schemas"]["ProductCommentsGetOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsGetOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsGetOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsGetOutputDefinition12: {
+            node: components["schemas"]["ProductCommentsGetOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsGetOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsGetOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsGetOutputDefinition13: {
+            children: components["schemas"]["ProductCommentsGetOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsGetOutputDefinition14: {
+            children: components["schemas"]["ProductCommentsGetOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsGetOutputDefinition15: {
+            children: components["schemas"]["ProductCommentsGetOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsGetOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsGetOutputDefinition17: {
+            children: components["schemas"]["ProductCommentsGetOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsGetOutputDefinition18: {
+            children: components["schemas"]["ProductCommentsGetOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsGetOutputDefinition19: {
+            children: components["schemas"]["ProductCommentsGetOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsGetOutputDefinition20: {
+            children: components["schemas"]["ProductCommentsGetOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsGetOutput: {
+            comment: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                issue_id: string;
+                /** Format: uuid */
+                author_id: string;
+                /** @enum {string} */
+                created_channel: "api" | "mcp" | "panel" | "unknown";
+                /** Format: uuid */
+                revision: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                content: components["schemas"]["ProductCommentsGetOutputDefinition0"][];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    replace: boolean;
+                    patch: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            };
+        };
+        ProductCommentsGetError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCommentsGetDomainInputDefinition0: components["schemas"]["ProductCommentsGetDomainInputDefinition11"] | components["schemas"]["ProductCommentsGetDomainInputDefinition18"] | components["schemas"]["ProductCommentsGetDomainInputDefinition19"] | components["schemas"]["ProductCommentsGetDomainInputDefinition20"] | components["schemas"]["ProductCommentsGetDomainInputDefinition17"] | components["schemas"]["ProductCommentsGetDomainInputDefinition14"] | components["schemas"]["ProductCommentsGetDomainInputDefinition2"] | components["schemas"]["ProductCommentsGetDomainInputDefinition15"];
+        ProductCommentsGetDomainInputDefinition1: components["schemas"]["ProductCommentsGetDomainInputDefinition4"] | components["schemas"]["ProductCommentsGetDomainInputDefinition7"];
+        ProductCommentsGetDomainInputDefinition2: {
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsGetDomainInputDefinition3: {
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsGetDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsGetDomainInputDefinition5: components["schemas"]["ProductCommentsGetDomainInputDefinition11"] | components["schemas"]["ProductCommentsGetDomainInputDefinition18"] | components["schemas"]["ProductCommentsGetDomainInputDefinition19"] | components["schemas"]["ProductCommentsGetDomainInputDefinition20"] | components["schemas"]["ProductCommentsGetDomainInputDefinition17"] | components["schemas"]["ProductCommentsGetDomainInputDefinition14"] | components["schemas"]["ProductCommentsGetDomainInputDefinition2"] | components["schemas"]["ProductCommentsGetDomainInputDefinition3"] | components["schemas"]["ProductCommentsGetDomainInputDefinition9"] | components["schemas"]["ProductCommentsGetDomainInputDefinition10"] | components["schemas"]["ProductCommentsGetDomainInputDefinition15"] | components["schemas"]["ProductCommentsGetDomainInputDefinition13"] | components["schemas"]["ProductCommentsGetDomainInputDefinition4"] | components["schemas"]["ProductCommentsGetDomainInputDefinition7"];
+        ProductCommentsGetDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsGetDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsGetDomainInputDefinition8: components["schemas"]["ProductCommentsGetDomainInputDefinition16"] | components["schemas"]["ProductCommentsGetDomainInputDefinition9"] | components["schemas"]["ProductCommentsGetDomainInputDefinition10"];
+        ProductCommentsGetDomainInputDefinition9: {
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsGetDomainInputDefinition10: {
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsGetDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsGetDomainInputDefinition12: {
+            node: components["schemas"]["ProductCommentsGetDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsGetDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsGetDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsGetDomainInputDefinition13: {
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsGetDomainInputDefinition14: {
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsGetDomainInputDefinition15: {
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsGetDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsGetDomainInputDefinition17: {
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsGetDomainInputDefinition18: {
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsGetDomainInputDefinition19: {
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsGetDomainInputDefinition20: {
+            children: components["schemas"]["ProductCommentsGetDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsGetDomainInput: {
+            /** Format: uuid */
+            comment_id: string;
+        };
+        ProductCommentsGetEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCommentsGetOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductCommentsGetRevisionOutputDefinition0: components["schemas"]["ProductCommentsGetRevisionOutputDefinition11"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition18"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition19"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition20"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition17"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition14"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition2"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition15"];
+        ProductCommentsGetRevisionOutputDefinition1: components["schemas"]["ProductCommentsGetRevisionOutputDefinition4"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition7"];
+        ProductCommentsGetRevisionOutputDefinition2: {
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsGetRevisionOutputDefinition3: {
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsGetRevisionOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsGetRevisionOutputDefinition5: components["schemas"]["ProductCommentsGetRevisionOutputDefinition11"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition18"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition19"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition20"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition17"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition14"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition2"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition3"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition9"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition10"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition15"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition13"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition4"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition7"];
+        ProductCommentsGetRevisionOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsGetRevisionOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsGetRevisionOutputDefinition8: components["schemas"]["ProductCommentsGetRevisionOutputDefinition16"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition9"] | components["schemas"]["ProductCommentsGetRevisionOutputDefinition10"];
+        ProductCommentsGetRevisionOutputDefinition9: {
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsGetRevisionOutputDefinition10: {
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsGetRevisionOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsGetRevisionOutputDefinition12: {
+            node: components["schemas"]["ProductCommentsGetRevisionOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsGetRevisionOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsGetRevisionOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsGetRevisionOutputDefinition13: {
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsGetRevisionOutputDefinition14: {
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsGetRevisionOutputDefinition15: {
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsGetRevisionOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsGetRevisionOutputDefinition17: {
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsGetRevisionOutputDefinition18: {
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsGetRevisionOutputDefinition19: {
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsGetRevisionOutputDefinition20: {
+            children: components["schemas"]["ProductCommentsGetRevisionOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsGetRevisionOutput: {
+            comment: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                issue_id: string;
+                /** Format: uuid */
+                author_id: string;
+                /** @enum {string} */
+                created_channel: "api" | "mcp" | "panel" | "unknown";
+                /** Format: uuid */
+                revision: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                content: components["schemas"]["ProductCommentsGetRevisionOutputDefinition0"][];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    replace: boolean;
+                    patch: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            };
+            revision: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                comment_id: string;
+                parent_revision: string | null;
+                source_revision: string | null;
+                /** @enum {string} */
+                kind: "create" | "replace" | "patch" | "delete" | "restore";
+                /** Format: uuid */
+                actor_id: string;
+                /** @enum {string} */
+                channel: "api" | "mcp" | "panel" | "unknown";
+                deleted: boolean;
+                /** Format: date-time */
+                occurred_at: string;
+                capabilities: {
+                    restore: boolean;
+                };
+            };
+        };
+        ProductCommentsGetRevisionError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCommentsGetRevisionDomainInputDefinition0: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition11"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition18"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition19"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition20"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition17"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition14"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition2"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition15"];
+        ProductCommentsGetRevisionDomainInputDefinition1: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition4"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition7"];
+        ProductCommentsGetRevisionDomainInputDefinition2: {
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsGetRevisionDomainInputDefinition3: {
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsGetRevisionDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsGetRevisionDomainInputDefinition5: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition11"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition18"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition19"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition20"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition17"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition14"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition2"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition3"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition9"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition10"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition15"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition13"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition4"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition7"];
+        ProductCommentsGetRevisionDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsGetRevisionDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsGetRevisionDomainInputDefinition8: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition16"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition9"] | components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition10"];
+        ProductCommentsGetRevisionDomainInputDefinition9: {
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsGetRevisionDomainInputDefinition10: {
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsGetRevisionDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsGetRevisionDomainInputDefinition12: {
+            node: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsGetRevisionDomainInputDefinition13: {
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsGetRevisionDomainInputDefinition14: {
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsGetRevisionDomainInputDefinition15: {
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsGetRevisionDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsGetRevisionDomainInputDefinition17: {
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsGetRevisionDomainInputDefinition18: {
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsGetRevisionDomainInputDefinition19: {
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsGetRevisionDomainInputDefinition20: {
+            children: components["schemas"]["ProductCommentsGetRevisionDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsGetRevisionDomainInput: {
+            /** Format: uuid */
+            comment_id: string;
+            /** Format: uuid */
+            revision_id: string;
+        };
+        ProductCommentsGetRevisionEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCommentsGetRevisionOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductCommentsListOutputDefinition0: components["schemas"]["ProductCommentsListOutputDefinition11"] | components["schemas"]["ProductCommentsListOutputDefinition18"] | components["schemas"]["ProductCommentsListOutputDefinition19"] | components["schemas"]["ProductCommentsListOutputDefinition20"] | components["schemas"]["ProductCommentsListOutputDefinition17"] | components["schemas"]["ProductCommentsListOutputDefinition14"] | components["schemas"]["ProductCommentsListOutputDefinition2"] | components["schemas"]["ProductCommentsListOutputDefinition15"];
+        ProductCommentsListOutputDefinition1: components["schemas"]["ProductCommentsListOutputDefinition4"] | components["schemas"]["ProductCommentsListOutputDefinition7"];
+        ProductCommentsListOutputDefinition2: {
+            children: components["schemas"]["ProductCommentsListOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsListOutputDefinition3: {
+            children: components["schemas"]["ProductCommentsListOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsListOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsListOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsListOutputDefinition5: components["schemas"]["ProductCommentsListOutputDefinition11"] | components["schemas"]["ProductCommentsListOutputDefinition18"] | components["schemas"]["ProductCommentsListOutputDefinition19"] | components["schemas"]["ProductCommentsListOutputDefinition20"] | components["schemas"]["ProductCommentsListOutputDefinition17"] | components["schemas"]["ProductCommentsListOutputDefinition14"] | components["schemas"]["ProductCommentsListOutputDefinition2"] | components["schemas"]["ProductCommentsListOutputDefinition3"] | components["schemas"]["ProductCommentsListOutputDefinition9"] | components["schemas"]["ProductCommentsListOutputDefinition10"] | components["schemas"]["ProductCommentsListOutputDefinition15"] | components["schemas"]["ProductCommentsListOutputDefinition13"] | components["schemas"]["ProductCommentsListOutputDefinition4"] | components["schemas"]["ProductCommentsListOutputDefinition7"];
+        ProductCommentsListOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsListOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsListOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsListOutputDefinition8: components["schemas"]["ProductCommentsListOutputDefinition16"] | components["schemas"]["ProductCommentsListOutputDefinition9"] | components["schemas"]["ProductCommentsListOutputDefinition10"];
+        ProductCommentsListOutputDefinition9: {
+            children: components["schemas"]["ProductCommentsListOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsListOutputDefinition10: {
+            children: components["schemas"]["ProductCommentsListOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsListOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsListOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsListOutputDefinition12: {
+            node: components["schemas"]["ProductCommentsListOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsListOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsListOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsListOutputDefinition13: {
+            children: components["schemas"]["ProductCommentsListOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsListOutputDefinition14: {
+            children: components["schemas"]["ProductCommentsListOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsListOutputDefinition15: {
+            children: components["schemas"]["ProductCommentsListOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsListOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsListOutputDefinition17: {
+            children: components["schemas"]["ProductCommentsListOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsListOutputDefinition18: {
+            children: components["schemas"]["ProductCommentsListOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsListOutputDefinition19: {
+            children: components["schemas"]["ProductCommentsListOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsListOutputDefinition20: {
+            children: components["schemas"]["ProductCommentsListOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsListOutput: {
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                issue_id: string;
+                /** Format: uuid */
+                author_id: string;
+                /** @enum {string} */
+                created_channel: "api" | "mcp" | "panel" | "unknown";
+                /** Format: uuid */
+                revision: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                content: components["schemas"]["ProductCommentsListOutputDefinition0"][];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    replace: boolean;
+                    patch: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            }[];
+            capabilities: {
+                manage: boolean;
+                create: boolean;
+            };
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductCommentsListError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCommentsListDomainInputDefinition0: components["schemas"]["ProductCommentsListDomainInputDefinition11"] | components["schemas"]["ProductCommentsListDomainInputDefinition18"] | components["schemas"]["ProductCommentsListDomainInputDefinition19"] | components["schemas"]["ProductCommentsListDomainInputDefinition20"] | components["schemas"]["ProductCommentsListDomainInputDefinition17"] | components["schemas"]["ProductCommentsListDomainInputDefinition14"] | components["schemas"]["ProductCommentsListDomainInputDefinition2"] | components["schemas"]["ProductCommentsListDomainInputDefinition15"];
+        ProductCommentsListDomainInputDefinition1: components["schemas"]["ProductCommentsListDomainInputDefinition4"] | components["schemas"]["ProductCommentsListDomainInputDefinition7"];
+        ProductCommentsListDomainInputDefinition2: {
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsListDomainInputDefinition3: {
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsListDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsListDomainInputDefinition5: components["schemas"]["ProductCommentsListDomainInputDefinition11"] | components["schemas"]["ProductCommentsListDomainInputDefinition18"] | components["schemas"]["ProductCommentsListDomainInputDefinition19"] | components["schemas"]["ProductCommentsListDomainInputDefinition20"] | components["schemas"]["ProductCommentsListDomainInputDefinition17"] | components["schemas"]["ProductCommentsListDomainInputDefinition14"] | components["schemas"]["ProductCommentsListDomainInputDefinition2"] | components["schemas"]["ProductCommentsListDomainInputDefinition3"] | components["schemas"]["ProductCommentsListDomainInputDefinition9"] | components["schemas"]["ProductCommentsListDomainInputDefinition10"] | components["schemas"]["ProductCommentsListDomainInputDefinition15"] | components["schemas"]["ProductCommentsListDomainInputDefinition13"] | components["schemas"]["ProductCommentsListDomainInputDefinition4"] | components["schemas"]["ProductCommentsListDomainInputDefinition7"];
+        ProductCommentsListDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsListDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsListDomainInputDefinition8: components["schemas"]["ProductCommentsListDomainInputDefinition16"] | components["schemas"]["ProductCommentsListDomainInputDefinition9"] | components["schemas"]["ProductCommentsListDomainInputDefinition10"];
+        ProductCommentsListDomainInputDefinition9: {
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsListDomainInputDefinition10: {
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsListDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsListDomainInputDefinition12: {
+            node: components["schemas"]["ProductCommentsListDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsListDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsListDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsListDomainInputDefinition13: {
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsListDomainInputDefinition14: {
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsListDomainInputDefinition15: {
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsListDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsListDomainInputDefinition17: {
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsListDomainInputDefinition18: {
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsListDomainInputDefinition19: {
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsListDomainInputDefinition20: {
+            children: components["schemas"]["ProductCommentsListDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsListDomainInput: {
+            /** Format: uuid */
+            issue_id: string;
+            include_deleted: boolean;
+            limit: number;
+            after: string;
+        };
+        ProductCommentsListEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCommentsListOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductCommentsPatchInputDefinition0: components["schemas"]["ProductCommentsPatchInputDefinition11"] | components["schemas"]["ProductCommentsPatchInputDefinition18"] | components["schemas"]["ProductCommentsPatchInputDefinition19"] | components["schemas"]["ProductCommentsPatchInputDefinition20"] | components["schemas"]["ProductCommentsPatchInputDefinition17"] | components["schemas"]["ProductCommentsPatchInputDefinition14"] | components["schemas"]["ProductCommentsPatchInputDefinition2"] | components["schemas"]["ProductCommentsPatchInputDefinition15"];
+        ProductCommentsPatchInputDefinition1: components["schemas"]["ProductCommentsPatchInputDefinition4"] | components["schemas"]["ProductCommentsPatchInputDefinition7"];
+        ProductCommentsPatchInputDefinition2: {
+            children: components["schemas"]["ProductCommentsPatchInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsPatchInputDefinition3: {
+            children: components["schemas"]["ProductCommentsPatchInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsPatchInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsPatchInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsPatchInputDefinition5: components["schemas"]["ProductCommentsPatchInputDefinition11"] | components["schemas"]["ProductCommentsPatchInputDefinition18"] | components["schemas"]["ProductCommentsPatchInputDefinition19"] | components["schemas"]["ProductCommentsPatchInputDefinition20"] | components["schemas"]["ProductCommentsPatchInputDefinition17"] | components["schemas"]["ProductCommentsPatchInputDefinition14"] | components["schemas"]["ProductCommentsPatchInputDefinition2"] | components["schemas"]["ProductCommentsPatchInputDefinition3"] | components["schemas"]["ProductCommentsPatchInputDefinition9"] | components["schemas"]["ProductCommentsPatchInputDefinition10"] | components["schemas"]["ProductCommentsPatchInputDefinition15"] | components["schemas"]["ProductCommentsPatchInputDefinition13"] | components["schemas"]["ProductCommentsPatchInputDefinition4"] | components["schemas"]["ProductCommentsPatchInputDefinition7"];
+        ProductCommentsPatchInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsPatchInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsPatchInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsPatchInputDefinition8: components["schemas"]["ProductCommentsPatchInputDefinition16"] | components["schemas"]["ProductCommentsPatchInputDefinition9"] | components["schemas"]["ProductCommentsPatchInputDefinition10"];
+        ProductCommentsPatchInputDefinition9: {
+            children: components["schemas"]["ProductCommentsPatchInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsPatchInputDefinition10: {
+            children: components["schemas"]["ProductCommentsPatchInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsPatchInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsPatchInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsPatchInputDefinition12: {
+            node: components["schemas"]["ProductCommentsPatchInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsPatchInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsPatchInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsPatchInputDefinition13: {
+            children: components["schemas"]["ProductCommentsPatchInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsPatchInputDefinition14: {
+            children: components["schemas"]["ProductCommentsPatchInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsPatchInputDefinition15: {
+            children: components["schemas"]["ProductCommentsPatchInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsPatchInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsPatchInputDefinition17: {
+            children: components["schemas"]["ProductCommentsPatchInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsPatchInputDefinition18: {
+            children: components["schemas"]["ProductCommentsPatchInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsPatchInputDefinition19: {
+            children: components["schemas"]["ProductCommentsPatchInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsPatchInputDefinition20: {
+            children: components["schemas"]["ProductCommentsPatchInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsPatchInput: {
+            /** Format: uuid */
+            expected_revision: string;
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            patches: components["schemas"]["ProductCommentsPatchInputDefinition12"][];
+        };
+        ProductCommentsPatchOutputDefinition0: components["schemas"]["ProductCommentsPatchOutputDefinition11"] | components["schemas"]["ProductCommentsPatchOutputDefinition18"] | components["schemas"]["ProductCommentsPatchOutputDefinition19"] | components["schemas"]["ProductCommentsPatchOutputDefinition20"] | components["schemas"]["ProductCommentsPatchOutputDefinition17"] | components["schemas"]["ProductCommentsPatchOutputDefinition14"] | components["schemas"]["ProductCommentsPatchOutputDefinition2"] | components["schemas"]["ProductCommentsPatchOutputDefinition15"];
+        ProductCommentsPatchOutputDefinition1: components["schemas"]["ProductCommentsPatchOutputDefinition4"] | components["schemas"]["ProductCommentsPatchOutputDefinition7"];
+        ProductCommentsPatchOutputDefinition2: {
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsPatchOutputDefinition3: {
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsPatchOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsPatchOutputDefinition5: components["schemas"]["ProductCommentsPatchOutputDefinition11"] | components["schemas"]["ProductCommentsPatchOutputDefinition18"] | components["schemas"]["ProductCommentsPatchOutputDefinition19"] | components["schemas"]["ProductCommentsPatchOutputDefinition20"] | components["schemas"]["ProductCommentsPatchOutputDefinition17"] | components["schemas"]["ProductCommentsPatchOutputDefinition14"] | components["schemas"]["ProductCommentsPatchOutputDefinition2"] | components["schemas"]["ProductCommentsPatchOutputDefinition3"] | components["schemas"]["ProductCommentsPatchOutputDefinition9"] | components["schemas"]["ProductCommentsPatchOutputDefinition10"] | components["schemas"]["ProductCommentsPatchOutputDefinition15"] | components["schemas"]["ProductCommentsPatchOutputDefinition13"] | components["schemas"]["ProductCommentsPatchOutputDefinition4"] | components["schemas"]["ProductCommentsPatchOutputDefinition7"];
+        ProductCommentsPatchOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsPatchOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsPatchOutputDefinition8: components["schemas"]["ProductCommentsPatchOutputDefinition16"] | components["schemas"]["ProductCommentsPatchOutputDefinition9"] | components["schemas"]["ProductCommentsPatchOutputDefinition10"];
+        ProductCommentsPatchOutputDefinition9: {
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsPatchOutputDefinition10: {
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsPatchOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsPatchOutputDefinition12: {
+            node: components["schemas"]["ProductCommentsPatchOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsPatchOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsPatchOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsPatchOutputDefinition13: {
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsPatchOutputDefinition14: {
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsPatchOutputDefinition15: {
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsPatchOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsPatchOutputDefinition17: {
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsPatchOutputDefinition18: {
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsPatchOutputDefinition19: {
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsPatchOutputDefinition20: {
+            children: components["schemas"]["ProductCommentsPatchOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsPatchOutput: {
+            comment: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                issue_id: string;
+                /** Format: uuid */
+                author_id: string;
+                /** @enum {string} */
+                created_channel: "api" | "mcp" | "panel" | "unknown";
+                /** Format: uuid */
+                revision: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                content: components["schemas"]["ProductCommentsPatchOutputDefinition0"][];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    replace: boolean;
+                    patch: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            };
+        };
+        ProductCommentsPatchError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCommentsPatchDomainInputDefinition0: components["schemas"]["ProductCommentsPatchDomainInputDefinition11"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition18"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition19"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition20"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition17"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition14"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition2"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition15"];
+        ProductCommentsPatchDomainInputDefinition1: components["schemas"]["ProductCommentsPatchDomainInputDefinition4"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition7"];
+        ProductCommentsPatchDomainInputDefinition2: {
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsPatchDomainInputDefinition3: {
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsPatchDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsPatchDomainInputDefinition5: components["schemas"]["ProductCommentsPatchDomainInputDefinition11"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition18"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition19"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition20"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition17"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition14"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition2"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition3"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition9"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition10"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition15"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition13"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition4"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition7"];
+        ProductCommentsPatchDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsPatchDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsPatchDomainInputDefinition8: components["schemas"]["ProductCommentsPatchDomainInputDefinition16"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition9"] | components["schemas"]["ProductCommentsPatchDomainInputDefinition10"];
+        ProductCommentsPatchDomainInputDefinition9: {
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsPatchDomainInputDefinition10: {
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsPatchDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsPatchDomainInputDefinition12: {
+            node: components["schemas"]["ProductCommentsPatchDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsPatchDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsPatchDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsPatchDomainInputDefinition13: {
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsPatchDomainInputDefinition14: {
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsPatchDomainInputDefinition15: {
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsPatchDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsPatchDomainInputDefinition17: {
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsPatchDomainInputDefinition18: {
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsPatchDomainInputDefinition19: {
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsPatchDomainInputDefinition20: {
+            children: components["schemas"]["ProductCommentsPatchDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsPatchDomainInput: {
+            /** Format: uuid */
+            comment_id: string;
+            /** Format: uuid */
+            expected_revision: string;
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            patches: components["schemas"]["ProductCommentsPatchDomainInputDefinition12"][];
+        };
+        ProductCommentsPatchEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCommentsPatchOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductCommentsReplaceInputDefinition0: components["schemas"]["ProductCommentsReplaceInputDefinition11"] | components["schemas"]["ProductCommentsReplaceInputDefinition18"] | components["schemas"]["ProductCommentsReplaceInputDefinition19"] | components["schemas"]["ProductCommentsReplaceInputDefinition20"] | components["schemas"]["ProductCommentsReplaceInputDefinition17"] | components["schemas"]["ProductCommentsReplaceInputDefinition14"] | components["schemas"]["ProductCommentsReplaceInputDefinition2"] | components["schemas"]["ProductCommentsReplaceInputDefinition15"];
+        ProductCommentsReplaceInputDefinition1: components["schemas"]["ProductCommentsReplaceInputDefinition4"] | components["schemas"]["ProductCommentsReplaceInputDefinition7"];
+        ProductCommentsReplaceInputDefinition2: {
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsReplaceInputDefinition3: {
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsReplaceInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsReplaceInputDefinition5: components["schemas"]["ProductCommentsReplaceInputDefinition11"] | components["schemas"]["ProductCommentsReplaceInputDefinition18"] | components["schemas"]["ProductCommentsReplaceInputDefinition19"] | components["schemas"]["ProductCommentsReplaceInputDefinition20"] | components["schemas"]["ProductCommentsReplaceInputDefinition17"] | components["schemas"]["ProductCommentsReplaceInputDefinition14"] | components["schemas"]["ProductCommentsReplaceInputDefinition2"] | components["schemas"]["ProductCommentsReplaceInputDefinition3"] | components["schemas"]["ProductCommentsReplaceInputDefinition9"] | components["schemas"]["ProductCommentsReplaceInputDefinition10"] | components["schemas"]["ProductCommentsReplaceInputDefinition15"] | components["schemas"]["ProductCommentsReplaceInputDefinition13"] | components["schemas"]["ProductCommentsReplaceInputDefinition4"] | components["schemas"]["ProductCommentsReplaceInputDefinition7"];
+        ProductCommentsReplaceInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsReplaceInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsReplaceInputDefinition8: components["schemas"]["ProductCommentsReplaceInputDefinition16"] | components["schemas"]["ProductCommentsReplaceInputDefinition9"] | components["schemas"]["ProductCommentsReplaceInputDefinition10"];
+        ProductCommentsReplaceInputDefinition9: {
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsReplaceInputDefinition10: {
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsReplaceInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsReplaceInputDefinition12: {
+            node: components["schemas"]["ProductCommentsReplaceInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsReplaceInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsReplaceInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsReplaceInputDefinition13: {
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsReplaceInputDefinition14: {
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsReplaceInputDefinition15: {
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsReplaceInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsReplaceInputDefinition17: {
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsReplaceInputDefinition18: {
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsReplaceInputDefinition19: {
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsReplaceInputDefinition20: {
+            children: components["schemas"]["ProductCommentsReplaceInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsReplaceInput: {
+            /** Format: uuid */
+            expected_revision: string;
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            content: components["schemas"]["ProductCommentsReplaceInputDefinition0"][];
+        };
+        ProductCommentsReplaceOutputDefinition0: components["schemas"]["ProductCommentsReplaceOutputDefinition11"] | components["schemas"]["ProductCommentsReplaceOutputDefinition18"] | components["schemas"]["ProductCommentsReplaceOutputDefinition19"] | components["schemas"]["ProductCommentsReplaceOutputDefinition20"] | components["schemas"]["ProductCommentsReplaceOutputDefinition17"] | components["schemas"]["ProductCommentsReplaceOutputDefinition14"] | components["schemas"]["ProductCommentsReplaceOutputDefinition2"] | components["schemas"]["ProductCommentsReplaceOutputDefinition15"];
+        ProductCommentsReplaceOutputDefinition1: components["schemas"]["ProductCommentsReplaceOutputDefinition4"] | components["schemas"]["ProductCommentsReplaceOutputDefinition7"];
+        ProductCommentsReplaceOutputDefinition2: {
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsReplaceOutputDefinition3: {
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsReplaceOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsReplaceOutputDefinition5: components["schemas"]["ProductCommentsReplaceOutputDefinition11"] | components["schemas"]["ProductCommentsReplaceOutputDefinition18"] | components["schemas"]["ProductCommentsReplaceOutputDefinition19"] | components["schemas"]["ProductCommentsReplaceOutputDefinition20"] | components["schemas"]["ProductCommentsReplaceOutputDefinition17"] | components["schemas"]["ProductCommentsReplaceOutputDefinition14"] | components["schemas"]["ProductCommentsReplaceOutputDefinition2"] | components["schemas"]["ProductCommentsReplaceOutputDefinition3"] | components["schemas"]["ProductCommentsReplaceOutputDefinition9"] | components["schemas"]["ProductCommentsReplaceOutputDefinition10"] | components["schemas"]["ProductCommentsReplaceOutputDefinition15"] | components["schemas"]["ProductCommentsReplaceOutputDefinition13"] | components["schemas"]["ProductCommentsReplaceOutputDefinition4"] | components["schemas"]["ProductCommentsReplaceOutputDefinition7"];
+        ProductCommentsReplaceOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsReplaceOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsReplaceOutputDefinition8: components["schemas"]["ProductCommentsReplaceOutputDefinition16"] | components["schemas"]["ProductCommentsReplaceOutputDefinition9"] | components["schemas"]["ProductCommentsReplaceOutputDefinition10"];
+        ProductCommentsReplaceOutputDefinition9: {
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsReplaceOutputDefinition10: {
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsReplaceOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsReplaceOutputDefinition12: {
+            node: components["schemas"]["ProductCommentsReplaceOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsReplaceOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsReplaceOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsReplaceOutputDefinition13: {
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsReplaceOutputDefinition14: {
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsReplaceOutputDefinition15: {
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsReplaceOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsReplaceOutputDefinition17: {
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsReplaceOutputDefinition18: {
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsReplaceOutputDefinition19: {
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsReplaceOutputDefinition20: {
+            children: components["schemas"]["ProductCommentsReplaceOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsReplaceOutput: {
+            comment: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                issue_id: string;
+                /** Format: uuid */
+                author_id: string;
+                /** @enum {string} */
+                created_channel: "api" | "mcp" | "panel" | "unknown";
+                /** Format: uuid */
+                revision: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                content: components["schemas"]["ProductCommentsReplaceOutputDefinition0"][];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    replace: boolean;
+                    patch: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            };
+        };
+        ProductCommentsReplaceError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCommentsReplaceDomainInputDefinition0: components["schemas"]["ProductCommentsReplaceDomainInputDefinition11"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition18"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition19"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition20"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition17"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition14"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition2"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition15"];
+        ProductCommentsReplaceDomainInputDefinition1: components["schemas"]["ProductCommentsReplaceDomainInputDefinition4"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition7"];
+        ProductCommentsReplaceDomainInputDefinition2: {
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsReplaceDomainInputDefinition3: {
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsReplaceDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsReplaceDomainInputDefinition5: components["schemas"]["ProductCommentsReplaceDomainInputDefinition11"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition18"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition19"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition20"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition17"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition14"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition2"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition3"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition9"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition10"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition15"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition13"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition4"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition7"];
+        ProductCommentsReplaceDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsReplaceDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsReplaceDomainInputDefinition8: components["schemas"]["ProductCommentsReplaceDomainInputDefinition16"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition9"] | components["schemas"]["ProductCommentsReplaceDomainInputDefinition10"];
+        ProductCommentsReplaceDomainInputDefinition9: {
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsReplaceDomainInputDefinition10: {
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsReplaceDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsReplaceDomainInputDefinition12: {
+            node: components["schemas"]["ProductCommentsReplaceDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsReplaceDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsReplaceDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsReplaceDomainInputDefinition13: {
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsReplaceDomainInputDefinition14: {
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsReplaceDomainInputDefinition15: {
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsReplaceDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsReplaceDomainInputDefinition17: {
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsReplaceDomainInputDefinition18: {
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsReplaceDomainInputDefinition19: {
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsReplaceDomainInputDefinition20: {
+            children: components["schemas"]["ProductCommentsReplaceDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsReplaceDomainInput: {
+            /** Format: uuid */
+            comment_id: string;
+            /** Format: uuid */
+            expected_revision: string;
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            content: components["schemas"]["ProductCommentsReplaceDomainInputDefinition0"][];
+        };
+        ProductCommentsReplaceEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCommentsReplaceOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductCommentsRestoreInputDefinition0: components["schemas"]["ProductCommentsRestoreInputDefinition11"] | components["schemas"]["ProductCommentsRestoreInputDefinition18"] | components["schemas"]["ProductCommentsRestoreInputDefinition19"] | components["schemas"]["ProductCommentsRestoreInputDefinition20"] | components["schemas"]["ProductCommentsRestoreInputDefinition17"] | components["schemas"]["ProductCommentsRestoreInputDefinition14"] | components["schemas"]["ProductCommentsRestoreInputDefinition2"] | components["schemas"]["ProductCommentsRestoreInputDefinition15"];
+        ProductCommentsRestoreInputDefinition1: components["schemas"]["ProductCommentsRestoreInputDefinition4"] | components["schemas"]["ProductCommentsRestoreInputDefinition7"];
+        ProductCommentsRestoreInputDefinition2: {
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsRestoreInputDefinition3: {
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsRestoreInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsRestoreInputDefinition5: components["schemas"]["ProductCommentsRestoreInputDefinition11"] | components["schemas"]["ProductCommentsRestoreInputDefinition18"] | components["schemas"]["ProductCommentsRestoreInputDefinition19"] | components["schemas"]["ProductCommentsRestoreInputDefinition20"] | components["schemas"]["ProductCommentsRestoreInputDefinition17"] | components["schemas"]["ProductCommentsRestoreInputDefinition14"] | components["schemas"]["ProductCommentsRestoreInputDefinition2"] | components["schemas"]["ProductCommentsRestoreInputDefinition3"] | components["schemas"]["ProductCommentsRestoreInputDefinition9"] | components["schemas"]["ProductCommentsRestoreInputDefinition10"] | components["schemas"]["ProductCommentsRestoreInputDefinition15"] | components["schemas"]["ProductCommentsRestoreInputDefinition13"] | components["schemas"]["ProductCommentsRestoreInputDefinition4"] | components["schemas"]["ProductCommentsRestoreInputDefinition7"];
+        ProductCommentsRestoreInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsRestoreInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsRestoreInputDefinition8: components["schemas"]["ProductCommentsRestoreInputDefinition16"] | components["schemas"]["ProductCommentsRestoreInputDefinition9"] | components["schemas"]["ProductCommentsRestoreInputDefinition10"];
+        ProductCommentsRestoreInputDefinition9: {
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsRestoreInputDefinition10: {
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsRestoreInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsRestoreInputDefinition12: {
+            node: components["schemas"]["ProductCommentsRestoreInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsRestoreInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsRestoreInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsRestoreInputDefinition13: {
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsRestoreInputDefinition14: {
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsRestoreInputDefinition15: {
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsRestoreInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsRestoreInputDefinition17: {
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsRestoreInputDefinition18: {
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsRestoreInputDefinition19: {
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsRestoreInputDefinition20: {
+            children: components["schemas"]["ProductCommentsRestoreInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsRestoreInput: {
+            /** Format: uuid */
+            expected_revision: string;
+            /** Format: uuid */
+            revision_id: string;
+        };
+        ProductCommentsRestoreOutputDefinition0: components["schemas"]["ProductCommentsRestoreOutputDefinition11"] | components["schemas"]["ProductCommentsRestoreOutputDefinition18"] | components["schemas"]["ProductCommentsRestoreOutputDefinition19"] | components["schemas"]["ProductCommentsRestoreOutputDefinition20"] | components["schemas"]["ProductCommentsRestoreOutputDefinition17"] | components["schemas"]["ProductCommentsRestoreOutputDefinition14"] | components["schemas"]["ProductCommentsRestoreOutputDefinition2"] | components["schemas"]["ProductCommentsRestoreOutputDefinition15"];
+        ProductCommentsRestoreOutputDefinition1: components["schemas"]["ProductCommentsRestoreOutputDefinition4"] | components["schemas"]["ProductCommentsRestoreOutputDefinition7"];
+        ProductCommentsRestoreOutputDefinition2: {
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsRestoreOutputDefinition3: {
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsRestoreOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsRestoreOutputDefinition5: components["schemas"]["ProductCommentsRestoreOutputDefinition11"] | components["schemas"]["ProductCommentsRestoreOutputDefinition18"] | components["schemas"]["ProductCommentsRestoreOutputDefinition19"] | components["schemas"]["ProductCommentsRestoreOutputDefinition20"] | components["schemas"]["ProductCommentsRestoreOutputDefinition17"] | components["schemas"]["ProductCommentsRestoreOutputDefinition14"] | components["schemas"]["ProductCommentsRestoreOutputDefinition2"] | components["schemas"]["ProductCommentsRestoreOutputDefinition3"] | components["schemas"]["ProductCommentsRestoreOutputDefinition9"] | components["schemas"]["ProductCommentsRestoreOutputDefinition10"] | components["schemas"]["ProductCommentsRestoreOutputDefinition15"] | components["schemas"]["ProductCommentsRestoreOutputDefinition13"] | components["schemas"]["ProductCommentsRestoreOutputDefinition4"] | components["schemas"]["ProductCommentsRestoreOutputDefinition7"];
+        ProductCommentsRestoreOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsRestoreOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsRestoreOutputDefinition8: components["schemas"]["ProductCommentsRestoreOutputDefinition16"] | components["schemas"]["ProductCommentsRestoreOutputDefinition9"] | components["schemas"]["ProductCommentsRestoreOutputDefinition10"];
+        ProductCommentsRestoreOutputDefinition9: {
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsRestoreOutputDefinition10: {
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsRestoreOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsRestoreOutputDefinition12: {
+            node: components["schemas"]["ProductCommentsRestoreOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsRestoreOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsRestoreOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsRestoreOutputDefinition13: {
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsRestoreOutputDefinition14: {
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsRestoreOutputDefinition15: {
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsRestoreOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsRestoreOutputDefinition17: {
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsRestoreOutputDefinition18: {
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsRestoreOutputDefinition19: {
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsRestoreOutputDefinition20: {
+            children: components["schemas"]["ProductCommentsRestoreOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsRestoreOutput: {
+            comment: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                issue_id: string;
+                /** Format: uuid */
+                author_id: string;
+                /** @enum {string} */
+                created_channel: "api" | "mcp" | "panel" | "unknown";
+                /** Format: uuid */
+                revision: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                content: components["schemas"]["ProductCommentsRestoreOutputDefinition0"][];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    replace: boolean;
+                    patch: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            };
+        };
+        ProductCommentsRestoreError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCommentsRestoreDomainInputDefinition0: components["schemas"]["ProductCommentsRestoreDomainInputDefinition11"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition18"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition19"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition20"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition17"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition14"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition2"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition15"];
+        ProductCommentsRestoreDomainInputDefinition1: components["schemas"]["ProductCommentsRestoreDomainInputDefinition4"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition7"];
+        ProductCommentsRestoreDomainInputDefinition2: {
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsRestoreDomainInputDefinition3: {
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsRestoreDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsRestoreDomainInputDefinition5: components["schemas"]["ProductCommentsRestoreDomainInputDefinition11"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition18"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition19"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition20"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition17"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition14"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition2"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition3"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition9"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition10"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition15"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition13"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition4"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition7"];
+        ProductCommentsRestoreDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsRestoreDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsRestoreDomainInputDefinition8: components["schemas"]["ProductCommentsRestoreDomainInputDefinition16"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition9"] | components["schemas"]["ProductCommentsRestoreDomainInputDefinition10"];
+        ProductCommentsRestoreDomainInputDefinition9: {
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsRestoreDomainInputDefinition10: {
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsRestoreDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsRestoreDomainInputDefinition12: {
+            node: components["schemas"]["ProductCommentsRestoreDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsRestoreDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsRestoreDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsRestoreDomainInputDefinition13: {
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsRestoreDomainInputDefinition14: {
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsRestoreDomainInputDefinition15: {
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsRestoreDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsRestoreDomainInputDefinition17: {
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsRestoreDomainInputDefinition18: {
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsRestoreDomainInputDefinition19: {
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsRestoreDomainInputDefinition20: {
+            children: components["schemas"]["ProductCommentsRestoreDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsRestoreDomainInput: {
+            /** Format: uuid */
+            comment_id: string;
+            /** Format: uuid */
+            expected_revision: string;
+            /** Format: uuid */
+            revision_id: string;
+        };
+        ProductCommentsRestoreEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCommentsRestoreOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductCommentsRevisionsOutputDefinition0: components["schemas"]["ProductCommentsRevisionsOutputDefinition11"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition18"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition19"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition20"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition17"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition14"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition2"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition15"];
+        ProductCommentsRevisionsOutputDefinition1: components["schemas"]["ProductCommentsRevisionsOutputDefinition4"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition7"];
+        ProductCommentsRevisionsOutputDefinition2: {
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsRevisionsOutputDefinition3: {
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsRevisionsOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsRevisionsOutputDefinition5: components["schemas"]["ProductCommentsRevisionsOutputDefinition11"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition18"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition19"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition20"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition17"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition14"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition2"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition3"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition9"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition10"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition15"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition13"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition4"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition7"];
+        ProductCommentsRevisionsOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsRevisionsOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsRevisionsOutputDefinition8: components["schemas"]["ProductCommentsRevisionsOutputDefinition16"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition9"] | components["schemas"]["ProductCommentsRevisionsOutputDefinition10"];
+        ProductCommentsRevisionsOutputDefinition9: {
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsRevisionsOutputDefinition10: {
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsRevisionsOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsRevisionsOutputDefinition12: {
+            node: components["schemas"]["ProductCommentsRevisionsOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsRevisionsOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsRevisionsOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsRevisionsOutputDefinition13: {
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsRevisionsOutputDefinition14: {
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsRevisionsOutputDefinition15: {
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsRevisionsOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsRevisionsOutputDefinition17: {
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsRevisionsOutputDefinition18: {
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsRevisionsOutputDefinition19: {
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsRevisionsOutputDefinition20: {
+            children: components["schemas"]["ProductCommentsRevisionsOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsRevisionsOutput: {
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                comment_id: string;
+                parent_revision: string | null;
+                source_revision: string | null;
+                /** @enum {string} */
+                kind: "create" | "replace" | "patch" | "delete" | "restore";
+                /** Format: uuid */
+                actor_id: string;
+                /** @enum {string} */
+                channel: "api" | "mcp" | "panel" | "unknown";
+                deleted: boolean;
+                /** Format: date-time */
+                occurred_at: string;
+                capabilities: {
+                    restore: boolean;
+                };
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductCommentsRevisionsError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductCommentsRevisionsDomainInputDefinition0: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition11"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition18"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition19"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition20"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition17"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition14"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition2"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition15"];
+        ProductCommentsRevisionsDomainInputDefinition1: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition4"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition7"];
+        ProductCommentsRevisionsDomainInputDefinition2: {
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductCommentsRevisionsDomainInputDefinition3: {
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductCommentsRevisionsDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductCommentsRevisionsDomainInputDefinition5: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition11"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition18"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition19"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition20"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition17"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition14"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition2"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition3"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition9"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition10"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition15"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition13"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition4"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition7"];
+        ProductCommentsRevisionsDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductCommentsRevisionsDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductCommentsRevisionsDomainInputDefinition8: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition16"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition9"] | components["schemas"]["ProductCommentsRevisionsDomainInputDefinition10"];
+        ProductCommentsRevisionsDomainInputDefinition9: {
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductCommentsRevisionsDomainInputDefinition10: {
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductCommentsRevisionsDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductCommentsRevisionsDomainInputDefinition12: {
+            node: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductCommentsRevisionsDomainInputDefinition13: {
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductCommentsRevisionsDomainInputDefinition14: {
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductCommentsRevisionsDomainInputDefinition15: {
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductCommentsRevisionsDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductCommentsRevisionsDomainInputDefinition17: {
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductCommentsRevisionsDomainInputDefinition18: {
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductCommentsRevisionsDomainInputDefinition19: {
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductCommentsRevisionsDomainInputDefinition20: {
+            children: components["schemas"]["ProductCommentsRevisionsDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductCommentsRevisionsDomainInput: {
+            /** Format: uuid */
+            comment_id: string;
+            limit: number;
+            after: string;
+        };
+        ProductCommentsRevisionsEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductCommentsRevisionsOutput"];
             meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductCredentialsCreateInput: {
@@ -11828,6 +18740,728 @@ export interface components {
             data: components["schemas"]["ProductIssueRelationsUnlinkRelatedOutput"];
             meta: components["schemas"]["ProductResponseMeta"];
         };
+        ProductIssueTimelineListOutputDefinition0: components["schemas"]["ProductIssueTimelineListOutputDefinition11"] | components["schemas"]["ProductIssueTimelineListOutputDefinition18"] | components["schemas"]["ProductIssueTimelineListOutputDefinition19"] | components["schemas"]["ProductIssueTimelineListOutputDefinition20"] | components["schemas"]["ProductIssueTimelineListOutputDefinition17"] | components["schemas"]["ProductIssueTimelineListOutputDefinition14"] | components["schemas"]["ProductIssueTimelineListOutputDefinition2"] | components["schemas"]["ProductIssueTimelineListOutputDefinition15"];
+        ProductIssueTimelineListOutputDefinition1: components["schemas"]["ProductIssueTimelineListOutputDefinition4"] | components["schemas"]["ProductIssueTimelineListOutputDefinition7"];
+        ProductIssueTimelineListOutputDefinition2: {
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductIssueTimelineListOutputDefinition3: {
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductIssueTimelineListOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductIssueTimelineListOutputDefinition5: components["schemas"]["ProductIssueTimelineListOutputDefinition11"] | components["schemas"]["ProductIssueTimelineListOutputDefinition18"] | components["schemas"]["ProductIssueTimelineListOutputDefinition19"] | components["schemas"]["ProductIssueTimelineListOutputDefinition20"] | components["schemas"]["ProductIssueTimelineListOutputDefinition17"] | components["schemas"]["ProductIssueTimelineListOutputDefinition14"] | components["schemas"]["ProductIssueTimelineListOutputDefinition2"] | components["schemas"]["ProductIssueTimelineListOutputDefinition3"] | components["schemas"]["ProductIssueTimelineListOutputDefinition9"] | components["schemas"]["ProductIssueTimelineListOutputDefinition10"] | components["schemas"]["ProductIssueTimelineListOutputDefinition15"] | components["schemas"]["ProductIssueTimelineListOutputDefinition13"] | components["schemas"]["ProductIssueTimelineListOutputDefinition4"] | components["schemas"]["ProductIssueTimelineListOutputDefinition7"];
+        ProductIssueTimelineListOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductIssueTimelineListOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductIssueTimelineListOutputDefinition8: components["schemas"]["ProductIssueTimelineListOutputDefinition16"] | components["schemas"]["ProductIssueTimelineListOutputDefinition9"] | components["schemas"]["ProductIssueTimelineListOutputDefinition10"];
+        ProductIssueTimelineListOutputDefinition9: {
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductIssueTimelineListOutputDefinition10: {
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductIssueTimelineListOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductIssueTimelineListOutputDefinition12: {
+            node: components["schemas"]["ProductIssueTimelineListOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductIssueTimelineListOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductIssueTimelineListOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductIssueTimelineListOutputDefinition13: {
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductIssueTimelineListOutputDefinition14: {
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductIssueTimelineListOutputDefinition15: {
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductIssueTimelineListOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductIssueTimelineListOutputDefinition17: {
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductIssueTimelineListOutputDefinition18: {
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductIssueTimelineListOutputDefinition19: {
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductIssueTimelineListOutputDefinition20: {
+            children: components["schemas"]["ProductIssueTimelineListOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductIssueTimelineListOutput: {
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                issue_id: string;
+                event_name: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** @enum {string} */
+                channel: "api" | "mcp" | "panel" | "unknown";
+                name: string;
+                version: number;
+                /** Format: date-time */
+                occurred_at: string;
+                detail: {
+                    attachment: null;
+                    comment: null;
+                    document: null;
+                    issue: {
+                        snapshot: {
+                            archived: boolean;
+                            assignee_id: string | null;
+                            /** Format: date-time */
+                            created_at: string;
+                            effort: number | null;
+                            /** Format: uuid */
+                            id: string;
+                            identifier: string;
+                            label_ids: string[];
+                            milestone_id: string | null;
+                            number: number;
+                            /** @enum {string} */
+                            priority: "high" | "low" | "none" | "normal" | "urgent";
+                            project_id: string | null;
+                            start_date: string | null;
+                            /** Format: uuid */
+                            status_id: string;
+                            target_date: string | null;
+                            /** Format: uuid */
+                            team_id: string;
+                            title: string;
+                            /** Format: date-time */
+                            updated_at: string;
+                            version: number;
+                            /** Format: uuid */
+                            workspace_id: string;
+                        };
+                    };
+                    /** @constant */
+                    kind: "issue";
+                    legacy: null;
+                    relation: null;
+                } | {
+                    attachment: null;
+                    comment: null;
+                    document: {
+                        /** Format: uuid */
+                        document_id: string;
+                        /** Format: uuid */
+                        revision: string;
+                        /** @enum {string} */
+                        kind: "create" | "replace" | "patch" | "restore";
+                        /** @constant */
+                        schema_version: 1;
+                    };
+                    issue: null;
+                    /** @constant */
+                    kind: "document";
+                    legacy: null;
+                    relation: null;
+                } | {
+                    attachment: null;
+                    comment: {
+                        /** Format: uuid */
+                        comment_id: string;
+                        /** Format: uuid */
+                        revision: string;
+                        /** @enum {string} */
+                        kind: "create" | "replace" | "patch" | "delete" | "restore";
+                        deleted: boolean;
+                        /** Format: uuid */
+                        author_id: string;
+                        /** @enum {string} */
+                        created_channel: "api" | "mcp" | "panel" | "unknown";
+                    };
+                    document: null;
+                    issue: null;
+                    /** @constant */
+                    kind: "comment";
+                    legacy: null;
+                    relation: null;
+                } | {
+                    attachment: null;
+                    comment: null;
+                    document: null;
+                    issue: null;
+                    /** @constant */
+                    kind: "relation";
+                    legacy: null;
+                    relation: {
+                        snapshot: {
+                            affected_issues: {
+                                active: boolean;
+                                archived: boolean;
+                                /** Format: uuid */
+                                id: string;
+                                identifier: string;
+                                relation_version: number;
+                                /** Format: uuid */
+                                team_id: string;
+                                title: string;
+                                /** Format: uuid */
+                                workspace_id: string;
+                            }[];
+                            changed_relations: {
+                                /** Format: date-time */
+                                created_at: string;
+                                /** Format: uuid */
+                                id: string;
+                                /** @enum {string} */
+                                kind: "parent" | "duplicate" | "blocks" | "related";
+                                removed: boolean;
+                                removed_at: null | string;
+                                source: {
+                                    active: boolean;
+                                    archived: boolean;
+                                    /** Format: uuid */
+                                    id: string;
+                                    identifier: string;
+                                    relation_version: number;
+                                    /** Format: uuid */
+                                    team_id: string;
+                                    title: string;
+                                    /** Format: uuid */
+                                    workspace_id: string;
+                                };
+                                target: {
+                                    active: boolean;
+                                    archived: boolean;
+                                    /** Format: uuid */
+                                    id: string;
+                                    identifier: string;
+                                    relation_version: number;
+                                    /** Format: uuid */
+                                    team_id: string;
+                                    title: string;
+                                    /** Format: uuid */
+                                    workspace_id: string;
+                                };
+                                version: number;
+                                /** Format: uuid */
+                                workspace_id: string;
+                            }[];
+                            state: {
+                                canonical_duplicate: null | {
+                                    active: boolean;
+                                    archived: boolean;
+                                    /** Format: uuid */
+                                    id: string;
+                                    identifier: string;
+                                    relation_version: number;
+                                    /** Format: uuid */
+                                    team_id: string;
+                                    title: string;
+                                    /** Format: uuid */
+                                    workspace_id: string;
+                                };
+                                capabilities: {
+                                    link: boolean;
+                                    unlink: boolean;
+                                };
+                                duplicate_of: null | {
+                                    active: boolean;
+                                    archived: boolean;
+                                    /** Format: uuid */
+                                    id: string;
+                                    identifier: string;
+                                    relation_version: number;
+                                    /** Format: uuid */
+                                    team_id: string;
+                                    title: string;
+                                    /** Format: uuid */
+                                    workspace_id: string;
+                                };
+                                issue: {
+                                    active: boolean;
+                                    archived: boolean;
+                                    /** Format: uuid */
+                                    id: string;
+                                    identifier: string;
+                                    relation_version: number;
+                                    /** Format: uuid */
+                                    team_id: string;
+                                    title: string;
+                                    /** Format: uuid */
+                                    workspace_id: string;
+                                };
+                                parent: null | {
+                                    active: boolean;
+                                    archived: boolean;
+                                    /** Format: uuid */
+                                    id: string;
+                                    identifier: string;
+                                    relation_version: number;
+                                    /** Format: uuid */
+                                    team_id: string;
+                                    title: string;
+                                    /** Format: uuid */
+                                    workspace_id: string;
+                                };
+                            };
+                        };
+                    };
+                } | {
+                    attachment: {
+                        /** Format: uuid */
+                        attachment_id: string;
+                        /** Format: uuid */
+                        file_revision: string;
+                        version: number;
+                        filename: string;
+                        size: number;
+                        sha256: string;
+                        removed: boolean;
+                    };
+                    comment: null;
+                    document: null;
+                    issue: null;
+                    /** @constant */
+                    kind: "attachment";
+                    legacy: null;
+                    relation: null;
+                } | {
+                    attachment: null;
+                    comment: null;
+                    document: null;
+                    issue: null;
+                    /** @constant */
+                    kind: "legacy";
+                    legacy: {
+                        resource_type: string;
+                        resource_id: string | null;
+                    };
+                    relation: null;
+                };
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductIssueTimelineListError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductIssueTimelineListDomainInputDefinition0: components["schemas"]["ProductIssueTimelineListDomainInputDefinition11"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition18"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition19"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition20"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition17"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition14"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition2"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition15"];
+        ProductIssueTimelineListDomainInputDefinition1: components["schemas"]["ProductIssueTimelineListDomainInputDefinition4"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition7"];
+        ProductIssueTimelineListDomainInputDefinition2: {
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductIssueTimelineListDomainInputDefinition3: {
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductIssueTimelineListDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductIssueTimelineListDomainInputDefinition5: components["schemas"]["ProductIssueTimelineListDomainInputDefinition11"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition18"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition19"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition20"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition17"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition14"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition2"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition3"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition9"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition10"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition15"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition13"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition4"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition7"];
+        ProductIssueTimelineListDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductIssueTimelineListDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductIssueTimelineListDomainInputDefinition8: components["schemas"]["ProductIssueTimelineListDomainInputDefinition16"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition9"] | components["schemas"]["ProductIssueTimelineListDomainInputDefinition10"];
+        ProductIssueTimelineListDomainInputDefinition9: {
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductIssueTimelineListDomainInputDefinition10: {
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductIssueTimelineListDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductIssueTimelineListDomainInputDefinition12: {
+            node: components["schemas"]["ProductIssueTimelineListDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductIssueTimelineListDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductIssueTimelineListDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductIssueTimelineListDomainInputDefinition13: {
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductIssueTimelineListDomainInputDefinition14: {
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductIssueTimelineListDomainInputDefinition15: {
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductIssueTimelineListDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductIssueTimelineListDomainInputDefinition17: {
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductIssueTimelineListDomainInputDefinition18: {
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductIssueTimelineListDomainInputDefinition19: {
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductIssueTimelineListDomainInputDefinition20: {
+            children: components["schemas"]["ProductIssueTimelineListDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductIssueTimelineListDomainInput: {
+            /** Format: uuid */
+            issue_id: string;
+            limit: number;
+            after: string;
+        };
+        ProductIssueTimelineListEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductIssueTimelineListOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
         ProductIssuesArchiveInput: {
             expected_version: number;
         };
@@ -18678,6 +26312,1156 @@ export interface operations {
             };
         };
     };
+    comments_backlinks: {
+        parameters: {
+            query?: {
+                target_kind?: "issue" | "project" | "user";
+                target_id?: string;
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCommentsBacklinksEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    comments_list: {
+        parameters: {
+            query?: {
+                include_deleted?: boolean;
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                issueID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCommentsListEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    comments_create: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                issueID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductCommentsCreateInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCommentsCreateEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    comments_delete: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                commentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductCommentsDeleteInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCommentsDeleteEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    comments_export: {
+        parameters: {
+            query?: {
+                format?: "html" | "json" | "markdown";
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                commentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCommentsExportEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    comments_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+                commentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCommentsGetEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    comments_get_revision: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+                commentID: string;
+                revisionID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCommentsGetRevisionEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    comments_patch: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                commentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductCommentsPatchInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCommentsPatchEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    comments_replace: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                commentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductCommentsReplaceInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCommentsReplaceEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    comments_restore: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                commentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductCommentsRestoreInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCommentsRestoreEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    comments_revisions: {
+        parameters: {
+            query?: {
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                commentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCommentsRevisionsEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
     credentials_list: {
         parameters: {
             query?: {
@@ -21081,6 +29865,105 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    issue_timeline_list: {
+        parameters: {
+            query?: {
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                issueID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductIssueTimelineListEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
                 };
             };
             /** @description Application operation failed. */

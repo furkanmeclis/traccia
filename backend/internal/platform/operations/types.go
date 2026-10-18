@@ -80,9 +80,12 @@ type Authorizer interface {
 // Scope is constructed by Registry after authorization. Private fields prevent
 // transport code from directly substituting request fields for verified scope.
 type Scope struct {
+	channel     Channel
 	actorID     uuid.UUID
 	workspaceID uuid.UUID
 }
+
+func (s Scope) Channel() Channel { return s.channel }
 
 func (s Scope) ActorID() uuid.UUID     { return s.actorID }
 func (s Scope) WorkspaceID() uuid.UUID { return s.workspaceID }

@@ -18,6 +18,11 @@ import { useLocale } from "@/providers/locale-provider";
 import { useWorkspaceActivity } from "./queries";
 
 const activityActionKeys: Record<string, string> = {
+  "comments.created": "comments.activityCreated",
+  "comments.replaced": "comments.activityReplaced",
+  "comments.patched": "comments.activityPatched",
+  "comments.deleted": "comments.activityDeleted",
+  "comments.restored": "comments.activityRestored",
   ...relationActivityKeys,
   ...attachmentActivityKeys,
   "documents.created": "documents.activityCreated",
