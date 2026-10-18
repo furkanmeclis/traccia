@@ -175,7 +175,7 @@ Ekip kodları, sayaçlar, sıralı workflow ve ortak/ekip etiketlerini geliştir
 
 ### T07 Proje kilometre taşı ve doküman düzenini ekle
 
-Status: In Progress. Source document resources manage links and metadata; versioned Plate documents remain T10/T47.
+Status: Done. Source document resources manage links and metadata; versioned Plate documents remain T10/T47.
 
 Phase 2; depends on: T06.
 
@@ -559,6 +559,8 @@ Phase 5; depends on: T41, T04, T11, T13, T18.
 - Yeni kalıcı işlemler ortak katalog, API/MCP parity ve Türkçe/İngilizce doğrulama kapsamına dahil
 
 ### T43 Ürün ve ortam kataloğunu geliştir
+
+Status: In Progress. Repository and deployment fields are reference metadata; connected GitHub and deployment status remain T23/T50.
 
 Phase 2; depends on: T41, T07, T03.
 

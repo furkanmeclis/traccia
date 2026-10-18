@@ -81,7 +81,7 @@ func isolatedDatabase(t *testing.T) *pgxpool.Pool {
 		}
 	}
 	for _, suffix := range []string{"down", "up"} {
-		raw, e := os.ReadFile("../../../migrations/000035_projects_milestones_resources." + suffix + ".sql")
+		raw, e := os.ReadFile("../../../migrations/000036_product_catalog." + suffix + ".sql")
 		if e != nil {
 			t.Fatal(e)
 		}

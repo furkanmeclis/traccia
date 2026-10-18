@@ -93,6 +93,8 @@ jobs:
           git diff --exit-code -- src/generated/api.d.ts
       - name: Project operation state regressions
         run: node --test src/features/projects/operation-state.test.mjs
+      - name: Catalog operation, snapshot and Unicode regressions
+        run: node --test src/features/products/*.test.mjs src/lib/text-limits.test.mjs
       - name: Typecheck
         run: pnpm typecheck
       - name: Lint

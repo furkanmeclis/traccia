@@ -24,6 +24,9 @@ export const routes = {
     },
   },
   product: {
+    products: (workspaceId: string) => `/w/${workspaceId}/products`,
+    product: (workspaceId: string, productId: string) =>
+      `/w/${workspaceId}/products/${productId}`,
     projects: (workspaceId: string) => `/w/${workspaceId}/projects`,
     project: (workspaceId: string, projectId: string) =>
       `/w/${workspaceId}/projects/${projectId}`,

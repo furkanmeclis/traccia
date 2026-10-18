@@ -31,5 +31,7 @@
   "theme_dark": "Koyu",
   "theme_system": "Sistem",
   "no_results": "Sonuç bulunamadı",
-  "copy": "Kopyala"
+  "copy": "Kopyala",
+  "max_characters": "En fazla {{limit}} karakter girin.",
+  "max_bytes": "En fazla {{limit}} UTF-8 baytı girin."
 }

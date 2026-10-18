@@ -74,7 +74,7 @@ func isolatedDatabase(t *testing.T) *pgxpool.Pool {
 	}
 	// Round-trip latest migration in a fresh private schema.
 	for _, suffix := range []string{"down", "up"} {
-		raw, err := os.ReadFile("../../../migrations/000035_projects_milestones_resources." + suffix + ".sql")
+		raw, err := os.ReadFile("../../../migrations/000036_product_catalog." + suffix + ".sql")
 		if err != nil {
 			t.Fatal(err)
 		}

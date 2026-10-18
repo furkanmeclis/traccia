@@ -31,5 +31,7 @@
   "theme_dark": "Dark",
   "theme_system": "System",
   "no_results": "No results found",
-  "copy": "Copy"
+  "copy": "Copy",
+  "max_characters": "Enter at most {{limit}} characters.",
+  "max_bytes": "Enter at most {{limit}} UTF-8 bytes."
 }

@@ -16,6 +16,19 @@ import { useLocale } from "@/providers/locale-provider";
 import { useWorkspaceActivity } from "./queries";
 
 const activityActionKeys: Record<string, string> = {
+  "products.created": "products.activity_products_created",
+  "products.updated": "products.activity_products_updated",
+  "products.archived": "products.activity_products_archived",
+  "products.restored": "products.activity_products_restored",
+  "product_environments.created":
+    "products.activity_product_environments_created",
+  "product_environments.updated":
+    "products.activity_product_environments_updated",
+  "product_environments.archived":
+    "products.activity_product_environments_archived",
+  "product_environments.restored":
+    "products.activity_product_environments_restored",
+  "product_projects.updated": "products.activity_product_projects_updated",
   "projects.created": "projects.activity_projects_created",
   "projects.updated": "projects.activity_projects_updated",
   "projects.archived": "projects.activity_projects_archived",
@@ -138,6 +151,23 @@ export function WorkspaceActivity({ workspaceId }: { workspaceId: string }) {
                     { name: item.name },
                   )}
                 </p>
+                {item.product_id &&
+                  [
+                    "products",
+                    "product_environments",
+                    "product_projects",
+                  ].includes(item.resource_type) && (
+                    <Link
+                      className="text-primary text-xs underline underline-offset-4"
+                      href={`/w/${workspaceId}/products/${encodeURIComponent(item.product_id)}${item.environment_id ? "#environments" : ""}`}
+                    >
+                      {t(
+                        item.environment_id
+                          ? "products.view_environment"
+                          : "products.view_product",
+                      )}
+                    </Link>
+                  )}
                 {item.project_id &&
                   [
                     "projects",

@@ -38,5 +38,17 @@
   "resources.platform.integrations.apple": "Apple integration",
   "resources.auth.step_up": "Step-up verification",
   "resources.auth.account": "Account",
-  "resources.platform.organizations": "Organizations"
+  "resources.platform.organizations": "Organizations",
+  "resources.products": "Product",
+  "actions.products.created": "Product created",
+  "actions.products.updated": "Product updated",
+  "actions.products.archived": "Product archived",
+  "actions.products.restored": "Product restored",
+  "resources.product_environments": "Environment",
+  "actions.product_environments.created": "Environment created",
+  "actions.product_environments.updated": "Environment updated",
+  "actions.product_environments.archived": "Environment archived",
+  "actions.product_environments.restored": "Environment restored",
+  "resources.product_projects": "Product project associations",
+  "actions.product_projects.updated": "Product project associations updated"
 }

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { TextLimitInput as Input } from "@/components/ui/text-limit-input";
 import { Label } from "@/components/ui/label";
 import { useWorkspace } from "@/features/workspaces/queries";
 import { useLocale } from "@/providers/locale-provider";
@@ -65,7 +65,7 @@ function TeamSettings({
         <Input
           id="edit-team-name"
           required
-          maxLength={100}
+          maxCodePoints={100}
           value={draft.name}
           disabled={update.isPending || archive.isPending}
           onChange={(e) => setDraft({ ...draft, name: e.target.value })}

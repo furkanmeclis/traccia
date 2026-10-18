@@ -1,8 +1,8 @@
 "use client";
 import { useId, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { TextLimitInput as Input } from "@/components/ui/text-limit-input";
+import { TextLimitTextarea as Textarea } from "@/components/ui/text-limit-input";
 import { Label } from "@/components/ui/label";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -114,7 +114,7 @@ export function ProjectForm({
           <Input
             id={`${id}-name`}
             required
-            maxLength={100}
+            maxCodePoints={100}
             value={draft.name}
             onChange={(event) =>
               setDraft({ ...draft, name: event.target.value })
@@ -125,7 +125,7 @@ export function ProjectForm({
           <Label htmlFor={`${id}-summary`}>{t("projects.summary")}</Label>
           <Textarea
             id={`${id}-summary`}
-            maxLength={2000}
+            maxCodePoints={2000}
             value={draft.summary}
             onChange={(event) =>
               setDraft({ ...draft, summary: event.target.value })

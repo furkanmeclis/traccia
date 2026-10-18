@@ -101,17 +101,19 @@ type RevokeOutput struct {
 }
 
 type Activity struct {
-	ProjectID    string    `json:"project_id"`
-	ResourceType string    `json:"resource_type"`
-	ResourceID   uuid.UUID `json:"resource_id"`
-	TeamID       string    `json:"team_id"`
-	ID           uuid.UUID `json:"id"`
-	EventName    string    `json:"event_name"`
-	ActorID      uuid.UUID `json:"actor_id"`
-	WorkspaceID  uuid.UUID `json:"workspace_id"`
-	Name         string    `json:"name"`
-	Version      int64     `json:"version"`
-	OccurredAt   time.Time `json:"occurred_at"`
+	ProductID     string    `json:"product_id"`
+	EnvironmentID string    `json:"environment_id"`
+	ProjectID     string    `json:"project_id"`
+	ResourceType  string    `json:"resource_type"`
+	ResourceID    uuid.UUID `json:"resource_id"`
+	TeamID        string    `json:"team_id"`
+	ID            uuid.UUID `json:"id"`
+	EventName     string    `json:"event_name"`
+	ActorID       uuid.UUID `json:"actor_id"`
+	WorkspaceID   uuid.UUID `json:"workspace_id"`
+	Name          string    `json:"name"`
+	Version       int64     `json:"version"`
+	OccurredAt    time.Time `json:"occurred_at"`
 }
 type ActivityList struct {
 	Items      []Activity `json:"items"`

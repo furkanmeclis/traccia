@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { TextLimitInput as Input } from "@/components/ui/text-limit-input";
 import { Label } from "@/components/ui/label";
 import { useLocale } from "@/providers/locale-provider";
 import { useWorkspace } from "@/features/workspaces/queries";
@@ -134,7 +134,7 @@ export function TeamList({ workspaceId }: { workspaceId: string }) {
                     value={name}
                     onChange={(event) => setName(event.target.value)}
                     required
-                    maxLength={100}
+                    maxCodePoints={100}
                     disabled={create.isPending}
                   />
                 </div>

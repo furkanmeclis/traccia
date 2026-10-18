@@ -7,7 +7,7 @@ import { ArrowRight, Layers3, Plus } from "lucide-react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { TextLimitInput as Input } from "@/components/ui/text-limit-input";
 import { Label } from "@/components/ui/label";
 import {
   Dialog,
@@ -174,7 +174,7 @@ export function WorkspaceList() {
                 autoFocus
                 disabled={create.isPending}
                 required
-                maxLength={100}
+                maxCodePoints={100}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />

@@ -54,7 +54,7 @@ func (r *Postgres) projectActivity(ctx context.Context, ev events.Event) error {
 		return errors.New("activity projection requires delivery transaction")
 	}
 	switch ev.Name {
-	case "projects.created", "projects.updated", "projects.archived", "projects.restored", "project_teams.updated", "project_milestones.created", "project_milestones.updated", "project_milestones.archived", "project_milestones.restored", "project_resources.created", "project_resources.updated", "project_resources.archived", "project_resources.restored", "workspaces.created", "workspaces.updated", "teams.created", "teams.updated", "teams.archived", "workflow_statuses.created", "workflow_statuses.updated", "workflow_statuses.archived", "workflow_statuses.reordered", "labels.created", "labels.updated", "labels.archived":
+	case "products.created", "products.updated", "products.archived", "products.restored", "product_projects.updated", "product_environments.created", "product_environments.updated", "product_environments.archived", "product_environments.restored", "projects.created", "projects.updated", "projects.archived", "projects.restored", "project_teams.updated", "project_milestones.created", "project_milestones.updated", "project_milestones.archived", "project_milestones.restored", "project_resources.created", "project_resources.updated", "project_resources.archived", "project_resources.restored", "workspaces.created", "workspaces.updated", "teams.created", "teams.updated", "teams.archived", "workflow_statuses.created", "workflow_statuses.updated", "workflow_statuses.archived", "workflow_statuses.reordered", "labels.created", "labels.updated", "labels.archived":
 	default:
 		return errors.New("activity event is unsupported")
 	}
@@ -79,7 +79,7 @@ func (r *Postgres) ListActivity(ctx context.Context, w, after uuid.UUID, limit i
 	rows, err := r.queries(ctx).ListWorkspaceActivity(ctx, db.ListWorkspaceActivityParams{WorkspaceUuid: w, AfterUuid: after, RowLimit: limit})
 	result := make([]usecase.Activity, 0, len(rows))
 	for _, row := range rows {
-		result = append(result, usecase.Activity{ID: row.Uuid, WorkspaceID: row.WorkspaceUuid, ActorID: row.ActorUuid, EventName: row.EventName, Name: row.Name, Version: row.Version, ProjectID: nullableUUID(row.ProjectUuid), ResourceType: row.ResourceType, ResourceID: resourceID(row.ResourceUuid, row.WorkspaceUuid), TeamID: nullableUUID(row.TeamUuid), OccurredAt: row.OccurredAt.Time})
+		result = append(result, usecase.Activity{ID: row.Uuid, WorkspaceID: row.WorkspaceUuid, ActorID: row.ActorUuid, EventName: row.EventName, Name: row.Name, Version: row.Version, ProductID: nullableUUID(row.ProductUuid), EnvironmentID: nullableUUID(row.EnvironmentUuid), ProjectID: nullableUUID(row.ProjectUuid), ResourceType: row.ResourceType, ResourceID: resourceID(row.ResourceUuid, row.WorkspaceUuid), TeamID: nullableUUID(row.TeamUuid), OccurredAt: row.OccurredAt.Time})
 	}
 	return result, err
 }
