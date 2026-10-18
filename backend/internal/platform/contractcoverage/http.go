@@ -99,18 +99,7 @@ func checkHTTP(m operations.Metadata, op, doc Object, input, output any, fail fu
 		if len(pathFields) > 0 {
 			raw, _ := json.Marshal(input)
 			clone, _ := Decode(raw)
-			properties := clone["properties"].(Object)
-			required, _ := clone["required"].([]any)
-			var kept []any
-			for _, field := range required {
-				if _, ok := pathFields[fmt.Sprint(field)]; !ok {
-					kept = append(kept, field)
-				}
-			}
-			for field := range pathFields {
-				delete(properties, field)
-			}
-			clone["required"] = kept
+			omitHTTPBoundFields(clone, pathFields)
 			expectedBody = clone
 			bindings["body"] = "body"
 			expectedBinding = bindings
@@ -238,4 +227,32 @@ func Validate(schema any, raw []byte) error {
 		return err
 	}
 	return compiled.Validate(value)
+}
+
+// Composition branches constrain the same JSON instance. Path-owned fields
+// must be removed there as well, without changing nested property instances.
+func omitHTTPBoundFields(s Object, fields map[string]string) {
+	if props, ok := s["properties"].(Object); ok {
+		for field := range fields {
+			delete(props, field)
+		}
+	}
+	if required, ok := s["required"].([]any); ok {
+		kept := []any{}
+		for _, field := range required {
+			if _, bound := fields[fmt.Sprint(field)]; !bound {
+				kept = append(kept, field)
+			}
+		}
+		s["required"] = kept
+	}
+	for _, key := range []string{"allOf", "anyOf", "oneOf"} {
+		if branches, ok := s[key].([]any); ok {
+			for _, branch := range branches {
+				if obj, ok := branch.(Object); ok {
+					omitHTTPBoundFields(obj, fields)
+				}
+			}
+		}
+	}
 }

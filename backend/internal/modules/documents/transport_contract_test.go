@@ -377,7 +377,7 @@ func TestDocumentsTransportClosedRecursiveRoundtripAndInventory(t *testing.T) {
 			}
 		}
 	}
-	if count != 11 || len(f.registry.Catalog()) != 114 {
+	if count != 11 || len(f.registry.Catalog()) != 129 {
 		t.Fatal("production catalog incomplete")
 	}
 	team := f.createTeam(t, "DTR")

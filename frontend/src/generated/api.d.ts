@@ -288,6 +288,30 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/workspaces/{workspaceID}/column-preferences": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * column_preferences.get
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["column_preferences_get"];
+        put?: never;
+        /**
+         * column_preferences.set
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["column_preferences_set"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/workspaces/{workspaceID}/comment-backlinks": {
         parameters: {
             query?: never;
@@ -752,6 +776,46 @@ export interface paths {
          * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
          */
         get: operations["documents_revisions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/search/issues/sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * issue_queries.create
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["issue_queries_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/search/issues/sessions/{sessionID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * issue_queries.get
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["issue_queries_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1464,6 +1528,46 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/workspaces/{workspaceID}/search/projects/sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * project_queries.create
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["project_queries_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/search/projects/sessions/{sessionID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * project_queries.get
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["project_queries_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/workspaces/{workspaceID}/projects/{projectID}/resources/{resourceID}/archive": {
         parameters: {
             query?: never;
@@ -1658,6 +1762,170 @@ export interface paths {
          * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
          */
         post: operations["projects_restore"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/saved-views": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * saved_views.list
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["saved_views_list"];
+        put?: never;
+        /**
+         * saved_views.create
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["saved_views_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/saved-views/{viewID}/delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * saved_views.delete
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["saved_views_delete"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/saved-views/{viewID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * saved_views.get
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["saved_views_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/saved-views/{viewID}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * saved_views.restore
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["saved_views_restore"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/saved-views/{viewID}/update": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * saved_views.update
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["saved_views_update"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/search/config": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * search_queries.config
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["search_queries_config"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/search/teams/sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * team_queries.create
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["team_queries_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/search/teams/sessions/{sessionID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * team_queries.get
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["team_queries_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -4844,6 +5112,885 @@ export interface components {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductAttachmentsRemoveOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductColumnPreferencesGetOutputDefinition0: {
+            children: components["schemas"]["ProductColumnPreferencesGetOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesGetOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesGetOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductColumnPreferencesGetOutputDefinition1: {
+            children: components["schemas"]["ProductColumnPreferencesGetOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesGetOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesGetOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductColumnPreferencesGetOutputDefinition2: {
+            children: components["schemas"]["ProductColumnPreferencesGetOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesGetOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesGetOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductColumnPreferencesGetOutput: {
+            /** @enum {string} */
+            resource: "issue" | "project" | "team";
+            revision: string | null;
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                width: number;
+            }[];
+            capabilities: {
+                manage: boolean;
+            };
+        } & ({
+            capabilities: {
+                manage: boolean;
+            };
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            /** @constant */
+            resource: "issue";
+            revision: string | null;
+        } | {
+            capabilities: {
+                manage: boolean;
+            };
+            columns: {
+                /** @enum {string} */
+                key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            /** @constant */
+            resource: "project";
+            revision: string | null;
+        } | {
+            capabilities: {
+                manage: boolean;
+            };
+            columns: {
+                /** @enum {string} */
+                key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            /** @constant */
+            resource: "team";
+            revision: string | null;
+        });
+        ProductColumnPreferencesGetError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductColumnPreferencesGetDomainInputDefinition0: {
+            children: components["schemas"]["ProductColumnPreferencesGetDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesGetDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesGetDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductColumnPreferencesGetDomainInputDefinition1: {
+            children: components["schemas"]["ProductColumnPreferencesGetDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesGetDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesGetDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductColumnPreferencesGetDomainInputDefinition2: {
+            children: components["schemas"]["ProductColumnPreferencesGetDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesGetDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesGetDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductColumnPreferencesGetDomainInput: {
+            /** @enum {string} */
+            resource: "issue" | "project" | "team";
+        };
+        ProductColumnPreferencesGetEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductColumnPreferencesGetOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductColumnPreferencesSetInputDefinition0: {
+            children: components["schemas"]["ProductColumnPreferencesSetInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesSetInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesSetInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductColumnPreferencesSetInputDefinition1: {
+            children: components["schemas"]["ProductColumnPreferencesSetInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesSetInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesSetInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductColumnPreferencesSetInputDefinition2: {
+            children: components["schemas"]["ProductColumnPreferencesSetInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesSetInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesSetInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductColumnPreferencesSetInput: {
+            /** @enum {string} */
+            resource: "issue" | "project" | "team";
+            expected_revision: string | null;
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                width: number;
+            }[];
+        } & ({
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            expected_revision: string | null;
+            /** @constant */
+            resource: "issue";
+        } | {
+            columns: {
+                /** @enum {string} */
+                key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            expected_revision: string | null;
+            /** @constant */
+            resource: "project";
+        } | {
+            columns: {
+                /** @enum {string} */
+                key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            expected_revision: string | null;
+            /** @constant */
+            resource: "team";
+        });
+        ProductColumnPreferencesSetOutputDefinition0: {
+            children: components["schemas"]["ProductColumnPreferencesSetOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesSetOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesSetOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductColumnPreferencesSetOutputDefinition1: {
+            children: components["schemas"]["ProductColumnPreferencesSetOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesSetOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesSetOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductColumnPreferencesSetOutputDefinition2: {
+            children: components["schemas"]["ProductColumnPreferencesSetOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesSetOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesSetOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductColumnPreferencesSetOutput: {
+            /** @enum {string} */
+            resource: "issue" | "project" | "team";
+            revision: string | null;
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                width: number;
+            }[];
+            capabilities: {
+                manage: boolean;
+            };
+        } & ({
+            capabilities: {
+                manage: boolean;
+            };
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            /** @constant */
+            resource: "issue";
+            revision: string | null;
+        } | {
+            capabilities: {
+                manage: boolean;
+            };
+            columns: {
+                /** @enum {string} */
+                key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            /** @constant */
+            resource: "project";
+            revision: string | null;
+        } | {
+            capabilities: {
+                manage: boolean;
+            };
+            columns: {
+                /** @enum {string} */
+                key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            /** @constant */
+            resource: "team";
+            revision: string | null;
+        });
+        ProductColumnPreferencesSetError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductColumnPreferencesSetDomainInputDefinition0: {
+            children: components["schemas"]["ProductColumnPreferencesSetDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesSetDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesSetDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductColumnPreferencesSetDomainInputDefinition1: {
+            children: components["schemas"]["ProductColumnPreferencesSetDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesSetDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesSetDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductColumnPreferencesSetDomainInputDefinition2: {
+            children: components["schemas"]["ProductColumnPreferencesSetDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductColumnPreferencesSetDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductColumnPreferencesSetDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductColumnPreferencesSetDomainInput: {
+            /** @enum {string} */
+            resource: "issue" | "project" | "team";
+            expected_revision: string | null;
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                width: number;
+            }[];
+        } & ({
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            expected_revision: string | null;
+            /** @constant */
+            resource: "issue";
+        } | {
+            columns: {
+                /** @enum {string} */
+                key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            expected_revision: string | null;
+            /** @constant */
+            resource: "project";
+        } | {
+            columns: {
+                /** @enum {string} */
+                key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            expected_revision: string | null;
+            /** @constant */
+            resource: "team";
+        });
+        ProductColumnPreferencesSetEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductColumnPreferencesSetOutput"];
             meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductCommentsBacklinksOutputDefinition0: components["schemas"]["ProductCommentsBacklinksOutputDefinition11"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition18"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition19"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition20"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition17"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition14"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition2"] | components["schemas"]["ProductCommentsBacklinksOutputDefinition15"];
@@ -17600,6 +18747,885 @@ export interface components {
             data: components["schemas"]["ProductDocumentsRevisionsOutput"];
             meta: components["schemas"]["ProductResponseMeta"];
         };
+        ProductIssueQueriesCreateInputDefinition0: {
+            children: components["schemas"]["ProductIssueQueriesCreateInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesCreateInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesCreateInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductIssueQueriesCreateInputDefinition1: {
+            children: components["schemas"]["ProductIssueQueriesCreateInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesCreateInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesCreateInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductIssueQueriesCreateInputDefinition2: {
+            children: components["schemas"]["ProductIssueQueriesCreateInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesCreateInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesCreateInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductIssueQueriesCreateInput: {
+            /** Format: uuid */
+            request_id: string;
+            query: {
+                /** @constant */
+                version: 1;
+                /** @enum {string} */
+                archived: "active" | "archived" | "any";
+                search: string;
+                filter: components["schemas"]["ProductIssueQueriesCreateInputDefinition0"] | null;
+                sort: {
+                    /** @enum {string} */
+                    direction: "asc" | "desc";
+                    /** @enum {string} */
+                    field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                    /** @enum {string} */
+                    nulls: "first" | "last";
+                }[];
+            };
+            ttl_seconds: number | null;
+            limit: number;
+        };
+        ProductIssueQueriesCreateOutputDefinition0: {
+            children: components["schemas"]["ProductIssueQueriesCreateOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesCreateOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesCreateOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductIssueQueriesCreateOutputDefinition1: {
+            children: components["schemas"]["ProductIssueQueriesCreateOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesCreateOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesCreateOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductIssueQueriesCreateOutputDefinition2: {
+            children: components["schemas"]["ProductIssueQueriesCreateOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesCreateOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesCreateOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductIssueQueriesCreateOutput: {
+            session: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                request_id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @constant */
+                resource: "issue";
+                /** Format: date-time */
+                as_of: string;
+                /** Format: date-time */
+                expires_at: string;
+                total_count: string;
+            };
+            query: {
+                /** @constant */
+                version: 1;
+                /** @enum {string} */
+                archived: "active" | "archived" | "any";
+                search: string;
+                filter: components["schemas"]["ProductIssueQueriesCreateOutputDefinition0"] | null;
+                sort: {
+                    /** @enum {string} */
+                    direction: "asc" | "desc";
+                    /** @enum {string} */
+                    field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                    /** @enum {string} */
+                    nulls: "first" | "last";
+                }[];
+            };
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                team_id: string;
+                identifier: string;
+                number: string;
+                title: string;
+                /** @enum {string} */
+                priority: "none" | "urgent" | "high" | "normal" | "low";
+                /** Format: uuid */
+                status_id: string;
+                assignee_id: string | null;
+                project_id: string | null;
+                milestone_id: string | null;
+                start_date: string | null;
+                target_date: string | null;
+                effort: number | null;
+                label_ids: string[];
+                version: string;
+                archived: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductIssueQueriesCreateError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductIssueQueriesCreateDomainInputDefinition0: {
+            children: components["schemas"]["ProductIssueQueriesCreateDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesCreateDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesCreateDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductIssueQueriesCreateDomainInputDefinition1: {
+            children: components["schemas"]["ProductIssueQueriesCreateDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesCreateDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesCreateDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductIssueQueriesCreateDomainInputDefinition2: {
+            children: components["schemas"]["ProductIssueQueriesCreateDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesCreateDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesCreateDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductIssueQueriesCreateDomainInput: {
+            /** Format: uuid */
+            request_id: string;
+            query: {
+                /** @constant */
+                version: 1;
+                /** @enum {string} */
+                archived: "active" | "archived" | "any";
+                search: string;
+                filter: components["schemas"]["ProductIssueQueriesCreateDomainInputDefinition0"] | null;
+                sort: {
+                    /** @enum {string} */
+                    direction: "asc" | "desc";
+                    /** @enum {string} */
+                    field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                    /** @enum {string} */
+                    nulls: "first" | "last";
+                }[];
+            };
+            ttl_seconds: number | null;
+            limit: number;
+        };
+        ProductIssueQueriesCreateEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductIssueQueriesCreateOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductIssueQueriesGetOutputDefinition0: {
+            children: components["schemas"]["ProductIssueQueriesGetOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesGetOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesGetOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductIssueQueriesGetOutputDefinition1: {
+            children: components["schemas"]["ProductIssueQueriesGetOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesGetOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesGetOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductIssueQueriesGetOutputDefinition2: {
+            children: components["schemas"]["ProductIssueQueriesGetOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesGetOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesGetOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductIssueQueriesGetOutput: {
+            session: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                request_id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @constant */
+                resource: "issue";
+                /** Format: date-time */
+                as_of: string;
+                /** Format: date-time */
+                expires_at: string;
+                total_count: string;
+            };
+            query: {
+                /** @constant */
+                version: 1;
+                /** @enum {string} */
+                archived: "active" | "archived" | "any";
+                search: string;
+                filter: components["schemas"]["ProductIssueQueriesGetOutputDefinition0"] | null;
+                sort: {
+                    /** @enum {string} */
+                    direction: "asc" | "desc";
+                    /** @enum {string} */
+                    field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                    /** @enum {string} */
+                    nulls: "first" | "last";
+                }[];
+            };
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                team_id: string;
+                identifier: string;
+                number: string;
+                title: string;
+                /** @enum {string} */
+                priority: "none" | "urgent" | "high" | "normal" | "low";
+                /** Format: uuid */
+                status_id: string;
+                assignee_id: string | null;
+                project_id: string | null;
+                milestone_id: string | null;
+                start_date: string | null;
+                target_date: string | null;
+                effort: number | null;
+                label_ids: string[];
+                version: string;
+                archived: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductIssueQueriesGetError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductIssueQueriesGetDomainInputDefinition0: {
+            children: components["schemas"]["ProductIssueQueriesGetDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesGetDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesGetDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductIssueQueriesGetDomainInputDefinition1: {
+            children: components["schemas"]["ProductIssueQueriesGetDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesGetDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesGetDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductIssueQueriesGetDomainInputDefinition2: {
+            children: components["schemas"]["ProductIssueQueriesGetDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductIssueQueriesGetDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductIssueQueriesGetDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductIssueQueriesGetDomainInput: {
+            /** Format: uuid */
+            session_id: string;
+            limit: number;
+            after: string;
+        };
+        ProductIssueQueriesGetEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductIssueQueriesGetOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
         ProductIssueRelationsHistoryOutput: {
             items: null | {
                 /** Format: uuid */
@@ -22039,6 +24065,865 @@ export interface components {
             data: components["schemas"]["ProductProjectMilestonesUpdateOutput"];
             meta: components["schemas"]["ProductResponseMeta"];
         };
+        ProductProjectQueriesCreateInputDefinition0: {
+            children: components["schemas"]["ProductProjectQueriesCreateInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesCreateInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesCreateInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductProjectQueriesCreateInputDefinition1: {
+            children: components["schemas"]["ProductProjectQueriesCreateInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesCreateInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesCreateInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductProjectQueriesCreateInputDefinition2: {
+            children: components["schemas"]["ProductProjectQueriesCreateInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesCreateInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesCreateInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductProjectQueriesCreateInput: {
+            /** Format: uuid */
+            request_id: string;
+            query: {
+                /** @constant */
+                version: 1;
+                /** @enum {string} */
+                archived: "active" | "archived" | "any";
+                search: string;
+                filter: components["schemas"]["ProductProjectQueriesCreateInputDefinition1"] | null;
+                sort: {
+                    /** @enum {string} */
+                    direction: "asc" | "desc";
+                    /** @enum {string} */
+                    field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                    /** @enum {string} */
+                    nulls: "first" | "last";
+                }[];
+            };
+            ttl_seconds: number | null;
+            limit: number;
+        };
+        ProductProjectQueriesCreateOutputDefinition0: {
+            children: components["schemas"]["ProductProjectQueriesCreateOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesCreateOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesCreateOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductProjectQueriesCreateOutputDefinition1: {
+            children: components["schemas"]["ProductProjectQueriesCreateOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesCreateOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesCreateOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductProjectQueriesCreateOutputDefinition2: {
+            children: components["schemas"]["ProductProjectQueriesCreateOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesCreateOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesCreateOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductProjectQueriesCreateOutput: {
+            session: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                request_id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @constant */
+                resource: "project";
+                /** Format: date-time */
+                as_of: string;
+                /** Format: date-time */
+                expires_at: string;
+                total_count: string;
+            };
+            query: {
+                /** @constant */
+                version: 1;
+                /** @enum {string} */
+                archived: "active" | "archived" | "any";
+                search: string;
+                filter: components["schemas"]["ProductProjectQueriesCreateOutputDefinition1"] | null;
+                sort: {
+                    /** @enum {string} */
+                    direction: "asc" | "desc";
+                    /** @enum {string} */
+                    field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                    /** @enum {string} */
+                    nulls: "first" | "last";
+                }[];
+            };
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                name: string;
+                summary: string;
+                lead_user_id: string | null;
+                team_ids: string[];
+                start_date: string | null;
+                target_date: string | null;
+                version: string;
+                archived: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductProjectQueriesCreateError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductProjectQueriesCreateDomainInputDefinition0: {
+            children: components["schemas"]["ProductProjectQueriesCreateDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesCreateDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesCreateDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductProjectQueriesCreateDomainInputDefinition1: {
+            children: components["schemas"]["ProductProjectQueriesCreateDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesCreateDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesCreateDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductProjectQueriesCreateDomainInputDefinition2: {
+            children: components["schemas"]["ProductProjectQueriesCreateDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesCreateDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesCreateDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductProjectQueriesCreateDomainInput: {
+            /** Format: uuid */
+            request_id: string;
+            query: {
+                /** @constant */
+                version: 1;
+                /** @enum {string} */
+                archived: "active" | "archived" | "any";
+                search: string;
+                filter: components["schemas"]["ProductProjectQueriesCreateDomainInputDefinition1"] | null;
+                sort: {
+                    /** @enum {string} */
+                    direction: "asc" | "desc";
+                    /** @enum {string} */
+                    field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                    /** @enum {string} */
+                    nulls: "first" | "last";
+                }[];
+            };
+            ttl_seconds: number | null;
+            limit: number;
+        };
+        ProductProjectQueriesCreateEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductProjectQueriesCreateOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductProjectQueriesGetOutputDefinition0: {
+            children: components["schemas"]["ProductProjectQueriesGetOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesGetOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesGetOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductProjectQueriesGetOutputDefinition1: {
+            children: components["schemas"]["ProductProjectQueriesGetOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesGetOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesGetOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductProjectQueriesGetOutputDefinition2: {
+            children: components["schemas"]["ProductProjectQueriesGetOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesGetOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesGetOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductProjectQueriesGetOutput: {
+            session: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                request_id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @constant */
+                resource: "project";
+                /** Format: date-time */
+                as_of: string;
+                /** Format: date-time */
+                expires_at: string;
+                total_count: string;
+            };
+            query: {
+                /** @constant */
+                version: 1;
+                /** @enum {string} */
+                archived: "active" | "archived" | "any";
+                search: string;
+                filter: components["schemas"]["ProductProjectQueriesGetOutputDefinition1"] | null;
+                sort: {
+                    /** @enum {string} */
+                    direction: "asc" | "desc";
+                    /** @enum {string} */
+                    field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                    /** @enum {string} */
+                    nulls: "first" | "last";
+                }[];
+            };
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                name: string;
+                summary: string;
+                lead_user_id: string | null;
+                team_ids: string[];
+                start_date: string | null;
+                target_date: string | null;
+                version: string;
+                archived: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductProjectQueriesGetError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductProjectQueriesGetDomainInputDefinition0: {
+            children: components["schemas"]["ProductProjectQueriesGetDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesGetDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesGetDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductProjectQueriesGetDomainInputDefinition1: {
+            children: components["schemas"]["ProductProjectQueriesGetDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesGetDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesGetDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductProjectQueriesGetDomainInputDefinition2: {
+            children: components["schemas"]["ProductProjectQueriesGetDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductProjectQueriesGetDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductProjectQueriesGetDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductProjectQueriesGetDomainInput: {
+            /** Format: uuid */
+            session_id: string;
+            limit: number;
+            after: string;
+        };
+        ProductProjectQueriesGetEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductProjectQueriesGetOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
         ProductProjectResourcesArchiveInput: {
             expected_version: number;
             expected_project_version: number;
@@ -22741,6 +25626,5538 @@ export interface components {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductProjectsUpdateOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductSavedViewsCreateInputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsCreateInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsCreateInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsCreateInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsCreateInputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsCreateInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsCreateInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsCreateInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsCreateInputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsCreateInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsCreateInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsCreateInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsCreateInput: {
+            name: string;
+            definition: {
+                issue: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsCreateInputDefinition0"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                project: null;
+                /** @constant */
+                resource: "issue";
+                team: null;
+            } | {
+                issue: null;
+                project: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsCreateInputDefinition1"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                /** @constant */
+                resource: "project";
+                team: null;
+            } | {
+                issue: null;
+                project: null;
+                /** @constant */
+                resource: "team";
+                team: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsCreateInputDefinition2"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "code" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+            };
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                width: number;
+            }[];
+        } & ({
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            definition: {
+                issue: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsCreateInputDefinition0"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                project: null;
+                /** @constant */
+                resource: "issue";
+                team: null;
+            };
+            name: string;
+        } | {
+            columns: {
+                /** @enum {string} */
+                key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            definition: {
+                issue: null;
+                project: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsCreateInputDefinition1"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                /** @constant */
+                resource: "project";
+                team: null;
+            };
+            name: string;
+        } | {
+            columns: {
+                /** @enum {string} */
+                key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            definition: {
+                issue: null;
+                project: null;
+                /** @constant */
+                resource: "team";
+                team: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsCreateInputDefinition2"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "code" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+            };
+            name: string;
+        });
+        ProductSavedViewsCreateOutputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsCreateOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsCreateOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsCreateOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsCreateOutputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsCreateOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsCreateOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsCreateOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsCreateOutputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsCreateOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsCreateOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsCreateOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsCreateOutput: {
+            view: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: uuid */
+                revision: string;
+                name: string;
+                definition: {
+                    issue: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsCreateOutputDefinition0"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    project: null;
+                    /** @constant */
+                    resource: "issue";
+                    team: null;
+                } | {
+                    issue: null;
+                    project: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsCreateOutputDefinition1"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    /** @constant */
+                    resource: "project";
+                    team: null;
+                } | {
+                    issue: null;
+                    project: null;
+                    /** @constant */
+                    resource: "team";
+                    team: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsCreateOutputDefinition2"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "code" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                    width: number;
+                }[];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            } & ({
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsCreateOutputDefinition0"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    project: null;
+                    /** @constant */
+                    resource: "issue";
+                    team: null;
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            } | {
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: null;
+                    project: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsCreateOutputDefinition1"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    /** @constant */
+                    resource: "project";
+                    team: null;
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            } | {
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: null;
+                    project: null;
+                    /** @constant */
+                    resource: "team";
+                    team: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsCreateOutputDefinition2"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "code" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            });
+        };
+        ProductSavedViewsCreateError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductSavedViewsCreateDomainInputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsCreateDomainInputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsCreateDomainInputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsCreateDomainInput: {
+            name: string;
+            definition: {
+                issue: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition0"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                project: null;
+                /** @constant */
+                resource: "issue";
+                team: null;
+            } | {
+                issue: null;
+                project: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition1"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                /** @constant */
+                resource: "project";
+                team: null;
+            } | {
+                issue: null;
+                project: null;
+                /** @constant */
+                resource: "team";
+                team: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition2"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "code" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+            };
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                width: number;
+            }[];
+        } & ({
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            definition: {
+                issue: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition0"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                project: null;
+                /** @constant */
+                resource: "issue";
+                team: null;
+            };
+            name: string;
+        } | {
+            columns: {
+                /** @enum {string} */
+                key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            definition: {
+                issue: null;
+                project: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition1"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                /** @constant */
+                resource: "project";
+                team: null;
+            };
+            name: string;
+        } | {
+            columns: {
+                /** @enum {string} */
+                key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            definition: {
+                issue: null;
+                project: null;
+                /** @constant */
+                resource: "team";
+                team: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsCreateDomainInputDefinition2"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "code" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+            };
+            name: string;
+        });
+        ProductSavedViewsCreateEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductSavedViewsCreateOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductSavedViewsDeleteInputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsDeleteInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsDeleteInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsDeleteInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsDeleteInputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsDeleteInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsDeleteInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsDeleteInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsDeleteInputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsDeleteInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsDeleteInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsDeleteInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsDeleteInput: {
+            /** Format: uuid */
+            expected_revision: string;
+        };
+        ProductSavedViewsDeleteOutputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsDeleteOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsDeleteOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsDeleteOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsDeleteOutputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsDeleteOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsDeleteOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsDeleteOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsDeleteOutputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsDeleteOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsDeleteOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsDeleteOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsDeleteOutput: {
+            view: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: uuid */
+                revision: string;
+                name: string;
+                definition: {
+                    issue: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsDeleteOutputDefinition0"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    project: null;
+                    /** @constant */
+                    resource: "issue";
+                    team: null;
+                } | {
+                    issue: null;
+                    project: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsDeleteOutputDefinition1"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    /** @constant */
+                    resource: "project";
+                    team: null;
+                } | {
+                    issue: null;
+                    project: null;
+                    /** @constant */
+                    resource: "team";
+                    team: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsDeleteOutputDefinition2"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "code" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                    width: number;
+                }[];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            } & ({
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsDeleteOutputDefinition0"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    project: null;
+                    /** @constant */
+                    resource: "issue";
+                    team: null;
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            } | {
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: null;
+                    project: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsDeleteOutputDefinition1"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    /** @constant */
+                    resource: "project";
+                    team: null;
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            } | {
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: null;
+                    project: null;
+                    /** @constant */
+                    resource: "team";
+                    team: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsDeleteOutputDefinition2"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "code" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            });
+        };
+        ProductSavedViewsDeleteError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductSavedViewsDeleteDomainInputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsDeleteDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsDeleteDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsDeleteDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsDeleteDomainInputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsDeleteDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsDeleteDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsDeleteDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsDeleteDomainInputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsDeleteDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsDeleteDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsDeleteDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsDeleteDomainInput: {
+            /** Format: uuid */
+            view_id: string;
+            /** Format: uuid */
+            expected_revision: string;
+        };
+        ProductSavedViewsDeleteEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductSavedViewsDeleteOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductSavedViewsGetOutputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsGetOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsGetOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsGetOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsGetOutputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsGetOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsGetOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsGetOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsGetOutputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsGetOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsGetOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsGetOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsGetOutput: {
+            view: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: uuid */
+                revision: string;
+                name: string;
+                definition: {
+                    issue: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsGetOutputDefinition0"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    project: null;
+                    /** @constant */
+                    resource: "issue";
+                    team: null;
+                } | {
+                    issue: null;
+                    project: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsGetOutputDefinition1"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    /** @constant */
+                    resource: "project";
+                    team: null;
+                } | {
+                    issue: null;
+                    project: null;
+                    /** @constant */
+                    resource: "team";
+                    team: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsGetOutputDefinition2"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "code" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                    width: number;
+                }[];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            } & ({
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsGetOutputDefinition0"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    project: null;
+                    /** @constant */
+                    resource: "issue";
+                    team: null;
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            } | {
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: null;
+                    project: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsGetOutputDefinition1"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    /** @constant */
+                    resource: "project";
+                    team: null;
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            } | {
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: null;
+                    project: null;
+                    /** @constant */
+                    resource: "team";
+                    team: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsGetOutputDefinition2"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "code" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            });
+        };
+        ProductSavedViewsGetError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductSavedViewsGetDomainInputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsGetDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsGetDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsGetDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsGetDomainInputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsGetDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsGetDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsGetDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsGetDomainInputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsGetDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsGetDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsGetDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsGetDomainInput: {
+            /** Format: uuid */
+            view_id: string;
+        };
+        ProductSavedViewsGetEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductSavedViewsGetOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductSavedViewsListOutputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsListOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsListOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsListOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsListOutputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsListOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsListOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsListOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsListOutputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsListOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsListOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsListOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsListOutput: {
+            items: ({
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: uuid */
+                revision: string;
+                name: string;
+                definition: {
+                    issue: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsListOutputDefinition0"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    project: null;
+                    /** @constant */
+                    resource: "issue";
+                    team: null;
+                } | {
+                    issue: null;
+                    project: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsListOutputDefinition1"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    /** @constant */
+                    resource: "project";
+                    team: null;
+                } | {
+                    issue: null;
+                    project: null;
+                    /** @constant */
+                    resource: "team";
+                    team: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsListOutputDefinition2"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "code" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                    width: number;
+                }[];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            } & ({
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsListOutputDefinition0"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    project: null;
+                    /** @constant */
+                    resource: "issue";
+                    team: null;
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            } | {
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: null;
+                    project: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsListOutputDefinition1"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    /** @constant */
+                    resource: "project";
+                    team: null;
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            } | {
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: null;
+                    project: null;
+                    /** @constant */
+                    resource: "team";
+                    team: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsListOutputDefinition2"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "code" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            }))[];
+            has_more: boolean;
+            next_cursor: string;
+            capabilities: {
+                manage: boolean;
+            };
+        };
+        ProductSavedViewsListError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductSavedViewsListDomainInputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsListDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsListDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsListDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsListDomainInputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsListDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsListDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsListDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsListDomainInputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsListDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsListDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsListDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsListDomainInput: {
+            /** @enum {string} */
+            resource: "any" | "issue" | "project" | "team";
+            include_deleted: boolean;
+            limit: number;
+            after: string;
+        };
+        ProductSavedViewsListEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductSavedViewsListOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductSavedViewsRestoreInputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsRestoreInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsRestoreInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsRestoreInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsRestoreInputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsRestoreInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsRestoreInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsRestoreInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsRestoreInputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsRestoreInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsRestoreInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsRestoreInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsRestoreInput: {
+            /** Format: uuid */
+            expected_revision: string;
+        };
+        ProductSavedViewsRestoreOutputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsRestoreOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsRestoreOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsRestoreOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsRestoreOutputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsRestoreOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsRestoreOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsRestoreOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsRestoreOutputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsRestoreOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsRestoreOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsRestoreOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsRestoreOutput: {
+            view: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: uuid */
+                revision: string;
+                name: string;
+                definition: {
+                    issue: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsRestoreOutputDefinition0"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    project: null;
+                    /** @constant */
+                    resource: "issue";
+                    team: null;
+                } | {
+                    issue: null;
+                    project: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsRestoreOutputDefinition1"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    /** @constant */
+                    resource: "project";
+                    team: null;
+                } | {
+                    issue: null;
+                    project: null;
+                    /** @constant */
+                    resource: "team";
+                    team: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsRestoreOutputDefinition2"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "code" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                    width: number;
+                }[];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            } & ({
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsRestoreOutputDefinition0"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    project: null;
+                    /** @constant */
+                    resource: "issue";
+                    team: null;
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            } | {
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: null;
+                    project: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsRestoreOutputDefinition1"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    /** @constant */
+                    resource: "project";
+                    team: null;
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            } | {
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: null;
+                    project: null;
+                    /** @constant */
+                    resource: "team";
+                    team: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsRestoreOutputDefinition2"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "code" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            });
+        };
+        ProductSavedViewsRestoreError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductSavedViewsRestoreDomainInputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsRestoreDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsRestoreDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsRestoreDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsRestoreDomainInputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsRestoreDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsRestoreDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsRestoreDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsRestoreDomainInputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsRestoreDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsRestoreDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsRestoreDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsRestoreDomainInput: {
+            /** Format: uuid */
+            view_id: string;
+            /** Format: uuid */
+            expected_revision: string;
+        };
+        ProductSavedViewsRestoreEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductSavedViewsRestoreOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductSavedViewsUpdateInputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsUpdateInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsUpdateInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsUpdateInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsUpdateInputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsUpdateInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsUpdateInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsUpdateInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsUpdateInputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsUpdateInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsUpdateInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsUpdateInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsUpdateInput: {
+            /** Format: uuid */
+            expected_revision: string;
+            name: string;
+            definition: {
+                issue: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsUpdateInputDefinition0"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                project: null;
+                /** @constant */
+                resource: "issue";
+                team: null;
+            } | {
+                issue: null;
+                project: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsUpdateInputDefinition1"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                /** @constant */
+                resource: "project";
+                team: null;
+            } | {
+                issue: null;
+                project: null;
+                /** @constant */
+                resource: "team";
+                team: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsUpdateInputDefinition2"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "code" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+            };
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                width: number;
+            }[];
+        } & ({
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            definition: {
+                issue: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsUpdateInputDefinition0"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                project: null;
+                /** @constant */
+                resource: "issue";
+                team: null;
+            };
+            /** Format: uuid */
+            expected_revision: string;
+            name: string;
+        } | {
+            columns: {
+                /** @enum {string} */
+                key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            definition: {
+                issue: null;
+                project: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsUpdateInputDefinition1"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                /** @constant */
+                resource: "project";
+                team: null;
+            };
+            /** Format: uuid */
+            expected_revision: string;
+            name: string;
+        } | {
+            columns: {
+                /** @enum {string} */
+                key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            definition: {
+                issue: null;
+                project: null;
+                /** @constant */
+                resource: "team";
+                team: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsUpdateInputDefinition2"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "code" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+            };
+            /** Format: uuid */
+            expected_revision: string;
+            name: string;
+        });
+        ProductSavedViewsUpdateOutputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsUpdateOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsUpdateOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsUpdateOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsUpdateOutputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsUpdateOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsUpdateOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsUpdateOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsUpdateOutputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsUpdateOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsUpdateOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsUpdateOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsUpdateOutput: {
+            view: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: uuid */
+                revision: string;
+                name: string;
+                definition: {
+                    issue: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsUpdateOutputDefinition0"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    project: null;
+                    /** @constant */
+                    resource: "issue";
+                    team: null;
+                } | {
+                    issue: null;
+                    project: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsUpdateOutputDefinition1"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    /** @constant */
+                    resource: "project";
+                    team: null;
+                } | {
+                    issue: null;
+                    project: null;
+                    /** @constant */
+                    resource: "team";
+                    team: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsUpdateOutputDefinition2"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "code" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                    width: number;
+                }[];
+                deleted: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+            } & ({
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsUpdateOutputDefinition0"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    project: null;
+                    /** @constant */
+                    resource: "issue";
+                    team: null;
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            } | {
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: null;
+                    project: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsUpdateOutputDefinition1"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                    /** @constant */
+                    resource: "project";
+                    team: null;
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            } | {
+                /** Format: uuid */
+                actor_id: string;
+                capabilities: {
+                    manage: boolean;
+                    update: boolean;
+                    delete: boolean;
+                    restore: boolean;
+                };
+                columns: {
+                    /** @enum {string} */
+                    key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                    width: number;
+                }[];
+                /** Format: date-time */
+                created_at: string;
+                definition: {
+                    issue: null;
+                    project: null;
+                    /** @constant */
+                    resource: "team";
+                    team: {
+                        /** @constant */
+                        version: 1;
+                        /** @enum {string} */
+                        archived: "active" | "archived" | "any";
+                        search: string;
+                        filter: components["schemas"]["ProductSavedViewsUpdateOutputDefinition2"] | null;
+                        sort: {
+                            /** @enum {string} */
+                            direction: "asc" | "desc";
+                            /** @enum {string} */
+                            field: "id" | "name" | "code" | "created_at" | "updated_at";
+                            /** @enum {string} */
+                            nulls: "first" | "last";
+                        }[];
+                    };
+                };
+                deleted: boolean;
+                /** Format: uuid */
+                id: string;
+                name: string;
+                /** Format: uuid */
+                revision: string;
+                /** Format: date-time */
+                updated_at: string;
+                /** Format: uuid */
+                workspace_id: string;
+            });
+        };
+        ProductSavedViewsUpdateError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductSavedViewsUpdateDomainInputDefinition0: {
+            children: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsUpdateDomainInputDefinition1: {
+            children: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSavedViewsUpdateDomainInputDefinition2: {
+            children: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSavedViewsUpdateDomainInput: {
+            /** Format: uuid */
+            view_id: string;
+            /** Format: uuid */
+            expected_revision: string;
+            name: string;
+            definition: {
+                issue: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition0"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                project: null;
+                /** @constant */
+                resource: "issue";
+                team: null;
+            } | {
+                issue: null;
+                project: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition1"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                /** @constant */
+                resource: "project";
+                team: null;
+            } | {
+                issue: null;
+                project: null;
+                /** @constant */
+                resource: "team";
+                team: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition2"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "code" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+            };
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived" | "name" | "summary" | "lead_user_id" | "team_ids" | "code";
+                width: number;
+            }[];
+        } & ({
+            columns: {
+                /** @enum {string} */
+                key: "identifier" | "title" | "team_id" | "status_id" | "priority" | "assignee_id" | "project_id" | "milestone_id" | "label_ids" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            definition: {
+                issue: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition0"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "identifier" | "title" | "priority" | "effort" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                project: null;
+                /** @constant */
+                resource: "issue";
+                team: null;
+            };
+            /** Format: uuid */
+            expected_revision: string;
+            name: string;
+            /** Format: uuid */
+            view_id: string;
+        } | {
+            columns: {
+                /** @enum {string} */
+                key: "name" | "summary" | "lead_user_id" | "team_ids" | "start_date" | "target_date" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            definition: {
+                issue: null;
+                project: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition1"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "start_date" | "target_date" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+                /** @constant */
+                resource: "project";
+                team: null;
+            };
+            /** Format: uuid */
+            expected_revision: string;
+            name: string;
+            /** Format: uuid */
+            view_id: string;
+        } | {
+            columns: {
+                /** @enum {string} */
+                key: "name" | "code" | "created_at" | "updated_at" | "archived";
+                width: number;
+            }[];
+            definition: {
+                issue: null;
+                project: null;
+                /** @constant */
+                resource: "team";
+                team: {
+                    /** @constant */
+                    version: 1;
+                    /** @enum {string} */
+                    archived: "active" | "archived" | "any";
+                    search: string;
+                    filter: components["schemas"]["ProductSavedViewsUpdateDomainInputDefinition2"] | null;
+                    sort: {
+                        /** @enum {string} */
+                        direction: "asc" | "desc";
+                        /** @enum {string} */
+                        field: "id" | "name" | "code" | "created_at" | "updated_at";
+                        /** @enum {string} */
+                        nulls: "first" | "last";
+                    }[];
+                };
+            };
+            /** Format: uuid */
+            expected_revision: string;
+            name: string;
+            /** Format: uuid */
+            view_id: string;
+        });
+        ProductSavedViewsUpdateEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductSavedViewsUpdateOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductSearchQueriesConfigOutputDefinition0: {
+            children: components["schemas"]["ProductSearchQueriesConfigOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSearchQueriesConfigOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSearchQueriesConfigOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSearchQueriesConfigOutputDefinition1: {
+            children: components["schemas"]["ProductSearchQueriesConfigOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSearchQueriesConfigOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSearchQueriesConfigOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSearchQueriesConfigOutputDefinition2: {
+            children: components["schemas"]["ProductSearchQueriesConfigOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSearchQueriesConfigOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSearchQueriesConfigOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSearchQueriesConfigOutput: {
+            limits: {
+                /** @constant */
+                max_raw_input_bytes: 1048576;
+                /** @constant */
+                max_input_bytes: 131072;
+                default_ttl_seconds: number;
+                /** @constant */
+                min_ttl_seconds: 60;
+                /** @constant */
+                max_ttl_seconds: 86400;
+                /** @constant */
+                max_depth: 8;
+                /** @constant */
+                max_nodes: 128;
+                /** @constant */
+                max_sorts: 5;
+                /** @constant */
+                max_page: 100;
+                /** @constant */
+                max_set: 100;
+                /** @constant */
+                max_text: 256;
+            };
+            capabilities: {
+                manage: boolean;
+            };
+            /** @constant */
+            input_byte_policy: "json_stringify_utf8_domain";
+            text_matching: string;
+            text_ordering: string;
+        };
+        ProductSearchQueriesConfigError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductSearchQueriesConfigDomainInputDefinition0: {
+            children: components["schemas"]["ProductSearchQueriesConfigDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSearchQueriesConfigDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSearchQueriesConfigDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSearchQueriesConfigDomainInputDefinition1: {
+            children: components["schemas"]["ProductSearchQueriesConfigDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSearchQueriesConfigDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSearchQueriesConfigDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductSearchQueriesConfigDomainInputDefinition2: {
+            children: components["schemas"]["ProductSearchQueriesConfigDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductSearchQueriesConfigDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductSearchQueriesConfigDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductSearchQueriesConfigDomainInput: Record<string, never>;
+        ProductSearchQueriesConfigEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductSearchQueriesConfigOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductTeamQueriesCreateInputDefinition0: {
+            children: components["schemas"]["ProductTeamQueriesCreateInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesCreateInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesCreateInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductTeamQueriesCreateInputDefinition1: {
+            children: components["schemas"]["ProductTeamQueriesCreateInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesCreateInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesCreateInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductTeamQueriesCreateInputDefinition2: {
+            children: components["schemas"]["ProductTeamQueriesCreateInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesCreateInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesCreateInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductTeamQueriesCreateInput: {
+            /** Format: uuid */
+            request_id: string;
+            query: {
+                /** @constant */
+                version: 1;
+                /** @enum {string} */
+                archived: "active" | "archived" | "any";
+                search: string;
+                filter: components["schemas"]["ProductTeamQueriesCreateInputDefinition2"] | null;
+                sort: {
+                    /** @enum {string} */
+                    direction: "asc" | "desc";
+                    /** @enum {string} */
+                    field: "id" | "name" | "code" | "created_at" | "updated_at";
+                    /** @enum {string} */
+                    nulls: "first" | "last";
+                }[];
+            };
+            ttl_seconds: number | null;
+            limit: number;
+        };
+        ProductTeamQueriesCreateOutputDefinition0: {
+            children: components["schemas"]["ProductTeamQueriesCreateOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesCreateOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesCreateOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductTeamQueriesCreateOutputDefinition1: {
+            children: components["schemas"]["ProductTeamQueriesCreateOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesCreateOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesCreateOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductTeamQueriesCreateOutputDefinition2: {
+            children: components["schemas"]["ProductTeamQueriesCreateOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesCreateOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesCreateOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductTeamQueriesCreateOutput: {
+            session: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                request_id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @constant */
+                resource: "team";
+                /** Format: date-time */
+                as_of: string;
+                /** Format: date-time */
+                expires_at: string;
+                total_count: string;
+            };
+            query: {
+                /** @constant */
+                version: 1;
+                /** @enum {string} */
+                archived: "active" | "archived" | "any";
+                search: string;
+                filter: components["schemas"]["ProductTeamQueriesCreateOutputDefinition2"] | null;
+                sort: {
+                    /** @enum {string} */
+                    direction: "asc" | "desc";
+                    /** @enum {string} */
+                    field: "id" | "name" | "code" | "created_at" | "updated_at";
+                    /** @enum {string} */
+                    nulls: "first" | "last";
+                }[];
+            };
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                name: string;
+                code: string;
+                version: string;
+                workflow_version: string;
+                archived: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductTeamQueriesCreateError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductTeamQueriesCreateDomainInputDefinition0: {
+            children: components["schemas"]["ProductTeamQueriesCreateDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesCreateDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesCreateDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductTeamQueriesCreateDomainInputDefinition1: {
+            children: components["schemas"]["ProductTeamQueriesCreateDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesCreateDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesCreateDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductTeamQueriesCreateDomainInputDefinition2: {
+            children: components["schemas"]["ProductTeamQueriesCreateDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesCreateDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesCreateDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductTeamQueriesCreateDomainInput: {
+            /** Format: uuid */
+            request_id: string;
+            query: {
+                /** @constant */
+                version: 1;
+                /** @enum {string} */
+                archived: "active" | "archived" | "any";
+                search: string;
+                filter: components["schemas"]["ProductTeamQueriesCreateDomainInputDefinition2"] | null;
+                sort: {
+                    /** @enum {string} */
+                    direction: "asc" | "desc";
+                    /** @enum {string} */
+                    field: "id" | "name" | "code" | "created_at" | "updated_at";
+                    /** @enum {string} */
+                    nulls: "first" | "last";
+                }[];
+            };
+            ttl_seconds: number | null;
+            limit: number;
+        };
+        ProductTeamQueriesCreateEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductTeamQueriesCreateOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductTeamQueriesGetOutputDefinition0: {
+            children: components["schemas"]["ProductTeamQueriesGetOutputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesGetOutputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesGetOutputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductTeamQueriesGetOutputDefinition1: {
+            children: components["schemas"]["ProductTeamQueriesGetOutputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesGetOutputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesGetOutputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductTeamQueriesGetOutputDefinition2: {
+            children: components["schemas"]["ProductTeamQueriesGetOutputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesGetOutputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesGetOutputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductTeamQueriesGetOutput: {
+            session: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                request_id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @constant */
+                resource: "team";
+                /** Format: date-time */
+                as_of: string;
+                /** Format: date-time */
+                expires_at: string;
+                total_count: string;
+            };
+            query: {
+                /** @constant */
+                version: 1;
+                /** @enum {string} */
+                archived: "active" | "archived" | "any";
+                search: string;
+                filter: components["schemas"]["ProductTeamQueriesGetOutputDefinition2"] | null;
+                sort: {
+                    /** @enum {string} */
+                    direction: "asc" | "desc";
+                    /** @enum {string} */
+                    field: "id" | "name" | "code" | "created_at" | "updated_at";
+                    /** @enum {string} */
+                    nulls: "first" | "last";
+                }[];
+            };
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                name: string;
+                code: string;
+                version: string;
+                workflow_version: string;
+                archived: boolean;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductTeamQueriesGetError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductTeamQueriesGetDomainInputDefinition0: {
+            children: components["schemas"]["ProductTeamQueriesGetDomainInputDefinition0"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesGetDomainInputDefinition0"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesGetDomainInputDefinition0"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "team_id" | "status_id" | "assignee_id" | "project_id" | "milestone_id" | "label_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "title" | "identifier";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "priority";
+            /** @constant */
+            kind: "enum";
+            /** @enum {string} */
+            op: "in" | "not_in";
+            values: ("none" | "urgent" | "high" | "normal" | "low")[];
+        } | {
+            /** @enum {string} */
+            field: "effort";
+            /** @constant */
+            kind: "number";
+            number: number;
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "assignee_id" | "project_id" | "milestone_id" | "start_date" | "target_date" | "effort";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductTeamQueriesGetDomainInputDefinition1: {
+            children: components["schemas"]["ProductTeamQueriesGetDomainInputDefinition1"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesGetDomainInputDefinition1"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesGetDomainInputDefinition1"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id" | "lead_user_id" | "team_ids";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "summary";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "start_date" | "target_date";
+            /** @constant */
+            kind: "date";
+            /** @enum {string} */
+            op: "eq" | "lt" | "lte" | "gt" | "gte";
+            /** Format: date */
+            value: string;
+        } | {
+            /** @enum {string} */
+            field: "lead_user_id" | "start_date" | "target_date";
+            /** @constant */
+            kind: "null";
+            /** @enum {string} */
+            op: "is_null" | "is_not_null";
+        };
+        ProductTeamQueriesGetDomainInputDefinition2: {
+            children: components["schemas"]["ProductTeamQueriesGetDomainInputDefinition2"][];
+            /** @constant */
+            kind: "all";
+        } | {
+            children: components["schemas"]["ProductTeamQueriesGetDomainInputDefinition2"][];
+            /** @constant */
+            kind: "any";
+        } | {
+            child: components["schemas"]["ProductTeamQueriesGetDomainInputDefinition2"];
+            /** @constant */
+            kind: "not";
+        } | {
+            /** @enum {string} */
+            field: "id";
+            ids: string[];
+            /** @constant */
+            kind: "uuid";
+            /** @enum {string} */
+            op: "in" | "not_in";
+        } | {
+            /** @enum {string} */
+            field: "name" | "code";
+            /** @constant */
+            kind: "text";
+            /** @enum {string} */
+            op: "contains" | "eq";
+            value: string;
+        };
+        ProductTeamQueriesGetDomainInput: {
+            /** Format: uuid */
+            session_id: string;
+            limit: number;
+            after: string;
+        };
+        ProductTeamQueriesGetEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductTeamQueriesGetOutput"];
             meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductTeamsArchiveInput: {
@@ -26312,6 +34729,214 @@ export interface operations {
             };
         };
     };
+    column_preferences_get: {
+        parameters: {
+            query?: {
+                resource?: "issue" | "project" | "team";
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductColumnPreferencesGetEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    column_preferences_set: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductColumnPreferencesSetInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductColumnPreferencesSetEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
     comments_backlinks: {
         parameters: {
             query?: {
@@ -28938,6 +37563,213 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ProductDocumentsRevisionsEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    issue_queries_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductIssueQueriesCreateInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductIssueQueriesCreateEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    issue_queries_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                sessionID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductIssueQueriesGetEnvelope"];
                 };
             };
             /** @description Application operation failed. */
@@ -33739,6 +42571,213 @@ export interface operations {
             };
         };
     };
+    project_queries_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductProjectQueriesCreateInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductProjectQueriesCreateEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    project_queries_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                sessionID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductProjectQueriesGetEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
     project_resources_archive: {
         parameters: {
             query?: never;
@@ -35219,6 +44258,951 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    saved_views_list: {
+        parameters: {
+            query?: {
+                resource?: "any" | "issue" | "project" | "team";
+                include_deleted?: boolean;
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductSavedViewsListEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    saved_views_create: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductSavedViewsCreateInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductSavedViewsCreateEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    saved_views_delete: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                viewID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductSavedViewsDeleteInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductSavedViewsDeleteEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    saved_views_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+                viewID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductSavedViewsGetEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    saved_views_restore: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                viewID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductSavedViewsRestoreInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductSavedViewsRestoreEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    saved_views_update: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                viewID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductSavedViewsUpdateInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductSavedViewsUpdateEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    search_queries_config: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductSearchQueriesConfigEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    team_queries_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductTeamQueriesCreateInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductTeamQueriesCreateEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    team_queries_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                sessionID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductTeamQueriesGetEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
                 };
             };
             /** @description Application operation failed. */

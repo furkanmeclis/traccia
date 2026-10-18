@@ -16,8 +16,10 @@ type Querier interface {
 	AddOrganizationMember(ctx context.Context, arg AddOrganizationMemberParams) (OrganizationMember, error)
 	AddProductWorkspaceOwner(ctx context.Context, arg AddProductWorkspaceOwnerParams) error
 	AdvanceAttachmentUploadChunk(ctx context.Context, arg AdvanceAttachmentUploadChunkParams) (AttachmentUpload, error)
+	AdvanceColumnPreferences(ctx context.Context, arg AdvanceColumnPreferencesParams) (ColumnPreference, error)
 	AdvanceComment(ctx context.Context, arg AdvanceCommentParams) (IssueComment, error)
 	AdvanceDocument(ctx context.Context, arg AdvanceDocumentParams) (Document, error)
+	AdvanceSavedView(ctx context.Context, arg AdvanceSavedViewParams) (SavedView, error)
 	AllProductProjects(ctx context.Context, arg AllProductProjectsParams) ([]AllProductProjectsRow, error)
 	AllProjectContributions(ctx context.Context, arg AllProjectContributionsParams) ([]AllProjectContributionsRow, error)
 	AllWorkflowStatuses(ctx context.Context, teamID int64) ([]WorkflowStatus, error)
@@ -37,15 +39,18 @@ type Querier interface {
 	BumpProduct(ctx context.Context, arg BumpProductParams) (int64, error)
 	BumpProject(ctx context.Context, arg BumpProjectParams) (int64, error)
 	BumpTeamWorkflow(ctx context.Context, arg BumpTeamWorkflowParams) (int64, error)
+	CaptureSearchItems(ctx context.Context, arg CaptureSearchItemsParams) (CaptureSearchItemsRow, error)
 	ClaimAttachmentCleanup(ctx context.Context, limit int32) ([]AttachmentUpload, error)
 	ClaimEventDeliveries(ctx context.Context, arg ClaimEventDeliveriesParams) ([]EventDelivery, error)
 	ClaimExpiredAttachmentUploads(ctx context.Context, limit int32) ([]AttachmentUpload, error)
 	ClaimOperationReceipt(ctx context.Context, arg ClaimOperationReceiptParams) (int64, error)
+	CleanupSearchItems(ctx context.Context, rowLimit int32) (int64, error)
 	ClearAppSettingsLogo(ctx context.Context) (AppSetting, error)
 	ClearIssueLabels(ctx context.Context, arg ClearIssueLabelsParams) error
 	CommentAnchorExists(ctx context.Context, arg CommentAnchorExistsParams) (bool, error)
 	CommentBacklinkAnchorExists(ctx context.Context, arg CommentBacklinkAnchorExistsParams) (bool, error)
 	CommentRevisionAnchorExists(ctx context.Context, arg CommentRevisionAnchorExistsParams) (bool, error)
+	CompactSearchSessions(ctx context.Context) (int64, error)
 	CompleteEventDelivery(ctx context.Context, arg CompleteEventDeliveryParams) (int64, error)
 	CompleteOperationReceipt(ctx context.Context, arg CompleteOperationReceiptParams) error
 	ConfirmUserTOTP(ctx context.Context, arg ConfirmUserTOTPParams) (UserTotp, error)
@@ -130,6 +135,7 @@ type Querier interface {
 	EnsureNotificationPreferencesPushDefault(ctx context.Context, userID int64) error
 	ExtensionExists(ctx context.Context, extname string) (bool, error)
 	FinalizeAttachmentUpload(ctx context.Context, arg FinalizeAttachmentUploadParams) (AttachmentUpload, error)
+	FindSearchRequest(ctx context.Context, arg FindSearchRequestParams) (FindSearchRequestRow, error)
 	GetActiveOTPByEmailType(ctx context.Context, arg GetActiveOTPByEmailTypeParams) (OtpCode, error)
 	GetAppLogByUUID(ctx context.Context, argUuid uuid.UUID) (AppLog, error)
 	GetAppSettings(ctx context.Context) (AppSetting, error)
@@ -196,6 +202,7 @@ type Querier interface {
 	InsertAttachmentHistory(ctx context.Context, arg InsertAttachmentHistoryParams) error
 	InsertAttachmentUploadHistory(ctx context.Context, arg InsertAttachmentUploadHistoryParams) error
 	InsertBulkChange(ctx context.Context, arg InsertBulkChangeParams) (BulkChange, error)
+	InsertColumnPreferences(ctx context.Context, arg InsertColumnPreferencesParams) (ColumnPreference, error)
 	InsertComment(ctx context.Context, arg InsertCommentParams) (IssueComment, error)
 	InsertCommentReference(ctx context.Context, arg InsertCommentReferenceParams) error
 	InsertCommentRevision(ctx context.Context, arg InsertCommentRevisionParams) (CommentRevision, error)
@@ -212,11 +219,15 @@ type Querier interface {
 	InsertIssueWorkspaceHistory(ctx context.Context, arg InsertIssueWorkspaceHistoryParams) error
 	InsertNotificationHistory(ctx context.Context, arg InsertNotificationHistoryParams) (NotificationHistory, error)
 	InsertOutboxEvent(ctx context.Context, arg InsertOutboxEventParams) (int64, error)
+	InsertPreferenceWorkspaceHistory(ctx context.Context, arg InsertPreferenceWorkspaceHistoryParams) error
+	InsertPrivatePreferenceHistory(ctx context.Context, arg InsertPrivatePreferenceHistoryParams) error
 	InsertProductHistory(ctx context.Context, arg InsertProductHistoryParams) error
 	InsertProjectHistory(ctx context.Context, arg InsertProjectHistoryParams) error
 	InsertPushTicket(ctx context.Context, arg InsertPushTicketParams) error
 	InsertResourceHistory(ctx context.Context, arg InsertResourceHistoryParams) error
 	InsertRolePermission(ctx context.Context, arg InsertRolePermissionParams) error
+	InsertSavedView(ctx context.Context, arg InsertSavedViewParams) (SavedView, error)
+	InsertSearchSession(ctx context.Context, arg InsertSearchSessionParams) (SearchQuerySession, error)
 	InsertStorageActivity(ctx context.Context, arg InsertStorageActivityParams) (StorageActivity, error)
 	InsertStorageLink(ctx context.Context, arg InsertStorageLinkParams) (StorageLink, error)
 	InsertStorageShare(ctx context.Context, arg InsertStorageShareParams) (StorageShare, error)
@@ -297,6 +308,8 @@ type Querier interface {
 	ListRolesFiltered(ctx context.Context, arg ListRolesFilteredParams) ([]Role, error)
 	ListRolesForExport(ctx context.Context, q_ pgtype.Text) ([]Role, error)
 	ListRolesForUserIDs(ctx context.Context, userIds []int64) ([]ListRolesForUserIDsRow, error)
+	ListSavedViews(ctx context.Context, arg ListSavedViewsParams) ([]SavedView, error)
+	ListSearchItems(ctx context.Context, arg ListSearchItemsParams) ([]ListSearchItemsRow, error)
 	ListSharedKeys(ctx context.Context, keys []string) ([]string, error)
 	ListStorageActivity(ctx context.Context, arg ListStorageActivityParams) ([]ListStorageActivityRow, error)
 	ListStorageLinksByKey(ctx context.Context, objectKey string) ([]StorageLink, error)
@@ -323,6 +336,7 @@ type Querier interface {
 	ListWorkspaceToolCredentials(ctx context.Context, arg ListWorkspaceToolCredentialsParams) ([]WorkspaceToolCredential, error)
 	LockAttachment(ctx context.Context, arg LockAttachmentParams) (Attachment, error)
 	LockAttachmentUpload(ctx context.Context, arg LockAttachmentUploadParams) (AttachmentUpload, error)
+	LockColumnPreferences(ctx context.Context, arg LockColumnPreferencesParams) (ColumnPreference, error)
 	LockComment(ctx context.Context, arg LockCommentParams) (IssueComment, error)
 	LockDocument(ctx context.Context, arg LockDocumentParams) (Document, error)
 	LockEventDelivery(ctx context.Context, arg LockEventDeliveryParams) (EventDelivery, error)
@@ -335,6 +349,8 @@ type Querier interface {
 	LockProduct(ctx context.Context, arg LockProductParams) (Product, error)
 	LockProject(ctx context.Context, arg LockProjectParams) (Project, error)
 	LockProjectLead(ctx context.Context, arg LockProjectLeadParams) (int64, error)
+	LockSavedView(ctx context.Context, arg LockSavedViewParams) (SavedView, error)
+	LockSearchRequest(ctx context.Context, identity string) error
 	LockTeam(ctx context.Context, arg LockTeamParams) (Team, error)
 	MarkAllNotificationsReadForUser(ctx context.Context, userID pgtype.Int8) (int64, error)
 	MarkBulkJobCompleted(ctx context.Context, arg MarkBulkJobCompletedParams) (BulkJob, error)
@@ -365,11 +381,13 @@ type Querier interface {
 	ProductProjectAnchorExists(ctx context.Context, arg ProductProjectAnchorExistsParams) (bool, error)
 	ProjectInternalWorkspace(ctx context.Context, argUuid uuid.UUID) (int64, error)
 	ProjectWorkspaceActivity(ctx context.Context, arg ProjectWorkspaceActivityParams) (int64, error)
+	PublishSearchSession(ctx context.Context, arg PublishSearchSessionParams) (SearchQuerySession, error)
 	QueueImportJob(ctx context.Context, argUuid uuid.UUID) (ImportJob, error)
 	ReadActiveIssueRelation(ctx context.Context, arg ReadActiveIssueRelationParams) (IssueRelation, error)
 	ReadAttachment(ctx context.Context, arg ReadAttachmentParams) (AttachmentPublic, error)
 	ReadAttachmentChunkRange(ctx context.Context, arg ReadAttachmentChunkRangeParams) ([]AttachmentChunk, error)
 	ReadAttachmentUpload(ctx context.Context, arg ReadAttachmentUploadParams) (AttachmentUploadPublic, error)
+	ReadColumnPreferences(ctx context.Context, arg ReadColumnPreferencesParams) (ColumnPreference, error)
 	ReadComment(ctx context.Context, arg ReadCommentParams) (IssueComment, error)
 	ReadCommentRevision(ctx context.Context, arg ReadCommentRevisionParams) (CommentRevision, error)
 	ReadDocument(ctx context.Context, arg ReadDocumentParams) (Document, error)
@@ -384,6 +402,8 @@ type Querier interface {
 	ReadRelationIdentity(ctx context.Context, arg ReadRelationIdentityParams) (ReadRelationIdentityRow, error)
 	ReadRelationIssue(ctx context.Context, arg ReadRelationIssueParams) ([]byte, error)
 	ReadRelationState(ctx context.Context, arg ReadRelationStateParams) ([]byte, error)
+	ReadSavedView(ctx context.Context, arg ReadSavedViewParams) (SavedView, error)
+	ReadSearchSession(ctx context.Context, arg ReadSearchSessionParams) (ReadSearchSessionRow, error)
 	ReclaimExpiredEventDeliveries(ctx context.Context, maxAttempts int32) (int64, error)
 	ReconstructCommentJournal(ctx context.Context, arg ReconstructCommentJournalParams) ([]ReconstructCommentJournalRow, error)
 	ReconstructDocumentJournal(ctx context.Context, arg ReconstructDocumentJournalParams) ([]ReconstructDocumentJournalRow, error)
@@ -412,7 +432,10 @@ type Querier interface {
 	RevokeRefreshTokenByUUIDForUser(ctx context.Context, arg RevokeRefreshTokenByUUIDForUserParams) (int64, error)
 	RevokeStorageLink(ctx context.Context, argUuid uuid.UUID) (StorageLink, error)
 	RevokeWorkspaceToolCredential(ctx context.Context, arg RevokeWorkspaceToolCredentialParams) (int64, error)
+	SavedViewAnchorExists(ctx context.Context, arg SavedViewAnchorExistsParams) (bool, error)
 	ScheduleAttachmentCleanup(ctx context.Context, arg ScheduleAttachmentCleanupParams) error
+	SearchItemAnchorExists(ctx context.Context, arg SearchItemAnchorExistsParams) (bool, error)
+	SearchSessionExpired(ctx context.Context, id int64) (bool, error)
 	SetAppSettingsLogo(ctx context.Context, logoObjectKey pgtype.Text) (AppSetting, error)
 	SetIssueArchived(ctx context.Context, arg SetIssueArchivedParams) (Issue, error)
 	SetOperationSourceChannel(ctx context.Context, dollar_1 string) error

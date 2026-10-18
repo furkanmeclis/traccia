@@ -3,7 +3,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { hoistSchema, parseExactJSON, cloneExactJSON } from "./product-schema.mjs";
+import { hoistSchema, parseExactJSON, cloneExactJSON, omitBoundFields } from "./product-schema.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const catalog = parseExactJSON(execFileSync("go", ["run", "./cmd/product-contracts"], {
@@ -41,7 +41,7 @@ for (const contract of catalog) {
   const pathFields = Object.fromEntries([...meta.http_path.matchAll(/\{([^}]+)ID\}/g)].filter((m) => m[1] !== "workspace").map((m) => [`${m[1]}_id`, `${m[1]}ID`]));
   if(meta.http_path.includes("{identifier}")) pathFields.identifier="identifier";
   const bodyInput = cloneExactJSON(input);
-  for(const field of Object.keys(pathFields)) { delete bodyInput.properties[field]; bodyInput.required = bodyInput.required.filter((name) => name !== field); }
+  omitBoundFields(bodyInput, Object.keys(pathFields));
   if (["POST", "PATCH", "PUT"].includes(meta.http_method)) schemas[`${name}Input`] = embedSchema(`${name}Input`, bodyInput);
   const binding = Object.fromEntries(Object.entries(pathFields).map(([field,name])=>[field,`path:${name}`]));
   const queryFields = meta.http_method === "GET" ? Object.keys(input.properties ?? {}).filter((field)=>!pathFields[field]) : [];

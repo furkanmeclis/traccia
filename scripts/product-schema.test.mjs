@@ -44,3 +44,33 @@ test("hoisting preserves recursive resource targets without wire declaration fie
   const literal = {type:"string",const:{$defs:{literal:1}}};
   assert.deepEqual(hoistSchema("Literal",literal,{}),literal);
 });
+
+test("path fields are projected from same-instance compositions only", async () => {
+  const { omitBoundFields } = await import("./product-schema.mjs");
+  const original = { type:"object",properties:{view_id:{type:"string"},nested:{type:"object",properties:{view_id:{type:"string"}},required:["view_id"]}},required:["view_id","nested"],oneOf:[{type:"object",properties:{view_id:{type:"string"},name:{type:"string"}},required:["view_id","name"]}],const:{view_id:"literal"} };
+  const projected=omitBoundFields(structuredClone(original),["view_id"]);
+  assert.deepEqual(projected.required,["nested"]);
+  assert.deepEqual(projected.oneOf[0].required,["name"]);
+  assert.equal(projected.oneOf[0].properties.view_id,undefined);
+  assert.deepEqual(projected.properties.nested.required,["view_id"]);
+  assert.deepEqual(projected.const,{view_id:"literal"});
+  assert.deepEqual(original.required,["view_id","nested"]);
+});
+
+test("binding projection preserves nested composition, refs, item data and multiplicity", async () => {
+  const { omitBoundFields } = await import("./product-schema.mjs");
+  const branch={type:"object",properties:{view_id:{type:"string"},value:{type:"integer"}},required:["view_id","value"],additionalProperties:false};
+  const original={type:"object",properties:{view_id:{type:"string"},rows:{type:"array",items:structuredClone(branch)}},required:["view_id","rows"],allOf:[{anyOf:[{oneOf:[structuredClone(branch),structuredClone(branch)]},{$ref:"#/$defs/Keep",maxProperties:8}]}],$defs:{Keep:structuredClone(branch)},examples:[{view_id:"literal"}]};
+  const actual=omitBoundFields(structuredClone(original),["view_id"]);
+  assert.equal(actual.allOf[0].anyOf[0].oneOf.length,2);
+  for (const value of actual.allOf[0].anyOf[0].oneOf) {
+    assert.deepEqual(value.required,["value"]);
+    assert.equal(value.properties.view_id,undefined);
+    assert.equal(value.additionalProperties,false);
+  }
+  assert.deepEqual(actual.allOf[0].anyOf[1],original.allOf[0].anyOf[1]);
+  assert.deepEqual(actual.properties.rows,original.properties.rows);
+  assert.deepEqual(actual.$defs,original.$defs);
+  assert.deepEqual(actual.examples,original.examples);
+  assert.ok(original.allOf[0].anyOf[0].oneOf[0].properties.view_id);
+});

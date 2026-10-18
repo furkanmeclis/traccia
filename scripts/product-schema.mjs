@@ -115,3 +115,15 @@ export function hoistSchema(name, schema, components) {
   }
   return render(embedded);
 }
+
+// Path bindings occupy the same instance through composition branches. Nested
+// properties/items and literal data belong to other instances and are untouched.
+export function omitBoundFields(schema, fields) {
+  if (!schema || typeof schema !== "object" || Array.isArray(schema)) return schema;
+  if (schema.properties) for (const field of fields) delete schema.properties[field];
+  if (Array.isArray(schema.required)) schema.required = schema.required.filter((field) => !fields.includes(field));
+  for (const keyword of ["allOf", "anyOf", "oneOf"]) {
+    if (Array.isArray(schema[keyword])) for (const branch of schema[keyword]) omitBoundFields(branch, fields);
+  }
+  return schema;
+}

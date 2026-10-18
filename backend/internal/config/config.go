@@ -13,26 +13,27 @@ import (
 
 // Config holds process configuration loaded from the environment.
 type Config struct {
-	App         AppConfig
-	Encryption  EncryptionConfig
-	HTTP        HTTPConfig
-	DB          DBConfig
-	Redis       RedisConfig
-	Storage     StorageConfig
-	Attachments AttachmentConfig
-	CORS        CORSConfig
-	SMTP        SMTPConfig
-	Queue       QueueConfig
-	Bulk        BulkConfig
-	Centrifugo  CentrifugoConfig
-	Auth        AuthConfig
-	JWT         JWTConfig
-	Log         LogConfig
-	VAPID       VAPIDConfig
-	Expo        ExpoConfig
-	Search      SearchConfig
-	Sentry      SentryConfig
-	Tenancy     TenancyConfig
+	QuerySessionTTL time.Duration
+	App             AppConfig
+	Encryption      EncryptionConfig
+	HTTP            HTTPConfig
+	DB              DBConfig
+	Redis           RedisConfig
+	Storage         StorageConfig
+	Attachments     AttachmentConfig
+	CORS            CORSConfig
+	SMTP            SMTPConfig
+	Queue           QueueConfig
+	Bulk            BulkConfig
+	Centrifugo      CentrifugoConfig
+	Auth            AuthConfig
+	JWT             JWTConfig
+	Log             LogConfig
+	VAPID           VAPIDConfig
+	Expo            ExpoConfig
+	Search          SearchConfig
+	Sentry          SentryConfig
+	Tenancy         TenancyConfig
 }
 
 // AttachmentConfig bounds product file transfer independently of platform storage.
@@ -265,8 +266,9 @@ func Load() (Config, error) {
 			Password: getEnv("REDIS_PASSWORD", ""),
 			DB:       getInt("REDIS_DB", 0),
 		},
-		Storage:     loadStorageConfig(),
-		Attachments: AttachmentConfig{MaxFileBytes: getInt64("ATTACHMENTS_MAX_FILE_BYTES", 256<<20), ChunkBytes: int32(getInt("ATTACHMENTS_CHUNK_BYTES", 256<<10)), UploadTTL: getDuration("ATTACHMENTS_UPLOAD_TTL", 24*time.Hour), FinalizedRetention: getDuration("ATTACHMENTS_FINALIZED_RETENTION", 7*24*time.Hour), CleanupInterval: getDuration("ATTACHMENTS_CLEANUP_INTERVAL", time.Hour)},
+		Storage:         loadStorageConfig(),
+		QuerySessionTTL: getDuration("QUERY_SESSION_TTL", 30*time.Minute),
+		Attachments:     AttachmentConfig{MaxFileBytes: getInt64("ATTACHMENTS_MAX_FILE_BYTES", 256<<20), ChunkBytes: int32(getInt("ATTACHMENTS_CHUNK_BYTES", 256<<10)), UploadTTL: getDuration("ATTACHMENTS_UPLOAD_TTL", 24*time.Hour), FinalizedRetention: getDuration("ATTACHMENTS_FINALIZED_RETENTION", 7*24*time.Hour), CleanupInterval: getDuration("ATTACHMENTS_CLEANUP_INTERVAL", time.Hour)},
 		CORS: CORSConfig{
 			AllowedOrigins: splitCSV(getEnv("CORS_ALLOWED_ORIGINS", "http://localhost:3000")),
 		},
@@ -347,6 +349,12 @@ func Load() (Config, error) {
 			CacheTTL:  getDuration("TENANCY_CACHE_TTL", 60*time.Second),
 		},
 	}
+
+	ttl, err := parseQuerySessionTTL(getEnv("QUERY_SESSION_TTL", "30m"))
+	if err != nil {
+		return Config{}, err
+	}
+	cfg.QuerySessionTTL = ttl
 
 	if err := cfg.Attachments.validate(); err != nil {
 		return Config{}, err

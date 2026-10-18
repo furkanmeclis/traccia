@@ -423,7 +423,7 @@ func TestCommentsTransportClosedRoundtripJournalAndInventory(t *testing.T) {
 			}
 		}
 	}
-	if len(catalog) != 114 || ops != 12 || writes != 5 {
+	if len(catalog) != 129 || ops != 12 || writes != 5 {
 		t.Fatalf("inventory%d/%d/%d", len(catalog), ops, writes)
 	}
 	team := f.createTeam(t, "TCM")
