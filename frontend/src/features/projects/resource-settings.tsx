@@ -1,8 +1,8 @@
 "use client";
 import { useId, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { TextLimitInput as Input } from "@/components/ui/text-limit-input";
+import { TextLimitTextarea as Textarea } from "@/components/ui/text-limit-input";
 import { Label } from "@/components/ui/label";
 import { useLocale } from "@/providers/locale-provider";
 import { projectService, type Resource, type Schemas } from "./project.service";
@@ -165,8 +165,9 @@ function ResourceForm({
               id={`${id}-${field}`}
               type={field === "url" ? "url" : "text"}
               required={field === "title" || field === "url"}
-              maxLength={
-                field === "url" ? 2048 : field === "reference" ? 200 : 100
+              maxBytes={field === "url" ? 2048 : undefined}
+              maxCodePoints={
+                field === "url" ? undefined : field === "reference" ? 200 : 100
               }
               value={draft[field]}
               onChange={(event) =>
@@ -179,7 +180,7 @@ function ResourceForm({
           <Label htmlFor={`${id}-summary`}>{t("projects.summary")}</Label>
           <Textarea
             id={`${id}-summary`}
-            maxLength={2000}
+            maxCodePoints={2000}
             value={draft.summary}
             onChange={(event) =>
               setDraft({ ...draft, summary: event.target.value })

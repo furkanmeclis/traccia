@@ -398,10 +398,53 @@ type PgExtension struct {
 	Extname string `json:"extname"`
 }
 
+type Product struct {
+	ID                  int64              `json:"id"`
+	Uuid                uuid.UUID          `json:"uuid"`
+	WorkspaceID         int64              `json:"workspace_id"`
+	Name                string             `json:"name"`
+	Summary             string             `json:"summary"`
+	RepositoryUrl       string             `json:"repository_url"`
+	RepositoryProvider  string             `json:"repository_provider"`
+	RepositoryReference string             `json:"repository_reference"`
+	Version             int64              `json:"version"`
+	Archived            bool               `json:"archived"`
+	CreatedAt           pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt           pgtype.Timestamptz `json:"updated_at"`
+}
+
+type ProductEnvironment struct {
+	ID              int64              `json:"id"`
+	Uuid            uuid.UUID          `json:"uuid"`
+	WorkspaceID     int64              `json:"workspace_id"`
+	ProductID       int64              `json:"product_id"`
+	Name            string             `json:"name"`
+	Kind            string             `json:"kind"`
+	Url             string             `json:"url"`
+	DeployUrl       string             `json:"deploy_url"`
+	DeployProvider  string             `json:"deploy_provider"`
+	DeployReference string             `json:"deploy_reference"`
+	Summary         string             `json:"summary"`
+	Version         int64              `json:"version"`
+	Archived        bool               `json:"archived"`
+	CreatedAt       pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt       pgtype.Timestamptz `json:"updated_at"`
+}
+
 type ProductInstallation struct {
 	ID          bool               `json:"id"`
 	OwnerUserID int64              `json:"owner_user_id"`
 	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+}
+
+type ProductProject struct {
+	ID          int64              `json:"id"`
+	WorkspaceID int64              `json:"workspace_id"`
+	ProductID   int64              `json:"product_id"`
+	ProjectID   int64              `json:"project_id"`
+	Archived    bool               `json:"archived"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
 }
 
 type Project struct {
@@ -690,19 +733,21 @@ type WorkspaceActivity struct {
 }
 
 type WorkspaceHistory struct {
-	ID            int64              `json:"id"`
-	EventID       int64              `json:"event_id"`
-	Uuid          uuid.UUID          `json:"uuid"`
-	WorkspaceUuid uuid.UUID          `json:"workspace_uuid"`
-	ActorUuid     uuid.UUID          `json:"actor_uuid"`
-	EventName     string             `json:"event_name"`
-	Name          string             `json:"name"`
-	Version       int64              `json:"version"`
-	OccurredAt    pgtype.Timestamptz `json:"occurred_at"`
-	ResourceType  string             `json:"resource_type"`
-	ResourceUuid  pgtype.UUID        `json:"resource_uuid"`
-	TeamUuid      pgtype.UUID        `json:"team_uuid"`
-	ProjectUuid   pgtype.UUID        `json:"project_uuid"`
+	ID              int64              `json:"id"`
+	EventID         int64              `json:"event_id"`
+	Uuid            uuid.UUID          `json:"uuid"`
+	WorkspaceUuid   uuid.UUID          `json:"workspace_uuid"`
+	ActorUuid       uuid.UUID          `json:"actor_uuid"`
+	EventName       string             `json:"event_name"`
+	Name            string             `json:"name"`
+	Version         int64              `json:"version"`
+	OccurredAt      pgtype.Timestamptz `json:"occurred_at"`
+	ResourceType    string             `json:"resource_type"`
+	ResourceUuid    pgtype.UUID        `json:"resource_uuid"`
+	TeamUuid        pgtype.UUID        `json:"team_uuid"`
+	ProjectUuid     pgtype.UUID        `json:"project_uuid"`
+	ProductUuid     pgtype.UUID        `json:"product_uuid"`
+	EnvironmentUuid pgtype.UUID        `json:"environment_uuid"`
 }
 
 type WorkspaceMember struct {

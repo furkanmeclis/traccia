@@ -13,7 +13,7 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
+import { TextLimitInput as Input } from "@/components/ui/text-limit-input";
 import { Label } from "@/components/ui/label";
 import {
   Dialog,
@@ -307,7 +307,7 @@ export function WorkspaceCredentials({
                       id="credential-name"
                       autoFocus
                       required
-                      maxLength={100}
+                      maxCodePoints={100}
                       autoComplete="off"
                       value={name}
                       onChange={(e) => setName(e.target.value)}

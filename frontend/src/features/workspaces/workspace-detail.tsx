@@ -11,7 +11,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { TextLimitInput as Input } from "@/components/ui/text-limit-input";
 import { Label } from "@/components/ui/label";
 import { ApiError } from "@/lib/api";
 import {
@@ -80,7 +80,7 @@ function WorkspaceSettings({ workspace }: { workspace: Workspace }) {
               id="workspace-settings-name"
               disabled={update.isPending}
               required
-              maxLength={100}
+              maxCodePoints={100}
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
@@ -193,6 +193,21 @@ export function WorkspaceDetail({ workspaceId }: { workspaceId: string }) {
               {result.data.workspace.id}
             </p>
           </div>
+          <Card>
+            <CardHeader>
+              <CardTitle>{t("products.title")}</CardTitle>
+              <CardDescription>
+                {t("products.discover_description")}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button type="button" asChild>
+                <Link href={`/w/${workspaceId}/products`}>
+                  {t("products.title")}
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
           <Card>
             <CardHeader>
               <CardTitle>{t("teams.title")}</CardTitle>

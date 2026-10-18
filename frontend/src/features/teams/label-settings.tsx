@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { TextLimitInput as Input } from "@/components/ui/text-limit-input";
 import { Label } from "@/components/ui/label";
 import { useLocale } from "@/providers/locale-provider";
 import { useWorkspace } from "@/features/workspaces/queries";
@@ -184,7 +184,7 @@ export function LabelSettings({
               <Input
                 id={`${teamId || "shared"}-label-name`}
                 required
-                maxLength={100}
+                maxCodePoints={100}
                 value={name}
                 disabled={busy}
                 onChange={(e) => setName(e.target.value)}

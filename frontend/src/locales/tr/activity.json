@@ -38,5 +38,17 @@
   "resources.platform.integrations.apple": "Apple entegrasyonu",
   "resources.auth.step_up": "Step-up doğrulama",
   "resources.auth.account": "Hesap",
-  "resources.platform.organizations": "Organizasyonlar"
+  "resources.platform.organizations": "Organizasyonlar",
+  "resources.products": "Ürün",
+  "actions.products.created": "Ürün oluşturuldu",
+  "actions.products.updated": "Ürün güncellendi",
+  "actions.products.archived": "Ürün arşivlendi",
+  "actions.products.restored": "Ürün geri yüklendi",
+  "resources.product_environments": "Ortam",
+  "actions.product_environments.created": "Ortam oluşturuldu",
+  "actions.product_environments.updated": "Ortam güncellendi",
+  "actions.product_environments.archived": "Ortam arşivlendi",
+  "actions.product_environments.restored": "Ortam geri yüklendi",
+  "resources.product_projects": "Ürün proje ilişkileri",
+  "actions.product_projects.updated": "Ürün proje ilişkileri güncellendi"
 }

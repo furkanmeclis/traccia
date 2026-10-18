@@ -43,7 +43,7 @@ func (q *Queries) InsertWorkspaceHistory(ctx context.Context, arg InsertWorkspac
 }
 
 const listWorkspaceActivity = `-- name: ListWorkspaceActivity :many
-SELECT h.id, h.event_id, h.uuid, h.workspace_uuid, h.actor_uuid, h.event_name, h.name, h.version, h.occurred_at, h.resource_type, h.resource_uuid, h.team_uuid, h.project_uuid FROM workspace_activity a JOIN workspace_history h ON h.id=a.id AND h.workspace_uuid=a.workspace_uuid
+SELECT h.id, h.event_id, h.uuid, h.workspace_uuid, h.actor_uuid, h.event_name, h.name, h.version, h.occurred_at, h.resource_type, h.resource_uuid, h.team_uuid, h.project_uuid, h.product_uuid, h.environment_uuid FROM workspace_activity a JOIN workspace_history h ON h.id=a.id AND h.workspace_uuid=a.workspace_uuid
 WHERE a.workspace_uuid=$1
  AND ($2::uuid='00000000-0000-0000-0000-000000000000'::uuid
  OR a.id < (SELECT c.id FROM workspace_history c WHERE c.uuid=$2 AND c.workspace_uuid=$1))
@@ -79,6 +79,8 @@ func (q *Queries) ListWorkspaceActivity(ctx context.Context, arg ListWorkspaceAc
 			&i.ResourceUuid,
 			&i.TeamUuid,
 			&i.ProjectUuid,
+			&i.ProductUuid,
+			&i.EnvironmentUuid,
 		); err != nil {
 			return nil, err
 		}

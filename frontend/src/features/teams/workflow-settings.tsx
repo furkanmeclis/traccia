@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { TextLimitInput as Input } from "@/components/ui/text-limit-input";
 import { Label } from "@/components/ui/label";
 import { useLocale } from "@/providers/locale-provider";
 import { teamKeys, useStatuses } from "./queries";
@@ -244,7 +244,7 @@ export function WorkflowSettings({
               <Input
                 id="status-name"
                 required
-                maxLength={100}
+                maxCodePoints={100}
                 value={name}
                 disabled={busy}
                 onChange={(e) => {
