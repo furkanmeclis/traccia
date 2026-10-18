@@ -19,7 +19,7 @@ var (
 
 func normalizePrefix(prefix string) (string, error) {
 	prefix = strings.TrimSpace(strings.TrimPrefix(prefix, "/"))
-	if strings.Contains(prefix, "..") {
+	if strings.Contains(prefix, "..") || attachmentPrivateKey(prefix) {
 		return "", ErrInvalidKey
 	}
 	if prefix == "" {
@@ -33,7 +33,7 @@ func normalizePrefix(prefix string) (string, error) {
 
 func normalizeKey(key string) (string, error) {
 	key = strings.TrimSpace(strings.TrimPrefix(key, "/"))
-	if key == "" || strings.Contains(key, "..") {
+	if key == "" || strings.Contains(key, "..") || attachmentPrivateKey(key) {
 		return "", ErrInvalidKey
 	}
 	return key, nil
@@ -84,4 +84,12 @@ func folderKey(key string) string {
 
 func skipSystem(key string) bool {
 	return platstorage.IsSystemKey(key)
+}
+
+// Product attachments have their own workspace authorizer and immutable object
+// authority. Platform explorer grants never authorize this private namespace.
+func attachmentPrivateKey(key string) bool {
+	key = strings.TrimLeft(strings.TrimSpace(key), "/")
+	root := platstorage.SystemPrefix + "attachments"
+	return key == root || strings.HasPrefix(key, root+"/")
 }

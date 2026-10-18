@@ -67,6 +67,10 @@ for (const contract of catalog) {
     headers: { "Cache-Control": { schema: { type: "string", const: "no-store" } } },
     content: { "application/json": { schema: ref(`${name}Envelope`) } },
   } };
+  if (meta.id === "attachments.download_chunk") {
+    responses[status].headers["Content-Disposition"] = { schema: { type: "string" }, description: "Safe attachment filename; the JSON response carries a bounded base64 chunk." };
+    responses[status].headers["X-Content-Type-Options"] = { schema: { type: "string", const: "nosniff" } };
+  }
   for (const code of Object.keys(statusCodes)) {
     if (code === "415" && !["POST", "PATCH", "PUT"].includes(meta.http_method)) continue;
     responses[code] = { description: code === "401" ? "Verified application identity or HTTP authentication failed." : code === "415" ? "JSON request media type required." : "Application operation failed.", content: { "application/json": { schema: ref(`ProductHTTPError${code}`) } } };

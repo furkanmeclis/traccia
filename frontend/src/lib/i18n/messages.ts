@@ -1,3 +1,5 @@
+import enAttachments from "@/locales/en/attachments.json";
+import trAttachments from "@/locales/tr/attachments.json";
 import enDocuments from "@/locales/en/documents.json";
 import trDocuments from "@/locales/tr/documents.json";
 import type { AppLocale } from "@/config/i18n";
@@ -89,6 +91,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     issues: trIssues,
     relations: trRelations,
     documents: trDocuments,
+    attachments: trAttachments,
     layout: trLayout,
     editor: trEditor,
     table: trTable,
@@ -126,6 +129,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     issues: enIssues,
     relations: enRelations,
     documents: enDocuments,
+    attachments: enAttachments,
     layout: enLayout,
     editor: enEditor,
     table: enTable,

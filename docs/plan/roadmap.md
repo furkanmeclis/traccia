@@ -207,6 +207,8 @@ Parent/sub-issue, blocks/blocked-by, related ve duplicate ilişkilerini ekle.
 
 ### T10 Plate.js editörünü sürümlü issue ve proje belgelerine bağla
 
+Status: Done. Canonical Plate JSON, immutable revisions and delta patches, scoped references, shared editor and safe exports are implemented. Linked document templates remain T47.
+
 Phase 3; depends on: T08.
 
 Panel ve widget için ortak Plate.js plugin/node sözleşmesi kur; kanonik sürümlü Plate JSON, gerçek mention/ref ve güvenli HTML türetme ekle.
@@ -218,6 +220,8 @@ Panel ve widget için ortak Plate.js plugin/node sözleşmesi kur; kanonik sür�
 - Panel ve widget aynı Plate.js belge şemasını kullanıyor; Lexical editör temeli taşınmıyor
 
 ### T11 Issue ekleri ve tam dosya aktarımını geliştir
+
+Status: In Progress. Persistent upload ownership, bounded chunk transfer, independent file identity and lifecycle, and recurring cleanup are under implementation and verification.
 
 Phase 3; depends on: T08, T03.
 

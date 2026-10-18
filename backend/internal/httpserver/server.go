@@ -1,6 +1,8 @@
 package httpserver
 
 import (
+	attachmentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/repository"
+	attachmentsusecase "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/usecase"
 	documentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/documents/repository"
 	documentsusecase "github.com/furkanmeclis/traccia/backend/internal/modules/documents/usecase"
 	issuesrepo "github.com/furkanmeclis/traccia/backend/internal/modules/issues/repository"
@@ -266,7 +268,20 @@ func New(cfg config.Config, log *slog.Logger, deps Deps) (*Server, error) {
 	authmodule.RegisterRoutes(mux, h, tokens, loader, stepUpSvc)
 	workspaceSvc := workspacesusecase.New(workspacesrepo.New(deps.DB, deps.Queries, secretBox))
 	issueSvc := issuesusecase.New(issuesrepo.New(deps.DB, deps.Queries), workspaceSvc)
-	productRegistry, err := product.Registry(workspaceSvc, teamsusecase.New(teamsrepo.New(deps.DB, deps.Queries), workspaceSvc), projectsusecase.New(projectsrepo.New(deps.DB, deps.Queries), workspaceSvc), productsusecase.New(productsrepo.New(deps.DB, deps.Queries), workspaceSvc), issueSvc, relationsusecase.New(relationsrepo.New(deps.DB, deps.Queries), workspaceSvc), documentsusecase.New(documentsrepo.New(deps.DB, deps.Queries), workspaceSvc, issueSvc))
+	attachmentStore, err := attachmentsrepo.NewObjectStore(deps.Storage)
+	if err != nil {
+		return nil, err
+	}
+	attachmentOptions := attachmentsusecase.Options{MaxFileBytes: cfg.Attachments.MaxFileBytes, ChunkBytes: cfg.Attachments.ChunkBytes, UploadTTL: cfg.Attachments.UploadTTL, FinalizedRetention: cfg.Attachments.FinalizedRetention, CleanupInterval: cfg.Attachments.CleanupInterval}
+	attachmentRepo, err := attachmentsrepo.New(deps.DB, deps.Queries, attachmentStore, attachmentOptions)
+	if err != nil {
+		return nil, err
+	}
+	attachmentSvc, err := attachmentsusecase.NewWithOptions(attachmentRepo, workspaceSvc, attachmentOptions)
+	if err != nil {
+		return nil, err
+	}
+	productRegistry, err := product.Registry(workspaceSvc, teamsusecase.New(teamsrepo.New(deps.DB, deps.Queries), workspaceSvc), projectsusecase.New(projectsrepo.New(deps.DB, deps.Queries), workspaceSvc), productsusecase.New(productsrepo.New(deps.DB, deps.Queries), workspaceSvc), issueSvc, relationsusecase.New(relationsrepo.New(deps.DB, deps.Queries), workspaceSvc), documentsusecase.New(documentsrepo.New(deps.DB, deps.Queries), workspaceSvc, issueSvc), attachmentSvc)
 	if err != nil {
 		return nil, err
 	}

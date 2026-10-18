@@ -26,6 +26,7 @@ type SchemaRefiner func(input, output *jsonschema.Schema) error
 
 // Operation is immutable after construction and can be shared by transports.
 type Operation struct {
+	wireBytes      int64
 	wire           func(any, json.RawMessage) []FieldError
 	validateResult func([]byte) error
 	contract       Contract
@@ -83,6 +84,9 @@ func New[I, O any](meta Metadata, validate Validator[I], handler Handler[I, O], 
 	}); ok {
 		op.wire = bounded.ValidateWire
 	}
+	if limit, ok := any(wireInput).(interface{ InputBudgetBytes() int64 }); ok {
+		op.wireBytes = limit.InputBudgetBytes()
+	}
 	op.validateResult = func(raw []byte) error {
 		value, err := decodeJSON(raw)
 		if err != nil {
@@ -94,6 +98,9 @@ func New[I, O any](meta Metadata, validate Validator[I], handler Handler[I, O], 
 		return op, nil
 	}
 	op.prepare = func(raw json.RawMessage) (func(context.Context, Scope) (json.RawMessage, error), error) {
+		if op.wireBytes > 0 && int64(len(raw)) > op.wireBytes {
+			return nil, &Error{Code: Validation, Details: []FieldError{{Field: "input", Code: "bytes_limit"}}}
+		}
 		value, err := decodeJSON(raw)
 		if err != nil {
 			return nil, failure(Validation, err)

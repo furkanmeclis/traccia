@@ -146,6 +146,9 @@ func (s *Service) Restore(ctx context.Context, actor model.Actor, keys []string)
 				return err
 			}
 		}
+		if attachmentPrivateKey(row.ObjectKey) || attachmentPrivateKey(row.OriginalKey) {
+			return ErrInvalidKey
+		}
 		if err := s.store.Copy(ctx, row.ObjectKey, row.OriginalKey); err != nil {
 			return fmt.Errorf("storage: restore copy: %w", err)
 		}
@@ -176,6 +179,9 @@ func (s *Service) Purge(ctx context.Context, actor model.Actor, keys []string) e
 			} else {
 				return err
 			}
+		}
+		if attachmentPrivateKey(row.ObjectKey) || attachmentPrivateKey(row.OriginalKey) {
+			return ErrInvalidKey
 		}
 		_ = s.store.Delete(ctx, row.ObjectKey)
 		_ = s.q.DeleteStorageTrashByUUID(ctx, row.Uuid)

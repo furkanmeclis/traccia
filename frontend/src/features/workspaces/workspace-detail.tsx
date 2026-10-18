@@ -1,4 +1,5 @@
 "use client";
+import { AttachmentShelf } from "@/features/attachments/attachment-panel";
 import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -246,6 +247,7 @@ export function WorkspaceDetail({ workspaceId }: { workspaceId: string }) {
           )}
           <RelationPendingOperations workspaceId={workspaceId} />
           <DocumentPendingOperations workspaceId={workspaceId} />
+          <AttachmentShelf workspaceID={workspaceId} />
           <WorkspaceActivity
             key={`activity:${workspaceId}`}
             workspaceId={workspaceId}

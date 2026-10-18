@@ -1,4 +1,5 @@
 "use client";
+import { attachmentActivityKeys } from "@/features/attachments/copy";
 import { relationActivityKeys } from "@/features/issue-relations/copy";
 
 import Link from "next/link";
@@ -18,6 +19,7 @@ import { useWorkspaceActivity } from "./queries";
 
 const activityActionKeys: Record<string, string> = {
   ...relationActivityKeys,
+  ...attachmentActivityKeys,
   "documents.created": "documents.activityCreated",
   "documents.replaced": "documents.activityReplaced",
   "documents.patched": "documents.activityPatched",

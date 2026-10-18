@@ -172,6 +172,9 @@ func (r *Registry) ValidateWireInput(id string, raw json.RawMessage) error {
 	if op == nil || op.wire == nil {
 		return nil
 	}
+	if op.wireBytes > 0 && int64(len(raw)) > op.wireBytes {
+		return &Error{Code: Validation, Details: []FieldError{{Field: "input", Code: "bytes_limit"}}}
+	}
 	value, e := decodeJSON(raw)
 	if e != nil {
 		return failure(Validation, e)
@@ -196,6 +199,9 @@ func (r *Registry) InputReadError(id string) error {
 // escape expansion while preserving the released transport limit elsewhere.
 func (r *Registry) InputReadLimit(id string) int64 {
 	if op := r.operations[id]; op != nil && op.wire != nil {
+		if op.wireBytes > 0 {
+			return op.wireBytes
+		}
 		return 4 << 20
 	}
 	return 1 << 20

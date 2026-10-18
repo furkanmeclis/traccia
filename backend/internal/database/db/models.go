@@ -52,6 +52,155 @@ type AppSetting struct {
 	UpdatedAt     pgtype.Timestamptz `json:"updated_at"`
 }
 
+type Attachment struct {
+	ID           int64              `json:"id"`
+	Uuid         uuid.UUID          `json:"uuid"`
+	WorkspaceID  int64              `json:"workspace_id"`
+	UploadID     int64              `json:"upload_id"`
+	ActorID      int64              `json:"actor_id"`
+	DraftUuid    uuid.UUID          `json:"draft_uuid"`
+	FileRevision uuid.UUID          `json:"file_revision"`
+	Version      int64              `json:"version"`
+	Filename     string             `json:"filename"`
+	ContentType  string             `json:"content_type"`
+	SizeBytes    int64              `json:"size_bytes"`
+	Sha256       string             `json:"sha256"`
+	ManifestKey  string             `json:"manifest_key"`
+	IssueID      pgtype.Int8        `json:"issue_id"`
+	Removed      bool               `json:"removed"`
+	FinalizedAt  pgtype.Timestamptz `json:"finalized_at"`
+	ExpiresAt    pgtype.Timestamptz `json:"expires_at"`
+}
+
+type AttachmentChunk struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	WorkspaceID int64              `json:"workspace_id"`
+	UploadID    int64              `json:"upload_id"`
+	OffsetBytes int64              `json:"offset_bytes"`
+	SizeBytes   int32              `json:"size_bytes"`
+	Sha256      string             `json:"sha256"`
+	ObjectKey   string             `json:"object_key"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+}
+
+type AttachmentFileChunk struct {
+	ID            int64              `json:"id"`
+	Uuid          uuid.UUID          `json:"uuid"`
+	WorkspaceID   int64              `json:"workspace_id"`
+	AttachmentID  int64              `json:"attachment_id"`
+	UploadChunkID int64              `json:"upload_chunk_id"`
+	ObjectKey     string             `json:"object_key"`
+	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+}
+
+type AttachmentHistory struct {
+	ID           int64              `json:"id"`
+	Uuid         uuid.UUID          `json:"uuid"`
+	EventID      int64              `json:"event_id"`
+	WorkspaceID  int64              `json:"workspace_id"`
+	AttachmentID int64              `json:"attachment_id"`
+	ActorUuid    uuid.UUID          `json:"actor_uuid"`
+	EventName    string             `json:"event_name"`
+	Version      int64              `json:"version"`
+	OccurredAt   pgtype.Timestamptz `json:"occurred_at"`
+	Snapshot     []byte             `json:"snapshot"`
+}
+
+type AttachmentPublic struct {
+	ID              int64              `json:"id"`
+	Uuid            uuid.UUID          `json:"uuid"`
+	WorkspaceID     int64              `json:"workspace_id"`
+	UploadID        int64              `json:"upload_id"`
+	ActorID         int64              `json:"actor_id"`
+	DraftUuid       uuid.UUID          `json:"draft_uuid"`
+	FileRevision    uuid.UUID          `json:"file_revision"`
+	Version         int64              `json:"version"`
+	Filename        string             `json:"filename"`
+	ContentType     string             `json:"content_type"`
+	SizeBytes       int64              `json:"size_bytes"`
+	Sha256          string             `json:"sha256"`
+	ManifestKey     string             `json:"manifest_key"`
+	IssueID         pgtype.Int8        `json:"issue_id"`
+	Removed         bool               `json:"removed"`
+	FinalizedAt     pgtype.Timestamptz `json:"finalized_at"`
+	ExpiresAt       pgtype.Timestamptz `json:"expires_at"`
+	WorkspaceUuid   uuid.UUID          `json:"workspace_uuid"`
+	UploadUuid      uuid.UUID          `json:"upload_uuid"`
+	ActorUuid       uuid.UUID          `json:"actor_uuid"`
+	IssueUuid       pgtype.UUID        `json:"issue_uuid"`
+	UploadState     string             `json:"upload_state"`
+	UploadExpiresAt pgtype.Timestamptz `json:"upload_expires_at"`
+	TeamUuid        pgtype.UUID        `json:"team_uuid"`
+	ProjectUuid     pgtype.UUID        `json:"project_uuid"`
+	IssueIdentifier interface{}        `json:"issue_identifier"`
+	IssueActive     pgtype.Bool        `json:"issue_active"`
+}
+
+type AttachmentUpload struct {
+	ID               int64              `json:"id"`
+	Uuid             uuid.UUID          `json:"uuid"`
+	WorkspaceID      int64              `json:"workspace_id"`
+	ActorID          int64              `json:"actor_id"`
+	DraftUuid        uuid.UUID          `json:"draft_uuid"`
+	Filename         string             `json:"filename"`
+	ContentType      string             `json:"content_type"`
+	SizeBytes        int64              `json:"size_bytes"`
+	Sha256           string             `json:"sha256"`
+	ChunkBytes       int32              `json:"chunk_bytes"`
+	NextOffset       int64              `json:"next_offset"`
+	Version          int64              `json:"version"`
+	State            string             `json:"state"`
+	AttachmentID     pgtype.Int8        `json:"attachment_id"`
+	ExpiresAt        pgtype.Timestamptz `json:"expires_at"`
+	CreatedAt        pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt        pgtype.Timestamptz `json:"updated_at"`
+	CleanupState     string             `json:"cleanup_state"`
+	NextCleanupAt    pgtype.Timestamptz `json:"next_cleanup_at"`
+	LastCleanupError string             `json:"last_cleanup_error"`
+	CleanupPasses    int64              `json:"cleanup_passes"`
+}
+
+type AttachmentUploadHistory struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	EventID     int64              `json:"event_id"`
+	WorkspaceID int64              `json:"workspace_id"`
+	UploadID    int64              `json:"upload_id"`
+	ActorUuid   uuid.UUID          `json:"actor_uuid"`
+	EventName   string             `json:"event_name"`
+	Version     int64              `json:"version"`
+	OccurredAt  pgtype.Timestamptz `json:"occurred_at"`
+	Snapshot    []byte             `json:"snapshot"`
+}
+
+type AttachmentUploadPublic struct {
+	ID               int64              `json:"id"`
+	Uuid             uuid.UUID          `json:"uuid"`
+	WorkspaceID      int64              `json:"workspace_id"`
+	ActorID          int64              `json:"actor_id"`
+	DraftUuid        uuid.UUID          `json:"draft_uuid"`
+	Filename         string             `json:"filename"`
+	ContentType      string             `json:"content_type"`
+	SizeBytes        int64              `json:"size_bytes"`
+	Sha256           string             `json:"sha256"`
+	ChunkBytes       int32              `json:"chunk_bytes"`
+	NextOffset       int64              `json:"next_offset"`
+	Version          int64              `json:"version"`
+	State            string             `json:"state"`
+	AttachmentID     pgtype.Int8        `json:"attachment_id"`
+	ExpiresAt        pgtype.Timestamptz `json:"expires_at"`
+	CreatedAt        pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt        pgtype.Timestamptz `json:"updated_at"`
+	CleanupState     string             `json:"cleanup_state"`
+	NextCleanupAt    pgtype.Timestamptz `json:"next_cleanup_at"`
+	LastCleanupError string             `json:"last_cleanup_error"`
+	CleanupPasses    int64              `json:"cleanup_passes"`
+	WorkspaceUuid    uuid.UUID          `json:"workspace_uuid"`
+	ActorUuid        uuid.UUID          `json:"actor_uuid"`
+	AttachmentUuid   pgtype.UUID        `json:"attachment_uuid"`
+}
+
 type AuthSetting struct {
 	ID                      int16              `json:"id"`
 	RegistrationEnabled     bool               `json:"registration_enabled"`
