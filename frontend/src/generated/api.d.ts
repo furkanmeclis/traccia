@@ -108,6 +108,166 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/workspaces/{workspaceID}/issues/{issueID}/relations/history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * issue_relations.history
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["issue_relations_history"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/issues/{issueID}/relations/blocks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * issue_relations.link_block
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["issue_relations_link_block"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/issues/{issueID}/relations/related": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * issue_relations.link_related
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["issue_relations_link_related"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/issues/{issueID}/relations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * issue_relations.list
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["issue_relations_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/issues/{issueID}/relations/duplicate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * issue_relations.set_duplicate
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["issue_relations_set_duplicate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/issues/{issueID}/relations/parent": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * issue_relations.set_parent
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["issue_relations_set_parent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/issues/{issueID}/relations/blocks/unlink": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * issue_relations.unlink_block
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["issue_relations_unlink_block"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/issues/{issueID}/relations/related/unlink": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * issue_relations.unlink_related
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["issue_relations_unlink_related"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/workspaces/{workspaceID}/issues/{issueID}/archive": {
         parameters: {
             query?: never;
@@ -3292,6 +3452,1146 @@ export interface components {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductDeliveriesReplayOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductIssueRelationsHistoryOutput: {
+            items: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                issue_id: string;
+                /** Format: uuid */
+                actor_id: string;
+                event_name: string;
+                version: number;
+                /** Format: date-time */
+                occurred_at: string;
+                snapshot: {
+                    state: {
+                        issue: {
+                            /** Format: uuid */
+                            id: string;
+                            /** Format: uuid */
+                            workspace_id: string;
+                            /** Format: uuid */
+                            team_id: string;
+                            identifier: string;
+                            title: string;
+                            archived: boolean;
+                            active: boolean;
+                            relation_version: number;
+                        };
+                        parent: null | {
+                            /** Format: uuid */
+                            id: string;
+                            /** Format: uuid */
+                            workspace_id: string;
+                            /** Format: uuid */
+                            team_id: string;
+                            identifier: string;
+                            title: string;
+                            archived: boolean;
+                            active: boolean;
+                            relation_version: number;
+                        };
+                        duplicate_of: null | {
+                            /** Format: uuid */
+                            id: string;
+                            /** Format: uuid */
+                            workspace_id: string;
+                            /** Format: uuid */
+                            team_id: string;
+                            identifier: string;
+                            title: string;
+                            archived: boolean;
+                            active: boolean;
+                            relation_version: number;
+                        };
+                        canonical_duplicate: null | {
+                            /** Format: uuid */
+                            id: string;
+                            /** Format: uuid */
+                            workspace_id: string;
+                            /** Format: uuid */
+                            team_id: string;
+                            identifier: string;
+                            title: string;
+                            archived: boolean;
+                            active: boolean;
+                            relation_version: number;
+                        };
+                        capabilities: {
+                            link: boolean;
+                            unlink: boolean;
+                        };
+                    };
+                    changed_relations: null | {
+                        /** Format: uuid */
+                        id: string;
+                        /** Format: uuid */
+                        workspace_id: string;
+                        kind: string;
+                        source: {
+                            /** Format: uuid */
+                            id: string;
+                            /** Format: uuid */
+                            workspace_id: string;
+                            /** Format: uuid */
+                            team_id: string;
+                            identifier: string;
+                            title: string;
+                            archived: boolean;
+                            active: boolean;
+                            relation_version: number;
+                        };
+                        target: {
+                            /** Format: uuid */
+                            id: string;
+                            /** Format: uuid */
+                            workspace_id: string;
+                            /** Format: uuid */
+                            team_id: string;
+                            identifier: string;
+                            title: string;
+                            archived: boolean;
+                            active: boolean;
+                            relation_version: number;
+                        };
+                        version: number;
+                        removed: boolean;
+                        /** Format: date-time */
+                        created_at: string;
+                        removed_at: null | string;
+                    }[];
+                    affected_issues: null | {
+                        /** Format: uuid */
+                        id: string;
+                        /** Format: uuid */
+                        workspace_id: string;
+                        /** Format: uuid */
+                        team_id: string;
+                        identifier: string;
+                        title: string;
+                        archived: boolean;
+                        active: boolean;
+                        relation_version: number;
+                    }[];
+                };
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductIssueRelationsHistoryError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductIssueRelationsHistoryDomainInput: {
+            /** Format: uuid */
+            issue_id: string;
+            limit: number;
+            after: string;
+        };
+        ProductIssueRelationsHistoryEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductIssueRelationsHistoryOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductIssueRelationsLinkBlockInput: {
+            /** Format: uuid */
+            target_issue_id: string;
+            expected_versions: null | {
+                /** Format: uuid */
+                issue_id: string;
+                expected_version: number;
+            }[];
+        };
+        ProductIssueRelationsLinkBlockOutput: {
+            state: {
+                issue: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                parent: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                duplicate_of: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                canonical_duplicate: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                capabilities: {
+                    link: boolean;
+                    unlink: boolean;
+                };
+            };
+            changed_relations: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                kind: string;
+                source: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                target: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                version: number;
+                removed: boolean;
+                /** Format: date-time */
+                created_at: string;
+                removed_at: null | string;
+            }[];
+            affected_issues: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                team_id: string;
+                identifier: string;
+                title: string;
+                archived: boolean;
+                active: boolean;
+                relation_version: number;
+            }[];
+        };
+        ProductIssueRelationsLinkBlockError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductIssueRelationsLinkBlockDomainInput: {
+            /** Format: uuid */
+            issue_id: string;
+            /** Format: uuid */
+            target_issue_id: string;
+            expected_versions: null | {
+                /** Format: uuid */
+                issue_id: string;
+                expected_version: number;
+            }[];
+        };
+        ProductIssueRelationsLinkBlockEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductIssueRelationsLinkBlockOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductIssueRelationsLinkRelatedInput: {
+            /** Format: uuid */
+            target_issue_id: string;
+            expected_versions: null | {
+                /** Format: uuid */
+                issue_id: string;
+                expected_version: number;
+            }[];
+        };
+        ProductIssueRelationsLinkRelatedOutput: {
+            state: {
+                issue: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                parent: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                duplicate_of: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                canonical_duplicate: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                capabilities: {
+                    link: boolean;
+                    unlink: boolean;
+                };
+            };
+            changed_relations: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                kind: string;
+                source: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                target: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                version: number;
+                removed: boolean;
+                /** Format: date-time */
+                created_at: string;
+                removed_at: null | string;
+            }[];
+            affected_issues: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                team_id: string;
+                identifier: string;
+                title: string;
+                archived: boolean;
+                active: boolean;
+                relation_version: number;
+            }[];
+        };
+        ProductIssueRelationsLinkRelatedError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductIssueRelationsLinkRelatedDomainInput: {
+            /** Format: uuid */
+            issue_id: string;
+            /** Format: uuid */
+            target_issue_id: string;
+            expected_versions: null | {
+                /** Format: uuid */
+                issue_id: string;
+                expected_version: number;
+            }[];
+        };
+        ProductIssueRelationsLinkRelatedEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductIssueRelationsLinkRelatedOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductIssueRelationsListOutput: {
+            state: {
+                issue: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                parent: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                duplicate_of: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                canonical_duplicate: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                capabilities: {
+                    link: boolean;
+                    unlink: boolean;
+                };
+            };
+            items: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                kind: string;
+                source: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                target: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                version: number;
+                removed: boolean;
+                /** Format: date-time */
+                created_at: string;
+                removed_at: null | string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductIssueRelationsListError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductIssueRelationsListDomainInput: {
+            /** Format: uuid */
+            issue_id: string;
+            /** @enum {string} */
+            kind: "" | "blocks" | "duplicate" | "parent" | "related";
+            /** @enum {string} */
+            direction: "all" | "incoming" | "outgoing";
+            removed: boolean;
+            limit: number;
+            after: string;
+        };
+        ProductIssueRelationsListEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductIssueRelationsListOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductIssueRelationsSetDuplicateInput: {
+            target_issue_id: string | null;
+            expected_versions: null | {
+                /** Format: uuid */
+                issue_id: string;
+                expected_version: number;
+            }[];
+        };
+        ProductIssueRelationsSetDuplicateOutput: {
+            state: {
+                issue: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                parent: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                duplicate_of: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                canonical_duplicate: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                capabilities: {
+                    link: boolean;
+                    unlink: boolean;
+                };
+            };
+            changed_relations: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                kind: string;
+                source: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                target: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                version: number;
+                removed: boolean;
+                /** Format: date-time */
+                created_at: string;
+                removed_at: null | string;
+            }[];
+            affected_issues: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                team_id: string;
+                identifier: string;
+                title: string;
+                archived: boolean;
+                active: boolean;
+                relation_version: number;
+            }[];
+        };
+        ProductIssueRelationsSetDuplicateError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductIssueRelationsSetDuplicateDomainInput: {
+            /** Format: uuid */
+            issue_id: string;
+            target_issue_id: string | null;
+            expected_versions: null | {
+                /** Format: uuid */
+                issue_id: string;
+                expected_version: number;
+            }[];
+        };
+        ProductIssueRelationsSetDuplicateEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductIssueRelationsSetDuplicateOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductIssueRelationsSetParentInput: {
+            target_issue_id: string | null;
+            expected_versions: null | {
+                /** Format: uuid */
+                issue_id: string;
+                expected_version: number;
+            }[];
+        };
+        ProductIssueRelationsSetParentOutput: {
+            state: {
+                issue: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                parent: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                duplicate_of: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                canonical_duplicate: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                capabilities: {
+                    link: boolean;
+                    unlink: boolean;
+                };
+            };
+            changed_relations: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                kind: string;
+                source: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                target: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                version: number;
+                removed: boolean;
+                /** Format: date-time */
+                created_at: string;
+                removed_at: null | string;
+            }[];
+            affected_issues: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                team_id: string;
+                identifier: string;
+                title: string;
+                archived: boolean;
+                active: boolean;
+                relation_version: number;
+            }[];
+        };
+        ProductIssueRelationsSetParentError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductIssueRelationsSetParentDomainInput: {
+            /** Format: uuid */
+            issue_id: string;
+            target_issue_id: string | null;
+            expected_versions: null | {
+                /** Format: uuid */
+                issue_id: string;
+                expected_version: number;
+            }[];
+        };
+        ProductIssueRelationsSetParentEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductIssueRelationsSetParentOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductIssueRelationsUnlinkBlockInput: {
+            /** Format: uuid */
+            target_issue_id: string;
+            expected_versions: null | {
+                /** Format: uuid */
+                issue_id: string;
+                expected_version: number;
+            }[];
+        };
+        ProductIssueRelationsUnlinkBlockOutput: {
+            state: {
+                issue: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                parent: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                duplicate_of: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                canonical_duplicate: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                capabilities: {
+                    link: boolean;
+                    unlink: boolean;
+                };
+            };
+            changed_relations: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                kind: string;
+                source: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                target: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                version: number;
+                removed: boolean;
+                /** Format: date-time */
+                created_at: string;
+                removed_at: null | string;
+            }[];
+            affected_issues: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                team_id: string;
+                identifier: string;
+                title: string;
+                archived: boolean;
+                active: boolean;
+                relation_version: number;
+            }[];
+        };
+        ProductIssueRelationsUnlinkBlockError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductIssueRelationsUnlinkBlockDomainInput: {
+            /** Format: uuid */
+            issue_id: string;
+            /** Format: uuid */
+            target_issue_id: string;
+            expected_versions: null | {
+                /** Format: uuid */
+                issue_id: string;
+                expected_version: number;
+            }[];
+        };
+        ProductIssueRelationsUnlinkBlockEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductIssueRelationsUnlinkBlockOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductIssueRelationsUnlinkRelatedInput: {
+            /** Format: uuid */
+            target_issue_id: string;
+            expected_versions: null | {
+                /** Format: uuid */
+                issue_id: string;
+                expected_version: number;
+            }[];
+        };
+        ProductIssueRelationsUnlinkRelatedOutput: {
+            state: {
+                issue: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                parent: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                duplicate_of: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                canonical_duplicate: null | {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                capabilities: {
+                    link: boolean;
+                    unlink: boolean;
+                };
+            };
+            changed_relations: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                kind: string;
+                source: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                target: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    title: string;
+                    archived: boolean;
+                    active: boolean;
+                    relation_version: number;
+                };
+                version: number;
+                removed: boolean;
+                /** Format: date-time */
+                created_at: string;
+                removed_at: null | string;
+            }[];
+            affected_issues: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                team_id: string;
+                identifier: string;
+                title: string;
+                archived: boolean;
+                active: boolean;
+                relation_version: number;
+            }[];
+        };
+        ProductIssueRelationsUnlinkRelatedError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductIssueRelationsUnlinkRelatedDomainInput: {
+            /** Format: uuid */
+            issue_id: string;
+            /** Format: uuid */
+            target_issue_id: string;
+            expected_versions: null | {
+                /** Format: uuid */
+                issue_id: string;
+                expected_version: number;
+            }[];
+        };
+        ProductIssueRelationsUnlinkRelatedEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductIssueRelationsUnlinkRelatedOutput"];
             meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductIssuesArchiveInput: {
@@ -8313,6 +9613,879 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ProductDeliveriesReplayEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    issue_relations_history: {
+        parameters: {
+            query?: {
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                issueID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductIssueRelationsHistoryEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    issue_relations_link_block: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                issueID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductIssueRelationsLinkBlockInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductIssueRelationsLinkBlockEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    issue_relations_link_related: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                issueID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductIssueRelationsLinkRelatedInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductIssueRelationsLinkRelatedEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    issue_relations_list: {
+        parameters: {
+            query?: {
+                kind?: "" | "blocks" | "duplicate" | "parent" | "related";
+                direction?: "all" | "incoming" | "outgoing";
+                removed?: boolean;
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                issueID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductIssueRelationsListEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    issue_relations_set_duplicate: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                issueID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductIssueRelationsSetDuplicateInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductIssueRelationsSetDuplicateEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    issue_relations_set_parent: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                issueID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductIssueRelationsSetParentInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductIssueRelationsSetParentEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    issue_relations_unlink_block: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                issueID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductIssueRelationsUnlinkBlockInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductIssueRelationsUnlinkBlockEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    issue_relations_unlink_related: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                issueID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductIssueRelationsUnlinkRelatedInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductIssueRelationsUnlinkRelatedEnvelope"];
                 };
             };
             /** @description Application operation failed. */

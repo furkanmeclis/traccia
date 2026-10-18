@@ -249,6 +249,38 @@ type IssuePublic struct {
 	Document      []byte             `json:"document"`
 }
 
+type IssueRelation struct {
+	ID            int64              `json:"id"`
+	Uuid          uuid.UUID          `json:"uuid"`
+	WorkspaceID   int64              `json:"workspace_id"`
+	SourceIssueID int64              `json:"source_issue_id"`
+	TargetIssueID int64              `json:"target_issue_id"`
+	Kind          string             `json:"kind"`
+	Version       int64              `json:"version"`
+	Removed       bool               `json:"removed"`
+	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+	RemovedAt     pgtype.Timestamptz `json:"removed_at"`
+}
+
+type IssueRelationHistory struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	EventID     int64              `json:"event_id"`
+	WorkspaceID int64              `json:"workspace_id"`
+	IssueID     int64              `json:"issue_id"`
+	ActorUuid   uuid.UUID          `json:"actor_uuid"`
+	EventName   string             `json:"event_name"`
+	Version     int64              `json:"version"`
+	OccurredAt  pgtype.Timestamptz `json:"occurred_at"`
+	Snapshot    []byte             `json:"snapshot"`
+}
+
+type IssueRelationRevision struct {
+	WorkspaceID int64 `json:"workspace_id"`
+	IssueID     int64 `json:"issue_id"`
+	Version     int64 `json:"version"`
+}
+
 type Label struct {
 	ID          int64       `json:"id"`
 	Uuid        uuid.UUID   `json:"uuid"`
@@ -620,6 +652,32 @@ type RefreshToken struct {
 	IpAddress          *netip.Addr        `json:"ip_address"`
 	ImpersonatorUserID pgtype.Int8        `json:"impersonator_user_id"`
 	CreatedAt          pgtype.Timestamptz `json:"created_at"`
+}
+
+type RelationIssueReference struct {
+	ID            int64     `json:"id"`
+	WorkspaceID   int64     `json:"workspace_id"`
+	TeamID        int64     `json:"team_id"`
+	Uuid          uuid.UUID `json:"uuid"`
+	WorkspaceUuid uuid.UUID `json:"workspace_uuid"`
+	Document      []byte    `json:"document"`
+}
+
+type RelationPublic struct {
+	ID            int64              `json:"id"`
+	Uuid          uuid.UUID          `json:"uuid"`
+	WorkspaceID   int64              `json:"workspace_id"`
+	SourceIssueID int64              `json:"source_issue_id"`
+	TargetIssueID int64              `json:"target_issue_id"`
+	Kind          string             `json:"kind"`
+	Version       int64              `json:"version"`
+	Removed       bool               `json:"removed"`
+	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+	RemovedAt     pgtype.Timestamptz `json:"removed_at"`
+	WorkspaceUuid uuid.UUID          `json:"workspace_uuid"`
+	SourceUuid    uuid.UUID          `json:"source_uuid"`
+	TargetUuid    uuid.UUID          `json:"target_uuid"`
+	Document      []byte             `json:"document"`
 }
 
 type Role struct {

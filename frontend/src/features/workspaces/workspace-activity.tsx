@@ -1,4 +1,5 @@
 "use client";
+import { relationActivityKeys } from "@/features/issue-relations/copy";
 
 import Link from "next/link";
 import { History, RefreshCw } from "lucide-react";
@@ -16,6 +17,7 @@ import { useLocale } from "@/providers/locale-provider";
 import { useWorkspaceActivity } from "./queries";
 
 const activityActionKeys: Record<string, string> = {
+  ...relationActivityKeys,
   "issues.created": "issues.event_issues_created",
   "issues.updated": "issues.event_issues_updated",
   "issues.moved": "issues.event_issues_moved",

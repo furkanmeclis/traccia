@@ -7,6 +7,7 @@ import (
 	"fmt"
 	issues "github.com/furkanmeclis/traccia/backend/internal/modules/issues/usecase"
 	products "github.com/furkanmeclis/traccia/backend/internal/modules/products/usecase"
+	relations "github.com/furkanmeclis/traccia/backend/internal/modules/relations/usecase"
 	"os"
 
 	projects "github.com/furkanmeclis/traccia/backend/internal/modules/projects/usecase"
@@ -17,7 +18,7 @@ import (
 
 func main() {
 	workspace := usecase.New(nil)
-	registry, err := product.Registry(workspace, teams.New(nil, workspace), projects.New(nil, workspace), products.New(nil, workspace), issues.New(nil, workspace))
+	registry, err := product.Registry(workspace, teams.New(nil, workspace), projects.New(nil, workspace), products.New(nil, workspace), issues.New(nil, workspace), relations.New(nil, workspace))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
