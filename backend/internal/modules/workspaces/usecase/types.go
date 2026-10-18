@@ -101,6 +101,8 @@ type RevokeOutput struct {
 }
 
 type Activity struct {
+	IssueID       string    `json:"issue_id"`
+	Identifier    string    `json:"identifier"`
 	ProductID     string    `json:"product_id"`
 	EnvironmentID string    `json:"environment_id"`
 	ProjectID     string    `json:"project_id"`

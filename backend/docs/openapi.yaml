@@ -71,7 +71,7 @@ paths:
         "operationId": "activity_list",
         "summary": "activity.list",
         "x-operation-id": "activity.list",
-        "x-operation-version": 5,
+        "x-operation-version": 6,
         "x-traccia-input-schema": {
           "$ref": "#/components/schemas/ProductActivityListDomainInput"
         },
@@ -1038,6 +1038,1708 @@ paths:
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ProductDeliveriesReplayInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/issues/{issueID}/archive:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "issues_archive",
+        "summary": "issues.archive",
+        "x-operation-id": "issues.archive",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductIssuesArchiveDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductIssuesArchiveError"
+        },
+        "x-traccia-input-binding": {
+          "issue_id": "path:issueID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "issueID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductIssuesArchiveEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductIssuesArchiveInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/issues:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "issues_create",
+        "summary": "issues.create",
+        "x-operation-id": "issues.create",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductIssuesCreateDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductIssuesCreateError"
+        },
+        "x-traccia-input-binding": "body",
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductIssuesCreateEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductIssuesCreateInput"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "issues_list",
+        "summary": "issues.list",
+        "x-operation-id": "issues.list",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductIssuesListDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductIssuesListError"
+        },
+        "x-traccia-input-binding": {
+          "limit": "query:limit",
+          "after": "query:after",
+          "archived": "query:archived",
+          "q": "query:q",
+          "team_id": "query:team_id",
+          "status_id": "query:status_id",
+          "priority": "query:priority",
+          "assignee_id": "query:assignee_id",
+          "project_id": "query:project_id",
+          "milestone_id": "query:milestone_id",
+          "label_id": "query:label_id"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "x-binding-default": 20
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "archived",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "x-binding-default": false
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "team_id",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    ""
+                  ]
+                },
+                {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              ]
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "status_id",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    ""
+                  ]
+                },
+                {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              ]
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "priority",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "",
+                "high",
+                "low",
+                "none",
+                "normal",
+                "urgent"
+              ]
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "assignee_id",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    ""
+                  ]
+                },
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "unassigned"
+                  ]
+                }
+              ]
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "project_id",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    ""
+                  ]
+                },
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "unassigned"
+                  ]
+                }
+              ]
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "milestone_id",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    ""
+                  ]
+                },
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "unassigned"
+                  ]
+                }
+              ]
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "label_id",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    ""
+                  ]
+                },
+                {
+                  "type": "string",
+                  "format": "uuid"
+                }
+              ]
+            },
+            "x-binding-default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductIssuesListEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/issues/{issueID}:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "issues_get",
+        "summary": "issues.get",
+        "x-operation-id": "issues.get",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductIssuesGetDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductIssuesGetError"
+        },
+        "x-traccia-input-binding": {
+          "issue_id": "path:issueID"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "issueID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductIssuesGetEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "issues_update",
+        "summary": "issues.update",
+        "x-operation-id": "issues.update",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductIssuesUpdateDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductIssuesUpdateError"
+        },
+        "x-traccia-input-binding": {
+          "issue_id": "path:issueID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "issueID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductIssuesUpdateEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductIssuesUpdateInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/issues/{issueID}/history:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "issues_history",
+        "summary": "issues.history",
+        "x-operation-id": "issues.history",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductIssuesHistoryDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductIssuesHistoryError"
+        },
+        "x-traccia-input-binding": {
+          "issue_id": "path:issueID",
+          "limit": "query:limit",
+          "after": "query:after"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "issueID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "x-binding-default": 20
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-binding-default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductIssuesHistoryEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/issues/{issueID}/move:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "issues_move",
+        "summary": "issues.move",
+        "x-operation-id": "issues.move",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductIssuesMoveDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductIssuesMoveError"
+        },
+        "x-traccia-input-binding": {
+          "issue_id": "path:issueID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "issueID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductIssuesMoveEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductIssuesMoveInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/issue-identifiers/{identifier}:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "issues_resolve",
+        "summary": "issues.resolve",
+        "x-operation-id": "issues.resolve",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductIssuesResolveDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductIssuesResolveError"
+        },
+        "x-traccia-input-binding": {
+          "identifier": "path:identifier"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "identifier",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Z][A-Z0-9]{1,9}-[1-9][0-9]{0,18}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductIssuesResolveEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/issues/{issueID}/restore:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "issues_restore",
+        "summary": "issues.restore",
+        "x-operation-id": "issues.restore",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductIssuesRestoreDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductIssuesRestoreError"
+        },
+        "x-traccia-input-binding": {
+          "issue_id": "path:issueID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "issueID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductIssuesRestoreEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductIssuesRestoreInput"
               }
             }
           }
@@ -14358,6 +16060,12 @@ components:
             "items": {
               "type": "object",
               "properties": {
+                "issue_id": {
+                  "type": "string"
+                },
+                "identifier": {
+                  "type": "string"
+                },
                 "product_id": {
                   "type": "string"
                 },
@@ -14407,6 +16115,8 @@ components:
                 }
               },
               "required": [
+                "issue_id",
+                "identifier",
                 "product_id",
                 "environment_id",
                 "project_id",
@@ -15347,6 +17057,3337 @@ components:
           },
           "data": {
             "$ref": "#/components/schemas/ProductDeliveriesReplayOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductIssuesArchiveInput:
+      {
+        "type": "object",
+        "properties": {
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesArchiveOutput:
+      {
+        "type": "object",
+        "properties": {
+          "issue": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "identifier": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9]{1,9}-[1-9][0-9]{0,18}$"
+              },
+              "number": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "priority": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "low",
+                  "none",
+                  "normal",
+                  "urgent"
+                ]
+              },
+              "status_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "assignee_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "project_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "milestone_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "start_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "target_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "effort": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "label_ids": {
+                "type": [
+                  "null",
+                  "array"
+                ],
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 0,
+                "maxItems": 1000,
+                "uniqueItems": true
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "identifier",
+              "number",
+              "title",
+              "priority",
+              "status_id",
+              "assignee_id",
+              "project_id",
+              "milestone_id",
+              "start_date",
+              "target_date",
+              "effort",
+              "label_ids",
+              "version",
+              "archived",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "move": {
+                "type": "boolean"
+              },
+              "manage": {
+                "type": "boolean"
+              },
+              "restore": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "move",
+              "manage",
+              "restore"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "issue",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesArchiveError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesArchiveDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "issue_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "issue_id",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesArchiveEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductIssuesArchiveOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductIssuesCreateInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "high",
+              "low",
+              "none",
+              "normal",
+              "urgent"
+            ]
+          },
+          "status_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assignee_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "project_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "milestone_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "target_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "effort": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "label_ids": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "minItems": 0,
+            "maxItems": 1000,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "team_id",
+          "title",
+          "priority",
+          "status_id",
+          "assignee_id",
+          "project_id",
+          "milestone_id",
+          "start_date",
+          "target_date",
+          "effort",
+          "label_ids"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesCreateOutput:
+      {
+        "type": "object",
+        "properties": {
+          "issue": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "identifier": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9]{1,9}-[1-9][0-9]{0,18}$"
+              },
+              "number": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "priority": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "low",
+                  "none",
+                  "normal",
+                  "urgent"
+                ]
+              },
+              "status_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "assignee_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "project_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "milestone_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "start_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "target_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "effort": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "label_ids": {
+                "type": [
+                  "null",
+                  "array"
+                ],
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 0,
+                "maxItems": 1000,
+                "uniqueItems": true
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "identifier",
+              "number",
+              "title",
+              "priority",
+              "status_id",
+              "assignee_id",
+              "project_id",
+              "milestone_id",
+              "start_date",
+              "target_date",
+              "effort",
+              "label_ids",
+              "version",
+              "archived",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "move": {
+                "type": "boolean"
+              },
+              "manage": {
+                "type": "boolean"
+              },
+              "restore": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "move",
+              "manage",
+              "restore"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "issue",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesCreateError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesCreateDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "high",
+              "low",
+              "none",
+              "normal",
+              "urgent"
+            ]
+          },
+          "status_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assignee_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "project_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "milestone_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "target_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "effort": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "label_ids": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "minItems": 0,
+            "maxItems": 1000,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "team_id",
+          "title",
+          "priority",
+          "status_id",
+          "assignee_id",
+          "project_id",
+          "milestone_id",
+          "start_date",
+          "target_date",
+          "effort",
+          "label_ids"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesCreateEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductIssuesCreateOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductIssuesGetOutput:
+      {
+        "type": "object",
+        "properties": {
+          "issue": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "identifier": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9]{1,9}-[1-9][0-9]{0,18}$"
+              },
+              "number": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "priority": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "low",
+                  "none",
+                  "normal",
+                  "urgent"
+                ]
+              },
+              "status_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "assignee_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "project_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "milestone_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "start_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "target_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "effort": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "label_ids": {
+                "type": [
+                  "null",
+                  "array"
+                ],
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 0,
+                "maxItems": 1000,
+                "uniqueItems": true
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "identifier",
+              "number",
+              "title",
+              "priority",
+              "status_id",
+              "assignee_id",
+              "project_id",
+              "milestone_id",
+              "start_date",
+              "target_date",
+              "effort",
+              "label_ids",
+              "version",
+              "archived",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "move": {
+                "type": "boolean"
+              },
+              "manage": {
+                "type": "boolean"
+              },
+              "restore": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "move",
+              "manage",
+              "restore"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "issue",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesGetError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesGetDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "issue_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "issue_id"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesGetEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductIssuesGetOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductIssuesHistoryOutput:
+      {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "event_name": {
+                  "type": "string"
+                },
+                "actor_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "workspace_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "issue_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "version": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "occurred_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "issue": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "workspace_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "team_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "identifier": {
+                      "type": "string",
+                      "pattern": "^[A-Z][A-Z0-9]{1,9}-[1-9][0-9]{0,18}$"
+                    },
+                    "number": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "title": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255
+                    },
+                    "priority": {
+                      "type": "string",
+                      "enum": [
+                        "high",
+                        "low",
+                        "none",
+                        "normal",
+                        "urgent"
+                      ]
+                    },
+                    "status_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "assignee_id": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "project_id": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "milestone_id": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "start_date": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "target_date": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "effort": {
+                      "anyOf": [
+                        {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 1000
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "label_ids": {
+                      "type": [
+                        "null",
+                        "array"
+                      ],
+                      "items": {
+                        "type": "string",
+                        "format": "uuid"
+                      },
+                      "minItems": 0,
+                      "maxItems": 1000,
+                      "uniqueItems": true
+                    },
+                    "version": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "archived": {
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "workspace_id",
+                    "team_id",
+                    "identifier",
+                    "number",
+                    "title",
+                    "priority",
+                    "status_id",
+                    "assignee_id",
+                    "project_id",
+                    "milestone_id",
+                    "start_date",
+                    "target_date",
+                    "effort",
+                    "label_ids",
+                    "version",
+                    "archived",
+                    "created_at",
+                    "updated_at"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "id",
+                "event_name",
+                "actor_id",
+                "workspace_id",
+                "issue_id",
+                "version",
+                "occurred_at",
+                "issue"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "has_more",
+          "next_cursor"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesHistoryError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesHistoryDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "issue_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "after": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "issue_id",
+          "limit",
+          "after"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesHistoryEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductIssuesHistoryOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductIssuesListOutput:
+      {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "workspace_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "team_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "identifier": {
+                  "type": "string",
+                  "pattern": "^[A-Z][A-Z0-9]{1,9}-[1-9][0-9]{0,18}$"
+                },
+                "number": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "title": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255
+                },
+                "priority": {
+                  "type": "string",
+                  "enum": [
+                    "high",
+                    "low",
+                    "none",
+                    "normal",
+                    "urgent"
+                  ]
+                },
+                "status_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "assignee_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "project_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "milestone_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "start_date": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "target_date": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "effort": {
+                  "anyOf": [
+                    {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "label_ids": {
+                  "type": [
+                    "null",
+                    "array"
+                  ],
+                  "items": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "minItems": 0,
+                  "maxItems": 1000,
+                  "uniqueItems": true
+                },
+                "version": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "archived": {
+                  "type": "boolean"
+                },
+                "created_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updated_at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "id",
+                "workspace_id",
+                "team_id",
+                "identifier",
+                "number",
+                "title",
+                "priority",
+                "status_id",
+                "assignee_id",
+                "project_id",
+                "milestone_id",
+                "start_date",
+                "target_date",
+                "effort",
+                "label_ids",
+                "version",
+                "archived",
+                "created_at",
+                "updated_at"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string"
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "move": {
+                "type": "boolean"
+              },
+              "manage": {
+                "type": "boolean"
+              },
+              "restore": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "move",
+              "manage",
+              "restore"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "items",
+          "has_more",
+          "next_cursor",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesListError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesListDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "after": {
+            "type": "string"
+          },
+          "archived": {
+            "type": "boolean"
+          },
+          "q": {
+            "type": "string"
+          },
+          "team_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  ""
+                ]
+              },
+              {
+                "type": "string",
+                "format": "uuid"
+              }
+            ]
+          },
+          "status_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  ""
+                ]
+              },
+              {
+                "type": "string",
+                "format": "uuid"
+              }
+            ]
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "",
+              "high",
+              "low",
+              "none",
+              "normal",
+              "urgent"
+            ]
+          },
+          "assignee_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  ""
+                ]
+              },
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "unassigned"
+                ]
+              }
+            ]
+          },
+          "project_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  ""
+                ]
+              },
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "unassigned"
+                ]
+              }
+            ]
+          },
+          "milestone_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  ""
+                ]
+              },
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "unassigned"
+                ]
+              }
+            ]
+          },
+          "label_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  ""
+                ]
+              },
+              {
+                "type": "string",
+                "format": "uuid"
+              }
+            ]
+          }
+        },
+        "required": [
+          "limit",
+          "after",
+          "archived",
+          "q",
+          "team_id",
+          "status_id",
+          "priority",
+          "assignee_id",
+          "project_id",
+          "milestone_id",
+          "label_id"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesListEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductIssuesListOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductIssuesMoveInput:
+      {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "status_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "project_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "milestone_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "label_ids": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "minItems": 0,
+            "maxItems": 1000,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "team_id",
+          "expected_version",
+          "status_id",
+          "project_id",
+          "milestone_id",
+          "label_ids"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesMoveOutput:
+      {
+        "type": "object",
+        "properties": {
+          "issue": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "identifier": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9]{1,9}-[1-9][0-9]{0,18}$"
+              },
+              "number": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "priority": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "low",
+                  "none",
+                  "normal",
+                  "urgent"
+                ]
+              },
+              "status_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "assignee_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "project_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "milestone_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "start_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "target_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "effort": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "label_ids": {
+                "type": [
+                  "null",
+                  "array"
+                ],
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 0,
+                "maxItems": 1000,
+                "uniqueItems": true
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "identifier",
+              "number",
+              "title",
+              "priority",
+              "status_id",
+              "assignee_id",
+              "project_id",
+              "milestone_id",
+              "start_date",
+              "target_date",
+              "effort",
+              "label_ids",
+              "version",
+              "archived",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "move": {
+                "type": "boolean"
+              },
+              "manage": {
+                "type": "boolean"
+              },
+              "restore": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "move",
+              "manage",
+              "restore"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "issue",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesMoveError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesMoveDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "issue_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "team_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "status_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "project_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "milestone_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "label_ids": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "minItems": 0,
+            "maxItems": 1000,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "issue_id",
+          "team_id",
+          "expected_version",
+          "status_id",
+          "project_id",
+          "milestone_id",
+          "label_ids"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesMoveEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductIssuesMoveOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductIssuesResolveOutput:
+      {
+        "type": "object",
+        "properties": {
+          "issue": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "identifier": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9]{1,9}-[1-9][0-9]{0,18}$"
+              },
+              "number": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "priority": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "low",
+                  "none",
+                  "normal",
+                  "urgent"
+                ]
+              },
+              "status_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "assignee_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "project_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "milestone_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "start_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "target_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "effort": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "label_ids": {
+                "type": [
+                  "null",
+                  "array"
+                ],
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 0,
+                "maxItems": 1000,
+                "uniqueItems": true
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "identifier",
+              "number",
+              "title",
+              "priority",
+              "status_id",
+              "assignee_id",
+              "project_id",
+              "milestone_id",
+              "start_date",
+              "target_date",
+              "effort",
+              "label_ids",
+              "version",
+              "archived",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "move": {
+                "type": "boolean"
+              },
+              "manage": {
+                "type": "boolean"
+              },
+              "restore": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "move",
+              "manage",
+              "restore"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "issue",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesResolveError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesResolveDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9]{1,9}-[1-9][0-9]{0,18}$"
+          }
+        },
+        "required": [
+          "identifier"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesResolveEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductIssuesResolveOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductIssuesRestoreInput:
+      {
+        "type": "object",
+        "properties": {
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesRestoreOutput:
+      {
+        "type": "object",
+        "properties": {
+          "issue": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "identifier": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9]{1,9}-[1-9][0-9]{0,18}$"
+              },
+              "number": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "priority": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "low",
+                  "none",
+                  "normal",
+                  "urgent"
+                ]
+              },
+              "status_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "assignee_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "project_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "milestone_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "start_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "target_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "effort": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "label_ids": {
+                "type": [
+                  "null",
+                  "array"
+                ],
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 0,
+                "maxItems": 1000,
+                "uniqueItems": true
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "identifier",
+              "number",
+              "title",
+              "priority",
+              "status_id",
+              "assignee_id",
+              "project_id",
+              "milestone_id",
+              "start_date",
+              "target_date",
+              "effort",
+              "label_ids",
+              "version",
+              "archived",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "move": {
+                "type": "boolean"
+              },
+              "manage": {
+                "type": "boolean"
+              },
+              "restore": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "move",
+              "manage",
+              "restore"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "issue",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesRestoreError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesRestoreDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "issue_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "issue_id",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesRestoreEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductIssuesRestoreOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductIssuesUpdateInput:
+      {
+        "type": "object",
+        "properties": {
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "high",
+              "low",
+              "none",
+              "normal",
+              "urgent"
+            ]
+          },
+          "status_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assignee_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "project_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "milestone_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "target_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "effort": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "label_ids": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "minItems": 0,
+            "maxItems": 1000,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "expected_version",
+          "title",
+          "priority",
+          "status_id",
+          "assignee_id",
+          "project_id",
+          "milestone_id",
+          "start_date",
+          "target_date",
+          "effort",
+          "label_ids"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesUpdateOutput:
+      {
+        "type": "object",
+        "properties": {
+          "issue": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "team_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "identifier": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9]{1,9}-[1-9][0-9]{0,18}$"
+              },
+              "number": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "priority": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "low",
+                  "none",
+                  "normal",
+                  "urgent"
+                ]
+              },
+              "status_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "assignee_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "project_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "milestone_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "start_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "target_date": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "effort": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "label_ids": {
+                "type": [
+                  "null",
+                  "array"
+                ],
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 0,
+                "maxItems": 1000,
+                "uniqueItems": true
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "archived": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "team_id",
+              "identifier",
+              "number",
+              "title",
+              "priority",
+              "status_id",
+              "assignee_id",
+              "project_id",
+              "milestone_id",
+              "start_date",
+              "target_date",
+              "effort",
+              "label_ids",
+              "version",
+              "archived",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "move": {
+                "type": "boolean"
+              },
+              "manage": {
+                "type": "boolean"
+              },
+              "restore": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "move",
+              "manage",
+              "restore"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "issue",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesUpdateError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesUpdateDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "issue_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "high",
+              "low",
+              "none",
+              "normal",
+              "urgent"
+            ]
+          },
+          "status_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "assignee_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "project_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "milestone_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "start_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "target_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "effort": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "label_ids": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "minItems": 0,
+            "maxItems": 1000,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "issue_id",
+          "expected_version",
+          "title",
+          "priority",
+          "status_id",
+          "assignee_id",
+          "project_id",
+          "milestone_id",
+          "start_date",
+          "target_date",
+          "effort",
+          "label_ids"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductIssuesUpdateEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductIssuesUpdateOutput"
           },
           "meta": {
             "$ref": "#/components/schemas/ProductResponseMeta"

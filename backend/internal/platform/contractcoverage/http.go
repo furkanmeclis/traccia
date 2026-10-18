@@ -68,7 +68,11 @@ func checkHTTP(m operations.Metadata, op, doc Object, input, output any, fail fu
 		if strings.HasPrefix(part, "{") && strings.HasSuffix(part, "}") {
 			name := strings.TrimSuffix(strings.TrimPrefix(part, "{"), "}")
 			p := consume("path:" + name)
-			if p != nil && (p["required"] != true || Difference(Object{"type": "string", "format": "uuid"}, p["schema"], "parameter") != "") {
+			expected := any(Object{"type": "string", "format": "uuid"})
+			if name == "identifier" {
+				expected = input.(Object)["properties"].(Object)["identifier"]
+			}
+			if p != nil && (p["required"] != true || Difference(expected, p["schema"], "parameter") != "") {
 				fail("%s HTTP path parameter %s schema mismatch", id, name)
 			}
 		}

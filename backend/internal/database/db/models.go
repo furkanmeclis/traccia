@@ -178,6 +178,77 @@ type ImportJob struct {
 	OrganizationID pgtype.Int8        `json:"organization_id"`
 }
 
+type Issue struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	WorkspaceID int64              `json:"workspace_id"`
+	TeamID      int64              `json:"team_id"`
+	Number      int64              `json:"number"`
+	StatusID    int64              `json:"status_id"`
+	Title       string             `json:"title"`
+	Priority    string             `json:"priority"`
+	AssigneeID  pgtype.Int8        `json:"assignee_id"`
+	ProjectID   pgtype.Int8        `json:"project_id"`
+	MilestoneID pgtype.Int8        `json:"milestone_id"`
+	StartDate   pgtype.Date        `json:"start_date"`
+	TargetDate  pgtype.Date        `json:"target_date"`
+	Effort      pgtype.Int4        `json:"effort"`
+	Version     int64              `json:"version"`
+	Archived    bool               `json:"archived"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+type IssueAlias struct {
+	WorkspaceID int64 `json:"workspace_id"`
+	TeamID      int64 `json:"team_id"`
+	Number      int64 `json:"number"`
+	IssueID     int64 `json:"issue_id"`
+}
+
+type IssueHistory struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	EventID     int64              `json:"event_id"`
+	WorkspaceID int64              `json:"workspace_id"`
+	IssueID     int64              `json:"issue_id"`
+	ActorUuid   uuid.UUID          `json:"actor_uuid"`
+	EventName   string             `json:"event_name"`
+	Version     int64              `json:"version"`
+	OccurredAt  pgtype.Timestamptz `json:"occurred_at"`
+	Snapshot    []byte             `json:"snapshot"`
+}
+
+type IssueLabel struct {
+	WorkspaceID int64 `json:"workspace_id"`
+	IssueID     int64 `json:"issue_id"`
+	LabelID     int64 `json:"label_id"`
+}
+
+type IssuePublic struct {
+	ID            int64              `json:"id"`
+	Uuid          uuid.UUID          `json:"uuid"`
+	WorkspaceID   int64              `json:"workspace_id"`
+	TeamID        int64              `json:"team_id"`
+	Number        int64              `json:"number"`
+	StatusID      int64              `json:"status_id"`
+	Title         string             `json:"title"`
+	Priority      string             `json:"priority"`
+	AssigneeID    pgtype.Int8        `json:"assignee_id"`
+	ProjectID     pgtype.Int8        `json:"project_id"`
+	MilestoneID   pgtype.Int8        `json:"milestone_id"`
+	StartDate     pgtype.Date        `json:"start_date"`
+	TargetDate    pgtype.Date        `json:"target_date"`
+	Effort        pgtype.Int4        `json:"effort"`
+	Version       int64              `json:"version"`
+	Archived      bool               `json:"archived"`
+	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt     pgtype.Timestamptz `json:"updated_at"`
+	WorkspaceUuid uuid.UUID          `json:"workspace_uuid"`
+	TeamUuid      uuid.UUID          `json:"team_uuid"`
+	Document      []byte             `json:"document"`
+}
+
 type Label struct {
 	ID          int64       `json:"id"`
 	Uuid        uuid.UUID   `json:"uuid"`
@@ -748,6 +819,8 @@ type WorkspaceHistory struct {
 	ProjectUuid     pgtype.UUID        `json:"project_uuid"`
 	ProductUuid     pgtype.UUID        `json:"product_uuid"`
 	EnvironmentUuid pgtype.UUID        `json:"environment_uuid"`
+	IssueUuid       pgtype.UUID        `json:"issue_uuid"`
+	IssueIdentifier string             `json:"issue_identifier"`
 }
 
 type WorkspaceMember struct {

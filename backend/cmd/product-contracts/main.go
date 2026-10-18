@@ -5,6 +5,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	issues "github.com/furkanmeclis/traccia/backend/internal/modules/issues/usecase"
 	products "github.com/furkanmeclis/traccia/backend/internal/modules/products/usecase"
 	"os"
 
@@ -16,7 +17,7 @@ import (
 
 func main() {
 	workspace := usecase.New(nil)
-	registry, err := product.Registry(workspace, teams.New(nil, workspace), projects.New(nil, workspace), products.New(nil, workspace))
+	registry, err := product.Registry(workspace, teams.New(nil, workspace), projects.New(nil, workspace), products.New(nil, workspace), issues.New(nil, workspace))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)

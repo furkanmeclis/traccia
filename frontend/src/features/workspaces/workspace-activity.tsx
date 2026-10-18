@@ -16,6 +16,11 @@ import { useLocale } from "@/providers/locale-provider";
 import { useWorkspaceActivity } from "./queries";
 
 const activityActionKeys: Record<string, string> = {
+  "issues.created": "issues.event_issues_created",
+  "issues.updated": "issues.event_issues_updated",
+  "issues.moved": "issues.event_issues_moved",
+  "issues.archived": "issues.event_issues_archived",
+  "issues.restored": "issues.event_issues_restored",
   "products.created": "products.activity_products_created",
   "products.updated": "products.activity_products_updated",
   "products.archived": "products.activity_products_archived",
@@ -182,6 +187,14 @@ export function WorkspaceActivity({ workspaceId }: { workspaceId: string }) {
                       {t("projects.view_project")}
                     </Link>
                   )}
+                {item.resource_type === "issues" && item.issue_id && (
+                  <Link
+                    className="text-primary text-xs underline underline-offset-4"
+                    href={`/w/${workspaceId}/issues/${encodeURIComponent(item.issue_id)}`}
+                  >
+                    {t("issues.view_issue")}
+                  </Link>
+                )}
                 {item.resource_type === "teams" && item.resource_id && (
                   <Link
                     className="text-primary text-xs underline underline-offset-4"

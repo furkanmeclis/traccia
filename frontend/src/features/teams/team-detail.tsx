@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { TextLimitInput as Input } from "@/components/ui/text-limit-input";
@@ -153,6 +154,13 @@ export function TeamDetail({
                   team={query.data.team}
                 />
               )}
+              <Button type="button" variant="outline" asChild>
+                <Link
+                  href={`/w/${workspaceId}/issues?team_id=${encodeURIComponent(teamId)}`}
+                >
+                  {t("issues.title")}
+                </Link>
+              </Button>
               <WorkflowSettings
                 workspaceId={workspaceId}
                 teamId={teamId}

@@ -217,6 +217,11 @@ export function WorkspaceDetail({ workspaceId }: { workspaceId: string }) {
             </CardHeader>
             <CardContent className="flex flex-wrap gap-3">
               <Button type="button" variant="outline" asChild>
+                <Link href={`/w/${workspaceId}/issues`}>
+                  {t("issues.title")}
+                </Link>
+              </Button>
+              <Button type="button" variant="outline" asChild>
                 <Link href={`/w/${workspaceId}/projects`}>
                   {t("projects.title")}
                 </Link>

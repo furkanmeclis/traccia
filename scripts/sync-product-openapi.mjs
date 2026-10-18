@@ -38,6 +38,7 @@ for (const contract of catalog) {
   delete input.$schema;
   delete output.$schema;
   const pathFields = Object.fromEntries([...meta.http_path.matchAll(/\{([^}]+)ID\}/g)].filter((m) => m[1] !== "workspace").map((m) => [`${m[1]}_id`, `${m[1]}ID`]));
+  if(meta.http_path.includes("{identifier}")) pathFields.identifier="identifier";
   const bodyInput = cloneExactJSON(input);
   for(const field of Object.keys(pathFields)) { delete bodyInput.properties[field]; bodyInput.required = bodyInput.required.filter((name) => name !== field); }
   if (["POST", "PATCH", "PUT"].includes(meta.http_method)) schemas[`${name}Input`] = embedSchema(`${name}Input`, bodyInput);
@@ -55,7 +56,7 @@ for (const contract of catalog) {
     properties: { success: { type: "boolean", const: true }, data: ref(`${name}Output`), meta: ref("ProductResponseMeta") },
   };
   const parameters = [...meta.http_path.matchAll(/\{([^}]+)\}/g)].map((match) => ({
-    name: match[1], in: "path", required: true, schema: { type: "string", format: "uuid" },
+    name: match[1], in: "path", required: true, schema: match[1] === "identifier" ? input.properties.identifier : { type: "string", format: "uuid" },
   }));
   for(const field of queryFields) parameters.push({ name:field, in:"query", schema:input.properties[field], "x-binding-default":defaultFor(field) });
   if(meta.idempotent) parameters.push({name:"Idempotency-Key",in:"header",required:true,schema:{type:"string",minLength:1,maxLength:200},description:"One stable key per complete immutable mutation input; retries replay the original result."});

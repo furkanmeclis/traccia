@@ -4,7 +4,7 @@
 
 Onaylı kapsam 53 iş ve 11 fazdan oluşur. İlk yayımda 165 bağımlılık ilişkisi geri okunarak doğrulanmıştır. Güncel çalışma durumu Linear üzerinden izlenir.
 
-T06 ekip temeli ve T07 proje sorumlusu, tarihler, ekip katkıları, kilometre taşları ve kaynak bağlantıları tamamlandı. T43 ürün/ortam kataloğu üzerinde çalışma sürüyor. Sürümlü Plate belge düzenleme T10/T47 kapsamındadır.
+T06 ekip temeli ve T07 proje sorumlusu, tarihler, ekip katkıları, kilometre taşları ve kaynak bağlantıları tamamlandı. T43 ürün/ortam kataloğu tamamlandı; T08 issue temel yaşam döngüsü üzerinde çalışma sürüyor. T02 bağımsız araç erişimi çalışması devam ediyor. Sürümlü Plate belge düzenleme T10/T47 kapsamındadır.
 
 | Plan | Linear | Faz | İş |
 | --- | --- | --- | --- |

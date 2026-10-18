@@ -30,6 +30,7 @@ type Querier interface {
 	ClaimEventDeliveries(ctx context.Context, arg ClaimEventDeliveriesParams) ([]EventDelivery, error)
 	ClaimOperationReceipt(ctx context.Context, arg ClaimOperationReceiptParams) (int64, error)
 	ClearAppSettingsLogo(ctx context.Context) (AppSetting, error)
+	ClearIssueLabels(ctx context.Context, arg ClearIssueLabelsParams) error
 	CompleteEventDelivery(ctx context.Context, arg CompleteEventDeliveryParams) (int64, error)
 	CompleteOperationReceipt(ctx context.Context, arg CompleteOperationReceiptParams) error
 	ConfirmUserTOTP(ctx context.Context, arg ConfirmUserTOTPParams) (UserTotp, error)
@@ -58,6 +59,7 @@ type Querier interface {
 	CreateBulkJob(ctx context.Context, arg CreateBulkJobParams) (BulkJob, error)
 	CreateExportJob(ctx context.Context, arg CreateExportJobParams) (ExportJob, error)
 	CreateImportJob(ctx context.Context, arg CreateImportJobParams) (ImportJob, error)
+	CreateIssue(ctx context.Context, arg CreateIssueParams) (Issue, error)
 	CreateLabel(ctx context.Context, arg CreateLabelParams) (Label, error)
 	CreateLogPurgeRule(ctx context.Context, arg CreateLogPurgeRuleParams) (LogPurgeRule, error)
 	CreateNotification(ctx context.Context, arg CreateNotificationParams) (Notification, error)
@@ -162,12 +164,17 @@ type Querier interface {
 	GetWebAuthnCredentialByUUID(ctx context.Context, arg GetWebAuthnCredentialByUUIDParams) (WebauthnCredential, error)
 	GetWorkflowStatus(ctx context.Context, arg GetWorkflowStatusParams) (WorkflowStatus, error)
 	HasActivePushDevices(ctx context.Context, userID int64) (bool, error)
+	HistoricalIssueAssignee(ctx context.Context, arg HistoricalIssueAssigneeParams) (int64, error)
 	IncrementOTPAttempts(ctx context.Context, id int64) (OtpCode, error)
 	InsertActivityEvent(ctx context.Context, arg InsertActivityEventParams) (ActivityEvent, error)
 	InsertAppLog(ctx context.Context, arg InsertAppLogParams) error
 	InsertBulkChange(ctx context.Context, arg InsertBulkChangeParams) (BulkChange, error)
 	InsertEventDeliveries(ctx context.Context, arg InsertEventDeliveriesParams) error
 	InsertImportChange(ctx context.Context, arg InsertImportChangeParams) (ImportChange, error)
+	InsertIssueAlias(ctx context.Context, arg InsertIssueAliasParams) error
+	InsertIssueHistory(ctx context.Context, arg InsertIssueHistoryParams) error
+	InsertIssueLabel(ctx context.Context, arg InsertIssueLabelParams) error
+	InsertIssueWorkspaceHistory(ctx context.Context, arg InsertIssueWorkspaceHistoryParams) error
 	InsertNotificationHistory(ctx context.Context, arg InsertNotificationHistoryParams) (NotificationHistory, error)
 	InsertOutboxEvent(ctx context.Context, arg InsertOutboxEventParams) (int64, error)
 	InsertProductHistory(ctx context.Context, arg InsertProductHistoryParams) error
@@ -183,6 +190,7 @@ type Querier interface {
 	InsertUserRole(ctx context.Context, arg InsertUserRoleParams) error
 	InsertWorkspaceHistory(ctx context.Context, arg InsertWorkspaceHistoryParams) error
 	InvalidateActiveOTPs(ctx context.Context, arg InvalidateActiveOTPsParams) error
+	IssueHistoryAnchorExists(ctx context.Context, arg IssueHistoryAnchorExistsParams) (bool, error)
 	ListActivePublicKeys(ctx context.Context, keys []string) ([]string, error)
 	ListActivePublicLinks(ctx context.Context) ([]StorageLink, error)
 	ListActivePushDevicesByUser(ctx context.Context, userID int64) ([]PushDevice, error)
@@ -202,6 +210,8 @@ type Querier interface {
 	ListExportJobsForActor(ctx context.Context, arg ListExportJobsForActorParams) ([]ExportJob, error)
 	ListImportChangesForJob(ctx context.Context, jobID int64) ([]ImportChange, error)
 	ListImportJobsForActor(ctx context.Context, arg ListImportJobsForActorParams) ([]ImportJob, error)
+	ListIssueHistory(ctx context.Context, arg ListIssueHistoryParams) ([]IssueHistory, error)
+	ListIssues(ctx context.Context, arg ListIssuesParams) ([][]byte, error)
 	ListLabels(ctx context.Context, arg ListLabelsParams) ([]ListLabelsRow, error)
 	ListLogPurgeRules(ctx context.Context) ([]LogPurgeRule, error)
 	ListNotificationsForUser(ctx context.Context, arg ListNotificationsForUserParams) ([]Notification, error)
@@ -260,6 +270,7 @@ type Querier interface {
 	ListWorkspaceActivity(ctx context.Context, arg ListWorkspaceActivityParams) ([]WorkspaceHistory, error)
 	ListWorkspaceToolCredentials(ctx context.Context, arg ListWorkspaceToolCredentialsParams) ([]WorkspaceToolCredential, error)
 	LockEventDelivery(ctx context.Context, arg LockEventDeliveryParams) (EventDelivery, error)
+	LockIssue(ctx context.Context, arg LockIssueParams) (Issue, error)
 	LockLabel(ctx context.Context, arg LockLabelParams) (LockLabelRow, error)
 	LockOrganizationRow(ctx context.Context, id int64) (Organization, error)
 	LockProduct(ctx context.Context, arg LockProductParams) (Product, error)
@@ -288,6 +299,7 @@ type Querier interface {
 	MarkNotificationSent(ctx context.Context, arg MarkNotificationSentParams) (Notification, error)
 	// OAuth sign-up stores a random hash; the user never chose a password.
 	MarkUserPasswordUnset(ctx context.Context, id int64) error
+	MoveIssue(ctx context.Context, arg MoveIssueParams) (Issue, error)
 	OutboxPayloadMatches(ctx context.Context, arg OutboxPayloadMatchesParams) (bool, error)
 	PingDB(ctx context.Context) (int32, error)
 	ProductInternalWorkspace(ctx context.Context, argUuid uuid.UUID) (int64, error)
@@ -295,11 +307,13 @@ type Querier interface {
 	ProjectInternalWorkspace(ctx context.Context, argUuid uuid.UUID) (int64, error)
 	ProjectWorkspaceActivity(ctx context.Context, arg ProjectWorkspaceActivityParams) (int64, error)
 	QueueImportJob(ctx context.Context, argUuid uuid.UUID) (ImportJob, error)
+	ReadIssue(ctx context.Context, arg ReadIssueParams) ([]byte, error)
 	ReclaimExpiredEventDeliveries(ctx context.Context, maxAttempts int32) (int64, error)
 	RemoveUserRoleBySlug(ctx context.Context, arg RemoveUserRoleBySlugParams) error
 	ReplaceUserRoles(ctx context.Context, userID int64) error
 	ReplayEventDelivery(ctx context.Context, arg ReplayEventDeliveryParams) (EventDelivery, error)
 	RepositionWorkflowStatus(ctx context.Context, arg RepositionWorkflowStatusParams) error
+	ResolveIssue(ctx context.Context, arg ResolveIssueParams) ([]byte, error)
 	ResolveOrganizationScopeBySlug(ctx context.Context, arg ResolveOrganizationScopeBySlugParams) (ResolveOrganizationScopeBySlugRow, error)
 	ResolveOrganizationScopeByUUID(ctx context.Context, arg ResolveOrganizationScopeByUUIDParams) (ResolveOrganizationScopeByUUIDRow, error)
 	ResolveProductWorkspace(ctx context.Context, arg ResolveProductWorkspaceParams) (ResolveProductWorkspaceRow, error)
@@ -312,6 +326,7 @@ type Querier interface {
 	RevokeStorageLink(ctx context.Context, argUuid uuid.UUID) (StorageLink, error)
 	RevokeWorkspaceToolCredential(ctx context.Context, arg RevokeWorkspaceToolCredentialParams) (int64, error)
 	SetAppSettingsLogo(ctx context.Context, logoObjectKey pgtype.Text) (AppSetting, error)
+	SetIssueArchived(ctx context.Context, arg SetIssueArchivedParams) (Issue, error)
 	SetOrganizationAccessWindow(ctx context.Context, arg SetOrganizationAccessWindowParams) (Organization, error)
 	SetOrganizationStatus(ctx context.Context, arg SetOrganizationStatusParams) (Organization, error)
 	SetProductArchived(ctx context.Context, arg SetProductArchivedParams) (Product, error)
@@ -329,6 +344,7 @@ type Querier interface {
 	UpdateImportJobFileKey(ctx context.Context, arg UpdateImportJobFileKeyParams) (ImportJob, error)
 	UpdateImportJobMapping(ctx context.Context, arg UpdateImportJobMappingParams) (ImportJob, error)
 	UpdateImportJobPreview(ctx context.Context, arg UpdateImportJobPreviewParams) (ImportJob, error)
+	UpdateIssue(ctx context.Context, arg UpdateIssueParams) (Issue, error)
 	UpdateLabel(ctx context.Context, arg UpdateLabelParams) (Label, error)
 	UpdateLogPurgeRule(ctx context.Context, arg UpdateLogPurgeRuleParams) (LogPurgeRule, error)
 	UpdateOAuthAccountRefreshToken(ctx context.Context, arg UpdateOAuthAccountRefreshTokenParams) error
