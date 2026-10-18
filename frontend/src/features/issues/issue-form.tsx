@@ -12,7 +12,7 @@ import type { Issue } from "./issue.service";
 import { LoadNotice, MutationNotice, useIssueMutation } from "./issue-ui";
 import { validIssueTitle, validIssueDates, validIssueEffort } from "./snapshot";
 export const priorities = ["none", "urgent", "high", "normal", "low"] as const;
-type Draft = {
+export type IssueMetadataDraft = {
   title: string;
   priority: Issue["priority"];
   team_id: string;
@@ -24,6 +24,14 @@ type Draft = {
   target_date: string;
   effort: string;
   label_ids: string[];
+};
+export type IssueFormSnapshot = {
+  values: IssueMetadataDraft;
+  baselineVersion?: number;
+};
+export type ControlledIssueDraft = {
+  snapshot: IssueFormSnapshot;
+  onChange: (snapshot: IssueFormSnapshot) => void;
 };
 const selectClass =
   "border-input bg-background h-10 w-full rounded-md border px-3 text-sm";
@@ -37,6 +45,7 @@ export function IssueForm({
   reviewLatest,
   onDone,
   createOverride,
+  controlledDraft,
 }: {
   workspaceId: string;
   issue?: Issue;
@@ -46,6 +55,7 @@ export function IssueForm({
   canManage: boolean;
   reviewLatest: () => Promise<unknown>;
   onDone?: () => void;
+  controlledDraft?: ControlledIssueDraft;
   createOverride?: {
     locked: boolean;
     ready: boolean;
@@ -54,7 +64,7 @@ export function IssueForm({
 }) {
   const { t } = useLocale();
   const id = useId();
-  const initial: Draft = {
+  const initial: IssueMetadataDraft = {
     title: issue?.title ?? "",
     priority: issue?.priority ?? "none",
     team_id: issue?.team_id ?? initialTeam,
@@ -67,8 +77,20 @@ export function IssueForm({
     effort: issue?.effort == null ? "" : String(issue.effort),
     label_ids: [...(issue?.label_ids ?? [])],
   };
-  const [draft, setDraft] = useState(initial);
-  const [baseline] = useState(issue?.version);
+  const [localDraft, setLocalDraft] = useState(initial);
+  const [localBaseline] = useState(issue?.version);
+  const draft = controlledDraft?.snapshot.values ?? localDraft;
+  const baseline = controlledDraft
+    ? controlledDraft.snapshot.baselineVersion
+    : localBaseline;
+  function setDraft(values: IssueMetadataDraft) {
+    if (controlledDraft) {
+      controlledDraft.onChange({
+        values,
+        baselineVersion: controlledDraft.snapshot.baselineVersion,
+      });
+    } else setLocalDraft(values);
+  }
   const references = useIssueReferences(workspaceId, true);
   const selection = useIssueSelection(
     workspaceId,
@@ -88,8 +110,9 @@ export function IssueForm({
       move ? "issues.move" : issue ? "issues.edit" : "issues.create",
     ),
     reviewLatest,
-    onSaved: reset,
+    onSaved: createOverride ? undefined : reset,
   });
+  const locked = createOverride ? createOverride.locked : mutation.locked;
   const stale = !!issue && baseline !== issue.version;
   const loaded =
     references.isSuccess &&
@@ -206,7 +229,7 @@ export function IssueForm({
       className="space-y-4"
       onSubmit={(event) => {
         event.preventDefault();
-        if (!ready || !valid || mutation.locked) return;
+        if (!ready || !valid || locked) return;
         const path = { workspaceID: workspaceId, issueID: issue?.id ?? "" };
         if (move && issue) {
           mutation.submit({
@@ -272,7 +295,7 @@ export function IssueForm({
       <fieldset
         disabled={
           !canManage ||
-          mutation.locked ||
+          locked ||
           createOverride?.locked ||
           stale ||
           !references.isSuccess ||
@@ -453,7 +476,7 @@ export function IssueForm({
                     value={draft[field]}
                     disabled={
                       !canManage ||
-                      mutation.locked ||
+                      locked ||
                       createOverride?.locked ||
                       stale ||
                       !references.isSuccess ||
@@ -493,25 +516,27 @@ export function IssueForm({
       </fieldset>
       {stale && <p role="alert">{t("issues.stale_draft")}</p>}
       <div className="flex flex-wrap gap-3">
-        <Button type="submit" disabled={!ready || !valid || mutation.locked}>
+        <Button type="submit" disabled={!ready || !valid || locked}>
           {t(move ? "issues.move" : issue ? "issues.save" : "issues.create")}
         </Button>
         {issue && (
           <Button
             type="button"
             variant="outline"
-            disabled={mutation.locked}
+            disabled={locked}
             onClick={onDone}
           >
             {t(stale ? "issues.discard_draft" : "issues.cancel")}
           </Button>
         )}
       </div>
-      <MutationNotice
-        canRetry={canManage}
-        mutation={mutation}
-        onReconcile={reset}
-      />
+      {!createOverride && (
+        <MutationNotice
+          canRetry={canManage}
+          mutation={mutation}
+          onReconcile={reset}
+        />
+      )}
     </form>
   );
 }

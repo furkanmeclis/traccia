@@ -1,8 +1,12 @@
 "use client";
+import {
+  useIssueDrawer,
+  useDrawerRows,
+} from "@/features/issue-drawer/issue-drawer";
+import { plainIssueClick } from "@/features/issue-drawer/navigation";
 import { CommentPendingOperations } from "@/features/comments/comment-operation";
 import { AttachmentShelf } from "@/features/attachments/attachment-panel";
 import { issueFieldKeys, issuePriorityKeys } from "./issue-copy";
-import { useAuth } from "@/providers/auth-provider";
 import { useId, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -12,9 +16,8 @@ import { useLocale } from "@/providers/locale-provider";
 import { useWorkspace } from "@/features/workspaces/queries";
 import { useIssues, useIssueReferences } from "./queries";
 import { RelationPendingOperations } from "@/features/issue-relations/relation-operation";
-import { RichIssueForm } from "@/features/documents/rich-issue-form";
 import { DocumentPendingOperations } from "@/features/documents/document-operation";
-import { Section, LoadNotice, PendingOperations } from "./issue-ui";
+import { LoadNotice, PendingOperations } from "./issue-ui";
 export function IssueList({
   workspaceId,
   initialTeam = "",
@@ -25,8 +28,8 @@ export function IssueList({
   initialProject?: string;
 }) {
   const { t } = useLocale();
-  const { user } = useAuth();
   const id = useId();
+  const drawer = useIssueDrawer();
   const workspace = useWorkspace(workspaceId);
   const allowed = workspace.isSuccess && !workspace.isError;
   const [filters, setFilters] = useState({
@@ -43,22 +46,29 @@ export function IssueList({
     list.isSuccess &&
     !list.isError &&
     !list.isFetching;
+  useDrawerRows(
+    allowed && list.isSuccess && !list.isError
+      ? list.data.pages.flatMap((page) =>
+          (page.items ?? []).map((issue) => issue.id),
+        )
+      : [],
+  );
   const manage =
     ready && list.data.pages.every((page) => page.capabilities.manage);
   const showCreate =
     list.data?.pages.some((page) => page.capabilities.manage) ?? false;
-  async function reviewLatest() {
-    await Promise.all([
-      workspace.refetch({ throwOnError: true }),
-      list.refetch({ throwOnError: true }),
-    ]);
-  }
   return (
     <div className="space-y-8">
       <Button type="button" variant="ghost" asChild>
         <Link href={`/w/${workspaceId}`}>{t("issues.back_workspace")}</Link>
       </Button>
-      <h1 className="text-3xl font-semibold">{t("issues.title")}</h1>
+      <h1
+        id="issue-list-heading"
+        tabIndex={-1}
+        className="text-3xl font-semibold outline-none"
+      >
+        {t("issues.title")}
+      </h1>
       <LoadNotice
         pending={workspace.isPending}
         error={workspace.isError}
@@ -145,6 +155,13 @@ export function IssueList({
                 .map((issue) => (
                   <Link
                     key={issue.id}
+                    data-issue-row={issue.id}
+                    onClick={(event) => {
+                      if (drawer && plainIssueClick(event)) {
+                        event.preventDefault();
+                        drawer.openIssue(issue.id, event.currentTarget);
+                      }
+                    }}
                     href={`/w/${workspaceId}/issues/${issue.id}`}
                     className="hover:border-primary focus-visible:ring-ring space-y-2 rounded-lg border p-5 focus-visible:ring-2"
                   >
@@ -174,16 +191,19 @@ export function IssueList({
           </>
         )}
         <div hidden={!showCreate}>
-          <Section title={t("issues.create")}>
-            <RichIssueForm
-              key={JSON.stringify([workspaceId, user?.uuid])}
-              workspaceId={workspaceId}
-              initialTeam={initialTeam}
-              initialProject={initialProject}
-              canManage={!!manage}
-              reviewLatest={reviewLatest}
-            />
-          </Section>
+          <Button
+            type="button"
+            disabled={!manage || !drawer?.canCreate}
+            onClick={(event) =>
+              drawer?.openCreate(
+                event.currentTarget,
+                initialTeam || undefined,
+                initialProject || undefined,
+              )
+            }
+          >
+            {t("issues.create")}
+          </Button>
         </div>
       </div>
     </div>

@@ -1,0 +1,10 @@
+{
+  "title": "Issue details",
+  "help": "Use J and K to move through listed issues. Use E to edit fields. Drafts are retained when closed.",
+  "close": "Close issue details",
+  "previous": "Previous issue",
+  "next": "Next issue",
+  "fullPage": "Open full page",
+  "reopen": "Recently viewed issues",
+  "issue": "Issue {{number}}"
+}

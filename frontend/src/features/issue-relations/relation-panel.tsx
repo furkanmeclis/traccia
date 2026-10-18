@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useDrawerDraft } from "@/features/issue-drawer/draft-context";
 import { useAuth } from "@/providers/auth-provider";
 import { useLocale } from "@/providers/locale-provider";
 import { Button } from "@/components/ui/button";
@@ -124,16 +124,22 @@ function RelationSettings({
   ready: boolean;
 }) {
   const { t } = useLocale();
-  const [editing, setEditing] = useState<"parent" | "duplicate" | "add" | null>(
-    null,
-  );
+  const [editing, setEditing] = useDrawerDraft<
+    "parent" | "duplicate" | "add" | null
+  >("relations.editing", null);
+  const [generation, setGeneration] = useDrawerDraft("relations.generation", 0);
   return editing ? (
     <RelationForm
+      key={generation}
+      draftGeneration={generation}
       workspaceId={workspaceId}
       state={state}
       mode={editing}
       ready={ready}
-      onDone={() => setEditing(null)}
+      onDone={() => {
+        setEditing(null);
+        setGeneration((n) => n + 1);
+      }}
     />
   ) : state.capabilities.link ? (
     <div className="flex flex-wrap gap-3">

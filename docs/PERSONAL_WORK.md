@@ -1,6 +1,6 @@
 # Personal workspace
 
-T14 is under implementation and verification. Notification entry in the shell does not implement the later notification-delivery scope.
+T14 is complete. Notification entry in the shell does not implement the later notification-delivery scope.
 
 The personal-work module adds five shared API/MCP operations. Every route uses `/v1/workspaces/{workspaceID}` as its authorization and ownership context:
 

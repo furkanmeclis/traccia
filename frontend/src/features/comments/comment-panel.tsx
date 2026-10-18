@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { useDrawerDraft } from "@/features/issue-drawer/draft-context";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/providers/auth-provider";
 import { useLocale } from "@/providers/locale-provider";
@@ -39,7 +40,10 @@ function CommentCard({
 }) {
   const { user } = useAuth(),
     { t } = useLocale(),
-    [editing, setEditing] = useState(false),
+    [editing, setEditing] = useDrawerDraft(
+      `comments.${comment.id}.editing`,
+      false,
+    ),
     [history, setHistory] = useState(false),
     [exporting, setExporting] = useState(false);
   const draftKey = commentDraftScope(

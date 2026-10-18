@@ -1,5 +1,9 @@
 "use client";
 import { useEffect, type ReactNode } from "react";
+import {
+  IssueDrawerProvider,
+  QuickIssueButton,
+} from "@/features/issue-drawer/issue-drawer";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Bell, Layers3 } from "lucide-react";
@@ -105,6 +109,7 @@ function ShellContent({ children }: { children: ReactNode }) {
               </select>
             </label>
             <div className="ml-auto flex items-center gap-1">
+              <QuickIssueButton />
               <ProductCommandMenu
                 key={JSON.stringify([switchers.actorID, scope.workspaceID])}
                 catalog={catalog}
@@ -204,7 +209,9 @@ export function ProductShell({ children }: { children: ReactNode }) {
   return (
     <RouteGuard mode="product">
       <PersonalContextBoundary />
-      <ShellContent>{children}</ShellContent>
+      <IssueDrawerProvider>
+        <ShellContent>{children}</ShellContent>
+      </IssueDrawerProvider>
     </RouteGuard>
   );
 }
