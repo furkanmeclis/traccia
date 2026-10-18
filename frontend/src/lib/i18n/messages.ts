@@ -72,6 +72,9 @@ import trIssues from "@/locales/tr/issues.json";
 import enProducts from "@/locales/en/products.json";
 import trProducts from "@/locales/tr/products.json";
 
+import enRelations from "@/locales/en/relations.json";
+import trRelations from "@/locales/tr/relations.json";
+
 export type MessageDictionary = Record<string, string>;
 
 const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
@@ -82,6 +85,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     projects: trProjects,
     products: trProducts,
     issues: trIssues,
+    relations: trRelations,
     layout: trLayout,
     editor: trEditor,
     table: trTable,
@@ -117,6 +121,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     projects: enProjects,
     products: enProducts,
     issues: enIssues,
+    relations: enRelations,
     layout: enLayout,
     editor: enEditor,
     table: enTable,

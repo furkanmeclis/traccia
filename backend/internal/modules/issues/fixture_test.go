@@ -77,9 +77,20 @@ func isolatedDatabase(t *testing.T) *pgxpool.Pool {
 		if _, e = pool.Exec(ctx, string(raw)); e != nil {
 			t.Fatalf("migration %s: %v", filepath.Base(file), e)
 		}
+		if filepath.Base(file) == "000037_issue_foundation.up.sql" {
+			for _, suffix := range []string{"down", "up"} {
+				roundtrip, err := os.ReadFile("../../../migrations/000037_issue_foundation." + suffix + ".sql")
+				if err != nil {
+					t.Fatal(err)
+				}
+				if _, err = pool.Exec(ctx, string(roundtrip)); err != nil {
+					t.Fatal(err)
+				}
+			}
+		}
 	}
 	for _, suffix := range []string{"down", "up"} {
-		raw, e := os.ReadFile("../../../migrations/000037_issue_foundation." + suffix + ".sql")
+		raw, e := os.ReadFile("../../../migrations/000038_issue_relations." + suffix + ".sql")
 		if e != nil {
 			t.Fatal(e)
 		}

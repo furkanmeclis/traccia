@@ -8,6 +8,7 @@ import { useLocale } from "@/providers/locale-provider";
 import { useIssue } from "./queries";
 import { IssueMetadata } from "./issue-metadata";
 import { IssueForm } from "./issue-form";
+import { IssueRelations } from "@/features/issue-relations/relation-panel";
 import { IssueHistory } from "./issue-history";
 import {
   LoadNotice,
@@ -183,6 +184,11 @@ export function IssueDetail({
             canMove={writable && !!query.data?.capabilities.move}
             restore={writable && !!query.data?.capabilities.restore}
             reviewLatest={reviewLatest}
+          />
+          <IssueRelations
+            workspaceId={workspaceId}
+            issueId={issueId}
+            metadataVersion={current.version}
           />
           <IssueHistory
             workspaceId={workspaceId}

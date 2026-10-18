@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { useLocale } from "@/providers/locale-provider";
 import { useWorkspace } from "@/features/workspaces/queries";
 import { useIssues, useIssueReferences } from "./queries";
+import { RelationPendingOperations } from "@/features/issue-relations/relation-operation";
 import { IssueForm } from "./issue-form";
 import { Section, LoadNotice, PendingOperations } from "./issue-ui";
 export function IssueList({
@@ -61,6 +62,7 @@ export function IssueList({
         retry={() => workspace.refetch()}
       />
       <PendingOperations workspaceId={workspaceId} canRun={() => !!manage} />
+      <RelationPendingOperations workspaceId={workspaceId} />
       <div hidden={!allowed} className="space-y-8">
         <div className="flex flex-wrap gap-3">
           {[false, true].map((archived) => (
