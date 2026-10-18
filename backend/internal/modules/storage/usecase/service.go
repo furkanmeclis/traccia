@@ -389,12 +389,16 @@ func (s *Service) scan(ctx context.Context, prefix, delimiter string, max int) (
 			return nil, nil, fmt.Errorf("storage: list: %w", err)
 		}
 		for _, obj := range page.Objects {
-			if skipSystem(obj.Key) && !strings.HasPrefix(prefix, platstorage.TrashPrefix) {
+			if attachmentPrivateKey(obj.Key) || (skipSystem(obj.Key) && !strings.HasPrefix(prefix, platstorage.TrashPrefix)) {
 				continue
 			}
 			objects = append(objects, obj)
 		}
-		prefixes = append(prefixes, page.Prefixes...)
+		for _, p := range page.Prefixes {
+			if !attachmentPrivateKey(p.Prefix) {
+				prefixes = append(prefixes, p)
+			}
+		}
 		if !page.IsTruncated || page.NextContinuationToken == "" || len(objects)+len(prefixes) >= max {
 			break
 		}

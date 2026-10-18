@@ -185,6 +185,9 @@ func (s *Service) listTrash(ctx context.Context, actor model.Actor) ([]model.Obj
 	}
 	items := make([]model.Object, 0, len(rows))
 	for _, row := range rows {
+		if attachmentPrivateKey(row.ObjectKey) || attachmentPrivateKey(row.OriginalKey) {
+			continue
+		}
 		obj := model.Object{
 			ID:             row.OriginalKey,
 			Name:           row.Name,
@@ -243,6 +246,9 @@ func (s *Service) headKeys(ctx context.Context, actor model.Actor, keys []string
 	items := make([]model.Object, 0, len(keys))
 	ptrs := make([]*model.Object, 0, len(keys))
 	for _, key := range keys {
+		if attachmentPrivateKey(key) {
+			continue
+		}
 		info, err := s.store.Head(ctx, key)
 		if err != nil {
 			continue

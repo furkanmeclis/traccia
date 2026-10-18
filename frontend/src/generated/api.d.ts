@@ -24,6 +24,270 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/workspaces/{workspaceID}/attachment-uploads/{uploadID}/abort": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * attachment_uploads.abort
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["attachment_uploads_abort"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/attachment-uploads/{uploadID}/chunks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * attachment_uploads.chunk
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["attachment_uploads_chunk"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/attachment-uploads/config": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * attachment_uploads.config
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["attachment_uploads_config"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/attachment-uploads": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * attachment_uploads.list
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["attachment_uploads_list"];
+        put?: never;
+        /**
+         * attachment_uploads.create
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["attachment_uploads_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/attachment-uploads/{uploadID}/finalize": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * attachment_uploads.finalize
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["attachment_uploads_finalize"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/attachment-uploads/{uploadID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * attachment_uploads.get
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["attachment_uploads_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/attachment-uploads/{uploadID}/history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * attachment_uploads.history
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["attachment_uploads_history"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/attachments/{attachmentID}/bind": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * attachments.bind
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["attachments_bind"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/attachments/{attachmentID}/download-chunk": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * attachments.download_chunk
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["attachments_download_chunk"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/attachments/{attachmentID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * attachments.get
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["attachments_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/attachments/{attachmentID}/history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * attachments.history
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["attachments_history"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/issues/{issueID}/attachments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * attachments.list
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["attachments_list"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/attachments/{attachmentID}/remove": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * attachments.remove
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["attachments_remove"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/workspaces/{workspaceID}/credentials": {
         parameters: {
             query?: never;
@@ -3487,6 +3751,875 @@ export interface components {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductActivityListOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentUploadsAbortInput: {
+            /** Format: uuid */
+            draft_id: string;
+            expected_version: number;
+        };
+        ProductAttachmentUploadsAbortOutput: {
+            upload: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: uuid */
+                draft_id: string;
+                filename: string;
+                content_type: string;
+                size_bytes: number;
+                sha256: string;
+                chunk_bytes: number;
+                next_offset: number;
+                version: number;
+                /** @enum {string} */
+                state: "uploading" | "finalized" | "bound" | "removed" | "aborted" | "expired";
+                expires_at: string | null;
+                attachment_id: string | null;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                cleanup: {
+                    /** @enum {string} */
+                    state: "none" | "pending" | "retrying" | "reconciled";
+                    last_error: string;
+                    next_check_at: string | null;
+                };
+                capabilities: {
+                    upload_chunk: boolean;
+                    finalize: boolean;
+                    abort: boolean;
+                    bind: boolean;
+                };
+            };
+        };
+        ProductAttachmentUploadsAbortError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentUploadsAbortDomainInput: {
+            /** Format: uuid */
+            upload_id: string;
+            /** Format: uuid */
+            draft_id: string;
+            expected_version: number;
+        };
+        ProductAttachmentUploadsAbortEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentUploadsAbortOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentUploadsChunkInput: {
+            /** Format: uuid */
+            draft_id: string;
+            expected_version: number;
+            offset: number;
+            total_bytes: number;
+            data_base64: string;
+            chunk_sha256: string;
+        };
+        ProductAttachmentUploadsChunkOutput: {
+            upload: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: uuid */
+                draft_id: string;
+                filename: string;
+                content_type: string;
+                size_bytes: number;
+                sha256: string;
+                chunk_bytes: number;
+                next_offset: number;
+                version: number;
+                /** @enum {string} */
+                state: "uploading" | "finalized" | "bound" | "removed" | "aborted" | "expired";
+                expires_at: string | null;
+                attachment_id: string | null;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                cleanup: {
+                    /** @enum {string} */
+                    state: "none" | "pending" | "retrying" | "reconciled";
+                    last_error: string;
+                    next_check_at: string | null;
+                };
+                capabilities: {
+                    upload_chunk: boolean;
+                    finalize: boolean;
+                    abort: boolean;
+                    bind: boolean;
+                };
+            };
+        };
+        ProductAttachmentUploadsChunkError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentUploadsChunkDomainInput: {
+            /** Format: uuid */
+            upload_id: string;
+            /** Format: uuid */
+            draft_id: string;
+            expected_version: number;
+            offset: number;
+            total_bytes: number;
+            data_base64: string;
+            chunk_sha256: string;
+        };
+        ProductAttachmentUploadsChunkEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentUploadsChunkOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentUploadsConfigOutput: {
+            capabilities: {
+                manage: boolean;
+            };
+            limits: {
+                max_chunk_request_bytes: number;
+                max_file_bytes: number;
+                chunk_bytes: number;
+                upload_inactivity_seconds: number;
+                finalized_retention_seconds: number;
+                blob_fallback_max_bytes: number;
+            };
+        };
+        ProductAttachmentUploadsConfigError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentUploadsConfigDomainInput: Record<string, never>;
+        ProductAttachmentUploadsConfigEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentUploadsConfigOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentUploadsCreateInput: {
+            /** Format: uuid */
+            draft_id: string;
+            filename: string;
+            content_type: string;
+            size_bytes: number;
+            sha256: string;
+        };
+        ProductAttachmentUploadsCreateOutput: {
+            upload: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: uuid */
+                draft_id: string;
+                filename: string;
+                content_type: string;
+                size_bytes: number;
+                sha256: string;
+                chunk_bytes: number;
+                next_offset: number;
+                version: number;
+                /** @enum {string} */
+                state: "uploading" | "finalized" | "bound" | "removed" | "aborted" | "expired";
+                expires_at: string | null;
+                attachment_id: string | null;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                cleanup: {
+                    /** @enum {string} */
+                    state: "none" | "pending" | "retrying" | "reconciled";
+                    last_error: string;
+                    next_check_at: string | null;
+                };
+                capabilities: {
+                    upload_chunk: boolean;
+                    finalize: boolean;
+                    abort: boolean;
+                    bind: boolean;
+                };
+            };
+        };
+        ProductAttachmentUploadsCreateError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentUploadsCreateDomainInput: {
+            /** Format: uuid */
+            draft_id: string;
+            filename: string;
+            content_type: string;
+            size_bytes: number;
+            sha256: string;
+        };
+        ProductAttachmentUploadsCreateEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentUploadsCreateOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentUploadsFinalizeInput: {
+            /** Format: uuid */
+            draft_id: string;
+            expected_version: number;
+        };
+        ProductAttachmentUploadsFinalizeOutput: {
+            upload: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: uuid */
+                draft_id: string;
+                filename: string;
+                content_type: string;
+                size_bytes: number;
+                sha256: string;
+                chunk_bytes: number;
+                next_offset: number;
+                version: number;
+                /** @enum {string} */
+                state: "uploading" | "finalized" | "bound" | "removed" | "aborted" | "expired";
+                expires_at: string | null;
+                attachment_id: string | null;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                cleanup: {
+                    /** @enum {string} */
+                    state: "none" | "pending" | "retrying" | "reconciled";
+                    last_error: string;
+                    next_check_at: string | null;
+                };
+                capabilities: {
+                    upload_chunk: boolean;
+                    finalize: boolean;
+                    abort: boolean;
+                    bind: boolean;
+                };
+            };
+            attachment: {
+                /** @enum {string} */
+                state: "finalized" | "bound" | "removed" | "aborted" | "expired";
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                upload_id: string | null;
+                /** Format: uuid */
+                actor_id: string;
+                draft_id: string | null;
+                /** Format: uuid */
+                file_revision: string;
+                version: number;
+                filename: string;
+                download_filename: string;
+                content_type: string;
+                size_bytes: number;
+                sha256: string;
+                issue_id: string | null;
+                removed: boolean;
+                /** Format: date-time */
+                finalized_at: string;
+                expires_at: string | null;
+                download_path: string;
+                capabilities: {
+                    history: boolean;
+                    download: boolean;
+                    bind: boolean;
+                    remove: boolean;
+                };
+            };
+        };
+        ProductAttachmentUploadsFinalizeError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentUploadsFinalizeDomainInput: {
+            /** Format: uuid */
+            upload_id: string;
+            /** Format: uuid */
+            draft_id: string;
+            expected_version: number;
+        };
+        ProductAttachmentUploadsFinalizeEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentUploadsFinalizeOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentUploadsGetOutput: {
+            upload: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: uuid */
+                draft_id: string;
+                filename: string;
+                content_type: string;
+                size_bytes: number;
+                sha256: string;
+                chunk_bytes: number;
+                next_offset: number;
+                version: number;
+                /** @enum {string} */
+                state: "uploading" | "finalized" | "bound" | "removed" | "aborted" | "expired";
+                expires_at: string | null;
+                attachment_id: string | null;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                cleanup: {
+                    /** @enum {string} */
+                    state: "none" | "pending" | "retrying" | "reconciled";
+                    last_error: string;
+                    next_check_at: string | null;
+                };
+                capabilities: {
+                    upload_chunk: boolean;
+                    finalize: boolean;
+                    abort: boolean;
+                    bind: boolean;
+                };
+            };
+        };
+        ProductAttachmentUploadsGetError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentUploadsGetDomainInput: {
+            /** Format: uuid */
+            upload_id: string;
+            /** Format: uuid */
+            draft_id: string;
+        };
+        ProductAttachmentUploadsGetEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentUploadsGetOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentUploadsHistoryOutput: {
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                actor_id: string;
+                event_name: string;
+                version: number;
+                /** Format: date-time */
+                occurred_at: string;
+                snapshot: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    actor_id: string;
+                    /** Format: uuid */
+                    draft_id: string;
+                    filename: string;
+                    content_type: string;
+                    size_bytes: number;
+                    sha256: string;
+                    chunk_bytes: number;
+                    next_offset: number;
+                    version: number;
+                    /** @enum {string} */
+                    state: "uploading" | "finalized" | "bound" | "removed" | "aborted" | "expired";
+                    expires_at: string | null;
+                    attachment_id: string | null;
+                    /** Format: date-time */
+                    created_at: string;
+                    /** Format: date-time */
+                    updated_at: string;
+                    cleanup: {
+                        /** @enum {string} */
+                        state: "none" | "pending" | "retrying" | "reconciled";
+                        last_error: string;
+                        next_check_at: string | null;
+                    };
+                    capabilities: {
+                        upload_chunk: boolean;
+                        finalize: boolean;
+                        abort: boolean;
+                        bind: boolean;
+                    };
+                };
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductAttachmentUploadsHistoryError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentUploadsHistoryDomainInput: {
+            /** Format: uuid */
+            upload_id: string;
+            /** Format: uuid */
+            draft_id: string;
+            limit: number;
+            after: string;
+        };
+        ProductAttachmentUploadsHistoryEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentUploadsHistoryOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentUploadsListOutput: {
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: uuid */
+                draft_id: string;
+                filename: string;
+                content_type: string;
+                size_bytes: number;
+                sha256: string;
+                chunk_bytes: number;
+                next_offset: number;
+                version: number;
+                /** @enum {string} */
+                state: "uploading" | "finalized" | "bound" | "removed" | "aborted" | "expired";
+                expires_at: string | null;
+                attachment_id: string | null;
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                cleanup: {
+                    /** @enum {string} */
+                    state: "none" | "pending" | "retrying" | "reconciled";
+                    last_error: string;
+                    next_check_at: string | null;
+                };
+                capabilities: {
+                    upload_chunk: boolean;
+                    finalize: boolean;
+                    abort: boolean;
+                    bind: boolean;
+                };
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductAttachmentUploadsListError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentUploadsListDomainInput: {
+            draft_id: "" | string;
+            /** @enum {string} */
+            state: "" | "aborted" | "any" | "bound" | "expired" | "finalized" | "removed" | "uploading";
+            limit: number;
+            after: string;
+        };
+        ProductAttachmentUploadsListEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentUploadsListOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentsBindInput: {
+            /** Format: uuid */
+            draft_id: string;
+            /** Format: uuid */
+            issue_id: string;
+            expected_version: number;
+        };
+        ProductAttachmentsBindOutput: {
+            attachment: {
+                /** @enum {string} */
+                state: "finalized" | "bound" | "removed" | "aborted" | "expired";
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                upload_id: string | null;
+                /** Format: uuid */
+                actor_id: string;
+                draft_id: string | null;
+                /** Format: uuid */
+                file_revision: string;
+                version: number;
+                filename: string;
+                download_filename: string;
+                content_type: string;
+                size_bytes: number;
+                sha256: string;
+                issue_id: string | null;
+                removed: boolean;
+                /** Format: date-time */
+                finalized_at: string;
+                expires_at: string | null;
+                download_path: string;
+                capabilities: {
+                    history: boolean;
+                    download: boolean;
+                    bind: boolean;
+                    remove: boolean;
+                };
+            };
+        };
+        ProductAttachmentsBindError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentsBindDomainInput: {
+            /** Format: uuid */
+            attachment_id: string;
+            /** Format: uuid */
+            draft_id: string;
+            /** Format: uuid */
+            issue_id: string;
+            expected_version: number;
+        };
+        ProductAttachmentsBindEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentsBindOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentsDownloadChunkOutput: {
+            /** Format: uuid */
+            attachment_id: string;
+            /** Format: uuid */
+            file_revision: string;
+            filename: string;
+            download_filename: string;
+            /** @constant */
+            content_type: "application/octet-stream";
+            content_disposition: string;
+            size_bytes: number;
+            sha256: string;
+            offset: number;
+            data_base64: string;
+            chunk_sha256: string;
+            next_offset: number;
+            eof: boolean;
+        };
+        ProductAttachmentsDownloadChunkError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentsDownloadChunkDomainInput: {
+            /** Format: uuid */
+            attachment_id: string;
+            draft_id: "" | string;
+            /** Format: uuid */
+            file_revision: string;
+            offset: number;
+            limit: number;
+        };
+        ProductAttachmentsDownloadChunkEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentsDownloadChunkOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentsGetOutput: {
+            attachment: {
+                /** @enum {string} */
+                state: "finalized" | "bound" | "removed" | "aborted" | "expired";
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                upload_id: string | null;
+                /** Format: uuid */
+                actor_id: string;
+                draft_id: string | null;
+                /** Format: uuid */
+                file_revision: string;
+                version: number;
+                filename: string;
+                download_filename: string;
+                content_type: string;
+                size_bytes: number;
+                sha256: string;
+                issue_id: string | null;
+                removed: boolean;
+                /** Format: date-time */
+                finalized_at: string;
+                expires_at: string | null;
+                download_path: string;
+                capabilities: {
+                    history: boolean;
+                    download: boolean;
+                    bind: boolean;
+                    remove: boolean;
+                };
+            };
+        };
+        ProductAttachmentsGetError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentsGetDomainInput: {
+            /** Format: uuid */
+            attachment_id: string;
+            draft_id: "" | string;
+        };
+        ProductAttachmentsGetEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentsGetOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentsHistoryOutput: {
+            items: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                actor_id: string;
+                event_name: string;
+                version: number;
+                /** Format: date-time */
+                occurred_at: string;
+                snapshot: {
+                    /** @enum {string} */
+                    state: "finalized" | "bound" | "removed" | "aborted" | "expired";
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    upload_id: string | null;
+                    /** Format: uuid */
+                    actor_id: string;
+                    draft_id: string | null;
+                    /** Format: uuid */
+                    file_revision: string;
+                    version: number;
+                    filename: string;
+                    download_filename: string;
+                    content_type: string;
+                    size_bytes: number;
+                    sha256: string;
+                    issue_id: string | null;
+                    removed: boolean;
+                    /** Format: date-time */
+                    finalized_at: string;
+                    expires_at: string | null;
+                    download_path: string;
+                    capabilities: {
+                        history: boolean;
+                        download: boolean;
+                        bind: boolean;
+                        remove: boolean;
+                    };
+                };
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductAttachmentsHistoryError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentsHistoryDomainInput: {
+            /** Format: uuid */
+            attachment_id: string;
+            draft_id: "" | string;
+            limit: number;
+            after: string;
+        };
+        ProductAttachmentsHistoryEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentsHistoryOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentsListOutput: {
+            items: {
+                /** @enum {string} */
+                state: "finalized" | "bound" | "removed" | "aborted" | "expired";
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                upload_id: string | null;
+                /** Format: uuid */
+                actor_id: string;
+                draft_id: string | null;
+                /** Format: uuid */
+                file_revision: string;
+                version: number;
+                filename: string;
+                download_filename: string;
+                content_type: string;
+                size_bytes: number;
+                sha256: string;
+                issue_id: string | null;
+                removed: boolean;
+                /** Format: date-time */
+                finalized_at: string;
+                expires_at: string | null;
+                download_path: string;
+                capabilities: {
+                    history: boolean;
+                    download: boolean;
+                    bind: boolean;
+                    remove: boolean;
+                };
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+            capabilities: {
+                bind: boolean;
+                remove: boolean;
+            };
+        };
+        ProductAttachmentsListError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentsListDomainInput: {
+            /** Format: uuid */
+            issue_id: string;
+            removed: boolean;
+            search: string;
+            limit: number;
+            after: string;
+        };
+        ProductAttachmentsListEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentsListOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductAttachmentsRemoveInput: {
+            expected_version: number;
+        };
+        ProductAttachmentsRemoveOutput: {
+            attachment: {
+                /** @enum {string} */
+                state: "finalized" | "bound" | "removed" | "aborted" | "expired";
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                upload_id: string | null;
+                /** Format: uuid */
+                actor_id: string;
+                draft_id: string | null;
+                /** Format: uuid */
+                file_revision: string;
+                version: number;
+                filename: string;
+                download_filename: string;
+                content_type: string;
+                size_bytes: number;
+                sha256: string;
+                issue_id: string | null;
+                removed: boolean;
+                /** Format: date-time */
+                finalized_at: string;
+                expires_at: string | null;
+                download_path: string;
+                capabilities: {
+                    history: boolean;
+                    download: boolean;
+                    bind: boolean;
+                    remove: boolean;
+                };
+            };
+        };
+        ProductAttachmentsRemoveError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductAttachmentsRemoveDomainInput: {
+            /** Format: uuid */
+            attachment_id: string;
+            expected_version: number;
+        };
+        ProductAttachmentsRemoveEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductAttachmentsRemoveOutput"];
             meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductCredentialsCreateInput: {
@@ -16056,6 +17189,1473 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachment_uploads_abort: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                uploadID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductAttachmentUploadsAbortInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentUploadsAbortEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachment_uploads_chunk: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                uploadID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductAttachmentUploadsChunkInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentUploadsChunkEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachment_uploads_config: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentUploadsConfigEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachment_uploads_list: {
+        parameters: {
+            query?: {
+                draft_id?: "" | string;
+                state?: "" | "aborted" | "any" | "bound" | "expired" | "finalized" | "removed" | "uploading";
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentUploadsListEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachment_uploads_create: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductAttachmentUploadsCreateInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentUploadsCreateEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachment_uploads_finalize: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                uploadID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductAttachmentUploadsFinalizeInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentUploadsFinalizeEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachment_uploads_get: {
+        parameters: {
+            query?: {
+                draft_id?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                uploadID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentUploadsGetEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachment_uploads_history: {
+        parameters: {
+            query?: {
+                draft_id?: string;
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                uploadID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentUploadsHistoryEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachments_bind: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                attachmentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductAttachmentsBindInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentsBindEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachments_download_chunk: {
+        parameters: {
+            query?: {
+                draft_id?: "" | string;
+                file_revision?: string;
+                offset?: number;
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                attachmentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    /** @description Safe attachment filename; the JSON response carries a bounded base64 chunk. */
+                    "Content-Disposition"?: string;
+                    "X-Content-Type-Options"?: "nosniff";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentsDownloadChunkEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachments_get: {
+        parameters: {
+            query?: {
+                draft_id?: "" | string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                attachmentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentsGetEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachments_history: {
+        parameters: {
+            query?: {
+                draft_id?: "" | string;
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                attachmentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentsHistoryEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachments_list: {
+        parameters: {
+            query?: {
+                removed?: boolean;
+                search?: string;
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                issueID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentsListEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    attachments_remove: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                attachmentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductAttachmentsRemoveInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductAttachmentsRemoveEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
                 };
             };
             /** @description Application operation failed. */

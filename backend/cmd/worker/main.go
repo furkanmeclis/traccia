@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	attachmentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/repository"
+	attachmentsusecase "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/usecase"
 	"log/slog"
 	"os"
 	"os/signal"
@@ -79,16 +81,34 @@ func main() {
 		outbox.NewWorker(outbox.NewStore(pool, queries), durableRegistry, log).Run(durableCtx)
 	}()
 	defer func() { cancelDurable(); <-durableDone }()
-	if !cfg.Queue.Enabled {
-		log.Info("durable_worker_started", "redis_queue_enabled", false)
-		<-ctx.Done()
-		return
-	}
-
 	store, err := storage.NewFromConfig(ctx, cfg.Storage)
 	if err != nil {
 		log.Error("storage_init_failed", "error", err)
 		exit(1)
+	}
+
+	attachmentStore, err := attachmentsrepo.NewObjectStore(store)
+	if err != nil {
+		log.Error("attachment_storage_init_failed")
+		return
+	}
+	attachmentOptions := attachmentsusecase.Options{MaxFileBytes: cfg.Attachments.MaxFileBytes, ChunkBytes: cfg.Attachments.ChunkBytes, UploadTTL: cfg.Attachments.UploadTTL, FinalizedRetention: cfg.Attachments.FinalizedRetention, CleanupInterval: cfg.Attachments.CleanupInterval}
+	attachmentRepo, err := attachmentsrepo.New(pool, queries, attachmentStore, attachmentOptions)
+	if err != nil {
+		log.Error("attachment_init_failed")
+		return
+	}
+	attachmentCtx, cancelAttachments := context.WithCancel(ctx)
+	attachmentDone := make(chan struct{})
+	go func() {
+		defer close(attachmentDone)
+		attachmentRepo.RunCleanup(attachmentCtx, func(error) { log.Error("attachment_cleanup_failed") })
+	}()
+	defer func() { cancelAttachments(); <-attachmentDone }()
+	if !cfg.Queue.Enabled {
+		log.Info("durable_worker_started", "redis_queue_enabled", false)
+		<-ctx.Done()
+		return
 	}
 
 	var publisher realtime.Publisher

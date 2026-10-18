@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"mime"
 	"net/http"
 	"strconv"
 	"strings"
@@ -180,6 +181,22 @@ func serveOperation(w http.ResponseWriter, r *http.Request, registry *operations
 	if err != nil {
 		writeError(w, r, err)
 		return
+	}
+	if meta.ID == "attachments.download_chunk" {
+		var transfer struct {
+			Disposition string `json:"content_disposition"`
+		}
+		if e := json.Unmarshal(output, &transfer); e != nil {
+			writeError(w, r, e)
+			return
+		}
+		kind, _, e := mime.ParseMediaType(transfer.Disposition)
+		if e != nil || kind != "attachment" || strings.ContainsAny(transfer.Disposition, "\r\n") {
+			writeError(w, r, &operations.Error{Code: operations.Internal})
+			return
+		}
+		w.Header().Set("Content-Disposition", transfer.Disposition)
+		w.Header().Set("X-Content-Type-Options", "nosniff")
 	}
 	status := http.StatusOK
 	if r.Method == "POST" {

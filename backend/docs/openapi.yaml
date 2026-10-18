@@ -223,6 +223,2534 @@ paths:
       }
     }
 
+  /v1/workspaces/{workspaceID}/attachment-uploads/{uploadID}/abort:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachment_uploads_abort",
+        "summary": "attachment_uploads.abort",
+        "x-operation-id": "attachment_uploads.abort",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsAbortDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsAbortError"
+        },
+        "x-traccia-input-binding": {
+          "upload_id": "path:uploadID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "uploadID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentUploadsAbortEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductAttachmentUploadsAbortInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/attachment-uploads/{uploadID}/chunks:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachment_uploads_chunk",
+        "summary": "attachment_uploads.chunk",
+        "x-operation-id": "attachment_uploads.chunk",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsChunkDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsChunkError"
+        },
+        "x-traccia-input-binding": {
+          "upload_id": "path:uploadID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "uploadID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentUploadsChunkEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductAttachmentUploadsChunkInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/attachment-uploads/config:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachment_uploads_config",
+        "summary": "attachment_uploads.config",
+        "x-operation-id": "attachment_uploads.config",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsConfigDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsConfigError"
+        },
+        "x-traccia-input-binding": "empty",
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentUploadsConfigEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/attachment-uploads:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachment_uploads_create",
+        "summary": "attachment_uploads.create",
+        "x-operation-id": "attachment_uploads.create",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsCreateDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsCreateError"
+        },
+        "x-traccia-input-binding": "body",
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentUploadsCreateEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductAttachmentUploadsCreateInput"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachment_uploads_list",
+        "summary": "attachment_uploads.list",
+        "x-operation-id": "attachment_uploads.list",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsListDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsListError"
+        },
+        "x-traccia-input-binding": {
+          "draft_id": "query:draft_id",
+          "state": "query:state",
+          "limit": "query:limit",
+          "after": "query:after"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "draft_id",
+            "in": "query",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "const": ""
+                },
+                {
+                  "type": "string",
+                  "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+                  "format": "uuid"
+                }
+              ]
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "",
+                "aborted",
+                "any",
+                "bound",
+                "expired",
+                "finalized",
+                "removed",
+                "uploading"
+              ]
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "x-binding-default": 20
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-binding-default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentUploadsListEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/attachment-uploads/{uploadID}/finalize:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachment_uploads_finalize",
+        "summary": "attachment_uploads.finalize",
+        "x-operation-id": "attachment_uploads.finalize",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsFinalizeDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsFinalizeError"
+        },
+        "x-traccia-input-binding": {
+          "upload_id": "path:uploadID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "uploadID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentUploadsFinalizeEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductAttachmentUploadsFinalizeInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/attachment-uploads/{uploadID}:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachment_uploads_get",
+        "summary": "attachment_uploads.get",
+        "x-operation-id": "attachment_uploads.get",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsGetDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsGetError"
+        },
+        "x-traccia-input-binding": {
+          "upload_id": "path:uploadID",
+          "draft_id": "query:draft_id"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "uploadID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "draft_id",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "x-binding-default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentUploadsGetEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/attachment-uploads/{uploadID}/history:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachment_uploads_history",
+        "summary": "attachment_uploads.history",
+        "x-operation-id": "attachment_uploads.history",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsHistoryDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentUploadsHistoryError"
+        },
+        "x-traccia-input-binding": {
+          "upload_id": "path:uploadID",
+          "draft_id": "query:draft_id",
+          "limit": "query:limit",
+          "after": "query:after"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "uploadID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "draft_id",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "x-binding-default": 20
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-binding-default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentUploadsHistoryEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/attachments/{attachmentID}/bind:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachments_bind",
+        "summary": "attachments.bind",
+        "x-operation-id": "attachments.bind",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentsBindDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentsBindError"
+        },
+        "x-traccia-input-binding": {
+          "attachment_id": "path:attachmentID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "attachmentID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentsBindEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductAttachmentsBindInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/attachments/{attachmentID}/download-chunk:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachments_download_chunk",
+        "summary": "attachments.download_chunk",
+        "x-operation-id": "attachments.download_chunk",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentsDownloadChunkDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentsDownloadChunkError"
+        },
+        "x-traccia-input-binding": {
+          "attachment_id": "path:attachmentID",
+          "draft_id": "query:draft_id",
+          "file_revision": "query:file_revision",
+          "offset": "query:offset",
+          "limit": "query:limit"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "attachmentID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "draft_id",
+            "in": "query",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "const": ""
+                },
+                {
+                  "type": "string",
+                  "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+                  "format": "uuid"
+                }
+              ]
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "file_revision",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 268435456
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 262144
+            },
+            "x-binding-default": 20
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              },
+              "Content-Disposition": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Safe attachment filename; the JSON response carries a bounded base64 chunk."
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "const": "nosniff"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentsDownloadChunkEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/attachments/{attachmentID}:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachments_get",
+        "summary": "attachments.get",
+        "x-operation-id": "attachments.get",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentsGetDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentsGetError"
+        },
+        "x-traccia-input-binding": {
+          "attachment_id": "path:attachmentID",
+          "draft_id": "query:draft_id"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "attachmentID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "draft_id",
+            "in": "query",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "const": ""
+                },
+                {
+                  "type": "string",
+                  "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+                  "format": "uuid"
+                }
+              ]
+            },
+            "x-binding-default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentsGetEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/attachments/{attachmentID}/history:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachments_history",
+        "summary": "attachments.history",
+        "x-operation-id": "attachments.history",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentsHistoryDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentsHistoryError"
+        },
+        "x-traccia-input-binding": {
+          "attachment_id": "path:attachmentID",
+          "draft_id": "query:draft_id",
+          "limit": "query:limit",
+          "after": "query:after"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "attachmentID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "draft_id",
+            "in": "query",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "const": ""
+                },
+                {
+                  "type": "string",
+                  "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+                  "format": "uuid"
+                }
+              ]
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "x-binding-default": 20
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-binding-default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentsHistoryEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/issues/{issueID}/attachments:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachments_list",
+        "summary": "attachments.list",
+        "x-operation-id": "attachments.list",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentsListDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentsListError"
+        },
+        "x-traccia-input-binding": {
+          "issue_id": "path:issueID",
+          "removed": "query:removed",
+          "search": "query:search",
+          "limit": "query:limit",
+          "after": "query:after"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "issueID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "removed",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "x-binding-default": false
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 255,
+              "pattern": "^[^\u0000]*$"
+            },
+            "x-binding-default": ""
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "x-binding-default": 20
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "x-binding-default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentsListEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/attachments/{attachmentID}/remove:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "attachments_remove",
+        "summary": "attachments.remove",
+        "x-operation-id": "attachments.remove",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentsRemoveDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductAttachmentsRemoveError"
+        },
+        "x-traccia-input-binding": {
+          "attachment_id": "path:attachmentID",
+          "body": "body"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "attachmentID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductAttachmentsRemoveEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductAttachmentsRemoveInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
   /v1/workspaces/{workspaceID}/credentials:
     {
       "post": {
@@ -19596,6 +22124,4196 @@ components:
           },
           "data": {
             "$ref": "#/components/schemas/ProductActivityListOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentUploadsAbortInput:
+      {
+        "type": "object",
+        "properties": {
+          "draft_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "draft_id",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsAbortOutput:
+      {
+        "type": "object",
+        "properties": {
+          "upload": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "actor_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "draft_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "filename": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "content_type": {
+                "type": "string",
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "chunk_bytes": {
+                "type": "integer",
+                "minimum": -2147483648,
+                "maximum": 2147483647
+              },
+              "next_offset": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "uploading",
+                  "finalized",
+                  "bound",
+                  "removed",
+                  "aborted",
+                  "expired"
+                ]
+              },
+              "expires_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "attachment_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "cleanup": {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "pending",
+                      "retrying",
+                      "reconciled"
+                    ]
+                  },
+                  "last_error": {
+                    "type": "string"
+                  },
+                  "next_check_at": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "state",
+                  "last_error",
+                  "next_check_at"
+                ],
+                "additionalProperties": false
+              },
+              "capabilities": {
+                "type": "object",
+                "properties": {
+                  "upload_chunk": {
+                    "type": "boolean"
+                  },
+                  "finalize": {
+                    "type": "boolean"
+                  },
+                  "abort": {
+                    "type": "boolean"
+                  },
+                  "bind": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "upload_chunk",
+                  "finalize",
+                  "abort",
+                  "bind"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "actor_id",
+              "draft_id",
+              "filename",
+              "content_type",
+              "size_bytes",
+              "sha256",
+              "chunk_bytes",
+              "next_offset",
+              "version",
+              "state",
+              "expires_at",
+              "attachment_id",
+              "created_at",
+              "updated_at",
+              "cleanup",
+              "capabilities"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "upload"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsAbortError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsAbortDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "upload_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "draft_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "upload_id",
+          "draft_id",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsAbortEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentUploadsAbortOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentUploadsChunkInput:
+      {
+        "type": "object",
+        "properties": {
+          "draft_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 268435456
+          },
+          "total_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 268435456
+          },
+          "data_base64": {
+            "type": "string",
+            "maxLength": 349528,
+            "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+          },
+          "chunk_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "draft_id",
+          "expected_version",
+          "offset",
+          "total_bytes",
+          "data_base64",
+          "chunk_sha256"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsChunkOutput:
+      {
+        "type": "object",
+        "properties": {
+          "upload": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "actor_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "draft_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "filename": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "content_type": {
+                "type": "string",
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "chunk_bytes": {
+                "type": "integer",
+                "minimum": -2147483648,
+                "maximum": 2147483647
+              },
+              "next_offset": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "uploading",
+                  "finalized",
+                  "bound",
+                  "removed",
+                  "aborted",
+                  "expired"
+                ]
+              },
+              "expires_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "attachment_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "cleanup": {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "pending",
+                      "retrying",
+                      "reconciled"
+                    ]
+                  },
+                  "last_error": {
+                    "type": "string"
+                  },
+                  "next_check_at": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "state",
+                  "last_error",
+                  "next_check_at"
+                ],
+                "additionalProperties": false
+              },
+              "capabilities": {
+                "type": "object",
+                "properties": {
+                  "upload_chunk": {
+                    "type": "boolean"
+                  },
+                  "finalize": {
+                    "type": "boolean"
+                  },
+                  "abort": {
+                    "type": "boolean"
+                  },
+                  "bind": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "upload_chunk",
+                  "finalize",
+                  "abort",
+                  "bind"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "actor_id",
+              "draft_id",
+              "filename",
+              "content_type",
+              "size_bytes",
+              "sha256",
+              "chunk_bytes",
+              "next_offset",
+              "version",
+              "state",
+              "expires_at",
+              "attachment_id",
+              "created_at",
+              "updated_at",
+              "cleanup",
+              "capabilities"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "upload"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsChunkError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsChunkDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "upload_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "draft_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 268435456
+          },
+          "total_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 268435456
+          },
+          "data_base64": {
+            "type": "string",
+            "maxLength": 349528,
+            "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+          },
+          "chunk_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "upload_id",
+          "draft_id",
+          "expected_version",
+          "offset",
+          "total_bytes",
+          "data_base64",
+          "chunk_sha256"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsChunkEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentUploadsChunkOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentUploadsConfigOutput:
+      {
+        "type": "object",
+        "properties": {
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "manage": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "manage"
+            ],
+            "additionalProperties": false
+          },
+          "limits": {
+            "type": "object",
+            "properties": {
+              "max_chunk_request_bytes": {
+                "type": "integer"
+              },
+              "max_file_bytes": {
+                "type": "integer"
+              },
+              "chunk_bytes": {
+                "type": "integer",
+                "minimum": -2147483648,
+                "maximum": 2147483647
+              },
+              "upload_inactivity_seconds": {
+                "type": "integer"
+              },
+              "finalized_retention_seconds": {
+                "type": "integer"
+              },
+              "blob_fallback_max_bytes": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "max_chunk_request_bytes",
+              "max_file_bytes",
+              "chunk_bytes",
+              "upload_inactivity_seconds",
+              "finalized_retention_seconds",
+              "blob_fallback_max_bytes"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "capabilities",
+          "limits"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsConfigError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsConfigDomainInput:
+      {
+        "type": "object",
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsConfigEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentUploadsConfigOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentUploadsCreateInput:
+      {
+        "type": "object",
+        "properties": {
+          "draft_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "filename": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "pattern": "^[^\u0000]*$"
+          },
+          "content_type": {
+            "type": "string",
+            "maxLength": 255,
+            "pattern": "^[^\u0000]*$"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 268435456
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "draft_id",
+          "filename",
+          "content_type",
+          "size_bytes",
+          "sha256"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsCreateOutput:
+      {
+        "type": "object",
+        "properties": {
+          "upload": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "actor_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "draft_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "filename": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "content_type": {
+                "type": "string",
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "chunk_bytes": {
+                "type": "integer",
+                "minimum": -2147483648,
+                "maximum": 2147483647
+              },
+              "next_offset": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "uploading",
+                  "finalized",
+                  "bound",
+                  "removed",
+                  "aborted",
+                  "expired"
+                ]
+              },
+              "expires_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "attachment_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "cleanup": {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "pending",
+                      "retrying",
+                      "reconciled"
+                    ]
+                  },
+                  "last_error": {
+                    "type": "string"
+                  },
+                  "next_check_at": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "state",
+                  "last_error",
+                  "next_check_at"
+                ],
+                "additionalProperties": false
+              },
+              "capabilities": {
+                "type": "object",
+                "properties": {
+                  "upload_chunk": {
+                    "type": "boolean"
+                  },
+                  "finalize": {
+                    "type": "boolean"
+                  },
+                  "abort": {
+                    "type": "boolean"
+                  },
+                  "bind": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "upload_chunk",
+                  "finalize",
+                  "abort",
+                  "bind"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "actor_id",
+              "draft_id",
+              "filename",
+              "content_type",
+              "size_bytes",
+              "sha256",
+              "chunk_bytes",
+              "next_offset",
+              "version",
+              "state",
+              "expires_at",
+              "attachment_id",
+              "created_at",
+              "updated_at",
+              "cleanup",
+              "capabilities"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "upload"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsCreateError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsCreateDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "draft_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "filename": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "pattern": "^[^\u0000]*$"
+          },
+          "content_type": {
+            "type": "string",
+            "maxLength": 255,
+            "pattern": "^[^\u0000]*$"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 268435456
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "draft_id",
+          "filename",
+          "content_type",
+          "size_bytes",
+          "sha256"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsCreateEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentUploadsCreateOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentUploadsFinalizeInput:
+      {
+        "type": "object",
+        "properties": {
+          "draft_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "draft_id",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsFinalizeOutput:
+      {
+        "type": "object",
+        "properties": {
+          "upload": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "actor_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "draft_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "filename": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "content_type": {
+                "type": "string",
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "chunk_bytes": {
+                "type": "integer",
+                "minimum": -2147483648,
+                "maximum": 2147483647
+              },
+              "next_offset": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "uploading",
+                  "finalized",
+                  "bound",
+                  "removed",
+                  "aborted",
+                  "expired"
+                ]
+              },
+              "expires_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "attachment_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "cleanup": {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "pending",
+                      "retrying",
+                      "reconciled"
+                    ]
+                  },
+                  "last_error": {
+                    "type": "string"
+                  },
+                  "next_check_at": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "state",
+                  "last_error",
+                  "next_check_at"
+                ],
+                "additionalProperties": false
+              },
+              "capabilities": {
+                "type": "object",
+                "properties": {
+                  "upload_chunk": {
+                    "type": "boolean"
+                  },
+                  "finalize": {
+                    "type": "boolean"
+                  },
+                  "abort": {
+                    "type": "boolean"
+                  },
+                  "bind": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "upload_chunk",
+                  "finalize",
+                  "abort",
+                  "bind"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "actor_id",
+              "draft_id",
+              "filename",
+              "content_type",
+              "size_bytes",
+              "sha256",
+              "chunk_bytes",
+              "next_offset",
+              "version",
+              "state",
+              "expires_at",
+              "attachment_id",
+              "created_at",
+              "updated_at",
+              "cleanup",
+              "capabilities"
+            ],
+            "additionalProperties": false
+          },
+          "attachment": {
+            "type": "object",
+            "properties": {
+              "state": {
+                "type": "string",
+                "enum": [
+                  "finalized",
+                  "bound",
+                  "removed",
+                  "aborted",
+                  "expired"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "upload_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "actor_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "draft_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "file_revision": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "filename": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "download_filename": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "content_type": {
+                "type": "string",
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "issue_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "removed": {
+                "type": "boolean"
+              },
+              "finalized_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "expires_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "download_path": {
+                "type": "string"
+              },
+              "capabilities": {
+                "type": "object",
+                "properties": {
+                  "history": {
+                    "type": "boolean"
+                  },
+                  "download": {
+                    "type": "boolean"
+                  },
+                  "bind": {
+                    "type": "boolean"
+                  },
+                  "remove": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "history",
+                  "download",
+                  "bind",
+                  "remove"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "state",
+              "id",
+              "workspace_id",
+              "upload_id",
+              "actor_id",
+              "draft_id",
+              "file_revision",
+              "version",
+              "filename",
+              "download_filename",
+              "content_type",
+              "size_bytes",
+              "sha256",
+              "issue_id",
+              "removed",
+              "finalized_at",
+              "expires_at",
+              "download_path",
+              "capabilities"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "upload",
+          "attachment"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsFinalizeError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsFinalizeDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "upload_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "draft_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "upload_id",
+          "draft_id",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsFinalizeEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentUploadsFinalizeOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentUploadsGetOutput:
+      {
+        "type": "object",
+        "properties": {
+          "upload": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "actor_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "draft_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "filename": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "content_type": {
+                "type": "string",
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "chunk_bytes": {
+                "type": "integer",
+                "minimum": -2147483648,
+                "maximum": 2147483647
+              },
+              "next_offset": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "uploading",
+                  "finalized",
+                  "bound",
+                  "removed",
+                  "aborted",
+                  "expired"
+                ]
+              },
+              "expires_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "attachment_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updated_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "cleanup": {
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "type": "string",
+                    "enum": [
+                      "none",
+                      "pending",
+                      "retrying",
+                      "reconciled"
+                    ]
+                  },
+                  "last_error": {
+                    "type": "string"
+                  },
+                  "next_check_at": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "state",
+                  "last_error",
+                  "next_check_at"
+                ],
+                "additionalProperties": false
+              },
+              "capabilities": {
+                "type": "object",
+                "properties": {
+                  "upload_chunk": {
+                    "type": "boolean"
+                  },
+                  "finalize": {
+                    "type": "boolean"
+                  },
+                  "abort": {
+                    "type": "boolean"
+                  },
+                  "bind": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "upload_chunk",
+                  "finalize",
+                  "abort",
+                  "bind"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "actor_id",
+              "draft_id",
+              "filename",
+              "content_type",
+              "size_bytes",
+              "sha256",
+              "chunk_bytes",
+              "next_offset",
+              "version",
+              "state",
+              "expires_at",
+              "attachment_id",
+              "created_at",
+              "updated_at",
+              "cleanup",
+              "capabilities"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "upload"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsGetError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsGetDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "upload_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "draft_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "upload_id",
+          "draft_id"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsGetEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentUploadsGetOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentUploadsHistoryOutput:
+      {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "actor_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "event_name": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "occurred_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "snapshot": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "workspace_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "actor_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "draft_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "filename": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255,
+                      "pattern": "^[^\u0000]*$"
+                    },
+                    "content_type": {
+                      "type": "string",
+                      "maxLength": 255,
+                      "pattern": "^[^\u0000]*$"
+                    },
+                    "size_bytes": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 268435456
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "chunk_bytes": {
+                      "type": "integer",
+                      "minimum": -2147483648,
+                      "maximum": 2147483647
+                    },
+                    "next_offset": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 268435456
+                    },
+                    "version": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "state": {
+                      "type": "string",
+                      "enum": [
+                        "uploading",
+                        "finalized",
+                        "bound",
+                        "removed",
+                        "aborted",
+                        "expired"
+                      ]
+                    },
+                    "expires_at": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "attachment_id": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "cleanup": {
+                      "type": "object",
+                      "properties": {
+                        "state": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "pending",
+                            "retrying",
+                            "reconciled"
+                          ]
+                        },
+                        "last_error": {
+                          "type": "string"
+                        },
+                        "next_check_at": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "required": [
+                        "state",
+                        "last_error",
+                        "next_check_at"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "capabilities": {
+                      "type": "object",
+                      "properties": {
+                        "upload_chunk": {
+                          "type": "boolean"
+                        },
+                        "finalize": {
+                          "type": "boolean"
+                        },
+                        "abort": {
+                          "type": "boolean"
+                        },
+                        "bind": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "upload_chunk",
+                        "finalize",
+                        "abort",
+                        "bind"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "workspace_id",
+                    "actor_id",
+                    "draft_id",
+                    "filename",
+                    "content_type",
+                    "size_bytes",
+                    "sha256",
+                    "chunk_bytes",
+                    "next_offset",
+                    "version",
+                    "state",
+                    "expires_at",
+                    "attachment_id",
+                    "created_at",
+                    "updated_at",
+                    "cleanup",
+                    "capabilities"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "id",
+                "actor_id",
+                "event_name",
+                "version",
+                "occurred_at",
+                "snapshot"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 100
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "has_more",
+          "next_cursor"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsHistoryError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsHistoryDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "upload_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "draft_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "after": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "upload_id",
+          "draft_id",
+          "limit",
+          "after"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsHistoryEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentUploadsHistoryOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentUploadsListOutput:
+      {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "workspace_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "actor_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "draft_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "filename": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "pattern": "^[^\u0000]*$"
+                },
+                "content_type": {
+                  "type": "string",
+                  "maxLength": 255,
+                  "pattern": "^[^\u0000]*$"
+                },
+                "size_bytes": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 268435456
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "chunk_bytes": {
+                  "type": "integer",
+                  "minimum": -2147483648,
+                  "maximum": 2147483647
+                },
+                "next_offset": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 268435456
+                },
+                "version": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "state": {
+                  "type": "string",
+                  "enum": [
+                    "uploading",
+                    "finalized",
+                    "bound",
+                    "removed",
+                    "aborted",
+                    "expired"
+                  ]
+                },
+                "expires_at": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "attachment_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "created_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updated_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "cleanup": {
+                  "type": "object",
+                  "properties": {
+                    "state": {
+                      "type": "string",
+                      "enum": [
+                        "none",
+                        "pending",
+                        "retrying",
+                        "reconciled"
+                      ]
+                    },
+                    "last_error": {
+                      "type": "string"
+                    },
+                    "next_check_at": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "state",
+                    "last_error",
+                    "next_check_at"
+                  ],
+                  "additionalProperties": false
+                },
+                "capabilities": {
+                  "type": "object",
+                  "properties": {
+                    "upload_chunk": {
+                      "type": "boolean"
+                    },
+                    "finalize": {
+                      "type": "boolean"
+                    },
+                    "abort": {
+                      "type": "boolean"
+                    },
+                    "bind": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "upload_chunk",
+                    "finalize",
+                    "abort",
+                    "bind"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "id",
+                "workspace_id",
+                "actor_id",
+                "draft_id",
+                "filename",
+                "content_type",
+                "size_bytes",
+                "sha256",
+                "chunk_bytes",
+                "next_offset",
+                "version",
+                "state",
+                "expires_at",
+                "attachment_id",
+                "created_at",
+                "updated_at",
+                "cleanup",
+                "capabilities"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 100
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "has_more",
+          "next_cursor"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsListError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsListDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "draft_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "const": ""
+              },
+              {
+                "type": "string",
+                "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+                "format": "uuid"
+              }
+            ]
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "",
+              "aborted",
+              "any",
+              "bound",
+              "expired",
+              "finalized",
+              "removed",
+              "uploading"
+            ]
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "after": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "draft_id",
+          "state",
+          "limit",
+          "after"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentUploadsListEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentUploadsListOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentsBindInput:
+      {
+        "type": "object",
+        "properties": {
+          "draft_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "issue_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "draft_id",
+          "issue_id",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsBindOutput:
+      {
+        "type": "object",
+        "properties": {
+          "attachment": {
+            "type": "object",
+            "properties": {
+              "state": {
+                "type": "string",
+                "enum": [
+                  "finalized",
+                  "bound",
+                  "removed",
+                  "aborted",
+                  "expired"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "upload_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "actor_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "draft_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "file_revision": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "filename": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "download_filename": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "content_type": {
+                "type": "string",
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "issue_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "removed": {
+                "type": "boolean"
+              },
+              "finalized_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "expires_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "download_path": {
+                "type": "string"
+              },
+              "capabilities": {
+                "type": "object",
+                "properties": {
+                  "history": {
+                    "type": "boolean"
+                  },
+                  "download": {
+                    "type": "boolean"
+                  },
+                  "bind": {
+                    "type": "boolean"
+                  },
+                  "remove": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "history",
+                  "download",
+                  "bind",
+                  "remove"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "state",
+              "id",
+              "workspace_id",
+              "upload_id",
+              "actor_id",
+              "draft_id",
+              "file_revision",
+              "version",
+              "filename",
+              "download_filename",
+              "content_type",
+              "size_bytes",
+              "sha256",
+              "issue_id",
+              "removed",
+              "finalized_at",
+              "expires_at",
+              "download_path",
+              "capabilities"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "attachment"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsBindError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsBindDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "attachment_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "draft_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "issue_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "attachment_id",
+          "draft_id",
+          "issue_id",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsBindEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentsBindOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentsDownloadChunkOutput:
+      {
+        "type": "object",
+        "properties": {
+          "attachment_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "file_revision": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "filename": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "pattern": "^[^\u0000]*$"
+          },
+          "download_filename": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "pattern": "^[^\u0000]*$"
+          },
+          "content_type": {
+            "type": "string",
+            "const": "application/octet-stream"
+          },
+          "content_disposition": {
+            "type": "string"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 268435456
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 268435456
+          },
+          "data_base64": {
+            "type": "string",
+            "maxLength": 349528,
+            "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+          },
+          "chunk_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "next_offset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 268435456
+          },
+          "eof": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "attachment_id",
+          "file_revision",
+          "filename",
+          "download_filename",
+          "content_type",
+          "content_disposition",
+          "size_bytes",
+          "sha256",
+          "offset",
+          "data_base64",
+          "chunk_sha256",
+          "next_offset",
+          "eof"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsDownloadChunkError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsDownloadChunkDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "attachment_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "draft_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "const": ""
+              },
+              {
+                "type": "string",
+                "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+                "format": "uuid"
+              }
+            ]
+          },
+          "file_revision": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 268435456
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 262144
+          }
+        },
+        "required": [
+          "attachment_id",
+          "draft_id",
+          "file_revision",
+          "offset",
+          "limit"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsDownloadChunkEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentsDownloadChunkOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentsGetOutput:
+      {
+        "type": "object",
+        "properties": {
+          "attachment": {
+            "type": "object",
+            "properties": {
+              "state": {
+                "type": "string",
+                "enum": [
+                  "finalized",
+                  "bound",
+                  "removed",
+                  "aborted",
+                  "expired"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "upload_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "actor_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "draft_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "file_revision": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "filename": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "download_filename": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "content_type": {
+                "type": "string",
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "issue_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "removed": {
+                "type": "boolean"
+              },
+              "finalized_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "expires_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "download_path": {
+                "type": "string"
+              },
+              "capabilities": {
+                "type": "object",
+                "properties": {
+                  "history": {
+                    "type": "boolean"
+                  },
+                  "download": {
+                    "type": "boolean"
+                  },
+                  "bind": {
+                    "type": "boolean"
+                  },
+                  "remove": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "history",
+                  "download",
+                  "bind",
+                  "remove"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "state",
+              "id",
+              "workspace_id",
+              "upload_id",
+              "actor_id",
+              "draft_id",
+              "file_revision",
+              "version",
+              "filename",
+              "download_filename",
+              "content_type",
+              "size_bytes",
+              "sha256",
+              "issue_id",
+              "removed",
+              "finalized_at",
+              "expires_at",
+              "download_path",
+              "capabilities"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "attachment"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsGetError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsGetDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "attachment_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "draft_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "const": ""
+              },
+              {
+                "type": "string",
+                "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+                "format": "uuid"
+              }
+            ]
+          }
+        },
+        "required": [
+          "attachment_id",
+          "draft_id"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsGetEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentsGetOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentsHistoryOutput:
+      {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "actor_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "event_name": {
+                  "type": "string"
+                },
+                "version": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "occurred_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "snapshot": {
+                  "type": "object",
+                  "properties": {
+                    "state": {
+                      "type": "string",
+                      "enum": [
+                        "finalized",
+                        "bound",
+                        "removed",
+                        "aborted",
+                        "expired"
+                      ]
+                    },
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "workspace_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "upload_id": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "actor_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "draft_id": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "file_revision": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "version": {
+                      "type": "integer",
+                      "minimum": 1
+                    },
+                    "filename": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255,
+                      "pattern": "^[^\u0000]*$"
+                    },
+                    "download_filename": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255,
+                      "pattern": "^[^\u0000]*$"
+                    },
+                    "content_type": {
+                      "type": "string",
+                      "maxLength": 255,
+                      "pattern": "^[^\u0000]*$"
+                    },
+                    "size_bytes": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 268435456
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "issue_id": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "removed": {
+                      "type": "boolean"
+                    },
+                    "finalized_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "expires_at": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "download_path": {
+                      "type": "string"
+                    },
+                    "capabilities": {
+                      "type": "object",
+                      "properties": {
+                        "history": {
+                          "type": "boolean"
+                        },
+                        "download": {
+                          "type": "boolean"
+                        },
+                        "bind": {
+                          "type": "boolean"
+                        },
+                        "remove": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "history",
+                        "download",
+                        "bind",
+                        "remove"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "state",
+                    "id",
+                    "workspace_id",
+                    "upload_id",
+                    "actor_id",
+                    "draft_id",
+                    "file_revision",
+                    "version",
+                    "filename",
+                    "download_filename",
+                    "content_type",
+                    "size_bytes",
+                    "sha256",
+                    "issue_id",
+                    "removed",
+                    "finalized_at",
+                    "expires_at",
+                    "download_path",
+                    "capabilities"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "id",
+                "actor_id",
+                "event_name",
+                "version",
+                "occurred_at",
+                "snapshot"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 100
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "items",
+          "has_more",
+          "next_cursor"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsHistoryError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsHistoryDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "attachment_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "draft_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "const": ""
+              },
+              {
+                "type": "string",
+                "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+                "format": "uuid"
+              }
+            ]
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "after": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "attachment_id",
+          "draft_id",
+          "limit",
+          "after"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsHistoryEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentsHistoryOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentsListOutput:
+      {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "state": {
+                  "type": "string",
+                  "enum": [
+                    "finalized",
+                    "bound",
+                    "removed",
+                    "aborted",
+                    "expired"
+                  ]
+                },
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "workspace_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "upload_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "actor_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "draft_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "file_revision": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "version": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "filename": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "pattern": "^[^\u0000]*$"
+                },
+                "download_filename": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255,
+                  "pattern": "^[^\u0000]*$"
+                },
+                "content_type": {
+                  "type": "string",
+                  "maxLength": 255,
+                  "pattern": "^[^\u0000]*$"
+                },
+                "size_bytes": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 268435456
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "issue_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "removed": {
+                  "type": "boolean"
+                },
+                "finalized_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "expires_at": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "download_path": {
+                  "type": "string"
+                },
+                "capabilities": {
+                  "type": "object",
+                  "properties": {
+                    "history": {
+                      "type": "boolean"
+                    },
+                    "download": {
+                      "type": "boolean"
+                    },
+                    "bind": {
+                      "type": "boolean"
+                    },
+                    "remove": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "history",
+                    "download",
+                    "bind",
+                    "remove"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "state",
+                "id",
+                "workspace_id",
+                "upload_id",
+                "actor_id",
+                "draft_id",
+                "file_revision",
+                "version",
+                "filename",
+                "download_filename",
+                "content_type",
+                "size_bytes",
+                "sha256",
+                "issue_id",
+                "removed",
+                "finalized_at",
+                "expires_at",
+                "download_path",
+                "capabilities"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 100
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string"
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "bind": {
+                "type": "boolean"
+              },
+              "remove": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "bind",
+              "remove"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "items",
+          "has_more",
+          "next_cursor",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsListError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsListDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "issue_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "removed": {
+            "type": "boolean"
+          },
+          "search": {
+            "type": "string",
+            "maxLength": 255,
+            "pattern": "^[^\u0000]*$"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "after": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "issue_id",
+          "removed",
+          "search",
+          "limit",
+          "after"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsListEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentsListOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductAttachmentsRemoveInput:
+      {
+        "type": "object",
+        "properties": {
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsRemoveOutput:
+      {
+        "type": "object",
+        "properties": {
+          "attachment": {
+            "type": "object",
+            "properties": {
+              "state": {
+                "type": "string",
+                "enum": [
+                  "finalized",
+                  "bound",
+                  "removed",
+                  "aborted",
+                  "expired"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "upload_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "actor_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "draft_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "file_revision": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "filename": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "download_filename": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "content_type": {
+                "type": "string",
+                "maxLength": 255,
+                "pattern": "^[^\u0000]*$"
+              },
+              "size_bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 268435456
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "issue_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "removed": {
+                "type": "boolean"
+              },
+              "finalized_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "expires_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "download_path": {
+                "type": "string"
+              },
+              "capabilities": {
+                "type": "object",
+                "properties": {
+                  "history": {
+                    "type": "boolean"
+                  },
+                  "download": {
+                    "type": "boolean"
+                  },
+                  "bind": {
+                    "type": "boolean"
+                  },
+                  "remove": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "history",
+                  "download",
+                  "bind",
+                  "remove"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "state",
+              "id",
+              "workspace_id",
+              "upload_id",
+              "actor_id",
+              "draft_id",
+              "file_revision",
+              "version",
+              "filename",
+              "download_filename",
+              "content_type",
+              "size_bytes",
+              "sha256",
+              "issue_id",
+              "removed",
+              "finalized_at",
+              "expires_at",
+              "download_path",
+              "capabilities"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "attachment"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsRemoveError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsRemoveDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "attachment_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "attachment_id",
+          "expected_version"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductAttachmentsRemoveEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductAttachmentsRemoveOutput"
           },
           "meta": {
             "$ref": "#/components/schemas/ProductResponseMeta"

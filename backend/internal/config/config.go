@@ -13,25 +13,35 @@ import (
 
 // Config holds process configuration loaded from the environment.
 type Config struct {
-	App        AppConfig
-	Encryption EncryptionConfig
-	HTTP       HTTPConfig
-	DB         DBConfig
-	Redis      RedisConfig
-	Storage    StorageConfig
-	CORS       CORSConfig
-	SMTP       SMTPConfig
-	Queue      QueueConfig
-	Bulk       BulkConfig
-	Centrifugo CentrifugoConfig
-	Auth       AuthConfig
-	JWT        JWTConfig
-	Log        LogConfig
-	VAPID      VAPIDConfig
-	Expo       ExpoConfig
-	Search     SearchConfig
-	Sentry     SentryConfig
-	Tenancy    TenancyConfig
+	App         AppConfig
+	Encryption  EncryptionConfig
+	HTTP        HTTPConfig
+	DB          DBConfig
+	Redis       RedisConfig
+	Storage     StorageConfig
+	Attachments AttachmentConfig
+	CORS        CORSConfig
+	SMTP        SMTPConfig
+	Queue       QueueConfig
+	Bulk        BulkConfig
+	Centrifugo  CentrifugoConfig
+	Auth        AuthConfig
+	JWT         JWTConfig
+	Log         LogConfig
+	VAPID       VAPIDConfig
+	Expo        ExpoConfig
+	Search      SearchConfig
+	Sentry      SentryConfig
+	Tenancy     TenancyConfig
+}
+
+// AttachmentConfig bounds product file transfer independently of platform storage.
+type AttachmentConfig struct {
+	MaxFileBytes       int64
+	ChunkBytes         int32
+	UploadTTL          time.Duration
+	FinalizedRetention time.Duration
+	CleanupInterval    time.Duration
 }
 
 // TenancyConfig controls organizations (the multi-tenant shell). See
@@ -255,7 +265,8 @@ func Load() (Config, error) {
 			Password: getEnv("REDIS_PASSWORD", ""),
 			DB:       getInt("REDIS_DB", 0),
 		},
-		Storage: loadStorageConfig(),
+		Storage:     loadStorageConfig(),
+		Attachments: AttachmentConfig{MaxFileBytes: getInt64("ATTACHMENTS_MAX_FILE_BYTES", 256<<20), ChunkBytes: int32(getInt("ATTACHMENTS_CHUNK_BYTES", 256<<10)), UploadTTL: getDuration("ATTACHMENTS_UPLOAD_TTL", 24*time.Hour), FinalizedRetention: getDuration("ATTACHMENTS_FINALIZED_RETENTION", 7*24*time.Hour), CleanupInterval: getDuration("ATTACHMENTS_CLEANUP_INTERVAL", time.Hour)},
 		CORS: CORSConfig{
 			AllowedOrigins: splitCSV(getEnv("CORS_ALLOWED_ORIGINS", "http://localhost:3000")),
 		},
@@ -337,6 +348,9 @@ func Load() (Config, error) {
 		},
 	}
 
+	if err := cfg.Attachments.validate(); err != nil {
+		return Config{}, err
+	}
 	if err := cfg.validate(); err != nil {
 		return Config{}, err
 	}
@@ -588,4 +602,11 @@ func parseReviewAccounts(raw string) map[string]string {
 		out[email] = code
 	}
 	return out
+}
+
+func (c AttachmentConfig) validate() error {
+	if c.MaxFileBytes < 0 || c.MaxFileBytes > 256<<20 || c.ChunkBytes < 1 || c.ChunkBytes > 256<<10 || c.MaxFileBytes > int64(c.ChunkBytes)*4096 || c.UploadTTL < time.Second || c.FinalizedRetention < time.Second || c.CleanupInterval < time.Second {
+		return fmt.Errorf("config: invalid attachment limits or expiry")
+	}
+	return nil
 }

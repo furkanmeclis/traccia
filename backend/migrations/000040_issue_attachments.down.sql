@@ -1,0 +1,6 @@
+-- Data-loss note: removes all attachment metadata, immutable transfer receipts and lifecycle history. Object cleanup must be performed before rollback.
+UPDATE event_consumers SET event_names=array_remove(array_remove(array_remove(array_remove(array_remove(array_remove(array_remove(array_remove(array_remove(array_remove(event_names,'attachment_uploads.created'),'attachment_uploads.chunk_uploaded'),'attachment_uploads.finalized'),'attachment_uploads.bound'),'attachment_uploads.removed'),'attachment_uploads.aborted'),'attachment_uploads.expired'),'attachments.finalized'),'attachments.bound'),'attachments.removed') WHERE name='workspace.activity' AND version=1;
+DROP VIEW attachment_public;DROP VIEW attachment_upload_public;
+DROP TABLE attachment_history;DROP TABLE attachment_upload_history;DROP TABLE attachment_file_chunks;DROP FUNCTION validate_attachment_file_chunk();DROP TRIGGER trg_attachment_upload_link ON attachments;DROP FUNCTION validate_attachment_upload_link();DROP TABLE attachment_chunks;DROP FUNCTION validate_attachment_chunk();
+ALTER TABLE attachment_uploads DROP CONSTRAINT fk_upload_finalized_attachment;
+DROP TABLE attachments;DROP FUNCTION protect_attachment();DROP TABLE attachment_uploads;DROP FUNCTION protect_attachment_upload();

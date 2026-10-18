@@ -4,6 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"github.com/furkanmeclis/traccia/backend/internal/config"
+	attachmentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/repository"
+	attachments "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/usecase"
+	"github.com/furkanmeclis/traccia/backend/internal/platform/storage"
 	"os"
 	"path/filepath"
 	"strings"
@@ -112,7 +116,23 @@ func newRelationFixture(t *testing.T) relationFixture {
 	wrp := wr.New(p, db.New(p), box)
 	wsvc := ws.New(wrp)
 	r := repo.New(p, db.New(p))
-	reg, e := product.Registry(wsvc, team.New(teamrepo.New(p, db.New(p)), wsvc), project.New(projectrepo.New(p, db.New(p)), wsvc), issue.New(r, wsvc), products.New(productsrepo.New(p, db.New(p)), wsvc), relation.New(relationrepo.New(p, db.New(p)), wsvc), docs.New(docsrepo.New(p, db.New(p)), wsvc, issue.New(r, wsvc)))
+	attachmentConfig, e := config.Load()
+	if e != nil {
+		t.Fatal("attachment configuration failed")
+	}
+	attachmentDriver, e := storage.NewFromConfig(ctx, attachmentConfig.Storage)
+	if e != nil {
+		t.Fatal("attachment storage initialization failed")
+	}
+	attachmentStore, e := attachmentsrepo.NewObjectStore(attachmentDriver)
+	if e != nil {
+		t.Fatal(e)
+	}
+	attachmentRepo, e := attachmentsrepo.New(p, db.New(p), attachmentStore, attachments.DefaultOptions())
+	if e != nil {
+		t.Fatal(e)
+	}
+	reg, e := product.Registry(wsvc, team.New(teamrepo.New(p, db.New(p)), wsvc), project.New(projectrepo.New(p, db.New(p)), wsvc), issue.New(r, wsvc), products.New(productsrepo.New(p, db.New(p)), wsvc), relation.New(relationrepo.New(p, db.New(p)), wsvc), docs.New(docsrepo.New(p, db.New(p)), wsvc, issue.New(r, wsvc)), attachments.New(attachmentRepo, wsvc))
 	if e != nil {
 		t.Fatal(e)
 	}

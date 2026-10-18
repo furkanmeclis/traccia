@@ -34,3 +34,19 @@ func TestClassifyFileKind(t *testing.T) {
 		t.Fatal("code")
 	}
 }
+
+func TestAttachmentNamespaceIsNotAPlatformStorageGrant(t *testing.T) {
+	for _, key := range []string{"__system/attachments", "__system/attachments/", "/__system/attachments/w/u/final/file", "  __system/attachments/w/u/staging/  "} {
+		if _, e := normalizeKey(key); e != ErrInvalidKey {
+			t.Fatalf("key %q escaped fence: %v", key, e)
+		}
+		if _, e := normalizePrefix(key); e != ErrInvalidKey {
+			t.Fatalf("prefix %q escaped fence: %v", key, e)
+		}
+	}
+	for _, key := range []string{"attachments/file", "__system/attachments-other/file", "__system/trash/file"} {
+		if _, e := normalizeKey(key); e != nil {
+			t.Fatalf("unrelated key changed: %q", key)
+		}
+	}
+}

@@ -1,4 +1,5 @@
 "use client";
+import { AttachmentPanel } from "@/features/attachments/attachment-panel";
 import { useAuth } from "@/providers/auth-provider";
 import { useState } from "react";
 import Link from "next/link";
@@ -194,6 +195,11 @@ export function IssueDetail({
           <IssueRelations
             workspaceId={workspaceId}
             issueId={issueId}
+            metadataVersion={current.version}
+          />
+          <AttachmentPanel
+            workspaceID={workspaceId}
+            issueID={issueId}
             metadataVersion={current.version}
           />
           <IssueHistory

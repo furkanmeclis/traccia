@@ -1,4 +1,5 @@
 "use client";
+import { AttachmentShelf } from "@/features/attachments/attachment-panel";
 import { issueFieldKeys, issuePriorityKeys } from "./issue-copy";
 import { useAuth } from "@/providers/auth-provider";
 import { useId, useState } from "react";
@@ -65,6 +66,7 @@ export function IssueList({
       <PendingOperations workspaceId={workspaceId} canRun={() => !!manage} />
       <RelationPendingOperations workspaceId={workspaceId} />
       <DocumentPendingOperations workspaceId={workspaceId} />
+      <AttachmentShelf workspaceID={workspaceId} />
       <div hidden={!allowed} className="space-y-8">
         <div className="flex flex-wrap gap-3">
           {[false, true].map((archived) => (
