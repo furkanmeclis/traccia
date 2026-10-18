@@ -4,6 +4,7 @@ import (
 	"context"
 	attachmentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/repository"
 	attachmentsusecase "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/usecase"
+	searchrepo "github.com/furkanmeclis/traccia/backend/internal/modules/searchviews/repository"
 	"log/slog"
 	"os"
 	"os/signal"
@@ -105,6 +106,13 @@ func main() {
 		attachmentRepo.RunCleanup(attachmentCtx, func(error) { log.Error("attachment_cleanup_failed") })
 	}()
 	defer func() { cancelAttachments(); <-attachmentDone }()
+	searchCtx, cancelSearch := context.WithCancel(ctx)
+	searchDone := make(chan struct{})
+	go func() {
+		defer close(searchDone)
+		searchrepo.New(pool, queries).RunCleanup(searchCtx, func(error) { log.Error("query_snapshot_cleanup_failed") })
+	}()
+	defer func() { cancelSearch(); <-searchDone }()
 	if !cfg.Queue.Enabled {
 		log.Info("durable_worker_started", "redis_queue_enabled", false)
 		<-ctx.Done()

@@ -15,6 +15,8 @@ import (
 	projectsusecase "github.com/furkanmeclis/traccia/backend/internal/modules/projects/usecase"
 	relationsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/relations/repository"
 	relationsusecase "github.com/furkanmeclis/traccia/backend/internal/modules/relations/usecase"
+	searchrepo "github.com/furkanmeclis/traccia/backend/internal/modules/searchviews/repository"
+	searchviews "github.com/furkanmeclis/traccia/backend/internal/modules/searchviews/usecase"
 	teamsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/teams/repository"
 	teamsusecase "github.com/furkanmeclis/traccia/backend/internal/modules/teams/usecase"
 	"github.com/furkanmeclis/traccia/backend/internal/product"
@@ -283,7 +285,7 @@ func New(cfg config.Config, log *slog.Logger, deps Deps) (*Server, error) {
 	if err != nil {
 		return nil, err
 	}
-	productRegistry, err := product.Registry(workspaceSvc, teamsusecase.New(teamsrepo.New(deps.DB, deps.Queries), workspaceSvc), projectsusecase.New(projectsrepo.New(deps.DB, deps.Queries), workspaceSvc), productsusecase.New(productsrepo.New(deps.DB, deps.Queries), workspaceSvc), issueSvc, relationsusecase.New(relationsrepo.New(deps.DB, deps.Queries), workspaceSvc), documentsusecase.New(documentsrepo.New(deps.DB, deps.Queries), workspaceSvc, issueSvc), attachmentSvc, commentsusecase.New(commentsrepo.New(deps.DB, deps.Queries), workspaceSvc))
+	productRegistry, err := product.Registry(workspaceSvc, teamsusecase.New(teamsrepo.New(deps.DB, deps.Queries), workspaceSvc), projectsusecase.New(projectsrepo.New(deps.DB, deps.Queries), workspaceSvc), productsusecase.New(productsrepo.New(deps.DB, deps.Queries), workspaceSvc), issueSvc, relationsusecase.New(relationsrepo.New(deps.DB, deps.Queries), workspaceSvc), documentsusecase.New(documentsrepo.New(deps.DB, deps.Queries), workspaceSvc, issueSvc), attachmentSvc, commentsusecase.New(commentsrepo.New(deps.DB, deps.Queries), workspaceSvc), searchviews.New(searchrepo.New(deps.DB, deps.Queries), workspaceSvc).WithDefaultTTL(int32(cfg.QuerySessionTTL/time.Second)))
 	if err != nil {
 		return nil, err
 	}

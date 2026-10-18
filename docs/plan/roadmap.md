@@ -234,7 +234,7 @@ Attachment UUID, geçici upload, finalize, indirme, metadata ve devamlı listele
 
 ### T12 Yorum değişiklik geçmişi ve belge revision işlemlerini ekle
 
-Status: In Progress. Separate comment revisions, immutable authorship, trusted channel provenance and a typed issue timeline are under implementation and verification.
+Status: Done. Separate comment revisions, immutable authorship, trusted channel provenance and a typed issue timeline are implemented and verified.
 
 Phase 3; depends on: T08, T10, T04.
 
@@ -245,6 +245,8 @@ Yorum, mention, düzenleme kaydı, belge revision ve geri yüklemeyi oluştur.
 - Panelden ve MCPden yapılan değişiklik aynı zaman çizelgesinde görünüyor
 
 ### T13 Arama filtre ve kayıtlı görünüm işlemlerini ekle
+
+Status: In Progress. Typed query snapshots, private saved views and column preferences are under implementation and verification.
 
 Phase 4; depends on: T08.
 

@@ -241,6 +241,19 @@ type BulkJob struct {
 	OrganizationID pgtype.Int8        `json:"organization_id"`
 }
 
+type ColumnPreference struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	WorkspaceID int64              `json:"workspace_id"`
+	ActorUuid   uuid.UUID          `json:"actor_uuid"`
+	Resource    string             `json:"resource"`
+	Revision    uuid.UUID          `json:"revision"`
+	Columns     []byte             `json:"columns"`
+	Version     int64              `json:"version"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
 type CommentReference struct {
 	ID           int64              `json:"id"`
 	Uuid         uuid.UUID          `json:"uuid"`
@@ -827,6 +840,21 @@ type PgExtension struct {
 	Extname string `json:"extname"`
 }
 
+type PrivatePreferenceHistory struct {
+	ID                 int64              `json:"id"`
+	Uuid               uuid.UUID          `json:"uuid"`
+	WorkspaceID        int64              `json:"workspace_id"`
+	ActorUuid          uuid.UUID          `json:"actor_uuid"`
+	ViewID             pgtype.Int8        `json:"view_id"`
+	ColumnPreferenceID pgtype.Int8        `json:"column_preference_id"`
+	Revision           uuid.UUID          `json:"revision"`
+	Version            int64              `json:"version"`
+	Kind               string             `json:"kind"`
+	Snapshot           []byte             `json:"snapshot"`
+	EventID            int64              `json:"event_id"`
+	OccurredAt         pgtype.Timestamptz `json:"occurred_at"`
+}
+
 type Product struct {
 	ID                  int64              `json:"id"`
 	Uuid                uuid.UUID          `json:"uuid"`
@@ -1022,6 +1050,57 @@ type Role struct {
 type RolePermission struct {
 	RoleID       int64 `json:"role_id"`
 	PermissionID int64 `json:"permission_id"`
+}
+
+type SavedView struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	WorkspaceID int64              `json:"workspace_id"`
+	ActorUuid   uuid.UUID          `json:"actor_uuid"`
+	Revision    uuid.UUID          `json:"revision"`
+	Name        string             `json:"name"`
+	Resource    string             `json:"resource"`
+	Definition  []byte             `json:"definition"`
+	Columns     []byte             `json:"columns"`
+	Deleted     bool               `json:"deleted"`
+	Version     int64              `json:"version"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+type SearchQueryItem struct {
+	ID           int64     `json:"id"`
+	WorkspaceID  int64     `json:"workspace_id"`
+	SessionID    int64     `json:"session_id"`
+	Ordinal      int64     `json:"ordinal"`
+	ResourceUuid uuid.UUID `json:"resource_uuid"`
+	Snapshot     []byte    `json:"snapshot"`
+}
+
+type SearchQuerySession struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	WorkspaceID int64              `json:"workspace_id"`
+	ActorUuid   uuid.UUID          `json:"actor_uuid"`
+	RequestUuid uuid.UUID          `json:"request_uuid"`
+	Resource    string             `json:"resource"`
+	Fingerprint string             `json:"fingerprint"`
+	Query       []byte             `json:"query"`
+	FirstLimit  int32              `json:"first_limit"`
+	State       string             `json:"state"`
+	TotalCount  int64              `json:"total_count"`
+	AsOf        pgtype.Timestamptz `json:"as_of"`
+	ExpiresAt   pgtype.Timestamptz `json:"expires_at"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+type SearchSourceRow struct {
+	Resource      string      `json:"resource"`
+	WorkspaceUuid uuid.UUID   `json:"workspace_uuid"`
+	Uuid          uuid.UUID   `json:"uuid"`
+	Archived      bool        `json:"archived"`
+	Document      interface{} `json:"document"`
 }
 
 type StepupSetting struct {

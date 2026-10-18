@@ -1,4 +1,5 @@
 "use client";
+import { searchActivityKeys } from "@/features/searchviews/activity-copy";
 import { attachmentActivityKeys } from "@/features/attachments/copy";
 import { relationActivityKeys } from "@/features/issue-relations/copy";
 
@@ -23,6 +24,7 @@ const activityActionKeys: Record<string, string> = {
   "comments.patched": "comments.activityPatched",
   "comments.deleted": "comments.activityDeleted",
   "comments.restored": "comments.activityRestored",
+  ...searchActivityKeys,
   ...relationActivityKeys,
   ...attachmentActivityKeys,
   "documents.created": "documents.activityCreated",

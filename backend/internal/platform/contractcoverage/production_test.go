@@ -9,6 +9,7 @@ import (
 	documents "github.com/furkanmeclis/traccia/backend/internal/modules/documents/usecase"
 	issues "github.com/furkanmeclis/traccia/backend/internal/modules/issues/usecase"
 	relations "github.com/furkanmeclis/traccia/backend/internal/modules/relations/usecase"
+	searchviews "github.com/furkanmeclis/traccia/backend/internal/modules/searchviews/usecase"
 	"net/http"
 	"strconv"
 	"strings"
@@ -77,7 +78,7 @@ func (c *captureConnection) Read(ctx context.Context) (jsonrpc.Message, error) {
 
 func TestProductionContractConformance(t *testing.T) {
 	workspace := usecase.New(nil)
-	registry, err := product.Registry(workspace, teams.New(nil, workspace), projects.New(nil, workspace), products.New(nil, workspace), issues.New(nil, workspace), relations.New(nil, workspace), documents.New(nil, workspace, nil), attachments.New(nil, workspace), comments.New(nil, workspace))
+	registry, err := product.Registry(workspace, teams.New(nil, workspace), projects.New(nil, workspace), products.New(nil, workspace), issues.New(nil, workspace), relations.New(nil, workspace), documents.New(nil, workspace, nil), attachments.New(nil, workspace), comments.New(nil, workspace), searchviews.New(nil, workspace))
 	if err != nil {
 		t.Fatal(err)
 	}

@@ -71,7 +71,7 @@ func TestRelationsLifecycleReplacementCanonicalAndReplay(t *testing.T) {
 	a := f.createTeam(t, "AAA")
 	b := f.createTeam(t, "BBB")
 	i, j, k := f.create(t, a.ID), f.create(t, a.ID), f.create(t, a.ID)
-	if len(f.registry.Catalog()) != 114 {
+	if len(f.registry.Catalog()) != 129 {
 		t.Fatal("production registry missing relationship operations")
 	}
 	first := f.mutate(t, "parent", i.ID, j.ID, false)

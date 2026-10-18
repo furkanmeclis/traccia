@@ -9,6 +9,8 @@ import (
 	attachment "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/usecase"
 	commentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/comments/repository"
 	comments "github.com/furkanmeclis/traccia/backend/internal/modules/comments/usecase"
+	searchrepo "github.com/furkanmeclis/traccia/backend/internal/modules/searchviews/repository"
+	searchviews "github.com/furkanmeclis/traccia/backend/internal/modules/searchviews/usecase"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/storage"
 	"os"
 	"path/filepath"
@@ -152,7 +154,7 @@ func newAttachmentFixtureOptions(t *testing.T, options attachment.Options, wrap 
 	if e != nil {
 		t.Fatal(e)
 	}
-	reg, e := product.Registry(wsvc, team.New(teamrepo.New(p, db.New(p)), wsvc), project.New(projectrepo.New(p, db.New(p)), wsvc), issue.New(r, wsvc), products.New(productsrepo.New(p, db.New(p)), wsvc), relation.New(relationrepo.New(p, db.New(p)), wsvc), doc.New(docsrepo.New(p, db.New(p)), wsvc, issue.New(r, wsvc)), attachmentSvc, comments.New(commentsrepo.New(p, db.New(p)), wsvc))
+	reg, e := product.Registry(wsvc, team.New(teamrepo.New(p, db.New(p)), wsvc), project.New(projectrepo.New(p, db.New(p)), wsvc), issue.New(r, wsvc), products.New(productsrepo.New(p, db.New(p)), wsvc), relation.New(relationrepo.New(p, db.New(p)), wsvc), doc.New(docsrepo.New(p, db.New(p)), wsvc, issue.New(r, wsvc)), attachmentSvc, comments.New(commentsrepo.New(p, db.New(p)), wsvc), searchviews.New(searchrepo.New(p, db.New(p)), wsvc))
 	if e != nil {
 		t.Fatal(e)
 	}

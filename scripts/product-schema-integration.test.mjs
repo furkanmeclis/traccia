@@ -16,7 +16,7 @@ test("hoisted recursive declarations generate body types without declaration fie
   assert.deepEqual(hoistSchema("Literal",literal,{}),literal);
 });
 
-test("actual generated document create restore and rich bodies typecheck without $defs", async () => {
+test("actual generated bodies typecheck without declarations or path-owned fields", async () => {
   const { mkdtempSync, writeFileSync, rmSync } = await import("node:fs");
   const { tmpdir } = await import("node:os");
   const { join } = await import("node:path");
@@ -26,6 +26,7 @@ test("actual generated document create restore and rich bodies typecheck without
   const id = "01234567-89ab-cdef-0123-456789abcdef";
   const content = [{id,type:"p",children:[{text:"Türkçe 🧭\r\n"}]}];
   const bodies = {
+    ProductSavedViewsUpdateInput:{expected_revision:id,name:"Private",definition:{resource:"issue",issue:{version:1,archived:"active",search:"",filter:null,sort:[]},project:null,team:null},columns:[{key:"title",width:240}]},
     ProductDocumentsCreateInput:{owner_kind:"issue",owner_id:id,format:"plate",schema_version:1,content},
     ProductDocumentsRestoreInput:{expected_revision:id,revision_id:id},
     ProductIssuesCreateRichInput:{issue:{team_id:id,status_id:id,title:"rich",priority:"normal",assignee_id:null,project_id:null,milestone_id:null,start_date:null,target_date:null,effort:null,label_ids:[]},format:"plate",schema_version:1,content},

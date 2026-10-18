@@ -1,3 +1,5 @@
+import enSearchViews from "@/locales/en/searchviews.json";
+import trSearchViews from "@/locales/tr/searchviews.json";
 import enComments from "@/locales/en/comments.json";
 import trComments from "@/locales/tr/comments.json";
 import enAttachments from "@/locales/en/attachments.json";
@@ -95,6 +97,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     documents: trDocuments,
     attachments: trAttachments,
     comments: trComments,
+    searchviews: trSearchViews,
     layout: trLayout,
     editor: trEditor,
     table: trTable,
@@ -134,6 +137,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     documents: enDocuments,
     attachments: enAttachments,
     comments: enComments,
+    searchviews: enSearchViews,
     layout: enLayout,
     editor: enEditor,
     table: enTable,
