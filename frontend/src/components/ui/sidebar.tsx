@@ -31,6 +31,53 @@ const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
 
+function createSidebarMobileFocus() {
+  let cycle = 0;
+  let opener: HTMLButtonElement | null = null;
+  let href: string | undefined;
+  let escaped: { cycle: number; content: HTMLElement | null } | null = null;
+  return {
+    open(button: HTMLButtonElement | null) {
+      cycle++;
+      opener = button;
+      href = button?.ownerDocument.defaultView?.location.href;
+      escaped = null;
+    },
+    cycle: () => cycle,
+    escape(content: HTMLElement | null) {
+      escaped = { cycle, content };
+    },
+    restore(event: Event, expectedCycle: number) {
+      if (cycle !== expectedCycle || escaped?.cycle !== expectedCycle) return;
+      const closing = escaped;
+      escaped = null;
+      event.preventDefault();
+      if (
+        !opener?.isConnected ||
+        opener.disabled ||
+        !opener.getClientRects().length
+      )
+        return;
+      const document = opener.ownerDocument;
+      const view = document.defaultView;
+      if (
+        view?.location.href !== href ||
+        view?.getComputedStyle(opener).visibility === "hidden"
+      )
+        return;
+      const active = document.activeElement;
+      if (
+        active &&
+        active !== document.body &&
+        active !== opener &&
+        !closing.content?.contains(active)
+      )
+        return;
+      opener.focus({ preventScroll: true });
+    },
+  };
+}
+
 type SidebarContextProps = {
   state: "expanded" | "collapsed";
   open: boolean;
@@ -38,7 +85,8 @@ type SidebarContextProps = {
   openMobile: boolean;
   setOpenMobile: (open: boolean) => void;
   isMobile: boolean;
-  toggleSidebar: () => void;
+  toggleSidebar: (opener?: HTMLButtonElement) => void;
+  mobileFocus: ReturnType<typeof createSidebarMobileFocus>;
 };
 
 const SidebarContext = React.createContext<SidebarContextProps | null>(null);
@@ -67,6 +115,7 @@ function SidebarProvider({
 }) {
   const isMobile = useIsMobile();
   const [openMobile, setOpenMobile] = React.useState(false);
+  const [mobileFocus] = React.useState(createSidebarMobileFocus);
 
   // This is the internal state of the sidebar.
   // We use openProp and setOpenProp for control from outside the component.
@@ -88,14 +137,29 @@ function SidebarProvider({
   );
 
   // Helper to toggle the sidebar.
-  const toggleSidebar = React.useCallback(() => {
-    return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open);
-  }, [isMobile, setOpen, setOpenMobile]);
+  const toggleSidebar = React.useCallback(
+    (opener?: HTMLButtonElement) => {
+      if (isMobile) {
+        if (!openMobile) mobileFocus.open(opener ?? null);
+        setOpenMobile((open) => !open);
+      } else setOpen((open) => !open);
+    },
+    [isMobile, openMobile, mobileFocus, setOpen, setOpenMobile],
+  );
 
   // Adds a keyboard shortcut to toggle the sidebar.
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      const target = event.target;
+      const editing =
+        target instanceof Element &&
+        target.closest(
+          'input, textarea, select, [contenteditable]:not([contenteditable="false"]), [role="textbox"]',
+        );
       if (
+        !event.defaultPrevented &&
+        !event.isComposing &&
+        !editing &&
         event.key === SIDEBAR_KEYBOARD_SHORTCUT &&
         (event.metaKey || event.ctrlKey)
       ) {
@@ -121,8 +185,18 @@ function SidebarProvider({
       openMobile,
       setOpenMobile,
       toggleSidebar,
+      mobileFocus,
     }),
-    [state, open, setOpen, isMobile, openMobile, setOpenMobile, toggleSidebar],
+    [
+      state,
+      open,
+      setOpen,
+      isMobile,
+      openMobile,
+      setOpenMobile,
+      toggleSidebar,
+      mobileFocus,
+    ],
   );
 
   return (
@@ -154,6 +228,8 @@ function Sidebar({
   side = "left",
   variant = "sidebar",
   collapsible = "offcanvas",
+  mobileTitle = "Sidebar",
+  mobileDescription = "Displays the mobile sidebar.",
   className,
   children,
   ...props
@@ -161,8 +237,13 @@ function Sidebar({
   side?: "left" | "right";
   variant?: "sidebar" | "floating" | "inset";
   collapsible?: "offcanvas" | "icon" | "none";
+  mobileTitle?: string;
+  mobileDescription?: string;
 }) {
-  const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
+  const { isMobile, state, openMobile, setOpenMobile, mobileFocus } =
+    useSidebar();
+  const mobileContent = React.useRef<HTMLDivElement>(null);
+  const mobileCycle = mobileFocus.cycle();
 
   if (collapsible === "none") {
     return (
@@ -183,6 +264,9 @@ function Sidebar({
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
         <SheetContent
+          ref={mobileContent}
+          onEscapeKeyDown={() => mobileFocus.escape(mobileContent.current)}
+          onCloseAutoFocus={(event) => mobileFocus.restore(event, mobileCycle)}
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
@@ -195,8 +279,8 @@ function Sidebar({
           side={side}
         >
           <SheetHeader className="sr-only">
-            <SheetTitle>Sidebar</SheetTitle>
-            <SheetDescription>Displays the mobile sidebar.</SheetDescription>
+            <SheetTitle>{mobileTitle}</SheetTitle>
+            <SheetDescription>{mobileDescription}</SheetDescription>
           </SheetHeader>
           <div className="flex h-full w-full flex-col">{children}</div>
         </SheetContent>
@@ -268,7 +352,7 @@ function SidebarTrigger({
       className={cn("size-7", className)}
       onClick={(event) => {
         onClick?.(event);
-        toggleSidebar();
+        toggleSidebar(event.currentTarget);
       }}
       {...props}
     >
@@ -287,7 +371,7 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
       data-slot="sidebar-rail"
       aria-label="Toggle Sidebar"
       tabIndex={-1}
-      onClick={toggleSidebar}
+      onClick={(event) => toggleSidebar(event.currentTarget)}
       title="Toggle Sidebar"
       className={cn(
         "hover:after:bg-sidebar-border absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-inset-e-4 group-data-[side=right]:inset-s-0 after:absolute after:inset-y-0 after:inset-s-1/2 after:w-0.5 sm:flex",

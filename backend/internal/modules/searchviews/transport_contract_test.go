@@ -377,7 +377,7 @@ func TestSearchTransportInventoryAndPersonalLifecycle(t *testing.T) {
 			}
 		}
 	}
-	if len(f.registry.Catalog()) != 129 || n != 15 || writes != 5 || allWrites != 69 {
+	if len(f.registry.Catalog()) != 134 || n != 15 || writes != 5 || allWrites != 70 {
 		t.Fatalf("inventory %d/%d/%d/%d", len(f.registry.Catalog()), n, writes, allWrites)
 	}
 	config := transportDecode[uc.ConfigOutput](t, f.op(t, cs, "search_queries.config", uc.ConfigInput{}))

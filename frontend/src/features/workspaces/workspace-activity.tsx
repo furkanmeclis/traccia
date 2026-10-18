@@ -19,6 +19,7 @@ import { useLocale } from "@/providers/locale-provider";
 import { useWorkspaceActivity } from "./queries";
 
 const activityActionKeys: Record<string, string> = {
+  "favorites.set": "personalwork.activityFavoriteSet",
   "comments.created": "comments.activityCreated",
   "comments.replaced": "comments.activityReplaced",
   "comments.patched": "comments.activityPatched",

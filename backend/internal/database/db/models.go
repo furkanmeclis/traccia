@@ -836,6 +836,77 @@ type Permission struct {
 	CreatedAt pgtype.Timestamptz `json:"created_at"`
 }
 
+type PersonalFavorite struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	WorkspaceID int64              `json:"workspace_id"`
+	ActorUuid   uuid.UUID          `json:"actor_uuid"`
+	Kind        string             `json:"kind"`
+	TargetUuid  uuid.UUID          `json:"target_uuid"`
+	IssueUuid   pgtype.UUID        `json:"issue_uuid"`
+	ProjectUuid pgtype.UUID        `json:"project_uuid"`
+	TeamUuid    pgtype.UUID        `json:"team_uuid"`
+	Revision    uuid.UUID          `json:"revision"`
+	Active      bool               `json:"active"`
+	Version     int64              `json:"version"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+type PersonalFavoriteHistory struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	WorkspaceID int64              `json:"workspace_id"`
+	ActorUuid   uuid.UUID          `json:"actor_uuid"`
+	FavoriteID  int64              `json:"favorite_id"`
+	Revision    uuid.UUID          `json:"revision"`
+	Version     int64              `json:"version"`
+	Snapshot    []byte             `json:"snapshot"`
+	EventID     int64              `json:"event_id"`
+	OccurredAt  pgtype.Timestamptz `json:"occurred_at"`
+}
+
+type PersonalFavoriteTarget struct {
+	Kind          string      `json:"kind"`
+	WorkspaceID   int64       `json:"workspace_id"`
+	WorkspaceUuid uuid.UUID   `json:"workspace_uuid"`
+	TargetUuid    uuid.UUID   `json:"target_uuid"`
+	Label         interface{} `json:"label"`
+	Identifier    interface{} `json:"identifier"`
+	Archived      bool        `json:"archived"`
+}
+
+type PersonalPortfolioItem struct {
+	ID                  int64     `json:"id"`
+	WorkspaceID         int64     `json:"workspace_id"`
+	SessionID           int64     `json:"session_id"`
+	Ordinal             int64     `json:"ordinal"`
+	SourceWorkspaceUuid uuid.UUID `json:"source_workspace_uuid"`
+	ResourceUuid        uuid.UUID `json:"resource_uuid"`
+	Snapshot            []byte    `json:"snapshot"`
+}
+
+type PersonalPortfolioSession struct {
+	ID                 int64              `json:"id"`
+	Uuid               uuid.UUID          `json:"uuid"`
+	WorkspaceID        int64              `json:"workspace_id"`
+	ActorUuid          uuid.UUID          `json:"actor_uuid"`
+	RequestUuid        uuid.UUID          `json:"request_uuid"`
+	Resource           string             `json:"resource"`
+	Fingerprint        string             `json:"fingerprint"`
+	Query              []byte             `json:"query"`
+	WorkspaceUuids     []uuid.UUID        `json:"workspace_uuids"`
+	WorkspaceSnapshots []byte             `json:"workspace_snapshots"`
+	AssignedToMe       bool               `json:"assigned_to_me"`
+	FirstLimit         int32              `json:"first_limit"`
+	State              string             `json:"state"`
+	TotalCount         int64              `json:"total_count"`
+	AsOf               pgtype.Timestamptz `json:"as_of"`
+	ExpiresAt          pgtype.Timestamptz `json:"expires_at"`
+	CreatedAt          pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt          pgtype.Timestamptz `json:"updated_at"`
+}
+
 type PgExtension struct {
 	Extname string `json:"extname"`
 }

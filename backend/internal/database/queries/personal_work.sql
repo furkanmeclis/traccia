@@ -1,0 +1,76 @@
+-- name: LockPersonalRequest :exec
+SELECT pg_advisory_xact_lock(hashtextextended(sqlc.arg(identity)::text,0));
+-- name: FindPortfolioRequest :one
+SELECT s.* FROM personal_portfolio_sessions s JOIN workspaces w ON w.id=s.workspace_id WHERE w.uuid=$1 AND s.actor_uuid=$2 AND s.request_uuid=$3;
+-- name: InsertPortfolioSession :one
+INSERT INTO personal_portfolio_sessions(workspace_id,actor_uuid,request_uuid,resource,fingerprint,query,first_limit,workspace_uuids,assigned_to_me,as_of,expires_at)
+SELECT w.id,$2,$3,$4,$5,$6,$7,$8,$9,clock_timestamp(),clock_timestamp()+make_interval(secs=>sqlc.arg(ttl_seconds)::integer) FROM workspaces w WHERE w.uuid=$1 RETURNING *;
+-- name: CapturePortfolioItems :one
+WITH input AS (SELECT sqlc.arg(query)::jsonb AS q),selected AS (
+ SELECT src.* FROM search_source_rows src CROSS JOIN input WHERE src.workspace_uuid=ANY(sqlc.arg(workspace_uuids)::uuid[]) AND src.resource=sqlc.arg(resource)
+ AND ((q->>'archived')='any' OR src.archived=((q->>'archived')='archived'))
+ AND (NOT sqlc.arg(assigned_to_me)::boolean OR (src.resource='issue' AND src.document->>'assignee_id'=sqlc.arg(actor_uuid)::uuid::text))
+ AND search_filter_matches(q->'filter',document)
+ AND ((q->>'search')='' OR CASE src.resource
+ WHEN 'issue' THEN strpos(search_text_fold(document->>'title'),search_text_fold(q->>'search'))>0 OR strpos(search_text_fold(document->>'identifier'),search_text_fold(q->>'search'))>0
+ WHEN 'project' THEN strpos(search_text_fold(document->>'name'),search_text_fold(q->>'search'))>0 OR strpos(search_text_fold(document->>'summary'),search_text_fold(q->>'search'))>0
+ ELSE strpos(search_text_fold(document->>'name'),search_text_fold(q->>'search'))>0 OR strpos(search_text_fold(document->>'code'),search_text_fold(q->>'search'))>0 END)
+),ordered AS (SELECT workspace_uuid,uuid,document,row_number() OVER(ORDER BY
+CASE WHEN (selected.document->>(input.q->'sort'->0->>'field')) IS NULL THEN CASE WHEN (input.q->'sort'->0->>'nulls')='first' THEN 0 ELSE 2 END ELSE 1 END ASC,
+CASE WHEN (input.q->'sort'->0->>'direction')='asc' THEN CASE WHEN (input.q->'sort'->0->>'field')='priority' THEN CASE (selected.document->>(input.q->'sort'->0->>'field')) WHEN 'none' THEN 0 WHEN 'low' THEN 1 WHEN 'normal' THEN 2 WHEN 'high' THEN 3 WHEN 'urgent' THEN 4 END WHEN (input.q->'sort'->0->>'field')='effort' THEN (selected.document->>(input.q->'sort'->0->>'field'))::numeric WHEN (input.q->'sort'->0->>'field') IN ('created_at','updated_at') THEN extract(epoch FROM (selected.document->>(input.q->'sort'->0->>'field'))::timestamptz) END END ASC NULLS LAST,
+(CASE WHEN (input.q->'sort'->0->>'direction')='asc' AND (input.q->'sort'->0->>'field') NOT IN ('effort','priority','created_at','updated_at') THEN (selected.document->>(input.q->'sort'->0->>'field')) END) COLLATE "C" ASC NULLS LAST,
+CASE WHEN (input.q->'sort'->0->>'direction')='desc' THEN CASE WHEN (input.q->'sort'->0->>'field')='priority' THEN CASE (selected.document->>(input.q->'sort'->0->>'field')) WHEN 'none' THEN 0 WHEN 'low' THEN 1 WHEN 'normal' THEN 2 WHEN 'high' THEN 3 WHEN 'urgent' THEN 4 END WHEN (input.q->'sort'->0->>'field')='effort' THEN (selected.document->>(input.q->'sort'->0->>'field'))::numeric WHEN (input.q->'sort'->0->>'field') IN ('created_at','updated_at') THEN extract(epoch FROM (selected.document->>(input.q->'sort'->0->>'field'))::timestamptz) END END DESC NULLS LAST,
+(CASE WHEN (input.q->'sort'->0->>'direction')='desc' AND (input.q->'sort'->0->>'field') NOT IN ('effort','priority','created_at','updated_at') THEN (selected.document->>(input.q->'sort'->0->>'field')) END) COLLATE "C" DESC NULLS LAST,
+CASE WHEN (selected.document->>(input.q->'sort'->1->>'field')) IS NULL THEN CASE WHEN (input.q->'sort'->1->>'nulls')='first' THEN 0 ELSE 2 END ELSE 1 END ASC,
+CASE WHEN (input.q->'sort'->1->>'direction')='asc' THEN CASE WHEN (input.q->'sort'->1->>'field')='priority' THEN CASE (selected.document->>(input.q->'sort'->1->>'field')) WHEN 'none' THEN 0 WHEN 'low' THEN 1 WHEN 'normal' THEN 2 WHEN 'high' THEN 3 WHEN 'urgent' THEN 4 END WHEN (input.q->'sort'->1->>'field')='effort' THEN (selected.document->>(input.q->'sort'->1->>'field'))::numeric WHEN (input.q->'sort'->1->>'field') IN ('created_at','updated_at') THEN extract(epoch FROM (selected.document->>(input.q->'sort'->1->>'field'))::timestamptz) END END ASC NULLS LAST,
+(CASE WHEN (input.q->'sort'->1->>'direction')='asc' AND (input.q->'sort'->1->>'field') NOT IN ('effort','priority','created_at','updated_at') THEN (selected.document->>(input.q->'sort'->1->>'field')) END) COLLATE "C" ASC NULLS LAST,
+CASE WHEN (input.q->'sort'->1->>'direction')='desc' THEN CASE WHEN (input.q->'sort'->1->>'field')='priority' THEN CASE (selected.document->>(input.q->'sort'->1->>'field')) WHEN 'none' THEN 0 WHEN 'low' THEN 1 WHEN 'normal' THEN 2 WHEN 'high' THEN 3 WHEN 'urgent' THEN 4 END WHEN (input.q->'sort'->1->>'field')='effort' THEN (selected.document->>(input.q->'sort'->1->>'field'))::numeric WHEN (input.q->'sort'->1->>'field') IN ('created_at','updated_at') THEN extract(epoch FROM (selected.document->>(input.q->'sort'->1->>'field'))::timestamptz) END END DESC NULLS LAST,
+(CASE WHEN (input.q->'sort'->1->>'direction')='desc' AND (input.q->'sort'->1->>'field') NOT IN ('effort','priority','created_at','updated_at') THEN (selected.document->>(input.q->'sort'->1->>'field')) END) COLLATE "C" DESC NULLS LAST,
+CASE WHEN (selected.document->>(input.q->'sort'->2->>'field')) IS NULL THEN CASE WHEN (input.q->'sort'->2->>'nulls')='first' THEN 0 ELSE 2 END ELSE 1 END ASC,
+CASE WHEN (input.q->'sort'->2->>'direction')='asc' THEN CASE WHEN (input.q->'sort'->2->>'field')='priority' THEN CASE (selected.document->>(input.q->'sort'->2->>'field')) WHEN 'none' THEN 0 WHEN 'low' THEN 1 WHEN 'normal' THEN 2 WHEN 'high' THEN 3 WHEN 'urgent' THEN 4 END WHEN (input.q->'sort'->2->>'field')='effort' THEN (selected.document->>(input.q->'sort'->2->>'field'))::numeric WHEN (input.q->'sort'->2->>'field') IN ('created_at','updated_at') THEN extract(epoch FROM (selected.document->>(input.q->'sort'->2->>'field'))::timestamptz) END END ASC NULLS LAST,
+(CASE WHEN (input.q->'sort'->2->>'direction')='asc' AND (input.q->'sort'->2->>'field') NOT IN ('effort','priority','created_at','updated_at') THEN (selected.document->>(input.q->'sort'->2->>'field')) END) COLLATE "C" ASC NULLS LAST,
+CASE WHEN (input.q->'sort'->2->>'direction')='desc' THEN CASE WHEN (input.q->'sort'->2->>'field')='priority' THEN CASE (selected.document->>(input.q->'sort'->2->>'field')) WHEN 'none' THEN 0 WHEN 'low' THEN 1 WHEN 'normal' THEN 2 WHEN 'high' THEN 3 WHEN 'urgent' THEN 4 END WHEN (input.q->'sort'->2->>'field')='effort' THEN (selected.document->>(input.q->'sort'->2->>'field'))::numeric WHEN (input.q->'sort'->2->>'field') IN ('created_at','updated_at') THEN extract(epoch FROM (selected.document->>(input.q->'sort'->2->>'field'))::timestamptz) END END DESC NULLS LAST,
+(CASE WHEN (input.q->'sort'->2->>'direction')='desc' AND (input.q->'sort'->2->>'field') NOT IN ('effort','priority','created_at','updated_at') THEN (selected.document->>(input.q->'sort'->2->>'field')) END) COLLATE "C" DESC NULLS LAST,
+CASE WHEN (selected.document->>(input.q->'sort'->3->>'field')) IS NULL THEN CASE WHEN (input.q->'sort'->3->>'nulls')='first' THEN 0 ELSE 2 END ELSE 1 END ASC,
+CASE WHEN (input.q->'sort'->3->>'direction')='asc' THEN CASE WHEN (input.q->'sort'->3->>'field')='priority' THEN CASE (selected.document->>(input.q->'sort'->3->>'field')) WHEN 'none' THEN 0 WHEN 'low' THEN 1 WHEN 'normal' THEN 2 WHEN 'high' THEN 3 WHEN 'urgent' THEN 4 END WHEN (input.q->'sort'->3->>'field')='effort' THEN (selected.document->>(input.q->'sort'->3->>'field'))::numeric WHEN (input.q->'sort'->3->>'field') IN ('created_at','updated_at') THEN extract(epoch FROM (selected.document->>(input.q->'sort'->3->>'field'))::timestamptz) END END ASC NULLS LAST,
+(CASE WHEN (input.q->'sort'->3->>'direction')='asc' AND (input.q->'sort'->3->>'field') NOT IN ('effort','priority','created_at','updated_at') THEN (selected.document->>(input.q->'sort'->3->>'field')) END) COLLATE "C" ASC NULLS LAST,
+CASE WHEN (input.q->'sort'->3->>'direction')='desc' THEN CASE WHEN (input.q->'sort'->3->>'field')='priority' THEN CASE (selected.document->>(input.q->'sort'->3->>'field')) WHEN 'none' THEN 0 WHEN 'low' THEN 1 WHEN 'normal' THEN 2 WHEN 'high' THEN 3 WHEN 'urgent' THEN 4 END WHEN (input.q->'sort'->3->>'field')='effort' THEN (selected.document->>(input.q->'sort'->3->>'field'))::numeric WHEN (input.q->'sort'->3->>'field') IN ('created_at','updated_at') THEN extract(epoch FROM (selected.document->>(input.q->'sort'->3->>'field'))::timestamptz) END END DESC NULLS LAST,
+(CASE WHEN (input.q->'sort'->3->>'direction')='desc' AND (input.q->'sort'->3->>'field') NOT IN ('effort','priority','created_at','updated_at') THEN (selected.document->>(input.q->'sort'->3->>'field')) END) COLLATE "C" DESC NULLS LAST,
+CASE WHEN (selected.document->>(input.q->'sort'->4->>'field')) IS NULL THEN CASE WHEN (input.q->'sort'->4->>'nulls')='first' THEN 0 ELSE 2 END ELSE 1 END ASC,
+CASE WHEN (input.q->'sort'->4->>'direction')='asc' THEN CASE WHEN (input.q->'sort'->4->>'field')='priority' THEN CASE (selected.document->>(input.q->'sort'->4->>'field')) WHEN 'none' THEN 0 WHEN 'low' THEN 1 WHEN 'normal' THEN 2 WHEN 'high' THEN 3 WHEN 'urgent' THEN 4 END WHEN (input.q->'sort'->4->>'field')='effort' THEN (selected.document->>(input.q->'sort'->4->>'field'))::numeric WHEN (input.q->'sort'->4->>'field') IN ('created_at','updated_at') THEN extract(epoch FROM (selected.document->>(input.q->'sort'->4->>'field'))::timestamptz) END END ASC NULLS LAST,
+(CASE WHEN (input.q->'sort'->4->>'direction')='asc' AND (input.q->'sort'->4->>'field') NOT IN ('effort','priority','created_at','updated_at') THEN (selected.document->>(input.q->'sort'->4->>'field')) END) COLLATE "C" ASC NULLS LAST,
+CASE WHEN (input.q->'sort'->4->>'direction')='desc' THEN CASE WHEN (input.q->'sort'->4->>'field')='priority' THEN CASE (selected.document->>(input.q->'sort'->4->>'field')) WHEN 'none' THEN 0 WHEN 'low' THEN 1 WHEN 'normal' THEN 2 WHEN 'high' THEN 3 WHEN 'urgent' THEN 4 END WHEN (input.q->'sort'->4->>'field')='effort' THEN (selected.document->>(input.q->'sort'->4->>'field'))::numeric WHEN (input.q->'sort'->4->>'field') IN ('created_at','updated_at') THEN extract(epoch FROM (selected.document->>(input.q->'sort'->4->>'field'))::timestamptz) END END DESC NULLS LAST,
+(CASE WHEN (input.q->'sort'->4->>'direction')='desc' AND (input.q->'sort'->4->>'field') NOT IN ('effort','priority','created_at','updated_at') THEN (selected.document->>(input.q->'sort'->4->>'field')) END) COLLATE "C" DESC NULLS LAST,
+selected.workspace_uuid ASC,selected.uuid ASC) AS ordinal FROM selected CROSS JOIN input),inserted AS (
+ INSERT INTO personal_portfolio_items(workspace_id,session_id,ordinal,source_workspace_uuid,resource_uuid,snapshot)
+ SELECT sqlc.arg(workspace_id)::bigint,sqlc.arg(session_id)::bigint,ordinal,workspace_uuid,uuid,document FROM ordered RETURNING source_workspace_uuid
+) SELECT (SELECT count(*) FROM inserted)::bigint AS total_count,statement_timestamp()::timestamptz AS as_of,(SELECT jsonb_agg(jsonb_build_object('id',w.uuid,'name',w.name,'total_count',(SELECT count(*) FROM inserted i WHERE i.source_workspace_uuid=w.uuid)::text) ORDER BY w.uuid) FROM workspaces w WHERE w.uuid=ANY(sqlc.arg(workspace_uuids)::uuid[]))::jsonb AS workspace_snapshots;
+-- name: PublishPortfolioSession :one
+UPDATE personal_portfolio_sessions SET state='ready',total_count=$2,workspace_snapshots=$3,as_of=$4,expires_at=$4::timestamptz+make_interval(secs=>sqlc.arg(ttl_seconds)::integer),updated_at=clock_timestamp() WHERE id=$1 AND state='pending' RETURNING *;
+-- name: ReadPortfolioSession :one
+SELECT s.* FROM personal_portfolio_sessions s JOIN workspaces w ON w.id=s.workspace_id WHERE w.uuid=$1 AND s.actor_uuid=$2 AND s.uuid=$3 AND s.state IN ('ready','expired') FOR SHARE OF s;
+-- name: PortfolioExpired :one
+SELECT expires_at<=clock_timestamp() FROM personal_portfolio_sessions WHERE id=$1;
+-- name: ListPortfolioItems :many
+SELECT ordinal,source_workspace_uuid,snapshot FROM personal_portfolio_items WHERE session_id=$1 AND workspace_id=$2 AND ordinal>sqlc.arg(after_ordinal) ORDER BY ordinal LIMIT sqlc.arg(row_limit);
+-- name: PortfolioAnchorExists :one
+SELECT EXISTS(SELECT 1 FROM personal_portfolio_items WHERE session_id=$1 AND workspace_id=$2 AND ordinal=$3);
+-- name: CleanupPortfolioItems :execrows
+WITH expired AS (SELECT s.id FROM personal_portfolio_sessions s WHERE s.state='ready' AND s.expires_at<=clock_timestamp() AND EXISTS(SELECT 1 FROM personal_portfolio_items i WHERE i.session_id=s.id) ORDER BY s.id LIMIT 10 FOR UPDATE OF s SKIP LOCKED),doomed AS (SELECT i.id FROM personal_portfolio_items i JOIN expired e ON e.id=i.session_id ORDER BY i.id LIMIT sqlc.arg(row_limit)) DELETE FROM personal_portfolio_items WHERE id IN (SELECT id FROM doomed);
+-- name: CompactPortfolioSessions :execrows
+WITH drained AS (SELECT s.id FROM personal_portfolio_sessions s WHERE s.state='ready' AND s.expires_at<=clock_timestamp() AND NOT EXISTS(SELECT 1 FROM personal_portfolio_items i WHERE i.session_id=s.id) ORDER BY s.id LIMIT 10 FOR UPDATE OF s SKIP LOCKED) UPDATE personal_portfolio_sessions SET state='expired',query=NULL,updated_at=clock_timestamp() WHERE id IN (SELECT id FROM drained);
+-- name: ReadFavoriteTarget :one
+SELECT * FROM personal_favorite_targets WHERE workspace_uuid=$1 AND kind=$2 AND target_uuid=$3;
+-- name: LockPersonalFavorite :one
+SELECT f.* FROM personal_favorites f JOIN workspaces w ON w.id=f.workspace_id WHERE w.uuid=$1 AND f.actor_uuid=$2 AND f.kind=$3 AND f.target_uuid=$4 FOR UPDATE OF f;
+-- name: InsertPersonalFavorite :one
+INSERT INTO personal_favorites(workspace_id,actor_uuid,kind,target_uuid,issue_uuid,project_uuid,team_uuid,revision,active)
+SELECT t.workspace_id,sqlc.arg(actor_uuid),t.kind,t.target_uuid,CASE WHEN t.kind='issue' THEN t.target_uuid END,CASE WHEN t.kind='project' THEN t.target_uuid END,CASE WHEN t.kind='team' THEN t.target_uuid END,sqlc.arg(revision),TRUE FROM personal_favorite_targets t WHERE t.workspace_uuid=sqlc.arg(workspace_uuid) AND t.kind=sqlc.arg(kind) AND t.target_uuid=sqlc.arg(target_uuid) ON CONFLICT(workspace_id,actor_uuid,kind,target_uuid) DO NOTHING RETURNING *;
+-- name: AdvancePersonalFavorite :one
+UPDATE personal_favorites SET active=$2,revision=$3,version=version+1 WHERE id=$1 RETURNING *;
+-- name: ListPersonalFavorites :many
+SELECT f.*,t.label,t.identifier,t.archived FROM personal_favorites f JOIN personal_favorite_targets t ON t.workspace_id=f.workspace_id AND t.kind=f.kind AND t.target_uuid=f.target_uuid WHERE t.workspace_uuid=$1 AND f.actor_uuid=$2 AND (sqlc.arg(include_inactive)::boolean OR f.active) AND f.uuid>sqlc.arg(after_uuid)::uuid ORDER BY f.uuid LIMIT sqlc.arg(row_limit);
+-- name: PersonalFavoriteAnchorExists :one
+SELECT EXISTS(SELECT 1 FROM personal_favorites f JOIN workspaces w ON w.id=f.workspace_id WHERE w.uuid=$1 AND f.actor_uuid=$2 AND f.uuid=$3);
+-- name: InsertPersonalFavoriteHistory :exec
+INSERT INTO personal_favorite_history(workspace_id,actor_uuid,favorite_id,revision,version,snapshot,event_id,occurred_at) VALUES($1,$2,$3,$4,$5,$6,$7,$8);

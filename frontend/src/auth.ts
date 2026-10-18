@@ -47,6 +47,8 @@ function isGuestAuthPath(pathname: string) {
 
 function isProtectedPath(pathname: string) {
   if (
+    pathname === "/home" ||
+    pathname.startsWith("/home/") ||
     pathname === "/workspaces" ||
     pathname.startsWith("/workspaces/") ||
     pathname.startsWith("/w/")

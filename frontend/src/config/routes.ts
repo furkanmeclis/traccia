@@ -24,6 +24,8 @@ export const routes = {
     },
   },
   product: {
+    home: "/home",
+    workspaceHome: (workspaceId: string) => `/w/${workspaceId}/home`,
     issues: (workspaceId: string) => `/w/${workspaceId}/issues`,
     issue: (workspaceId: string, issueId: string) =>
       `/w/${workspaceId}/issues/${encodeURIComponent(issueId)}`,

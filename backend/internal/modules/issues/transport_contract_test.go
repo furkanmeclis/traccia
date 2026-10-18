@@ -14,6 +14,8 @@ import (
 	comments "github.com/furkanmeclis/traccia/backend/internal/modules/comments/usecase"
 	docsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/documents/repository"
 	docs "github.com/furkanmeclis/traccia/backend/internal/modules/documents/usecase"
+	personalrepo "github.com/furkanmeclis/traccia/backend/internal/modules/personalwork/repository"
+	personalwork "github.com/furkanmeclis/traccia/backend/internal/modules/personalwork/usecase"
 	productsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/products/repository"
 	products "github.com/furkanmeclis/traccia/backend/internal/modules/products/usecase"
 	projectsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/projects/repository"
@@ -85,7 +87,7 @@ func newIssueTransport(t *testing.T) *issueTransport {
 	if e != nil {
 		t.Fatal(e)
 	}
-	reg, err := product.Registry(f.workspace, teams.New(teamsrepo.New(f.pool, db.New(f.pool)), f.workspace), projects.New(projectsrepo.New(f.pool, db.New(f.pool)), f.workspace), products.New(productsrepo.New(f.pool, db.New(f.pool)), f.workspace), issue.New(f.repo, f.workspace), relations.New(relationsrepo.New(f.pool, db.New(f.pool)), f.workspace), docs.New(docsrepo.New(f.pool, db.New(f.pool)), f.workspace, issue.New(f.repo, f.workspace)), attachments.New(attachmentRepo, f.workspace), comments.New(commentsrepo.New(f.pool, db.New(f.pool)), f.workspace), searchviews.New(searchrepo.New(f.pool, db.New(f.pool)), f.workspace))
+	reg, err := product.Registry(f.workspace, teams.New(teamsrepo.New(f.pool, db.New(f.pool)), f.workspace), projects.New(projectsrepo.New(f.pool, db.New(f.pool)), f.workspace), products.New(productsrepo.New(f.pool, db.New(f.pool)), f.workspace), issue.New(f.repo, f.workspace), relations.New(relationsrepo.New(f.pool, db.New(f.pool)), f.workspace), docs.New(docsrepo.New(f.pool, db.New(f.pool)), f.workspace, issue.New(f.repo, f.workspace)), attachments.New(attachmentRepo, f.workspace), comments.New(commentsrepo.New(f.pool, db.New(f.pool)), f.workspace), searchviews.New(searchrepo.New(f.pool, db.New(f.pool)), f.workspace), personalwork.New(personalrepo.New(f.pool, db.New(f.pool)), f.workspace))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -354,7 +356,7 @@ func TestIssuesTransportLifecycleExactReplayAndAliases(t *testing.T) {
 			}
 		}
 	}
-	if count != 10 || len(f.registry.Catalog()) != 129 {
+	if count != 10 || len(f.registry.Catalog()) != 134 {
 		t.Fatalf("issues=%d total=%d", count, len(f.registry.Catalog()))
 	}
 	a, b := f.createTeam(t, "AAA"), f.createTeam(t, "BBB")

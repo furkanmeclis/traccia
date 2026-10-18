@@ -4,6 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	personalrepo "github.com/furkanmeclis/traccia/backend/internal/modules/personalwork/repository"
+	personalwork "github.com/furkanmeclis/traccia/backend/internal/modules/personalwork/usecase"
 	searchrepo "github.com/furkanmeclis/traccia/backend/internal/modules/searchviews/repository"
 	searchviews "github.com/furkanmeclis/traccia/backend/internal/modules/searchviews/usecase"
 
@@ -119,7 +121,7 @@ func newSearchFixture(t *testing.T) searchFixture {
 	wrp := wr.New(p, db.New(p), box)
 	wsvc := ws.New(wrp)
 	r := repo.New(p, db.New(p))
-	reg, e := product.Registry(wsvc, team.New(teamrepo.New(p, db.New(p)), wsvc), project.New(projectrepo.New(p, db.New(p)), wsvc), issue.New(r, wsvc), products.New(productsrepo.New(p, db.New(p)), wsvc), relation.New(relationrepo.New(p, db.New(p)), wsvc), doc.New(docsrepo.New(p, db.New(p)), wsvc, issue.New(r, wsvc)), attachments.New(nil, wsvc), comments.New(commentsrepo.New(p, db.New(p)), wsvc), searchviews.New(searchrepo.New(p, db.New(p)), wsvc))
+	reg, e := product.Registry(wsvc, team.New(teamrepo.New(p, db.New(p)), wsvc), project.New(projectrepo.New(p, db.New(p)), wsvc), issue.New(r, wsvc), products.New(productsrepo.New(p, db.New(p)), wsvc), relation.New(relationrepo.New(p, db.New(p)), wsvc), doc.New(docsrepo.New(p, db.New(p)), wsvc, issue.New(r, wsvc)), attachments.New(nil, wsvc), comments.New(commentsrepo.New(p, db.New(p)), wsvc), searchviews.New(searchrepo.New(p, db.New(p)), wsvc), personalwork.New(personalrepo.New(p, db.New(p)), wsvc))
 	if e != nil {
 		t.Fatal(e)
 	}
