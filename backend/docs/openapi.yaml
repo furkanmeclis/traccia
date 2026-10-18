@@ -7535,6 +7535,344 @@ paths:
       }
     }
 
+  /v1/workspaces/{workspaceID}/favorites:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "favorites_list",
+        "summary": "favorites.list",
+        "x-operation-id": "favorites.list",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductFavoritesListDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductFavoritesListError"
+        },
+        "x-traccia-input-binding": {
+          "include_inactive": "query:include_inactive",
+          "limit": "query:limit",
+          "after": "query:after"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "include_inactive",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "x-binding-default": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "x-binding-default": 20
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "x-binding-default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductFavoritesListEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "favorites_set",
+        "summary": "favorites.set",
+        "x-operation-id": "favorites.set",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductFavoritesSetDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductFavoritesSetError"
+        },
+        "x-traccia-input-binding": "body",
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "description": "One stable key per complete immutable mutation input; retries replay the original result."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductFavoritesSetEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductFavoritesSetInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
   /v1/workspaces/{workspaceID}/search/issues/sessions:
     {
       "post": {
@@ -12243,6 +12581,478 @@ paths:
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ProductLabelsUpdateInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/personal-work/sessions:
+    {
+      "post": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "personal_portfolios_create",
+        "summary": "personal_portfolios.create",
+        "x-operation-id": "personal_portfolios.create",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateError"
+        },
+        "x-traccia-input-binding": "body",
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "JSON request media type required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError415"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateInput"
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/personal-work/sessions/{sessionID}:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "personal_portfolios_get",
+        "summary": "personal_portfolios.get",
+        "x-operation-id": "personal_portfolios.get",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductPersonalPortfoliosGetDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductPersonalPortfoliosGetError"
+        },
+        "x-traccia-input-binding": {
+          "session_id": "path:sessionID",
+          "limit": "query:limit",
+          "after": "query:after"
+        },
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "sessionID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "x-binding-default": 20
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "maxLength": 2048
+            },
+            "x-binding-default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosGetEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  /v1/workspaces/{workspaceID}/personal-work/config:
+    {
+      "get": {
+        "tags": [
+          "Workspaces"
+        ],
+        "operationId": "personal_work_config",
+        "summary": "personal_work.config",
+        "x-operation-id": "personal_work.config",
+        "x-operation-version": 1,
+        "x-traccia-input-schema": {
+          "$ref": "#/components/schemas/ProductPersonalWorkConfigDomainInput"
+        },
+        "x-traccia-error-schema": {
+          "$ref": "#/components/schemas/ProductPersonalWorkConfigError"
+        },
+        "x-traccia-input-binding": "empty",
+        "description": "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "productCredential": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "workspaceID",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductPersonalWorkConfigEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Verified application identity or HTTP authentication failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError403"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError404"
+                }
+              }
+            }
+          },
+          "408": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError408"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError409"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError500"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Application operation failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductHTTPError503"
+                }
               }
             }
           }
@@ -96483,6 +97293,524 @@ components:
         }
       }
 
+    ProductFavoritesListOutput:
+      {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "workspace_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "actor_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "target": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "issue",
+                        "project",
+                        "team",
+                        "workspace"
+                      ]
+                    },
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "id"
+                  ],
+                  "additionalProperties": false
+                },
+                "metadata": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255
+                    },
+                    "identifier": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "maxLength": 100
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "archived": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "identifier",
+                    "archived"
+                  ],
+                  "additionalProperties": false
+                },
+                "revision": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "active": {
+                  "type": "boolean"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "workspace_id",
+                "actor_id",
+                "target",
+                "metadata",
+                "revision",
+                "active",
+                "created_at",
+                "updated_at"
+              ],
+              "additionalProperties": false
+            },
+            "maxItems": 100
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string",
+            "maxLength": 2048
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "manage": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "manage"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "items",
+          "has_more",
+          "next_cursor",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductFavoritesListError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductFavoritesListDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "include_inactive": {
+            "type": "boolean"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "after": {
+            "type": "string",
+            "maxLength": 2048
+          }
+        },
+        "required": [
+          "include_inactive",
+          "limit",
+          "after"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductFavoritesListEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductFavoritesListOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductFavoritesSetInput:
+      {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "issue",
+                  "project",
+                  "team",
+                  "workspace"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            "required": [
+              "kind",
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "expected_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "target",
+          "active",
+          "expected_revision"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductFavoritesSetOutput:
+      {
+        "type": "object",
+        "properties": {
+          "favorite": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "actor_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "target": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "issue",
+                      "project",
+                      "team",
+                      "workspace"
+                    ]
+                  },
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "id"
+                ],
+                "additionalProperties": false
+              },
+              "metadata": {
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 255
+                  },
+                  "identifier": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 100
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "label",
+                  "identifier",
+                  "archived"
+                ],
+                "additionalProperties": false
+              },
+              "revision": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "active": {
+                "type": "boolean"
+              },
+              "created_at": {
+                "type": "string"
+              },
+              "updated_at": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "workspace_id",
+              "actor_id",
+              "target",
+              "metadata",
+              "revision",
+              "active",
+              "created_at",
+              "updated_at"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "manage": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "manage"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "favorite",
+          "capabilities"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductFavoritesSetError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductFavoritesSetDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "issue",
+                  "project",
+                  "team",
+                  "workspace"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            "required": [
+              "kind",
+              "id"
+            ],
+            "additionalProperties": false
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "expected_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "target",
+          "active",
+          "expected_revision"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductFavoritesSetEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductFavoritesSetOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
     ProductIssueQueriesCreateInputDefinition0:
       {
         "oneOf": [
@@ -116674,6 +118002,5252 @@ components:
           },
           "data": {
             "$ref": "#/components/schemas/ProductLabelsUpdateOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductPersonalPortfoliosCreateInputDefinition0:
+      {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateInputDefinition0"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "all"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateInputDefinition0"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "any"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "child": {
+                "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateInputDefinition0"
+              },
+              "kind": {
+                "type": "string",
+                "const": "not"
+              }
+            },
+            "required": [
+              "child",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "id",
+                  "team_id",
+                  "status_id",
+                  "assignee_id",
+                  "project_id",
+                  "milestone_id",
+                  "label_ids"
+                ]
+              },
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 100
+              },
+              "kind": {
+                "type": "string",
+                "const": "uuid"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "ids",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "title",
+                  "identifier"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "text"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "contains",
+                  "eq"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "priority"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "enum"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "urgent",
+                    "high",
+                    "normal",
+                    "low"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 100
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "values"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "effort"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "number"
+              },
+              "number": {
+                "type": "integer",
+                "minimum": -2147483648,
+                "maximum": 2147483647
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "number",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "start_date",
+                  "target_date"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "date"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "assignee_id",
+                  "project_id",
+                  "milestone_id",
+                  "start_date",
+                  "target_date",
+                  "effort"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "null"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "is_null",
+                  "is_not_null"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+
+    ProductPersonalPortfoliosCreateInputDefinition1:
+      {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateInputDefinition1"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "all"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateInputDefinition1"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "any"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "child": {
+                "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateInputDefinition1"
+              },
+              "kind": {
+                "type": "string",
+                "const": "not"
+              }
+            },
+            "required": [
+              "child",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "id",
+                  "lead_user_id",
+                  "team_ids"
+                ]
+              },
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 100
+              },
+              "kind": {
+                "type": "string",
+                "const": "uuid"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "ids",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "summary"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "text"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "contains",
+                  "eq"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "start_date",
+                  "target_date"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "date"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "lead_user_id",
+                  "start_date",
+                  "target_date"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "null"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "is_null",
+                  "is_not_null"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+
+    ProductPersonalPortfoliosCreateInputDefinition2:
+      {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateInputDefinition2"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "all"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateInputDefinition2"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "any"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "child": {
+                "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateInputDefinition2"
+              },
+              "kind": {
+                "type": "string",
+                "const": "not"
+              }
+            },
+            "required": [
+              "child",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "id"
+                ]
+              },
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 100
+              },
+              "kind": {
+                "type": "string",
+                "const": "uuid"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "ids",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "code"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "text"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "contains",
+                  "eq"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+
+    ProductPersonalPortfoliosCreateInput:
+      {
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspace_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "minItems": 1,
+            "maxItems": 32,
+            "uniqueItems": true
+          },
+          "definition": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "issue": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "integer",
+                        "const": 1
+                      },
+                      "archived": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "archived",
+                          "any"
+                        ]
+                      },
+                      "search": {
+                        "type": "string",
+                        "maxLength": 256
+                      },
+                      "filter": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateInputDefinition0"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sort": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "direction": {
+                              "type": "string",
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ]
+                            },
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "id",
+                                "identifier",
+                                "title",
+                                "priority",
+                                "effort",
+                                "start_date",
+                                "target_date",
+                                "created_at",
+                                "updated_at"
+                              ]
+                            },
+                            "nulls": {
+                              "type": "string",
+                              "enum": [
+                                "first",
+                                "last"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "direction",
+                            "field",
+                            "nulls"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "minItems": 0,
+                        "maxItems": 5
+                      }
+                    },
+                    "required": [
+                      "version",
+                      "archived",
+                      "search",
+                      "filter",
+                      "sort"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "project": {
+                    "type": "null"
+                  },
+                  "resource": {
+                    "type": "string",
+                    "const": "issue"
+                  },
+                  "team": {
+                    "type": "null"
+                  }
+                },
+                "required": [
+                  "issue",
+                  "project",
+                  "resource",
+                  "team"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "issue": {
+                    "type": "null"
+                  },
+                  "project": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "integer",
+                        "const": 1
+                      },
+                      "archived": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "archived",
+                          "any"
+                        ]
+                      },
+                      "search": {
+                        "type": "string",
+                        "maxLength": 256
+                      },
+                      "filter": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateInputDefinition1"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sort": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "direction": {
+                              "type": "string",
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ]
+                            },
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "id",
+                                "name",
+                                "start_date",
+                                "target_date",
+                                "created_at",
+                                "updated_at"
+                              ]
+                            },
+                            "nulls": {
+                              "type": "string",
+                              "enum": [
+                                "first",
+                                "last"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "direction",
+                            "field",
+                            "nulls"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "minItems": 0,
+                        "maxItems": 5
+                      }
+                    },
+                    "required": [
+                      "version",
+                      "archived",
+                      "search",
+                      "filter",
+                      "sort"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "resource": {
+                    "type": "string",
+                    "const": "project"
+                  },
+                  "team": {
+                    "type": "null"
+                  }
+                },
+                "required": [
+                  "issue",
+                  "project",
+                  "resource",
+                  "team"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "issue": {
+                    "type": "null"
+                  },
+                  "project": {
+                    "type": "null"
+                  },
+                  "resource": {
+                    "type": "string",
+                    "const": "team"
+                  },
+                  "team": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "integer",
+                        "const": 1
+                      },
+                      "archived": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "archived",
+                          "any"
+                        ]
+                      },
+                      "search": {
+                        "type": "string",
+                        "maxLength": 256
+                      },
+                      "filter": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateInputDefinition2"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sort": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "direction": {
+                              "type": "string",
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ]
+                            },
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "id",
+                                "name",
+                                "code",
+                                "created_at",
+                                "updated_at"
+                              ]
+                            },
+                            "nulls": {
+                              "type": "string",
+                              "enum": [
+                                "first",
+                                "last"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "direction",
+                            "field",
+                            "nulls"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "minItems": 0,
+                        "maxItems": 5
+                      }
+                    },
+                    "required": [
+                      "version",
+                      "archived",
+                      "search",
+                      "filter",
+                      "sort"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "issue",
+                  "project",
+                  "resource",
+                  "team"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "assigned_to_me": {
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 60,
+                "maximum": 86400
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        },
+        "required": [
+          "request_id",
+          "workspace_ids",
+          "definition",
+          "assigned_to_me",
+          "ttl_seconds",
+          "limit"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductPersonalPortfoliosCreateOutputDefinition0:
+      {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateOutputDefinition0"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "all"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateOutputDefinition0"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "any"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "child": {
+                "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateOutputDefinition0"
+              },
+              "kind": {
+                "type": "string",
+                "const": "not"
+              }
+            },
+            "required": [
+              "child",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "id",
+                  "team_id",
+                  "status_id",
+                  "assignee_id",
+                  "project_id",
+                  "milestone_id",
+                  "label_ids"
+                ]
+              },
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 100
+              },
+              "kind": {
+                "type": "string",
+                "const": "uuid"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "ids",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "title",
+                  "identifier"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "text"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "contains",
+                  "eq"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "priority"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "enum"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "urgent",
+                    "high",
+                    "normal",
+                    "low"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 100
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "values"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "effort"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "number"
+              },
+              "number": {
+                "type": "integer",
+                "minimum": -2147483648,
+                "maximum": 2147483647
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "number",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "start_date",
+                  "target_date"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "date"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "assignee_id",
+                  "project_id",
+                  "milestone_id",
+                  "start_date",
+                  "target_date",
+                  "effort"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "null"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "is_null",
+                  "is_not_null"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+
+    ProductPersonalPortfoliosCreateOutputDefinition1:
+      {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateOutputDefinition1"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "all"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateOutputDefinition1"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "any"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "child": {
+                "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateOutputDefinition1"
+              },
+              "kind": {
+                "type": "string",
+                "const": "not"
+              }
+            },
+            "required": [
+              "child",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "id",
+                  "lead_user_id",
+                  "team_ids"
+                ]
+              },
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 100
+              },
+              "kind": {
+                "type": "string",
+                "const": "uuid"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "ids",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "summary"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "text"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "contains",
+                  "eq"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "start_date",
+                  "target_date"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "date"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "lead_user_id",
+                  "start_date",
+                  "target_date"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "null"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "is_null",
+                  "is_not_null"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+
+    ProductPersonalPortfoliosCreateOutputDefinition2:
+      {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateOutputDefinition2"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "all"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateOutputDefinition2"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "any"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "child": {
+                "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateOutputDefinition2"
+              },
+              "kind": {
+                "type": "string",
+                "const": "not"
+              }
+            },
+            "required": [
+              "child",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "id"
+                ]
+              },
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 100
+              },
+              "kind": {
+                "type": "string",
+                "const": "uuid"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "ids",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "code"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "text"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "contains",
+                  "eq"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+
+    ProductPersonalPortfoliosCreateOutput:
+      {
+        "type": "object",
+        "properties": {
+          "session": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "request_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "anchor_workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "resource": {
+                "type": "string",
+                "enum": [
+                  "issue",
+                  "project",
+                  "team"
+                ]
+              },
+              "workspaces": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255
+                    },
+                    "total_count": {
+                      "type": "string",
+                      "pattern": "^(0|[1-9][0-9]*)$"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "total_count"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1,
+                "maxItems": 32
+              },
+              "as_of": {
+                "type": "string"
+              },
+              "expires_at": {
+                "type": "string"
+              },
+              "total_count": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)$"
+              }
+            },
+            "required": [
+              "id",
+              "request_id",
+              "anchor_workspace_id",
+              "resource",
+              "workspaces",
+              "as_of",
+              "expires_at",
+              "total_count"
+            ],
+            "additionalProperties": false
+          },
+          "definition": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "issue": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "integer",
+                        "const": 1
+                      },
+                      "archived": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "archived",
+                          "any"
+                        ]
+                      },
+                      "search": {
+                        "type": "string",
+                        "maxLength": 256
+                      },
+                      "filter": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateOutputDefinition0"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sort": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "direction": {
+                              "type": "string",
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ]
+                            },
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "id",
+                                "identifier",
+                                "title",
+                                "priority",
+                                "effort",
+                                "start_date",
+                                "target_date",
+                                "created_at",
+                                "updated_at"
+                              ]
+                            },
+                            "nulls": {
+                              "type": "string",
+                              "enum": [
+                                "first",
+                                "last"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "direction",
+                            "field",
+                            "nulls"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "minItems": 0,
+                        "maxItems": 5
+                      }
+                    },
+                    "required": [
+                      "version",
+                      "archived",
+                      "search",
+                      "filter",
+                      "sort"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "project": {
+                    "type": "null"
+                  },
+                  "resource": {
+                    "type": "string",
+                    "const": "issue"
+                  },
+                  "team": {
+                    "type": "null"
+                  }
+                },
+                "required": [
+                  "issue",
+                  "project",
+                  "resource",
+                  "team"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "issue": {
+                    "type": "null"
+                  },
+                  "project": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "integer",
+                        "const": 1
+                      },
+                      "archived": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "archived",
+                          "any"
+                        ]
+                      },
+                      "search": {
+                        "type": "string",
+                        "maxLength": 256
+                      },
+                      "filter": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateOutputDefinition1"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sort": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "direction": {
+                              "type": "string",
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ]
+                            },
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "id",
+                                "name",
+                                "start_date",
+                                "target_date",
+                                "created_at",
+                                "updated_at"
+                              ]
+                            },
+                            "nulls": {
+                              "type": "string",
+                              "enum": [
+                                "first",
+                                "last"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "direction",
+                            "field",
+                            "nulls"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "minItems": 0,
+                        "maxItems": 5
+                      }
+                    },
+                    "required": [
+                      "version",
+                      "archived",
+                      "search",
+                      "filter",
+                      "sort"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "resource": {
+                    "type": "string",
+                    "const": "project"
+                  },
+                  "team": {
+                    "type": "null"
+                  }
+                },
+                "required": [
+                  "issue",
+                  "project",
+                  "resource",
+                  "team"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "issue": {
+                    "type": "null"
+                  },
+                  "project": {
+                    "type": "null"
+                  },
+                  "resource": {
+                    "type": "string",
+                    "const": "team"
+                  },
+                  "team": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "integer",
+                        "const": 1
+                      },
+                      "archived": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "archived",
+                          "any"
+                        ]
+                      },
+                      "search": {
+                        "type": "string",
+                        "maxLength": 256
+                      },
+                      "filter": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateOutputDefinition2"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sort": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "direction": {
+                              "type": "string",
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ]
+                            },
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "id",
+                                "name",
+                                "code",
+                                "created_at",
+                                "updated_at"
+                              ]
+                            },
+                            "nulls": {
+                              "type": "string",
+                              "enum": [
+                                "first",
+                                "last"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "direction",
+                            "field",
+                            "nulls"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "minItems": 0,
+                        "maxItems": 5
+                      }
+                    },
+                    "required": [
+                      "version",
+                      "archived",
+                      "search",
+                      "filter",
+                      "sort"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "issue",
+                  "project",
+                  "resource",
+                  "team"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "assigned_to_me": {
+            "type": "boolean"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "issue": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "workspace_id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "team_id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "identifier": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z][A-Za-z0-9]{1,9}-[1-9][0-9]*$"
+                        },
+                        "number": {
+                          "type": "string",
+                          "pattern": "^[1-9][0-9]*$"
+                        },
+                        "title": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 255
+                        },
+                        "priority": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "urgent",
+                            "high",
+                            "normal",
+                            "low"
+                          ]
+                        },
+                        "status_id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "assignee_id": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "uuid"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "project_id": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "uuid"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "milestone_id": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "uuid"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "start_date": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "target_date": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "effort": {
+                          "anyOf": [
+                            {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 1000
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "label_ids": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "maxItems": 1000,
+                          "uniqueItems": true
+                        },
+                        "version": {
+                          "type": "string",
+                          "pattern": "^[1-9][0-9]*$"
+                        },
+                        "archived": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "workspace_id",
+                        "team_id",
+                        "identifier",
+                        "number",
+                        "title",
+                        "priority",
+                        "status_id",
+                        "assignee_id",
+                        "project_id",
+                        "milestone_id",
+                        "start_date",
+                        "target_date",
+                        "effort",
+                        "label_ids",
+                        "version",
+                        "archived",
+                        "created_at",
+                        "updated_at"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "project": {
+                      "type": "null"
+                    },
+                    "resource": {
+                      "type": "string",
+                      "const": "issue"
+                    },
+                    "team": {
+                      "type": "null"
+                    },
+                    "workspace_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  },
+                  "required": [
+                    "issue",
+                    "project",
+                    "resource",
+                    "team",
+                    "workspace_id"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "issue": {
+                      "type": "null"
+                    },
+                    "project": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "workspace_id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 100
+                        },
+                        "summary": {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        "lead_user_id": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "uuid"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "team_ids": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "uniqueItems": true
+                        },
+                        "start_date": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "target_date": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "version": {
+                          "type": "string",
+                          "pattern": "^[1-9][0-9]*$"
+                        },
+                        "archived": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "workspace_id",
+                        "name",
+                        "summary",
+                        "lead_user_id",
+                        "team_ids",
+                        "start_date",
+                        "target_date",
+                        "version",
+                        "archived",
+                        "created_at",
+                        "updated_at"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "resource": {
+                      "type": "string",
+                      "const": "project"
+                    },
+                    "team": {
+                      "type": "null"
+                    },
+                    "workspace_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  },
+                  "required": [
+                    "issue",
+                    "project",
+                    "resource",
+                    "team",
+                    "workspace_id"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "issue": {
+                      "type": "null"
+                    },
+                    "project": {
+                      "type": "null"
+                    },
+                    "resource": {
+                      "type": "string",
+                      "const": "team"
+                    },
+                    "team": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "workspace_id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 100
+                        },
+                        "code": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z][A-Za-z0-9]{1,9}$"
+                        },
+                        "version": {
+                          "type": "string",
+                          "pattern": "^[1-9][0-9]*$"
+                        },
+                        "workflow_version": {
+                          "type": "string",
+                          "pattern": "^[1-9][0-9]*$"
+                        },
+                        "archived": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "workspace_id",
+                        "name",
+                        "code",
+                        "version",
+                        "workflow_version",
+                        "archived",
+                        "created_at",
+                        "updated_at"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "workspace_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  },
+                  "required": [
+                    "issue",
+                    "project",
+                    "resource",
+                    "team",
+                    "workspace_id"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "maxItems": 100
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string",
+            "maxLength": 2048
+          }
+        },
+        "required": [
+          "session",
+          "definition",
+          "assigned_to_me",
+          "items",
+          "has_more",
+          "next_cursor"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductPersonalPortfoliosCreateError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductPersonalPortfoliosCreateDomainInputDefinition0:
+      {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateDomainInputDefinition0"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "all"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateDomainInputDefinition0"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "any"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "child": {
+                "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateDomainInputDefinition0"
+              },
+              "kind": {
+                "type": "string",
+                "const": "not"
+              }
+            },
+            "required": [
+              "child",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "id",
+                  "team_id",
+                  "status_id",
+                  "assignee_id",
+                  "project_id",
+                  "milestone_id",
+                  "label_ids"
+                ]
+              },
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 100
+              },
+              "kind": {
+                "type": "string",
+                "const": "uuid"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "ids",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "title",
+                  "identifier"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "text"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "contains",
+                  "eq"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "priority"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "enum"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "urgent",
+                    "high",
+                    "normal",
+                    "low"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 100
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "values"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "effort"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "number"
+              },
+              "number": {
+                "type": "integer",
+                "minimum": -2147483648,
+                "maximum": 2147483647
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "number",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "start_date",
+                  "target_date"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "date"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "assignee_id",
+                  "project_id",
+                  "milestone_id",
+                  "start_date",
+                  "target_date",
+                  "effort"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "null"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "is_null",
+                  "is_not_null"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+
+    ProductPersonalPortfoliosCreateDomainInputDefinition1:
+      {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateDomainInputDefinition1"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "all"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateDomainInputDefinition1"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "any"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "child": {
+                "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateDomainInputDefinition1"
+              },
+              "kind": {
+                "type": "string",
+                "const": "not"
+              }
+            },
+            "required": [
+              "child",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "id",
+                  "lead_user_id",
+                  "team_ids"
+                ]
+              },
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 100
+              },
+              "kind": {
+                "type": "string",
+                "const": "uuid"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "ids",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "summary"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "text"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "contains",
+                  "eq"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "start_date",
+                  "target_date"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "date"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "lead_user_id",
+                  "start_date",
+                  "target_date"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "null"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "is_null",
+                  "is_not_null"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+
+    ProductPersonalPortfoliosCreateDomainInputDefinition2:
+      {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateDomainInputDefinition2"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "all"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateDomainInputDefinition2"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "any"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "child": {
+                "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateDomainInputDefinition2"
+              },
+              "kind": {
+                "type": "string",
+                "const": "not"
+              }
+            },
+            "required": [
+              "child",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "id"
+                ]
+              },
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 100
+              },
+              "kind": {
+                "type": "string",
+                "const": "uuid"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "ids",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "code"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "text"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "contains",
+                  "eq"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+
+    ProductPersonalPortfoliosCreateDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workspace_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "minItems": 1,
+            "maxItems": 32,
+            "uniqueItems": true
+          },
+          "definition": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "issue": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "integer",
+                        "const": 1
+                      },
+                      "archived": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "archived",
+                          "any"
+                        ]
+                      },
+                      "search": {
+                        "type": "string",
+                        "maxLength": 256
+                      },
+                      "filter": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateDomainInputDefinition0"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sort": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "direction": {
+                              "type": "string",
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ]
+                            },
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "id",
+                                "identifier",
+                                "title",
+                                "priority",
+                                "effort",
+                                "start_date",
+                                "target_date",
+                                "created_at",
+                                "updated_at"
+                              ]
+                            },
+                            "nulls": {
+                              "type": "string",
+                              "enum": [
+                                "first",
+                                "last"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "direction",
+                            "field",
+                            "nulls"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "minItems": 0,
+                        "maxItems": 5
+                      }
+                    },
+                    "required": [
+                      "version",
+                      "archived",
+                      "search",
+                      "filter",
+                      "sort"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "project": {
+                    "type": "null"
+                  },
+                  "resource": {
+                    "type": "string",
+                    "const": "issue"
+                  },
+                  "team": {
+                    "type": "null"
+                  }
+                },
+                "required": [
+                  "issue",
+                  "project",
+                  "resource",
+                  "team"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "issue": {
+                    "type": "null"
+                  },
+                  "project": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "integer",
+                        "const": 1
+                      },
+                      "archived": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "archived",
+                          "any"
+                        ]
+                      },
+                      "search": {
+                        "type": "string",
+                        "maxLength": 256
+                      },
+                      "filter": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateDomainInputDefinition1"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sort": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "direction": {
+                              "type": "string",
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ]
+                            },
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "id",
+                                "name",
+                                "start_date",
+                                "target_date",
+                                "created_at",
+                                "updated_at"
+                              ]
+                            },
+                            "nulls": {
+                              "type": "string",
+                              "enum": [
+                                "first",
+                                "last"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "direction",
+                            "field",
+                            "nulls"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "minItems": 0,
+                        "maxItems": 5
+                      }
+                    },
+                    "required": [
+                      "version",
+                      "archived",
+                      "search",
+                      "filter",
+                      "sort"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "resource": {
+                    "type": "string",
+                    "const": "project"
+                  },
+                  "team": {
+                    "type": "null"
+                  }
+                },
+                "required": [
+                  "issue",
+                  "project",
+                  "resource",
+                  "team"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "issue": {
+                    "type": "null"
+                  },
+                  "project": {
+                    "type": "null"
+                  },
+                  "resource": {
+                    "type": "string",
+                    "const": "team"
+                  },
+                  "team": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "integer",
+                        "const": 1
+                      },
+                      "archived": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "archived",
+                          "any"
+                        ]
+                      },
+                      "search": {
+                        "type": "string",
+                        "maxLength": 256
+                      },
+                      "filter": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateDomainInputDefinition2"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sort": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "direction": {
+                              "type": "string",
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ]
+                            },
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "id",
+                                "name",
+                                "code",
+                                "created_at",
+                                "updated_at"
+                              ]
+                            },
+                            "nulls": {
+                              "type": "string",
+                              "enum": [
+                                "first",
+                                "last"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "direction",
+                            "field",
+                            "nulls"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "minItems": 0,
+                        "maxItems": 5
+                      }
+                    },
+                    "required": [
+                      "version",
+                      "archived",
+                      "search",
+                      "filter",
+                      "sort"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "issue",
+                  "project",
+                  "resource",
+                  "team"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "assigned_to_me": {
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 60,
+                "maximum": 86400
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          }
+        },
+        "required": [
+          "request_id",
+          "workspace_ids",
+          "definition",
+          "assigned_to_me",
+          "ttl_seconds",
+          "limit"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductPersonalPortfoliosCreateEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductPersonalPortfoliosCreateOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductPersonalPortfoliosGetOutputDefinition0:
+      {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosGetOutputDefinition0"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "all"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosGetOutputDefinition0"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "any"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "child": {
+                "$ref": "#/components/schemas/ProductPersonalPortfoliosGetOutputDefinition0"
+              },
+              "kind": {
+                "type": "string",
+                "const": "not"
+              }
+            },
+            "required": [
+              "child",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "id",
+                  "team_id",
+                  "status_id",
+                  "assignee_id",
+                  "project_id",
+                  "milestone_id",
+                  "label_ids"
+                ]
+              },
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 100
+              },
+              "kind": {
+                "type": "string",
+                "const": "uuid"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "ids",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "title",
+                  "identifier"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "text"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "contains",
+                  "eq"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "priority"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "enum"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "none",
+                    "urgent",
+                    "high",
+                    "normal",
+                    "low"
+                  ]
+                },
+                "minItems": 1,
+                "maxItems": 100
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "values"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "effort"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "number"
+              },
+              "number": {
+                "type": "integer",
+                "minimum": -2147483648,
+                "maximum": 2147483647
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "number",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "start_date",
+                  "target_date"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "date"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "assignee_id",
+                  "project_id",
+                  "milestone_id",
+                  "start_date",
+                  "target_date",
+                  "effort"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "null"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "is_null",
+                  "is_not_null"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+
+    ProductPersonalPortfoliosGetOutputDefinition1:
+      {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosGetOutputDefinition1"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "all"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosGetOutputDefinition1"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "any"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "child": {
+                "$ref": "#/components/schemas/ProductPersonalPortfoliosGetOutputDefinition1"
+              },
+              "kind": {
+                "type": "string",
+                "const": "not"
+              }
+            },
+            "required": [
+              "child",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "id",
+                  "lead_user_id",
+                  "team_ids"
+                ]
+              },
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 100
+              },
+              "kind": {
+                "type": "string",
+                "const": "uuid"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "ids",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "summary"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "text"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "contains",
+                  "eq"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "start_date",
+                  "target_date"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "date"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "eq",
+                  "lt",
+                  "lte",
+                  "gt",
+                  "gte"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "lead_user_id",
+                  "start_date",
+                  "target_date"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "null"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "is_null",
+                  "is_not_null"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+
+    ProductPersonalPortfoliosGetOutputDefinition2:
+      {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosGetOutputDefinition2"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "all"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "children": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPersonalPortfoliosGetOutputDefinition2"
+                },
+                "minItems": 1,
+                "maxItems": 128
+              },
+              "kind": {
+                "type": "string",
+                "const": "any"
+              }
+            },
+            "required": [
+              "children",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "child": {
+                "$ref": "#/components/schemas/ProductPersonalPortfoliosGetOutputDefinition2"
+              },
+              "kind": {
+                "type": "string",
+                "const": "not"
+              }
+            },
+            "required": [
+              "child",
+              "kind"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "id"
+                ]
+              },
+              "ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "minItems": 1,
+                "maxItems": 100
+              },
+              "kind": {
+                "type": "string",
+                "const": "uuid"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "in",
+                  "not_in"
+                ]
+              }
+            },
+            "required": [
+              "field",
+              "ids",
+              "kind",
+              "op"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "field": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "code"
+                ]
+              },
+              "kind": {
+                "type": "string",
+                "const": "text"
+              },
+              "op": {
+                "type": "string",
+                "enum": [
+                  "contains",
+                  "eq"
+                ]
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "field",
+              "kind",
+              "op",
+              "value"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+
+    ProductPersonalPortfoliosGetOutput:
+      {
+        "type": "object",
+        "properties": {
+          "session": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "request_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "anchor_workspace_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "resource": {
+                "type": "string",
+                "enum": [
+                  "issue",
+                  "project",
+                  "team"
+                ]
+              },
+              "workspaces": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255
+                    },
+                    "total_count": {
+                      "type": "string",
+                      "pattern": "^(0|[1-9][0-9]*)$"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "total_count"
+                  ],
+                  "additionalProperties": false
+                },
+                "minItems": 1,
+                "maxItems": 32
+              },
+              "as_of": {
+                "type": "string"
+              },
+              "expires_at": {
+                "type": "string"
+              },
+              "total_count": {
+                "type": "string",
+                "pattern": "^(0|[1-9][0-9]*)$"
+              }
+            },
+            "required": [
+              "id",
+              "request_id",
+              "anchor_workspace_id",
+              "resource",
+              "workspaces",
+              "as_of",
+              "expires_at",
+              "total_count"
+            ],
+            "additionalProperties": false
+          },
+          "definition": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "issue": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "integer",
+                        "const": 1
+                      },
+                      "archived": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "archived",
+                          "any"
+                        ]
+                      },
+                      "search": {
+                        "type": "string",
+                        "maxLength": 256
+                      },
+                      "filter": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/ProductPersonalPortfoliosGetOutputDefinition0"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sort": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "direction": {
+                              "type": "string",
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ]
+                            },
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "id",
+                                "identifier",
+                                "title",
+                                "priority",
+                                "effort",
+                                "start_date",
+                                "target_date",
+                                "created_at",
+                                "updated_at"
+                              ]
+                            },
+                            "nulls": {
+                              "type": "string",
+                              "enum": [
+                                "first",
+                                "last"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "direction",
+                            "field",
+                            "nulls"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "minItems": 0,
+                        "maxItems": 5
+                      }
+                    },
+                    "required": [
+                      "version",
+                      "archived",
+                      "search",
+                      "filter",
+                      "sort"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "project": {
+                    "type": "null"
+                  },
+                  "resource": {
+                    "type": "string",
+                    "const": "issue"
+                  },
+                  "team": {
+                    "type": "null"
+                  }
+                },
+                "required": [
+                  "issue",
+                  "project",
+                  "resource",
+                  "team"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "issue": {
+                    "type": "null"
+                  },
+                  "project": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "integer",
+                        "const": 1
+                      },
+                      "archived": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "archived",
+                          "any"
+                        ]
+                      },
+                      "search": {
+                        "type": "string",
+                        "maxLength": 256
+                      },
+                      "filter": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/ProductPersonalPortfoliosGetOutputDefinition1"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sort": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "direction": {
+                              "type": "string",
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ]
+                            },
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "id",
+                                "name",
+                                "start_date",
+                                "target_date",
+                                "created_at",
+                                "updated_at"
+                              ]
+                            },
+                            "nulls": {
+                              "type": "string",
+                              "enum": [
+                                "first",
+                                "last"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "direction",
+                            "field",
+                            "nulls"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "minItems": 0,
+                        "maxItems": 5
+                      }
+                    },
+                    "required": [
+                      "version",
+                      "archived",
+                      "search",
+                      "filter",
+                      "sort"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "resource": {
+                    "type": "string",
+                    "const": "project"
+                  },
+                  "team": {
+                    "type": "null"
+                  }
+                },
+                "required": [
+                  "issue",
+                  "project",
+                  "resource",
+                  "team"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "issue": {
+                    "type": "null"
+                  },
+                  "project": {
+                    "type": "null"
+                  },
+                  "resource": {
+                    "type": "string",
+                    "const": "team"
+                  },
+                  "team": {
+                    "type": "object",
+                    "properties": {
+                      "version": {
+                        "type": "integer",
+                        "const": 1
+                      },
+                      "archived": {
+                        "type": "string",
+                        "enum": [
+                          "active",
+                          "archived",
+                          "any"
+                        ]
+                      },
+                      "search": {
+                        "type": "string",
+                        "maxLength": 256
+                      },
+                      "filter": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/ProductPersonalPortfoliosGetOutputDefinition2"
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sort": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "direction": {
+                              "type": "string",
+                              "enum": [
+                                "asc",
+                                "desc"
+                              ]
+                            },
+                            "field": {
+                              "type": "string",
+                              "enum": [
+                                "id",
+                                "name",
+                                "code",
+                                "created_at",
+                                "updated_at"
+                              ]
+                            },
+                            "nulls": {
+                              "type": "string",
+                              "enum": [
+                                "first",
+                                "last"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "direction",
+                            "field",
+                            "nulls"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "minItems": 0,
+                        "maxItems": 5
+                      }
+                    },
+                    "required": [
+                      "version",
+                      "archived",
+                      "search",
+                      "filter",
+                      "sort"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "issue",
+                  "project",
+                  "resource",
+                  "team"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "assigned_to_me": {
+            "type": "boolean"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "issue": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "workspace_id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "team_id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "identifier": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z][A-Za-z0-9]{1,9}-[1-9][0-9]*$"
+                        },
+                        "number": {
+                          "type": "string",
+                          "pattern": "^[1-9][0-9]*$"
+                        },
+                        "title": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 255
+                        },
+                        "priority": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "urgent",
+                            "high",
+                            "normal",
+                            "low"
+                          ]
+                        },
+                        "status_id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "assignee_id": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "uuid"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "project_id": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "uuid"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "milestone_id": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "uuid"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "start_date": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "target_date": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "effort": {
+                          "anyOf": [
+                            {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 1000
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "label_ids": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "maxItems": 1000,
+                          "uniqueItems": true
+                        },
+                        "version": {
+                          "type": "string",
+                          "pattern": "^[1-9][0-9]*$"
+                        },
+                        "archived": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "workspace_id",
+                        "team_id",
+                        "identifier",
+                        "number",
+                        "title",
+                        "priority",
+                        "status_id",
+                        "assignee_id",
+                        "project_id",
+                        "milestone_id",
+                        "start_date",
+                        "target_date",
+                        "effort",
+                        "label_ids",
+                        "version",
+                        "archived",
+                        "created_at",
+                        "updated_at"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "project": {
+                      "type": "null"
+                    },
+                    "resource": {
+                      "type": "string",
+                      "const": "issue"
+                    },
+                    "team": {
+                      "type": "null"
+                    },
+                    "workspace_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  },
+                  "required": [
+                    "issue",
+                    "project",
+                    "resource",
+                    "team",
+                    "workspace_id"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "issue": {
+                      "type": "null"
+                    },
+                    "project": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "workspace_id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 100
+                        },
+                        "summary": {
+                          "type": "string",
+                          "maxLength": 2000
+                        },
+                        "lead_user_id": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "uuid"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "team_ids": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "format": "uuid"
+                          },
+                          "uniqueItems": true
+                        },
+                        "start_date": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "target_date": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "version": {
+                          "type": "string",
+                          "pattern": "^[1-9][0-9]*$"
+                        },
+                        "archived": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "workspace_id",
+                        "name",
+                        "summary",
+                        "lead_user_id",
+                        "team_ids",
+                        "start_date",
+                        "target_date",
+                        "version",
+                        "archived",
+                        "created_at",
+                        "updated_at"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "resource": {
+                      "type": "string",
+                      "const": "project"
+                    },
+                    "team": {
+                      "type": "null"
+                    },
+                    "workspace_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  },
+                  "required": [
+                    "issue",
+                    "project",
+                    "resource",
+                    "team",
+                    "workspace_id"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "issue": {
+                      "type": "null"
+                    },
+                    "project": {
+                      "type": "null"
+                    },
+                    "resource": {
+                      "type": "string",
+                      "const": "team"
+                    },
+                    "team": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "workspace_id": {
+                          "type": "string",
+                          "format": "uuid"
+                        },
+                        "name": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 100
+                        },
+                        "code": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z][A-Za-z0-9]{1,9}$"
+                        },
+                        "version": {
+                          "type": "string",
+                          "pattern": "^[1-9][0-9]*$"
+                        },
+                        "workflow_version": {
+                          "type": "string",
+                          "pattern": "^[1-9][0-9]*$"
+                        },
+                        "archived": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "workspace_id",
+                        "name",
+                        "code",
+                        "version",
+                        "workflow_version",
+                        "archived",
+                        "created_at",
+                        "updated_at"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "workspace_id": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  },
+                  "required": [
+                    "issue",
+                    "project",
+                    "resource",
+                    "team",
+                    "workspace_id"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "maxItems": 100
+          },
+          "has_more": {
+            "type": "boolean"
+          },
+          "next_cursor": {
+            "type": "string",
+            "maxLength": 2048
+          }
+        },
+        "required": [
+          "session",
+          "definition",
+          "assigned_to_me",
+          "items",
+          "has_more",
+          "next_cursor"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductPersonalPortfoliosGetError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductPersonalPortfoliosGetDomainInput:
+      {
+        "type": "object",
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "after": {
+            "type": "string",
+            "maxLength": 2048
+          }
+        },
+        "required": [
+          "session_id",
+          "limit",
+          "after"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductPersonalPortfoliosGetEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductPersonalPortfoliosGetOutput"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ProductResponseMeta"
+          }
+        }
+      }
+
+    ProductPersonalWorkConfigOutput:
+      {
+        "type": "object",
+        "properties": {
+          "limits": {
+            "type": "object",
+            "properties": {
+              "max_workspaces": {
+                "type": "integer",
+                "const": 32
+              },
+              "max_page": {
+                "type": "integer",
+                "const": 100
+              },
+              "default_ttl_seconds": {
+                "type": "integer",
+                "minimum": 60,
+                "maximum": 86400
+              },
+              "min_ttl_seconds": {
+                "type": "integer",
+                "const": 60
+              },
+              "max_ttl_seconds": {
+                "type": "integer",
+                "const": 86400
+              },
+              "max_raw_input_bytes": {
+                "type": "integer",
+                "const": 1048576
+              },
+              "max_input_bytes": {
+                "type": "integer",
+                "const": 131072
+              }
+            },
+            "required": [
+              "max_workspaces",
+              "max_page",
+              "default_ttl_seconds",
+              "min_ttl_seconds",
+              "max_ttl_seconds",
+              "max_raw_input_bytes",
+              "max_input_bytes"
+            ],
+            "additionalProperties": false
+          },
+          "capabilities": {
+            "type": "object",
+            "properties": {
+              "manage": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "manage"
+            ],
+            "additionalProperties": false
+          },
+          "input_byte_policy": {
+            "type": "string",
+            "const": "json_stringify_utf8_domain"
+          },
+          "text_matching": {
+            "type": "string",
+            "const": "unicode_default_casefold_literal_no_normalization"
+          },
+          "text_ordering": {
+            "type": "string",
+            "const": "C_byte_order_uuid_tie"
+          }
+        },
+        "required": [
+          "limits",
+          "capabilities",
+          "input_byte_policy",
+          "text_matching",
+          "text_ordering"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductPersonalWorkConfigError:
+      {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHORIZED",
+              "FORBIDDEN",
+              "VALIDATION_ERROR",
+              "NOT_FOUND",
+              "CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "VERSION_CONFLICT",
+              "OPERATION_UNAVAILABLE",
+              "CANCELED",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "details": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "field",
+                "code"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "additionalProperties": false
+      }
+
+    ProductPersonalWorkConfigDomainInput:
+      {
+        "type": "object",
+        "additionalProperties": false
+      }
+
+    ProductPersonalWorkConfigEnvelope:
+      {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "$ref": "#/components/schemas/ProductPersonalWorkConfigOutput"
           },
           "meta": {
             "$ref": "#/components/schemas/ProductResponseMeta"

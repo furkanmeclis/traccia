@@ -5,6 +5,7 @@ export const config = {
     "/",
     "/profile/:path*",
     "/platform/:path*",
+    "/home/:path*",
     "/workspaces/:path*",
     "/w/:path*",
   ],

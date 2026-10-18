@@ -246,7 +246,7 @@ Yorum, mention, düzenleme kaydı, belge revision ve geri yüklemeyi oluştur.
 
 ### T13 Arama filtre ve kayıtlı görünüm işlemlerini ekle
 
-Status: In Progress. Typed query snapshots, private saved views and column preferences are under implementation and verification.
+Status: Done. Typed SQL snapshots, private saved views and column preferences are verified and merged.
 
 Phase 4; depends on: T08.
 
@@ -258,6 +258,8 @@ Issue/proje/ekip arama adapterleri, filtre dili, kararlı sıralama ve kişisel 
 - Çalışma alanı kapsamı giriş, sorgu ve sonuçta korunur; başka alana veri veya dosya sızması test edilir
 
 ### T14 Traccia web kabuğu ve kişisel çalışma ekranını kur
+
+Status: In Progress. Personal favorites, explicit workspace portfolios and the product shell are under implementation and verification.
 
 Phase 4; depends on: T06, T07.
 

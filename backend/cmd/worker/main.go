@@ -4,6 +4,7 @@ import (
 	"context"
 	attachmentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/repository"
 	attachmentsusecase "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/usecase"
+	personalrepo "github.com/furkanmeclis/traccia/backend/internal/modules/personalwork/repository"
 	searchrepo "github.com/furkanmeclis/traccia/backend/internal/modules/searchviews/repository"
 	"log/slog"
 	"os"
@@ -112,7 +113,13 @@ func main() {
 		defer close(searchDone)
 		searchrepo.New(pool, queries).RunCleanup(searchCtx, func(error) { log.Error("query_snapshot_cleanup_failed") })
 	}()
-	defer func() { cancelSearch(); <-searchDone }()
+	personalDone := make(chan struct{})
+	go func() {
+		defer close(personalDone)
+		personalrepo.New(pool, queries).RunCleanup(searchCtx, func(error) { log.Error("personal_portfolio_cleanup_failed") })
+	}()
+	defer func() { cancelSearch(); <-searchDone; <-personalDone }()
+
 	if !cfg.Queue.Enabled {
 		log.Info("durable_worker_started", "redis_queue_enabled", false)
 		<-ctx.Done()

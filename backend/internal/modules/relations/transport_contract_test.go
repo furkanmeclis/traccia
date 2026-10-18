@@ -323,7 +323,7 @@ func TestRelationsTransportLifecycleCanonicalReciprocalAndExactJSON(t *testing.T
 			}
 		}
 	}
-	if count != 8 || len(f.registry.Catalog()) != 129 {
+	if count != 8 || len(f.registry.Catalog()) != 134 {
 		t.Fatal("incomplete production catalog")
 	}
 	a, b := f.createTeam(t, "AAA"), f.createTeam(t, "BBB")

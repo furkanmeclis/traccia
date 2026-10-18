@@ -26,6 +26,8 @@ test("actual generated bodies typecheck without declarations or path-owned field
   const id = "01234567-89ab-cdef-0123-456789abcdef";
   const content = [{id,type:"p",children:[{text:"Türkçe 🧭\r\n"}]}];
   const bodies = {
+    ProductPersonalPortfoliosCreateInput:{request_id:id,workspace_ids:[id],definition:{resource:"issue",issue:{version:1,archived:"active",search:"",filter:null,sort:[]},project:null,team:null},assigned_to_me:true,ttl_seconds:null,limit:100},
+    ProductFavoritesSetInput:{target:{kind:"issue",id},active:true,expected_revision:null},
     ProductSavedViewsUpdateInput:{expected_revision:id,name:"Private",definition:{resource:"issue",issue:{version:1,archived:"active",search:"",filter:null,sort:[]},project:null,team:null},columns:[{key:"title",width:240}]},
     ProductDocumentsCreateInput:{owner_kind:"issue",owner_id:id,format:"plate",schema_version:1,content},
     ProductDocumentsRestoreInput:{expected_revision:id,revision_id:id},
