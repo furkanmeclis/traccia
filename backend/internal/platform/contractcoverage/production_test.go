@@ -10,6 +10,7 @@ import (
 	"testing"
 	"time"
 
+	projects "github.com/furkanmeclis/traccia/backend/internal/modules/projects/usecase"
 	teams "github.com/furkanmeclis/traccia/backend/internal/modules/teams/usecase"
 	"github.com/furkanmeclis/traccia/backend/internal/modules/workspaces"
 	"github.com/furkanmeclis/traccia/backend/internal/modules/workspaces/usecase"
@@ -70,7 +71,7 @@ func (c *captureConnection) Read(ctx context.Context) (jsonrpc.Message, error) {
 
 func TestProductionContractConformance(t *testing.T) {
 	workspace := usecase.New(nil)
-	registry, err := product.Registry(workspace, teams.New(nil, workspace))
+	registry, err := product.Registry(workspace, teams.New(nil, workspace), projects.New(nil, workspace))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -81,7 +82,7 @@ func TestProductionContractConformance(t *testing.T) {
 	// Request matching is observed from the live ServeMux, not its catalog names.
 	for _, route := range recorder.routes {
 		path := strings.ReplaceAll(strings.ReplaceAll(route.Path, "{workspaceID}", "11111111-1111-4111-8111-111111111111"), "{credentialID}", "22222222-2222-4222-8222-222222222222")
-		for _, name := range []string{"teamID", "statusID", "labelID"} {
+		for _, name := range []string{"teamID", "statusID", "labelID", "projectID", "milestoneID", "resourceID"} {
 			path = strings.ReplaceAll(path, "{"+name+"}", "33333333-3333-4333-8333-333333333333")
 		}
 		req, _ := http.NewRequest(route.Method, path, nil)

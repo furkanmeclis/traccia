@@ -63,6 +63,9 @@ import trTeams from "@/locales/tr/teams.json";
 import enWorkspaces from "@/locales/en/workspaces.json";
 import trWorkspaces from "@/locales/tr/workspaces.json";
 
+import enProjects from "@/locales/en/projects.json";
+import trProjects from "@/locales/tr/projects.json";
+
 export type MessageDictionary = Record<string, string>;
 
 const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
@@ -70,6 +73,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     common: trCommon,
     workspaces: trWorkspaces,
     teams: trTeams,
+    projects: trProjects,
     layout: trLayout,
     editor: trEditor,
     table: trTable,
@@ -102,6 +106,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     common: enCommon,
     workspaces: enWorkspaces,
     teams: enTeams,
+    projects: enProjects,
     layout: enLayout,
     editor: enEditor,
     table: enTable,

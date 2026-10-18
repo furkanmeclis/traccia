@@ -19,7 +19,7 @@ func (s *Service) Operations() ([]*operations.Operation, error) {
 	meta := func(id, permission, path, method, tool string, scope operations.ScopeKind, effect operations.Effect) operations.Metadata {
 		version := 2
 		if id == "activity.list" {
-			version = 3
+			version = 4
 		}
 		return operations.Metadata{ID: id, Version: version, Idempotent: effect == operations.Write, SensitiveResult: id == "credentials.create", Permission: permission, Scope: scope, Effect: effect, HTTPPath: path, HTTPMethod: method, MCPName: tool}
 	}

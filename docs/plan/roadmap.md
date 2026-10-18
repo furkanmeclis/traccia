@@ -163,6 +163,8 @@ HTTP method/path kapsamını giriş, çıkış, hata şemaları ve MCP işlem ka
 
 ### T06 Ekip durum etiket ve issue numara modelini ekle
 
+Status: Done.
+
 Phase 2; depends on: T01, T03, T41.
 
 Ekip kodları, sayaçlar, sıralı workflow ve ortak/ekip etiketlerini geliştir.
@@ -172,6 +174,8 @@ Ekip kodları, sayaçlar, sıralı workflow ve ortak/ekip etiketlerini geliştir
 - API MCP ile ekip ve workflow sıfırdan kurulabiliyor
 
 ### T07 Proje kilometre taşı ve doküman düzenini ekle
+
+Status: In Progress. Source document resources manage links and metadata; versioned Plate documents remain T10/T47.
 
 Phase 2; depends on: T06.
 

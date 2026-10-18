@@ -23,6 +23,11 @@ export const routes = {
       preferences: "/profile/preferences",
     },
   },
+  product: {
+    projects: (workspaceId: string) => `/w/${workspaceId}/projects`,
+    project: (workspaceId: string, projectId: string) =>
+      `/w/${workspaceId}/projects/${projectId}`,
+  },
   platform: {
     root: "/platform",
     home: "/platform",

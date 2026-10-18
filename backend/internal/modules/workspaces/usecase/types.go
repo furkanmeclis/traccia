@@ -101,6 +101,7 @@ type RevokeOutput struct {
 }
 
 type Activity struct {
+	ProjectID    string    `json:"project_id"`
 	ResourceType string    `json:"resource_type"`
 	ResourceID   uuid.UUID `json:"resource_id"`
 	TeamID       string    `json:"team_id"`

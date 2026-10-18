@@ -404,6 +404,62 @@ type ProductInstallation struct {
 	CreatedAt   pgtype.Timestamptz `json:"created_at"`
 }
 
+type Project struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	WorkspaceID int64              `json:"workspace_id"`
+	Name        string             `json:"name"`
+	Summary     string             `json:"summary"`
+	LeadUserID  pgtype.Int8        `json:"lead_user_id"`
+	StartDate   pgtype.Date        `json:"start_date"`
+	TargetDate  pgtype.Date        `json:"target_date"`
+	Version     int64              `json:"version"`
+	Archived    bool               `json:"archived"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+type ProjectMilestone struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	WorkspaceID int64              `json:"workspace_id"`
+	ProjectID   int64              `json:"project_id"`
+	Name        string             `json:"name"`
+	Description string             `json:"description"`
+	TargetDate  pgtype.Date        `json:"target_date"`
+	Version     int64              `json:"version"`
+	Archived    bool               `json:"archived"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+type ProjectResource struct {
+	ID          int64              `json:"id"`
+	Uuid        uuid.UUID          `json:"uuid"`
+	WorkspaceID int64              `json:"workspace_id"`
+	ProjectID   int64              `json:"project_id"`
+	Kind        string             `json:"kind"`
+	Title       string             `json:"title"`
+	Url         string             `json:"url"`
+	Summary     string             `json:"summary"`
+	Provider    string             `json:"provider"`
+	Reference   string             `json:"reference"`
+	Version     int64              `json:"version"`
+	Archived    bool               `json:"archived"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
+type ProjectTeam struct {
+	ID          int64              `json:"id"`
+	WorkspaceID int64              `json:"workspace_id"`
+	ProjectID   int64              `json:"project_id"`
+	TeamID      int64              `json:"team_id"`
+	Archived    bool               `json:"archived"`
+	CreatedAt   pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt   pgtype.Timestamptz `json:"updated_at"`
+}
+
 type PushDevice struct {
 	ID             int64              `json:"id"`
 	Uuid           uuid.UUID          `json:"uuid"`
@@ -646,6 +702,7 @@ type WorkspaceHistory struct {
 	ResourceType  string             `json:"resource_type"`
 	ResourceUuid  pgtype.UUID        `json:"resource_uuid"`
 	TeamUuid      pgtype.UUID        `json:"team_uuid"`
+	ProjectUuid   pgtype.UUID        `json:"project_uuid"`
 }
 
 type WorkspaceMember struct {

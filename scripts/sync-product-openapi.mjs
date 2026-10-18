@@ -75,7 +75,7 @@ for (const contract of catalog) {
     "x-traccia-input-schema": ref(`${name}DomainInput`),
     "x-traccia-error-schema": ref(`${name}Error`),
     "x-traccia-input-binding": ["POST", "PATCH", "PUT"].includes(meta.http_method) ? (Object.keys(pathFields).length ? { ...binding, body: "body" } : "body") : Object.keys(binding).length ? binding : "empty",
-    description: "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the future MCP transport.",
+    description: "Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.",
     security: [{ bearerAuth: [] }, { productCredential: [] }], parameters, responses,
   };
   if (["POST", "PATCH", "PUT"].includes(meta.http_method)) {
