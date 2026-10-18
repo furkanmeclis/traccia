@@ -1,5 +1,6 @@
 "use client";
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { useDrawerDraft } from "@/features/issue-drawer/draft-context";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "@/providers/auth-provider";
 import { Button } from "@/components/ui/button";
@@ -24,12 +25,14 @@ import {
 import { expectedVersions } from "./snapshot";
 export function RelationForm({
   workspaceId,
+  draftGeneration = 0,
   state,
   mode,
   ready,
   onDone,
 }: {
   workspaceId: string;
+  draftGeneration?: number;
   state: RelationState;
   mode: "parent" | "duplicate" | "add";
   ready: boolean;
@@ -40,17 +43,34 @@ export function RelationForm({
   const cache = useQueryClient();
   const { user } = useAuth();
   const selectionSequence = useRef(0);
-  const [baseline] = useState(state);
+  const prefix = `relations.${mode}.${draftGeneration}`;
+  const [baseline] = useDrawerDraft(prefix + ".baseline", state);
+  useEffect(
+    () => () => {
+      selectionSequence.current++;
+    },
+    [],
+  );
   const previous =
     mode === "parent"
       ? baseline.parent
       : mode === "duplicate"
         ? baseline.duplicate_of
         : null;
-  const [targetID, setTargetID] = useState(previous?.id ?? "");
-  const [target, setTarget] = useState<IssueReference | null>(previous);
-  const [selection, setSelection] = useState({ pending: false, error: false });
-  const [action, setAction] = useState<RelationAction>(
+  const [targetID, setTargetID] = useDrawerDraft(
+    prefix + ".targetID",
+    previous?.id ?? "",
+  );
+  const [target, setTarget] = useDrawerDraft<IssueReference | null>(
+    prefix + ".target",
+    previous,
+  );
+  const [selection, setSelection] = useState({
+    pending: false,
+    error: !!targetID && !target,
+  });
+  const [action, setAction] = useDrawerDraft<RelationAction>(
+    prefix + ".action",
     mode === "parent"
       ? "parent"
       : mode === "duplicate"

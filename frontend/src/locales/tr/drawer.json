@@ -1,0 +1,10 @@
+{
+  "title": "İş ayrıntıları",
+  "help": "J ve K ile listedeki işler arasında geçin. E ile alanları düzenleyin. Kapatınca taslaklarınız korunur.",
+  "close": "İş ayrıntılarını kapat",
+  "previous": "Önceki iş",
+  "next": "Sonraki iş",
+  "fullPage": "Tam sayfada aç",
+  "reopen": "Son görüntülenen işler",
+  "issue": "İş {{number}}"
+}

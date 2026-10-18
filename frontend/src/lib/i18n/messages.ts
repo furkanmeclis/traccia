@@ -1,3 +1,7 @@
+import enQuickIssue from "@/locales/en/quickissue.json";
+import trQuickIssue from "@/locales/tr/quickissue.json";
+import enDrawer from "@/locales/en/drawer.json";
+import trDrawer from "@/locales/tr/drawer.json";
 import enPersonalWork from "@/locales/en/personalwork.json";
 import trPersonalWork from "@/locales/tr/personalwork.json";
 import enSearchViews from "@/locales/en/searchviews.json";
@@ -101,6 +105,8 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     comments: trComments,
     searchviews: trSearchViews,
     personalwork: trPersonalWork,
+    drawer: trDrawer,
+    quickissue: trQuickIssue,
     layout: trLayout,
     editor: trEditor,
     table: trTable,
@@ -142,6 +148,8 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     comments: enComments,
     searchviews: enSearchViews,
     personalwork: enPersonalWork,
+    drawer: enDrawer,
+    quickissue: enQuickIssue,
     layout: enLayout,
     editor: enEditor,
     table: enTable,

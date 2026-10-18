@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useDrawerDraft } from "@/features/issue-drawer/draft-context";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/providers/auth-provider";
@@ -44,17 +45,30 @@ function DocumentSettings({
   review: () => Promise<unknown>;
 }) {
   const { t } = useLocale();
-  const [initial, setInitial] = useState<Element[]>(
+  const [initial, setInitial] = useDrawerDraft<Element[]>(
+      "document.initial",
       () => document?.content ?? [paragraph()],
     ),
-    [draft, setDraft] = useState<Element[]>(initial),
-    [baseContent, setBaseContent] = useState<Element[]>(initial),
-    [baseline, setBaseline] = useState(document?.revision ?? null),
-    [generation, setGeneration] = useState(0),
-    [raw, setRaw] = useState(""),
-    [error, setError] = useState<string | null>(null),
-    [patchError, setPatchError] = useState<string | null>(null),
-    [target, setTarget] = useState(initial[0]?.id ?? "");
+    [draft, setDraft] = useDrawerDraft<Element[]>("document.draft", initial),
+    [baseContent, setBaseContent] = useDrawerDraft<Element[]>(
+      "document.baseContent",
+      initial,
+    ),
+    [baseline, setBaseline] = useDrawerDraft(
+      "document.baseline",
+      document?.revision ?? null,
+    ),
+    [generation, setGeneration] = useDrawerDraft("document.generation", 0),
+    [raw, setRaw] = useDrawerDraft("document.raw", ""),
+    [error, setError] = useDrawerDraft<string | null>("document.error", null),
+    [patchError, setPatchError] = useDrawerDraft<string | null>(
+      "document.patchError",
+      null,
+    ),
+    [target, setTarget] = useDrawerDraft(
+      "document.target",
+      initial[0]?.id ?? "",
+    );
   const mentions = useDocumentMentions(workspaceId, true),
     mentionsReady =
       mentions.isSuccess && !mentions.isError && !mentions.isFetching;
@@ -131,7 +145,7 @@ function DocumentSettings({
         />
         <DocumentEditor
           key={generation}
-          initialValue={initial}
+          initialValue={draft}
           label={t("documents.editor")}
           disabled={!ready || operation.locked}
           onChange={(value, error) => {
