@@ -8,6 +8,7 @@ import (
 	"net/url"
 	"reflect"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/furkanmeclis/traccia/backend/internal/platform/operations"
@@ -38,27 +39,77 @@ func normalizeAt(schema any, document Object, base string) (any, error) {
 	if err != nil {
 		return nil, err
 	}
-	return resolver.normalize(schema, map[string]bool{})
+	n := &normalizer{resolver: resolver, names: map[string]string{}, completed: map[string]any{}}
+	value, err := n.normalize(schema, map[string]int{}, 0)
+	if err != nil {
+		return nil, err
+	}
+	if len(n.names) == 0 {
+		return value, nil
+	}
+	root, ok := value.(Object)
+	if !ok {
+		return nil, fmt.Errorf("recursive root must be an object schema")
+	}
+	copyRoot := Object{}
+	for key, child := range root {
+		copyRoot[key] = child
+	}
+	root = copyRoot
+	defs := Object{}
+	for ref, name := range n.names {
+		target, exists := n.completed[ref]
+		if !exists {
+			return nil, fmt.Errorf("unresolved recursive schema %s", ref)
+		}
+		defs[name] = target
+	}
+	root["$defs"] = defs
+	root["$id"] = fmt.Sprintf("urn:traccia:coverage:%p:%p", document, root)
+	return root, nil
 }
 
-func (r *schemaResolver) normalize(value any, active map[string]bool) (any, error) {
+type normalizer struct {
+	resolver  *schemaResolver
+	names     map[string]string
+	completed map[string]any
+}
+
+func (n *normalizer) normalize(value any, active map[string]int, depth int) (any, error) {
 	schema, ok := value.(Object)
 	if !ok {
 		return value, nil
 	}
+	if _, ok = schema["$dynamicRef"]; ok {
+		return nil, fmt.Errorf("dynamic references are unsupported")
+	}
+	if _, ok = schema["$dynamicAnchor"]; ok {
+		return nil, fmt.Errorf("dynamic anchors are unsupported")
+	}
 	if ref, ok := schema["$ref"].(string); ok {
-		target, reference, err := r.resolve(schema, ref)
+		target, reference, err := n.resolver.resolve(schema, ref)
 		if err != nil {
 			return nil, err
 		}
-		if active[reference] {
-			return nil, fmt.Errorf("recursive schema reference %s requires explicit coverage", ref)
-		}
-		active[reference] = true
-		resolved, err := r.normalize(target, active)
-		delete(active, reference)
-		if err != nil {
-			return nil, err
+		var resolved any
+		if at, onStack := active[reference]; onStack {
+			if depth <= at {
+				return nil, fmt.Errorf("unguarded recursive schema %s", ref)
+			}
+			name, exists := n.names[reference]
+			if !exists {
+				name = fmt.Sprintf("coverage%d", len(n.names))
+				n.names[reference] = name
+			}
+			resolved = Object{"$ref": "#/$defs/" + name}
+		} else {
+			active[reference] = depth
+			resolved, err = n.normalize(target, active, depth)
+			delete(active, reference)
+			if err != nil {
+				return nil, err
+			}
+			n.completed[reference] = resolved
 		}
 		siblings := Object{}
 		for key, child := range schema {
@@ -66,25 +117,37 @@ func (r *schemaResolver) normalize(value any, active map[string]bool) (any, erro
 				siblings[key] = child
 			}
 		}
-		if len(siblings) == 0 {
-			return resolved, nil
-		}
-		r.contexts[fmt.Sprintf("%p", siblings)] = r.contexts[fmt.Sprintf("%p", schema)]
-		normalized, err := r.normalize(siblings, active)
+		n.resolver.contexts[fmt.Sprintf("%p", siblings)] = n.resolver.contexts[fmt.Sprintf("%p", schema)]
+		extra, err := n.normalize(siblings, active, depth)
 		if err != nil {
 			return nil, err
 		}
-		base, ok := resolved.(Object)
-		if !ok {
-			return nil, fmt.Errorf("non-object schema reference with siblings: %s", ref)
+		constraints, object := extra.(Object)
+		if !object {
+			return Object{"allOf": []any{resolved, extra}}, nil
 		}
-		for key, child := range normalized.(Object) {
-			if old, exists := base[key]; exists && !reflect.DeepEqual(old, child) {
-				return nil, fmt.Errorf("conflicting reference sibling %s", key)
+		if len(constraints) == 0 {
+			return resolved, nil
+		}
+		if base, ok := resolved.(Object); ok {
+			conflict := false
+			for key, child := range constraints {
+				if old, exists := base[key]; exists && !reflect.DeepEqual(old, child) {
+					conflict = true
+				}
 			}
-			base[key] = child
+			if !conflict && base["$ref"] == nil {
+				merged := Object{}
+				for key, child := range base {
+					merged[key] = child
+				}
+				for key, child := range constraints {
+					merged[key] = child
+				}
+				return merged, nil
+			}
 		}
-		return base, nil
+		return Object{"allOf": []any{resolved, constraints}}, nil
 	}
 	if len(schema) == 1 {
 		if child, ok := schema["not"].(Object); ok && len(child) == 0 {
@@ -104,7 +167,11 @@ func (r *schemaResolver) normalize(value any, active map[string]bool) (any, erro
 			if fields, ok := child.(Object); ok {
 				result := Object{}
 				for name, field := range fields {
-					result[name], err = r.normalize(field, active)
+					next := depth
+					if key != "dependentSchemas" {
+						next++
+					}
+					result[name], err = n.normalize(field, active, next)
 					if err != nil {
 						return nil, err
 					}
@@ -112,12 +179,20 @@ func (r *schemaResolver) normalize(value any, active map[string]bool) (any, erro
 				normalized = result
 			}
 		case "items", "contains", "additionalProperties", "unevaluatedProperties", "propertyNames", "not", "if", "then", "else", "additionalItems", "contentSchema":
-			normalized, err = r.normalize(child, active)
+			next := depth
+			if key == "items" || key == "contains" || key == "additionalProperties" || key == "unevaluatedProperties" || key == "propertyNames" || key == "additionalItems" {
+				next++
+			}
+			normalized, err = n.normalize(child, active, next)
 		case "anyOf", "oneOf", "allOf", "prefixItems":
 			if variants, ok := child.([]any); ok {
 				result := make([]any, len(variants))
 				for i, variant := range variants {
-					result[i], err = r.normalize(variant, active)
+					next := depth
+					if key == "prefixItems" {
+						next++
+					}
+					result[i], err = n.normalize(variant, active, next)
 					if err != nil {
 						return nil, err
 					}
@@ -153,13 +228,21 @@ func Pointer(document Object, ref string) (any, error) {
 	var current any = document
 	for _, segment := range strings.Split(strings.TrimPrefix(ref, "#/"), "/") {
 		segment = strings.ReplaceAll(strings.ReplaceAll(segment, "~1", "/"), "~0", "~")
-		object, ok := current.(Object)
-		if !ok {
+		switch node := current.(type) {
+		case Object:
+			var exists bool
+			current, exists = node[segment]
+			if !exists {
+				return nil, fmt.Errorf("unresolved schema reference %s", ref)
+			}
+		case []any:
+			index, err := strconv.Atoi(segment)
+			if err != nil || index < 0 || index >= len(node) || strconv.Itoa(index) != segment {
+				return nil, fmt.Errorf("invalid schema reference %s", ref)
+			}
+			current = node[index]
+		default:
 			return nil, fmt.Errorf("invalid schema reference %s", ref)
-		}
-		current, ok = object[segment]
-		if !ok {
-			return nil, fmt.Errorf("unresolved schema reference %s", ref)
 		}
 	}
 	return current, nil
@@ -167,6 +250,12 @@ func Pointer(document Object, ref string) (any, error) {
 
 // Difference returns a useful first differing field, including nested fields.
 func Difference(expected, actual any, path string) string {
+	if schemaReferences(expected) || schemaReferences(actual) {
+		return graphDifference(expected, actual, path)
+	}
+	return treeDifference(expected, actual, path)
+}
+func treeDifference(expected, actual any, path string) string {
 	if reflect.DeepEqual(expected, actual) {
 		return ""
 	}
@@ -191,7 +280,7 @@ func Difference(expected, actual any, path string) string {
 			if !ap || !bp {
 				return path + "/" + key
 			}
-			if d := Difference(av, bv, path+"/"+key); d != "" {
+			if d := treeDifference(av, bv, path+"/"+key); d != "" {
 				return d
 			}
 		}
@@ -200,7 +289,7 @@ func Difference(expected, actual any, path string) string {
 	bv, bok := actual.([]any)
 	if aok && bok && len(av) == len(bv) {
 		for i := range av {
-			if d := Difference(av[i], bv[i], fmt.Sprintf("%s/%d", path, i)); d != "" {
+			if d := treeDifference(av[i], bv[i], fmt.Sprintf("%s/%d", path, i)); d != "" {
 				return d
 			}
 		}
@@ -210,7 +299,9 @@ func Difference(expected, actual any, path string) string {
 
 // Closed rejects opaque schemas recursively, including array items and composed
 // object alternatives. Empty domain DTOs remain valid closed object schemas.
-func Closed(value any, path string) error {
+func Closed(value any, path string) error { return closedGraph(value, path) }
+
+func closedTree(value any, path string) error {
 	schema, ok := value.(Object)
 	if !ok {
 		if value == false {
@@ -281,47 +372,101 @@ func newSchemaResolver(document Object, base string) (*schemaResolver, error) {
 	return r, nil
 }
 func (r *schemaResolver) index(value any, base *url.URL) error {
+	if document, ok := value.(Object); ok && (document["openapi"] != nil || (document["components"] != nil && document["paths"] != nil)) {
+		return r.indexDocument(document, base)
+	}
+	return r.indexSchema(value, base)
+}
+func (r *schemaResolver) indexDocument(value any, base *url.URL) error {
 	switch node := value.(type) {
 	case Object:
-		if id, ok := node["$id"].(string); ok {
-			relative, err := url.Parse(id)
-			if err != nil {
-				return err
-			}
-			base = base.ResolveReference(relative)
-			r.resources[withoutFragment(base)] = node
-		}
 		r.contexts[fmt.Sprintf("%p", node)] = base
-		if anchor, ok := node["$anchor"].(string); ok {
-			r.anchors[withoutFragment(base)+"#"+anchor] = node
-		}
 		for key, child := range node {
 			switch key {
-			case "enum", "const", "default", "examples":
+			case "enum", "const", "default", "examples", "example":
 				continue
-			case "properties", "patternProperties", "$defs", "definitions", "dependentSchemas":
+			case "schema", "x-traccia-input-schema", "x-traccia-error-schema":
+				if err := r.indexSchema(child, base); err != nil {
+					return err
+				}
+			case "schemas":
 				if fields, ok := child.(Object); ok {
 					for _, field := range fields {
-						if err := r.index(field, base); err != nil {
+						if err := r.indexSchema(field, base); err != nil {
 							return err
 						}
 					}
 				}
-				continue
-			}
-			if err := r.index(child, base); err != nil {
-				return err
+			default:
+				if err := r.indexDocument(child, base); err != nil {
+					return err
+				}
 			}
 		}
 	case []any:
 		for _, child := range node {
-			if err := r.index(child, base); err != nil {
+			if err := r.indexDocument(child, base); err != nil {
 				return err
 			}
 		}
 	}
 	return nil
 }
+func (r *schemaResolver) indexSchema(value any, base *url.URL) error {
+	node, ok := value.(Object)
+	if !ok {
+		return nil
+	}
+	if node["$dynamicRef"] != nil || node["$dynamicAnchor"] != nil {
+		return fmt.Errorf("dynamic schema references are unsupported")
+	}
+	if id, ok := node["$id"].(string); ok {
+		relative, err := url.Parse(id)
+		if err != nil {
+			return err
+		}
+		base = base.ResolveReference(relative)
+		key := withoutFragment(base)
+		if previous, exists := r.resources[key]; exists && fmt.Sprintf("%p", previous) != fmt.Sprintf("%p", node) {
+			return fmt.Errorf("duplicate schema resource %s", base)
+		}
+		r.resources[key] = node
+	}
+	r.contexts[fmt.Sprintf("%p", node)] = base
+	if anchor, ok := node["$anchor"].(string); ok {
+		key := withoutFragment(base) + "#" + anchor
+		if previous, exists := r.anchors[key]; exists && fmt.Sprintf("%p", previous) != fmt.Sprintf("%p", node) {
+			return fmt.Errorf("duplicate schema anchor %s", key)
+		}
+		r.anchors[key] = node
+	}
+	for key, child := range node {
+		switch {
+		case schemaMaps[key]:
+			if fields, ok := child.(Object); ok {
+				for _, field := range fields {
+					if err := r.indexSchema(field, base); err != nil {
+						return err
+					}
+				}
+			}
+		case schemaChildren[key]:
+			if err := r.indexSchema(child, base); err != nil {
+				return err
+			}
+		case schemaArrays[key]:
+			if list, ok := child.([]any); ok {
+				for _, field := range list {
+					if err := r.indexSchema(field, base); err != nil {
+						return err
+					}
+				}
+			}
+		}
+	}
+	return nil
+}
+
 func withoutFragment(uri *url.URL) string {
 	copy := *uri
 	copy.Fragment = ""

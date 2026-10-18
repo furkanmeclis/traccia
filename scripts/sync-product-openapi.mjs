@@ -3,14 +3,15 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import { embedSchema, parseExactJSON, cloneExactJSON } from "./product-schema.mjs";
+import { hoistSchema, parseExactJSON, cloneExactJSON } from "./product-schema.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const catalog = parseExactJSON(execFileSync("go", ["run", "./cmd/product-contracts"], {
-  cwd: `${root}backend`, encoding: "utf8",
+  cwd: `${root}backend`, encoding: "utf8", maxBuffer: 64 * 1024 * 1024,
 }));
 const file = `${root}backend/docs/openapi.yaml`;
 let source = readFileSync(file, "utf8");
+const embedSchema = (name, schema) => hoistSchema(name, schema, schemas);
 const ref = (name) => ({ $ref: `#/components/schemas/${name}` });
 
 const paths = {};

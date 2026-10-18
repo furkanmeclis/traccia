@@ -32,3 +32,15 @@ test("catalog parsing and cloning preserve exact integer and decimal constraints
   const value = cloneExactJSON(parseExactJSON(raw));
   assert.equal(JSON.stringify(embedSchema("Precise", value)), raw);
 });
+
+test("hoisting preserves recursive resource targets without wire declaration fields", async () => {
+  const { hoistSchema } = await import("./product-schema.mjs");
+  const components = {};
+  const body = { $id:"root.json", type:"object", additionalProperties:false, required:["content"], properties:{content:{type:"array",items:{$ref:"child.json#node"}}}, $defs:{Node:{$id:"child.json",$anchor:"node",type:"object",additionalProperties:false,required:["text","children"],properties:{text:{type:"string"},children:{type:"array",items:{$ref:"#node"}}}}} };
+  components.Body = hoistSchema("Body",body,components);
+  assert.equal(components.Body.$defs,undefined);
+  assert.equal(components.Body.properties.content.items.$ref,"#/components/schemas/BodyDefinition0");
+  assert.equal(components.BodyDefinition0.properties.children.items.$ref,"#/components/schemas/BodyDefinition0");
+  const literal = {type:"string",const:{$defs:{literal:1}}};
+  assert.deepEqual(hoistSchema("Literal",literal,{}),literal);
+});

@@ -13,6 +13,7 @@ import { projectService, type Project, type Schemas } from "./project.service";
 import { ProjectForm } from "./project-form";
 import { ContributorSettings } from "./contributor-settings";
 import { MilestoneSettings } from "./milestone-settings";
+import { DocumentPanel } from "@/features/documents/document-panel";
 import { ResourceSettings } from "./resource-settings";
 import {
   PendingOperations,
@@ -328,6 +329,11 @@ export function ProjectDetail({
                   !current.archived
                 }
                 reviewLatest={reviewLatest}
+              />
+              <DocumentPanel
+                workspaceId={workspaceId}
+                owner={{ kind: "project", id: projectId }}
+                metadataVersion={current.version}
               />
               <ResourceSettings
                 workspaceId={workspaceId}

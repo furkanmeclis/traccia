@@ -11,6 +11,8 @@ import (
 	"time"
 
 	"github.com/furkanmeclis/traccia/backend/internal/database/db"
+	docsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/documents/repository"
+	docs "github.com/furkanmeclis/traccia/backend/internal/modules/documents/usecase"
 	repo "github.com/furkanmeclis/traccia/backend/internal/modules/issues/repository"
 	issue "github.com/furkanmeclis/traccia/backend/internal/modules/issues/usecase"
 	productsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/products/repository"
@@ -110,7 +112,7 @@ func newRelationFixture(t *testing.T) relationFixture {
 	wrp := wr.New(p, db.New(p), box)
 	wsvc := ws.New(wrp)
 	r := repo.New(p, db.New(p))
-	reg, e := product.Registry(wsvc, team.New(teamrepo.New(p, db.New(p)), wsvc), project.New(projectrepo.New(p, db.New(p)), wsvc), issue.New(r, wsvc), products.New(productsrepo.New(p, db.New(p)), wsvc), relation.New(relationrepo.New(p, db.New(p)), wsvc))
+	reg, e := product.Registry(wsvc, team.New(teamrepo.New(p, db.New(p)), wsvc), project.New(projectrepo.New(p, db.New(p)), wsvc), issue.New(r, wsvc), products.New(productsrepo.New(p, db.New(p)), wsvc), relation.New(relationrepo.New(p, db.New(p)), wsvc), docs.New(docsrepo.New(p, db.New(p)), wsvc, issue.New(r, wsvc)))
 	if e != nil {
 		t.Fatal(e)
 	}

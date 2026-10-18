@@ -21,6 +21,7 @@ import {
 import { useLocale } from "@/providers/locale-provider";
 import { useWorkspace, workspaceKeys } from "./queries";
 import { workspaceService, type Workspace } from "./workspace.service";
+import { DocumentPendingOperations } from "@/features/documents/document-operation";
 import { RelationPendingOperations } from "@/features/issue-relations/relation-operation";
 import { WorkspaceActivity } from "./workspace-activity";
 import { WorkspaceCredentials } from "./workspace-credentials";
@@ -244,6 +245,7 @@ export function WorkspaceDetail({ workspaceId }: { workspaceId: string }) {
             />
           )}
           <RelationPendingOperations workspaceId={workspaceId} />
+          <DocumentPendingOperations workspaceId={workspaceId} />
           <WorkspaceActivity
             key={`activity:${workspaceId}`}
             workspaceId={workspaceId}
