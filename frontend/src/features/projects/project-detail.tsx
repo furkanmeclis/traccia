@@ -192,6 +192,13 @@ export function ProjectDetail({
             <p className="text-primary text-sm font-medium">
               {t("projects.project")}
             </p>
+            <Button type="button" variant="outline" asChild>
+              <Link
+                href={`/w/${workspaceId}/issues?project_id=${encodeURIComponent(projectId)}`}
+              >
+                {t("issues.title")}
+              </Link>
+            </Button>
             <h1 className="text-3xl font-semibold break-words">
               {current.name}
             </h1>

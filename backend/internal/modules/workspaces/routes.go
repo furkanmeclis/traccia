@@ -160,6 +160,10 @@ func serveOperation(w http.ResponseWriter, r *http.Request, registry *operations
 		}
 	}
 	for key, name := range paths {
+		if name == "identifier" {
+			fields[key] = r.PathValue(name)
+			continue
+		}
 		id, err := uuid.Parse(r.PathValue(name))
 		if err != nil || id == uuid.Nil {
 			writeError(w, r, &operations.Error{Code: operations.Validation})

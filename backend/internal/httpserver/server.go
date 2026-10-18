@@ -1,6 +1,8 @@
 package httpserver
 
 import (
+	issuesrepo "github.com/furkanmeclis/traccia/backend/internal/modules/issues/repository"
+	issuesusecase "github.com/furkanmeclis/traccia/backend/internal/modules/issues/usecase"
 	productsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/products/repository"
 	productsusecase "github.com/furkanmeclis/traccia/backend/internal/modules/products/usecase"
 	projectsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/projects/repository"
@@ -259,7 +261,7 @@ func New(cfg config.Config, log *slog.Logger, deps Deps) (*Server, error) {
 	loader := identity.Loader{UC: uc}
 	authmodule.RegisterRoutes(mux, h, tokens, loader, stepUpSvc)
 	workspaceSvc := workspacesusecase.New(workspacesrepo.New(deps.DB, deps.Queries, secretBox))
-	productRegistry, err := product.Registry(workspaceSvc, teamsusecase.New(teamsrepo.New(deps.DB, deps.Queries), workspaceSvc), projectsusecase.New(projectsrepo.New(deps.DB, deps.Queries), workspaceSvc), productsusecase.New(productsrepo.New(deps.DB, deps.Queries), workspaceSvc))
+	productRegistry, err := product.Registry(workspaceSvc, teamsusecase.New(teamsrepo.New(deps.DB, deps.Queries), workspaceSvc), projectsusecase.New(projectsrepo.New(deps.DB, deps.Queries), workspaceSvc), productsusecase.New(productsrepo.New(deps.DB, deps.Queries), workspaceSvc), issuesusecase.New(issuesrepo.New(deps.DB, deps.Queries), workspaceSvc))
 	if err != nil {
 		return nil, err
 	}

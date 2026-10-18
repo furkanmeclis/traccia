@@ -59,7 +59,7 @@
       "linear_issue_id": "89ff73ea-e936-4727-bf10-effdb1f1fb75",
       "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-789/t02-sahip-hesabi-ve-bagimsiz-arac-erisimini-hazirla",
       "linear_issue_identifier": "TEC-789",
-      "current_status": "Backlog"
+      "current_status": "In Progress"
     },
     {
       "plan_id": "T03",
@@ -190,7 +190,7 @@
       "linear_issue_id": "f94172d2-7037-4953-9aa6-d3d520313044",
       "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-798/t08-issue-temel-yasam-dongusunu-gelistir",
       "linear_issue_identifier": "TEC-798",
-      "current_status": "Backlog"
+      "current_status": "In Progress"
     },
     {
       "plan_id": "T09",
@@ -1031,7 +1031,7 @@
       "linear_issue_id": "9ced1688-ef0f-4410-8dcd-f8ed29dab5e9",
       "linear_issue_url": "https://linear.app/technowide-furkan/issue/TEC-829/t43-urun-ve-ortam-katalogunu-gelistir",
       "linear_issue_identifier": "TEC-829",
-      "current_status": "In Progress"
+      "current_status": "Done"
     },
     {
       "plan_id": "T44",

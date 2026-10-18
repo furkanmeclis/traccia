@@ -24,6 +24,11 @@ export const routes = {
     },
   },
   product: {
+    issues: (workspaceId: string) => `/w/${workspaceId}/issues`,
+    issue: (workspaceId: string, issueId: string) =>
+      `/w/${workspaceId}/issues/${encodeURIComponent(issueId)}`,
+    issueIdentifier: (workspaceId: string, identifier: string) =>
+      `/w/${workspaceId}/issues/by-identifier/${encodeURIComponent(identifier)}`,
     products: (workspaceId: string) => `/w/${workspaceId}/products`,
     product: (workspaceId: string, productId: string) =>
       `/w/${workspaceId}/products/${productId}`,
