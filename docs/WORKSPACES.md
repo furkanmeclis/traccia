@@ -1,6 +1,6 @@
 # Product workspace and tool credential foundation
 
-This slice implements the persistent workspace boundary and twenty-five shared application operations, including durable activity and delivery management. It is a partial delivery of T02/T41: OAuth client lifecycle, network MCP transport, projects and downstream storage/search/job/realtime isolation remain tracked roadmap work.
+This slice implements the persistent workspace boundary and forty-six shared application operations, including durable activity, delivery management, project settings, contributors, milestones, resource metadata and safe member discovery. It is a partial delivery of T02/T41: OAuth client lifecycle, network MCP transport and downstream storage/search/job/realtime isolation remain tracked roadmap work.
 
 ## Installation owner
 

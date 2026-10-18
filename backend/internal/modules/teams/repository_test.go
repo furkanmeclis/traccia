@@ -81,7 +81,7 @@ func isolatedDatabase(t *testing.T) *pgxpool.Pool {
 		}
 	}
 	for _, suffix := range []string{"down", "up"} {
-		raw, e := os.ReadFile("../../../migrations/000034_teams_workflows_labels." + suffix + ".sql")
+		raw, e := os.ReadFile("../../../migrations/000035_projects_milestones_resources." + suffix + ".sql")
 		if e != nil {
 			t.Fatal(e)
 		}
@@ -562,5 +562,104 @@ func TestWorkflowCursorTraversesMoreThanOneHundred(t *testing.T) {
 	}
 	if len(seen) != 115 {
 		t.Fatalf("truncated workflow: %d", len(seen))
+	}
+}
+
+func TestTeamConfigurationCursorsSurviveAnchorArchive(t *testing.T) {
+	f := newTeamFixture(t)
+	for _, code := range []string{"AA", "BB", "CC"} {
+		f.createTeam(t, code)
+	}
+	raw, e := f.call("teams.list", "", f.w, team.TeamListInput{Limit: 1})
+	if e != nil {
+		t.Fatal(e)
+	}
+	var first team.TeamList
+	if e = json.Unmarshal(raw, &first); e != nil {
+		t.Fatal(e)
+	}
+	if len(first.Items) != 1 || !first.HasMore {
+		t.Fatal("team cursor fixture")
+	}
+	_, e = f.call("teams.archive", uuid.NewString(), f.w, team.ArchiveTeamInput{TeamID: first.Items[0].ID, ExpectedVersion: 1})
+	if e != nil {
+		t.Fatal(e)
+	}
+	raw, e = f.call("teams.list", "", f.w, team.TeamListInput{Limit: 100, After: first.NextCursor})
+	if e != nil {
+		t.Fatal(e)
+	}
+	var rest team.TeamList
+	_ = json.Unmarshal(raw, &rest)
+	if len(rest.Items) != 2 || rest.HasMore {
+		t.Fatalf("archived team anchor truncated traversal: %s", raw)
+	}
+	// Status positions remain scoped to their owning team after the anchor archives.
+	owner := rest.Items[0]
+	raw, e = f.call("workflow_statuses.list", "", f.w, team.StatusListInput{TeamID: owner.ID, Limit: 1})
+	if e != nil {
+		t.Fatal(e)
+	}
+	var statuses team.StatusList
+	_ = json.Unmarshal(raw, &statuses)
+	if len(statuses.Items) != 1 || !statuses.HasMore {
+		t.Fatal("workflow cursor fixture")
+	}
+	_, e = f.call("workflow_statuses.archive", uuid.NewString(), f.w, team.ArchiveStatusInput{TeamID: owner.ID, StatusID: statuses.Items[0].ID, ExpectedVersion: 1, ExpectedWorkflowVersion: 1})
+	if e != nil {
+		t.Fatal(e)
+	}
+	raw, e = f.call("workflow_statuses.list", "", f.w, team.StatusListInput{TeamID: owner.ID, Limit: 100, After: statuses.NextCursor})
+	if e != nil {
+		t.Fatal(e)
+	}
+	var remaining team.StatusList
+	_ = json.Unmarshal(raw, &remaining)
+	if len(remaining.Items) != 4 || remaining.WorkflowVersion != 2 {
+		t.Fatalf("archived workflow anchor truncated traversal: %s", raw)
+	}
+	raw, e = f.call("workflow_statuses.list", "", f.w, team.StatusListInput{TeamID: rest.Items[1].ID, Limit: 100, After: statuses.NextCursor})
+	if e != nil {
+		t.Fatal(e)
+	}
+	_ = json.Unmarshal(raw, &remaining)
+	if len(remaining.Items) != 0 {
+		t.Fatal("foreign-team status cursor crossed scope")
+	}
+	for i := range 3 {
+		_, e = f.call("labels.create", uuid.NewString(), f.w, team.CreateLabelInput{Name: fmt.Sprintf("Label %d", i), Color: "#123456"})
+		if e != nil {
+			t.Fatal(e)
+		}
+	}
+	raw, e = f.call("labels.list", "", f.w, team.LabelListInput{Limit: 1})
+	if e != nil {
+		t.Fatal(e)
+	}
+	var labels team.LabelList
+	_ = json.Unmarshal(raw, &labels)
+	if len(labels.Items) != 1 || !labels.HasMore {
+		t.Fatal("label cursor fixture")
+	}
+	_, e = f.call("labels.archive", uuid.NewString(), f.w, team.ArchiveLabelInput{LabelID: labels.Items[0].ID, ExpectedVersion: 1})
+	if e != nil {
+		t.Fatal(e)
+	}
+	raw, e = f.call("labels.list", "", f.w, team.LabelListInput{Limit: 100, After: labels.NextCursor})
+	if e != nil {
+		t.Fatal(e)
+	}
+	var remainingLabels team.LabelList
+	_ = json.Unmarshal(raw, &remainingLabels)
+	if len(remainingLabels.Items) != 2 || remainingLabels.HasMore {
+		t.Fatalf("archived label anchor truncated traversal: %s", raw)
+	}
+	raw, e = f.call("labels.list", "", f.w, team.LabelListInput{TeamID: owner.ID.String(), Limit: 100, After: labels.NextCursor})
+	if e != nil {
+		t.Fatal(e)
+	}
+	_ = json.Unmarshal(raw, &remainingLabels)
+	if len(remainingLabels.Items) != 0 {
+		t.Fatal("shared-label cursor crossed team scope")
 	}
 }

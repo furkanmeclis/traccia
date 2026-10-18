@@ -16,6 +16,22 @@ import { useLocale } from "@/providers/locale-provider";
 import { useWorkspaceActivity } from "./queries";
 
 const activityActionKeys: Record<string, string> = {
+  "projects.created": "projects.activity_projects_created",
+  "projects.updated": "projects.activity_projects_updated",
+  "projects.archived": "projects.activity_projects_archived",
+  "projects.restored": "projects.activity_projects_restored",
+  "project_milestones.created": "projects.activity_project_milestones_created",
+  "project_milestones.updated": "projects.activity_project_milestones_updated",
+  "project_milestones.archived":
+    "projects.activity_project_milestones_archived",
+  "project_milestones.restored":
+    "projects.activity_project_milestones_restored",
+  "project_resources.created": "projects.activity_project_resources_created",
+  "project_resources.updated": "projects.activity_project_resources_updated",
+  "project_resources.archived": "projects.activity_project_resources_archived",
+  "project_resources.restored": "projects.activity_project_resources_restored",
+  "project_teams.updated": "projects.activity_project_teams_updated",
+
   "workspaces.created": "workspaces.activity_created",
   "workspaces.updated": "workspaces.activity_updated",
   "teams.created": "teams.activity_team_created",
@@ -122,6 +138,20 @@ export function WorkspaceActivity({ workspaceId }: { workspaceId: string }) {
                     { name: item.name },
                   )}
                 </p>
+                {item.project_id &&
+                  [
+                    "projects",
+                    "project_teams",
+                    "project_milestones",
+                    "project_resources",
+                  ].includes(item.resource_type) && (
+                    <Link
+                      className="text-primary text-xs underline underline-offset-4"
+                      href={`/w/${workspaceId}/projects/${encodeURIComponent(item.project_id)}`}
+                    >
+                      {t("projects.view_project")}
+                    </Link>
+                  )}
                 {item.resource_type === "teams" && item.resource_id && (
                   <Link
                     className="text-primary text-xs underline underline-offset-4"

@@ -4,7 +4,7 @@
 
 Onaylı kapsam 53 iş ve 11 fazdan oluşur. İlk yayımda 165 bağımlılık ilişkisi geri okunarak doğrulanmıştır. Güncel çalışma durumu Linear üzerinden izlenir.
 
-İlk uygulama adımı T01 üzerinde `feat/operation-contracts` dalında devam ediyor. [Başlangıç commit’i e83a3e1](https://github.com/furkanmeclis/traccia/commit/e83a3e1). Ortak işlem kataloğu üzerinde çalışılıyor; kimlik doğrulama ve workspace adapter bağlantıları henüz tamamlanmadı.
+T06 ekip temeli tamamlandı. T07 proje sorumlusu, tarihler, ekip katkıları, kilometre taşları ve kaynak bağlantıları üzerinde çalışma sürüyor. Sürümlü Plate belge düzenleme T10/T47 kapsamındadır.
 
 | Plan | Linear | Faz | İş |
 | --- | --- | --- | --- |

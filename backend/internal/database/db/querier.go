@@ -12,8 +12,10 @@ import (
 )
 
 type Querier interface {
+	ActiveProjectContribution(ctx context.Context, arg ActiveProjectContributionParams) (int64, error)
 	AddOrganizationMember(ctx context.Context, arg AddOrganizationMemberParams) (OrganizationMember, error)
 	AddProductWorkspaceOwner(ctx context.Context, arg AddProductWorkspaceOwnerParams) error
+	AllProjectContributions(ctx context.Context, arg AllProjectContributionsParams) ([]AllProjectContributionsRow, error)
 	AllWorkflowStatuses(ctx context.Context, teamID int64) ([]WorkflowStatus, error)
 	AllocateTeamIssueNumber(ctx context.Context, arg AllocateTeamIssueNumberParams) (int64, error)
 	ArchiveLabel(ctx context.Context, arg ArchiveLabelParams) (Label, error)
@@ -21,6 +23,7 @@ type Querier interface {
 	ArchiveWorkflowStatus(ctx context.Context, arg ArchiveWorkflowStatusParams) (WorkflowStatus, error)
 	AssignUserRoleBySlug(ctx context.Context, arg AssignUserRoleBySlugParams) error
 	BootstrapProductOwner(ctx context.Context, argUuid uuid.UUID) (int64, error)
+	BumpProject(ctx context.Context, arg BumpProjectParams) (int64, error)
 	BumpTeamWorkflow(ctx context.Context, arg BumpTeamWorkflowParams) (int64, error)
 	ClaimEventDeliveries(ctx context.Context, arg ClaimEventDeliveriesParams) ([]EventDelivery, error)
 	ClaimOperationReceipt(ctx context.Context, arg ClaimOperationReceiptParams) (int64, error)
@@ -61,6 +64,9 @@ type Querier interface {
 	CreateOrganization(ctx context.Context, arg CreateOrganizationParams) (Organization, error)
 	CreateOrganizationInvitation(ctx context.Context, arg CreateOrganizationInvitationParams) (OrganizationInvitation, error)
 	CreateProductWorkspace(ctx context.Context, name string) (Workspace, error)
+	CreateProject(ctx context.Context, arg CreateProjectParams) (Project, error)
+	CreateProjectMilestone(ctx context.Context, arg CreateProjectMilestoneParams) (ProjectMilestone, error)
+	CreateProjectResource(ctx context.Context, arg CreateProjectResourceParams) (ProjectResource, error)
 	CreateRefreshToken(ctx context.Context, arg CreateRefreshTokenParams) (RefreshToken, error)
 	CreateRole(ctx context.Context, arg CreateRoleParams) (Role, error)
 	CreateTeam(ctx context.Context, arg CreateTeamParams) (Team, error)
@@ -69,6 +75,7 @@ type Querier interface {
 	CreateWorkflowStatus(ctx context.Context, arg CreateWorkflowStatusParams) (WorkflowStatus, error)
 	CreateWorkspaceToolCredential(ctx context.Context, arg CreateWorkspaceToolCredentialParams) (WorkspaceToolCredential, error)
 	DatabaseTime(ctx context.Context) (pgtype.Timestamptz, error)
+	DeactivateProjectTeams(ctx context.Context, arg DeactivateProjectTeamsParams) error
 	// Self-service account deletion: keep every row, mark the user disabled.
 	DeactivateUser(ctx context.Context, id int64) (User, error)
 	DeleteAppLogByUUID(ctx context.Context, argUuid uuid.UUID) (int64, error)
@@ -124,6 +131,9 @@ type Querier interface {
 	GetPermissionBySlug(ctx context.Context, slug string) (Permission, error)
 	GetProductActor(ctx context.Context, argUuid uuid.UUID) (GetProductActorRow, error)
 	GetProductOwner(ctx context.Context, argUuid uuid.UUID) (GetProductOwnerRow, error)
+	GetProject(ctx context.Context, arg GetProjectParams) (GetProjectRow, error)
+	GetProjectMilestone(ctx context.Context, arg GetProjectMilestoneParams) (ProjectMilestone, error)
+	GetProjectResource(ctx context.Context, arg GetProjectResourceParams) (ProjectResource, error)
 	GetRoleByID(ctx context.Context, id int64) (Role, error)
 	GetRoleBySlug(ctx context.Context, slug string) (Role, error)
 	GetRoleByUUID(ctx context.Context, argUuid uuid.UUID) (Role, error)
@@ -153,6 +163,7 @@ type Querier interface {
 	InsertImportChange(ctx context.Context, arg InsertImportChangeParams) (ImportChange, error)
 	InsertNotificationHistory(ctx context.Context, arg InsertNotificationHistoryParams) (NotificationHistory, error)
 	InsertOutboxEvent(ctx context.Context, arg InsertOutboxEventParams) (int64, error)
+	InsertProjectHistory(ctx context.Context, arg InsertProjectHistoryParams) error
 	InsertPushTicket(ctx context.Context, arg InsertPushTicketParams) error
 	InsertResourceHistory(ctx context.Context, arg InsertResourceHistoryParams) error
 	InsertRolePermission(ctx context.Context, arg InsertRolePermissionParams) error
@@ -199,6 +210,14 @@ type Querier interface {
 	ListPlatformNotifications(ctx context.Context, arg ListPlatformNotificationsParams) ([]Notification, error)
 	ListPlatformNotificationsForExport(ctx context.Context, arg ListPlatformNotificationsForExportParams) ([]Notification, error)
 	ListProductWorkspaces(ctx context.Context, arg ListProductWorkspacesParams) ([]Workspace, error)
+	ListProjectMembers(ctx context.Context, arg ListProjectMembersParams) ([]ListProjectMembersRow, error)
+	ListProjectMilestones(ctx context.Context, arg ListProjectMilestonesParams) ([]ProjectMilestone, error)
+	ListProjectResources(ctx context.Context, arg ListProjectResourcesParams) ([]ProjectResource, error)
+	ListProjectTeams(ctx context.Context, arg ListProjectTeamsParams) ([]Team, error)
+	// Cursor anchors identify immutable workspace/parent positions. Only outer rows
+	// apply archive filters, so archiving an already returned anchor cannot truncate
+	// a later page. A same-scope UUID remains a valid position across filters.
+	ListProjects(ctx context.Context, arg ListProjectsParams) ([]ListProjectsRow, error)
 	ListPushSubscriptionsByUser(ctx context.Context, userID int64) ([]PushSubscription, error)
 	ListRolePermissionSlugsByRoleUUID(ctx context.Context, argUuid uuid.UUID) ([]string, error)
 	ListRoleUUIDsForBulk(ctx context.Context, q_ pgtype.Text) ([]uuid.UUID, error)
@@ -214,6 +233,8 @@ type Querier interface {
 	ListStorageStarsByUser(ctx context.Context, userID int64) ([]StorageStar, error)
 	ListStorageTrash(ctx context.Context, arg ListStorageTrashParams) ([]StorageTrash, error)
 	ListStuckProcessingNotificationIDs(ctx context.Context, staleMinutes int32) ([]int64, error)
+	// Cursor anchors retain their workspace/team position after archive; archive
+	// filters apply to returned rows, never to the anchor lookup.
 	ListTeams(ctx context.Context, arg ListTeamsParams) ([]Team, error)
 	ListTenantRolePermissionSlugsByRoleID(ctx context.Context, roleID int64) ([]string, error)
 	ListUserRoleSlugs(ctx context.Context, userID int64) ([]string, error)
@@ -230,6 +251,8 @@ type Querier interface {
 	LockEventDelivery(ctx context.Context, arg LockEventDeliveryParams) (EventDelivery, error)
 	LockLabel(ctx context.Context, arg LockLabelParams) (LockLabelRow, error)
 	LockOrganizationRow(ctx context.Context, id int64) (Organization, error)
+	LockProject(ctx context.Context, arg LockProjectParams) (Project, error)
+	LockProjectLead(ctx context.Context, arg LockProjectLeadParams) (int64, error)
 	LockTeam(ctx context.Context, arg LockTeamParams) (Team, error)
 	MarkAllNotificationsReadForUser(ctx context.Context, userID pgtype.Int8) (int64, error)
 	MarkBulkJobCompleted(ctx context.Context, arg MarkBulkJobCompletedParams) (BulkJob, error)
@@ -255,6 +278,7 @@ type Querier interface {
 	MarkUserPasswordUnset(ctx context.Context, id int64) error
 	OutboxPayloadMatches(ctx context.Context, arg OutboxPayloadMatchesParams) (bool, error)
 	PingDB(ctx context.Context) (int32, error)
+	ProjectInternalWorkspace(ctx context.Context, argUuid uuid.UUID) (int64, error)
 	ProjectWorkspaceActivity(ctx context.Context, arg ProjectWorkspaceActivityParams) (int64, error)
 	QueueImportJob(ctx context.Context, argUuid uuid.UUID) (ImportJob, error)
 	ReclaimExpiredEventDeliveries(ctx context.Context, maxAttempts int32) (int64, error)
@@ -276,6 +300,9 @@ type Querier interface {
 	SetAppSettingsLogo(ctx context.Context, logoObjectKey pgtype.Text) (AppSetting, error)
 	SetOrganizationAccessWindow(ctx context.Context, arg SetOrganizationAccessWindowParams) (Organization, error)
 	SetOrganizationStatus(ctx context.Context, arg SetOrganizationStatusParams) (Organization, error)
+	SetProjectArchived(ctx context.Context, arg SetProjectArchivedParams) (Project, error)
+	SetProjectMilestoneArchived(ctx context.Context, arg SetProjectMilestoneArchivedParams) (ProjectMilestone, error)
+	SetProjectResourceArchived(ctx context.Context, arg SetProjectResourceArchivedParams) (ProjectResource, error)
 	SetRolePermissions(ctx context.Context, roleID int64) error
 	SetUserEmailVerified(ctx context.Context, id int64) (User, error)
 	SlugExists(ctx context.Context, slug string) (bool, error)
@@ -293,6 +320,9 @@ type Querier interface {
 	UpdateOrganization(ctx context.Context, arg UpdateOrganizationParams) (Organization, error)
 	UpdateOrganizationMemberRole(ctx context.Context, arg UpdateOrganizationMemberRoleParams) (OrganizationMember, error)
 	UpdateProductWorkspace(ctx context.Context, arg UpdateProductWorkspaceParams) (Workspace, error)
+	UpdateProject(ctx context.Context, arg UpdateProjectParams) (Project, error)
+	UpdateProjectMilestone(ctx context.Context, arg UpdateProjectMilestoneParams) (ProjectMilestone, error)
+	UpdateProjectResource(ctx context.Context, arg UpdateProjectResourceParams) (ProjectResource, error)
 	UpdateRole(ctx context.Context, arg UpdateRoleParams) (Role, error)
 	UpdateStepupSettings(ctx context.Context, arg UpdateStepupSettingsParams) (StepupSetting, error)
 	UpdateTeam(ctx context.Context, arg UpdateTeamParams) (Team, error)
@@ -309,6 +339,7 @@ type Querier interface {
 	UpdateWebAuthnCredentialName(ctx context.Context, arg UpdateWebAuthnCredentialNameParams) (WebauthnCredential, error)
 	UpdateWorkflowStatus(ctx context.Context, arg UpdateWorkflowStatusParams) (WorkflowStatus, error)
 	UpsertNotificationPreferences(ctx context.Context, arg UpsertNotificationPreferencesParams) (NotificationPreference, error)
+	UpsertProjectTeam(ctx context.Context, arg UpsertProjectTeamParams) error
 	// Mobile push devices (Expo) and their pending push tickets.
 	// A token moves to the calling user when the device switches accounts and is
 	// re-enabled on every registration.

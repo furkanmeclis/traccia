@@ -385,7 +385,7 @@ func (q *Queries) InsertResourceHistory(ctx context.Context, arg InsertResourceH
 }
 
 const listLabels = `-- name: ListLabels :many
-SELECT l.id, l.uuid, l.workspace_id, l.team_id, l.name, l.color, l.version, l.archived,COALESCE(t.uuid,'00000000-0000-0000-0000-000000000000'::uuid) AS team_uuid FROM labels l JOIN workspaces w ON w.id=l.workspace_id LEFT JOIN teams t ON t.id=l.team_id WHERE w.uuid=$1 AND l.archived=$2 AND ($3::uuid='00000000-0000-0000-0000-000000000000'::uuid OR l.uuid>(SELECT c.uuid FROM labels c WHERE c.workspace_id=l.workspace_id AND c.team_id IS NOT DISTINCT FROM l.team_id AND c.archived=$2 AND c.uuid=$3)) AND COALESCE(t.uuid,'00000000-0000-0000-0000-000000000000'::uuid)=$4 ORDER BY l.uuid LIMIT $5
+SELECT l.id, l.uuid, l.workspace_id, l.team_id, l.name, l.color, l.version, l.archived,COALESCE(t.uuid,'00000000-0000-0000-0000-000000000000'::uuid) AS team_uuid FROM labels l JOIN workspaces w ON w.id=l.workspace_id LEFT JOIN teams t ON t.id=l.team_id WHERE w.uuid=$1 AND l.archived=$2 AND ($3::uuid='00000000-0000-0000-0000-000000000000'::uuid OR l.uuid>(SELECT c.uuid FROM labels c WHERE c.workspace_id=l.workspace_id AND c.team_id IS NOT DISTINCT FROM l.team_id AND c.uuid=$3)) AND COALESCE(t.uuid,'00000000-0000-0000-0000-000000000000'::uuid)=$4 ORDER BY l.uuid LIMIT $5
 `
 
 type ListLabelsParams struct {
@@ -445,7 +445,7 @@ func (q *Queries) ListLabels(ctx context.Context, arg ListLabelsParams) ([]ListL
 }
 
 const listTeams = `-- name: ListTeams :many
-SELECT t.id, t.uuid, t.workspace_id, t.name, t.code, t.version, t.workflow_version, t.next_issue_number, t.archived, t.created_at, t.updated_at FROM teams t JOIN workspaces w ON w.id=t.workspace_id WHERE w.uuid=$1 AND t.archived=$2 AND ($3::uuid='00000000-0000-0000-0000-000000000000'::uuid OR t.uuid>(SELECT c.uuid FROM teams c WHERE c.workspace_id=t.workspace_id AND c.archived=$2 AND c.uuid=$3)) ORDER BY t.uuid LIMIT $4
+SELECT t.id, t.uuid, t.workspace_id, t.name, t.code, t.version, t.workflow_version, t.next_issue_number, t.archived, t.created_at, t.updated_at FROM teams t JOIN workspaces w ON w.id=t.workspace_id WHERE w.uuid=$1 AND t.archived=$2 AND ($3::uuid='00000000-0000-0000-0000-000000000000'::uuid OR t.uuid>(SELECT c.uuid FROM teams c WHERE c.workspace_id=t.workspace_id AND c.uuid=$3)) ORDER BY t.uuid LIMIT $4
 `
 
 type ListTeamsParams struct {
@@ -455,6 +455,8 @@ type ListTeamsParams struct {
 	Limit    int32     `json:"limit"`
 }
 
+// Cursor anchors retain their workspace/team position after archive; archive
+// filters apply to returned rows, never to the anchor lookup.
 func (q *Queries) ListTeams(ctx context.Context, arg ListTeamsParams) ([]Team, error) {
 	rows, err := q.db.Query(ctx, listTeams,
 		arg.Uuid,
@@ -494,7 +496,7 @@ func (q *Queries) ListTeams(ctx context.Context, arg ListTeamsParams) ([]Team, e
 
 const listWorkflowStatuses = `-- name: ListWorkflowStatuses :many
 SELECT s.id, s.uuid, s.workspace_id, s.team_id, s.name, s.category, s.color, s.position, s.version, s.archived FROM workflow_statuses s WHERE s.team_id=$1 AND s.archived=$2 AND
-($3::uuid='00000000-0000-0000-0000-000000000000'::uuid OR s.position>(SELECT c.position FROM workflow_statuses c WHERE c.team_id=$1 AND c.uuid=$3 AND c.archived=$2)) ORDER BY s.position LIMIT $4
+($3::uuid='00000000-0000-0000-0000-000000000000'::uuid OR s.position>(SELECT c.position FROM workflow_statuses c WHERE c.team_id=$1 AND c.uuid=$3)) ORDER BY s.position LIMIT $4
 `
 
 type ListWorkflowStatusesParams struct {
