@@ -1,4 +1,5 @@
 "use client";
+import type { components } from "@/generated/api";
 import { issueFieldKeys, issuePriorityKeys } from "./issue-copy";
 import { useId, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -35,6 +36,7 @@ export function IssueForm({
   canManage,
   reviewLatest,
   onDone,
+  createOverride,
 }: {
   workspaceId: string;
   issue?: Issue;
@@ -44,6 +46,11 @@ export function IssueForm({
   canManage: boolean;
   reviewLatest: () => Promise<unknown>;
   onDone?: () => void;
+  createOverride?: {
+    locked: boolean;
+    ready: boolean;
+    submit: (body: components["schemas"]["ProductIssuesCreateInput"]) => void;
+  };
 }) {
   const { t } = useLocale();
   const id = useId();
@@ -91,7 +98,11 @@ export function IssueForm({
     selection.isSuccess &&
     !selection.isError &&
     !selection.isFetching;
-  const ready = canManage && loaded && !stale;
+  const ready =
+    canManage &&
+    loaded &&
+    !stale &&
+    (!createOverride || (createOverride.ready && !createOverride.locked));
   const retained = !move && !!issue;
   const project = selection.data?.project;
   const validProject =
@@ -224,6 +235,10 @@ export function IssueForm({
           effort: draft.effort === "" ? null : Number(draft.effort),
           label_ids: [...draft.label_ids],
         };
+        if (!issue && createOverride) {
+          createOverride.submit({ ...metadata, team_id: draft.team_id });
+          return;
+        }
         mutation.submit(
           issue
             ? {
@@ -258,6 +273,7 @@ export function IssueForm({
         disabled={
           !canManage ||
           mutation.locked ||
+          createOverride?.locked ||
           stale ||
           !references.isSuccess ||
           references.isError
@@ -438,6 +454,7 @@ export function IssueForm({
                     disabled={
                       !canManage ||
                       mutation.locked ||
+                      createOverride?.locked ||
                       stale ||
                       !references.isSuccess ||
                       references.isError

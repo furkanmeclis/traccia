@@ -1,3 +1,5 @@
+import enDocuments from "@/locales/en/documents.json";
+import trDocuments from "@/locales/tr/documents.json";
 import type { AppLocale } from "@/config/i18n";
 
 import enAccess from "@/locales/en/access.json";
@@ -86,6 +88,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     products: trProducts,
     issues: trIssues,
     relations: trRelations,
+    documents: trDocuments,
     layout: trLayout,
     editor: trEditor,
     table: trTable,
@@ -122,6 +125,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     products: enProducts,
     issues: enIssues,
     relations: enRelations,
+    documents: enDocuments,
     layout: enLayout,
     editor: enEditor,
     table: enTable,

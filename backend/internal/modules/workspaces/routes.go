@@ -136,9 +136,9 @@ func serveOperation(w http.ResponseWriter, r *http.Request, registry *operations
 			response.Error(w, r, 415, "UNSUPPORTED_MEDIA_TYPE", "application/json is required")
 			return
 		}
-		body, err := io.ReadAll(http.MaxBytesReader(w, r.Body, 1<<20))
+		body, err := io.ReadAll(http.MaxBytesReader(w, r.Body, registry.InputReadLimit(meta.ID)))
 		if err != nil {
-			writeError(w, r, &operations.Error{Code: operations.Validation})
+			writeError(w, r, registry.InputReadError(meta.ID))
 			return
 		}
 		value, err := operations.DecodeJSON(body)

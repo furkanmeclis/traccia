@@ -8,6 +8,7 @@ import { useLocale } from "@/providers/locale-provider";
 import { useIssue } from "./queries";
 import { IssueMetadata } from "./issue-metadata";
 import { IssueForm } from "./issue-form";
+import { DocumentPanel } from "@/features/documents/document-panel";
 import { IssueRelations } from "@/features/issue-relations/relation-panel";
 import { IssueHistory } from "./issue-history";
 import {
@@ -184,6 +185,11 @@ export function IssueDetail({
             canMove={writable && !!query.data?.capabilities.move}
             restore={writable && !!query.data?.capabilities.restore}
             reviewLatest={reviewLatest}
+          />
+          <DocumentPanel
+            workspaceId={workspaceId}
+            owner={{ kind: "issue", id: issueId }}
+            metadataVersion={current.version}
           />
           <IssueRelations
             workspaceId={workspaceId}

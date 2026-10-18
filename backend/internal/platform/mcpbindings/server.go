@@ -68,15 +68,18 @@ func handler(registry *operations.Registry, contract operations.Contract, argume
 		if err != nil {
 			return fail(&operations.Error{Code: operations.Validation})
 		}
-		if err := arguments.Validate(value); err != nil {
-			return fail(&operations.Error{Code: operations.Validation})
-		}
 		var args struct {
 			WorkspaceID string          `json:"workspace_id"`
 			Key         string          `json:"idempotency_key"`
 			Input       json.RawMessage `json:"input"`
 		}
 		if err := json.Unmarshal(req.Params.Arguments, &args); err != nil {
+			return fail(&operations.Error{Code: operations.Validation})
+		}
+		if err := registry.ValidateWireInput(contract.Metadata.ID, args.Input); err != nil {
+			return fail(err)
+		}
+		if err := arguments.Validate(value); err != nil {
 			return fail(&operations.Error{Code: operations.Validation})
 		}
 		workspace := uuid.Nil

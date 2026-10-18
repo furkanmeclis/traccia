@@ -10,7 +10,8 @@ import { useLocale } from "@/providers/locale-provider";
 import { useWorkspace } from "@/features/workspaces/queries";
 import { useIssues, useIssueReferences } from "./queries";
 import { RelationPendingOperations } from "@/features/issue-relations/relation-operation";
-import { IssueForm } from "./issue-form";
+import { RichIssueForm } from "@/features/documents/rich-issue-form";
+import { DocumentPendingOperations } from "@/features/documents/document-operation";
 import { Section, LoadNotice, PendingOperations } from "./issue-ui";
 export function IssueList({
   workspaceId,
@@ -63,6 +64,7 @@ export function IssueList({
       />
       <PendingOperations workspaceId={workspaceId} canRun={() => !!manage} />
       <RelationPendingOperations workspaceId={workspaceId} />
+      <DocumentPendingOperations workspaceId={workspaceId} />
       <div hidden={!allowed} className="space-y-8">
         <div className="flex flex-wrap gap-3">
           {[false, true].map((archived) => (
@@ -169,7 +171,7 @@ export function IssueList({
         )}
         <div hidden={!showCreate}>
           <Section title={t("issues.create")}>
-            <IssueForm
+            <RichIssueForm
               key={JSON.stringify([workspaceId, user?.uuid])}
               workspaceId={workspaceId}
               initialTeam={initialTeam}

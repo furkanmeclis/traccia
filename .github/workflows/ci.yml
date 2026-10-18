@@ -91,6 +91,8 @@ jobs:
         run: |
           pnpm api:generate
           git diff --exit-code -- src/generated/api.d.ts
+      - name: Recursive document API generator regressions
+        run: node --test ../scripts/product-schema-integration.test.mjs
       - name: Project operation state regressions
         run: node --test src/features/projects/operation-state.test.mjs
       - name: Catalog operation, snapshot and Unicode regressions

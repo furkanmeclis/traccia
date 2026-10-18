@@ -108,6 +108,190 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/workspaces/{workspaceID}/documents/backlinks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * documents.backlinks
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["documents_backlinks"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/documents": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * documents.create
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["documents_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/documents/{documentID}/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * documents.export
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["documents_export"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/documents/{documentID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * documents.get
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["documents_get"];
+        /**
+         * documents.replace
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        put: operations["documents_replace"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/documents/{documentID}/revisions/{revisionID}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * documents.get_revision
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["documents_get_revision"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/documents/{documentID}/patch": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * documents.patch
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["documents_patch"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/documents/by-owner": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * documents.resolve
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["documents_resolve"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/documents/{documentID}/restore": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * documents.restore
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["documents_restore"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/documents/{documentID}/revisions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * documents.revisions
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        get: operations["documents_revisions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/workspaces/{workspaceID}/issues/{issueID}/relations/history": {
         parameters: {
             query?: never;
@@ -306,6 +490,26 @@ export interface paths {
          * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
          */
         post: operations["issues_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/workspaces/{workspaceID}/issues/rich": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * issues.create_rich
+         * @description Product membership and credential grants are checked in the shared application authorizer. No global administrator bypass. API audience credentials only on HTTP; MCP audience uses the shared MCP SDK binding. Network MCP transport remains roadmap work.
+         */
+        post: operations["issues_create_rich"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3454,6 +3658,5903 @@ export interface components {
             data: components["schemas"]["ProductDeliveriesReplayOutput"];
             meta: components["schemas"]["ProductResponseMeta"];
         };
+        ProductDocumentsBacklinksOutputDefinition0: components["schemas"]["ProductDocumentsBacklinksOutputDefinition11"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition18"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition19"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition20"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition17"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition14"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition2"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition15"];
+        ProductDocumentsBacklinksOutputDefinition1: components["schemas"]["ProductDocumentsBacklinksOutputDefinition4"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition7"];
+        ProductDocumentsBacklinksOutputDefinition2: {
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsBacklinksOutputDefinition3: {
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsBacklinksOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsBacklinksOutputDefinition5: components["schemas"]["ProductDocumentsBacklinksOutputDefinition11"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition18"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition19"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition20"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition17"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition14"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition2"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition3"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition9"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition10"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition15"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition13"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition4"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition7"];
+        ProductDocumentsBacklinksOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsBacklinksOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsBacklinksOutputDefinition8: components["schemas"]["ProductDocumentsBacklinksOutputDefinition16"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition9"] | components["schemas"]["ProductDocumentsBacklinksOutputDefinition10"];
+        ProductDocumentsBacklinksOutputDefinition9: {
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsBacklinksOutputDefinition10: {
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsBacklinksOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsBacklinksOutputDefinition12: {
+            node: components["schemas"]["ProductDocumentsBacklinksOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsBacklinksOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsBacklinksOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsBacklinksOutputDefinition13: {
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsBacklinksOutputDefinition14: {
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsBacklinksOutputDefinition15: {
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsBacklinksOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsBacklinksOutputDefinition17: {
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsBacklinksOutputDefinition18: {
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsBacklinksOutputDefinition19: {
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsBacklinksOutputDefinition20: {
+            children: components["schemas"]["ProductDocumentsBacklinksOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsBacklinksOutput: {
+            items: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                document_id: string;
+                /** @enum {string} */
+                owner_kind: "issue" | "project";
+                /** Format: uuid */
+                owner_id: string;
+                /** Format: uuid */
+                node_id: string;
+                /** Format: uuid */
+                revision: string;
+                value: string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductDocumentsBacklinksError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductDocumentsBacklinksDomainInputDefinition0: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition11"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition18"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition19"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition20"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition17"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition14"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition2"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition15"];
+        ProductDocumentsBacklinksDomainInputDefinition1: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition4"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition7"];
+        ProductDocumentsBacklinksDomainInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsBacklinksDomainInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsBacklinksDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsBacklinksDomainInputDefinition5: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition11"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition18"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition19"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition20"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition17"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition14"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition2"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition3"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition9"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition10"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition15"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition13"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition4"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition7"];
+        ProductDocumentsBacklinksDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsBacklinksDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsBacklinksDomainInputDefinition8: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition16"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition9"] | components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition10"];
+        ProductDocumentsBacklinksDomainInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsBacklinksDomainInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsBacklinksDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsBacklinksDomainInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsBacklinksDomainInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsBacklinksDomainInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsBacklinksDomainInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsBacklinksDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsBacklinksDomainInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsBacklinksDomainInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsBacklinksDomainInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsBacklinksDomainInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsBacklinksDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsBacklinksDomainInput: {
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** Format: uuid */
+            target_id: string;
+            limit: number;
+            after: string;
+        };
+        ProductDocumentsBacklinksEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductDocumentsBacklinksOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductDocumentsCreateInputDefinition0: components["schemas"]["ProductDocumentsCreateInputDefinition11"] | components["schemas"]["ProductDocumentsCreateInputDefinition18"] | components["schemas"]["ProductDocumentsCreateInputDefinition19"] | components["schemas"]["ProductDocumentsCreateInputDefinition20"] | components["schemas"]["ProductDocumentsCreateInputDefinition17"] | components["schemas"]["ProductDocumentsCreateInputDefinition14"] | components["schemas"]["ProductDocumentsCreateInputDefinition2"] | components["schemas"]["ProductDocumentsCreateInputDefinition15"];
+        ProductDocumentsCreateInputDefinition1: components["schemas"]["ProductDocumentsCreateInputDefinition4"] | components["schemas"]["ProductDocumentsCreateInputDefinition7"];
+        ProductDocumentsCreateInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsCreateInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsCreateInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsCreateInputDefinition5: components["schemas"]["ProductDocumentsCreateInputDefinition11"] | components["schemas"]["ProductDocumentsCreateInputDefinition18"] | components["schemas"]["ProductDocumentsCreateInputDefinition19"] | components["schemas"]["ProductDocumentsCreateInputDefinition20"] | components["schemas"]["ProductDocumentsCreateInputDefinition17"] | components["schemas"]["ProductDocumentsCreateInputDefinition14"] | components["schemas"]["ProductDocumentsCreateInputDefinition2"] | components["schemas"]["ProductDocumentsCreateInputDefinition3"] | components["schemas"]["ProductDocumentsCreateInputDefinition9"] | components["schemas"]["ProductDocumentsCreateInputDefinition10"] | components["schemas"]["ProductDocumentsCreateInputDefinition15"] | components["schemas"]["ProductDocumentsCreateInputDefinition13"] | components["schemas"]["ProductDocumentsCreateInputDefinition4"] | components["schemas"]["ProductDocumentsCreateInputDefinition7"];
+        ProductDocumentsCreateInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsCreateInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsCreateInputDefinition8: components["schemas"]["ProductDocumentsCreateInputDefinition16"] | components["schemas"]["ProductDocumentsCreateInputDefinition9"] | components["schemas"]["ProductDocumentsCreateInputDefinition10"];
+        ProductDocumentsCreateInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsCreateInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsCreateInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsCreateInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsCreateInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsCreateInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsCreateInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsCreateInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsCreateInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsCreateInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsCreateInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsCreateInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsCreateInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsCreateInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsCreateInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsCreateInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsCreateInput: {
+            /** @enum {string} */
+            owner_kind: "issue" | "project";
+            /** Format: uuid */
+            owner_id: string;
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            content: components["schemas"]["ProductDocumentsCreateInputDefinition0"][];
+        };
+        ProductDocumentsCreateOutputDefinition0: components["schemas"]["ProductDocumentsCreateOutputDefinition11"] | components["schemas"]["ProductDocumentsCreateOutputDefinition18"] | components["schemas"]["ProductDocumentsCreateOutputDefinition19"] | components["schemas"]["ProductDocumentsCreateOutputDefinition20"] | components["schemas"]["ProductDocumentsCreateOutputDefinition17"] | components["schemas"]["ProductDocumentsCreateOutputDefinition14"] | components["schemas"]["ProductDocumentsCreateOutputDefinition2"] | components["schemas"]["ProductDocumentsCreateOutputDefinition15"];
+        ProductDocumentsCreateOutputDefinition1: components["schemas"]["ProductDocumentsCreateOutputDefinition4"] | components["schemas"]["ProductDocumentsCreateOutputDefinition7"];
+        ProductDocumentsCreateOutputDefinition2: {
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsCreateOutputDefinition3: {
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsCreateOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsCreateOutputDefinition5: components["schemas"]["ProductDocumentsCreateOutputDefinition11"] | components["schemas"]["ProductDocumentsCreateOutputDefinition18"] | components["schemas"]["ProductDocumentsCreateOutputDefinition19"] | components["schemas"]["ProductDocumentsCreateOutputDefinition20"] | components["schemas"]["ProductDocumentsCreateOutputDefinition17"] | components["schemas"]["ProductDocumentsCreateOutputDefinition14"] | components["schemas"]["ProductDocumentsCreateOutputDefinition2"] | components["schemas"]["ProductDocumentsCreateOutputDefinition3"] | components["schemas"]["ProductDocumentsCreateOutputDefinition9"] | components["schemas"]["ProductDocumentsCreateOutputDefinition10"] | components["schemas"]["ProductDocumentsCreateOutputDefinition15"] | components["schemas"]["ProductDocumentsCreateOutputDefinition13"] | components["schemas"]["ProductDocumentsCreateOutputDefinition4"] | components["schemas"]["ProductDocumentsCreateOutputDefinition7"];
+        ProductDocumentsCreateOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsCreateOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsCreateOutputDefinition8: components["schemas"]["ProductDocumentsCreateOutputDefinition16"] | components["schemas"]["ProductDocumentsCreateOutputDefinition9"] | components["schemas"]["ProductDocumentsCreateOutputDefinition10"];
+        ProductDocumentsCreateOutputDefinition9: {
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsCreateOutputDefinition10: {
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsCreateOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsCreateOutputDefinition12: {
+            node: components["schemas"]["ProductDocumentsCreateOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsCreateOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsCreateOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsCreateOutputDefinition13: {
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsCreateOutputDefinition14: {
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsCreateOutputDefinition15: {
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsCreateOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsCreateOutputDefinition17: {
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsCreateOutputDefinition18: {
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsCreateOutputDefinition19: {
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsCreateOutputDefinition20: {
+            children: components["schemas"]["ProductDocumentsCreateOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsCreateOutput: {
+            document: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @enum {string} */
+                owner_kind: "issue" | "project";
+                /** Format: uuid */
+                owner_id: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                /** Format: uuid */
+                revision: string;
+                content: components["schemas"]["ProductDocumentsCreateOutputDefinition0"][];
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                };
+            };
+        };
+        ProductDocumentsCreateError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductDocumentsCreateDomainInputDefinition0: components["schemas"]["ProductDocumentsCreateDomainInputDefinition11"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition18"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition19"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition20"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition17"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition14"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition2"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition15"];
+        ProductDocumentsCreateDomainInputDefinition1: components["schemas"]["ProductDocumentsCreateDomainInputDefinition4"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition7"];
+        ProductDocumentsCreateDomainInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsCreateDomainInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsCreateDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsCreateDomainInputDefinition5: components["schemas"]["ProductDocumentsCreateDomainInputDefinition11"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition18"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition19"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition20"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition17"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition14"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition2"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition3"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition9"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition10"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition15"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition13"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition4"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition7"];
+        ProductDocumentsCreateDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsCreateDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsCreateDomainInputDefinition8: components["schemas"]["ProductDocumentsCreateDomainInputDefinition16"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition9"] | components["schemas"]["ProductDocumentsCreateDomainInputDefinition10"];
+        ProductDocumentsCreateDomainInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsCreateDomainInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsCreateDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsCreateDomainInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsCreateDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsCreateDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsCreateDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsCreateDomainInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsCreateDomainInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsCreateDomainInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsCreateDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsCreateDomainInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsCreateDomainInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsCreateDomainInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsCreateDomainInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsCreateDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsCreateDomainInput: {
+            /** @enum {string} */
+            owner_kind: "issue" | "project";
+            /** Format: uuid */
+            owner_id: string;
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            content: components["schemas"]["ProductDocumentsCreateDomainInputDefinition0"][];
+        };
+        ProductDocumentsCreateEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductDocumentsCreateOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductDocumentsExportOutputDefinition0: components["schemas"]["ProductDocumentsExportOutputDefinition11"] | components["schemas"]["ProductDocumentsExportOutputDefinition18"] | components["schemas"]["ProductDocumentsExportOutputDefinition19"] | components["schemas"]["ProductDocumentsExportOutputDefinition20"] | components["schemas"]["ProductDocumentsExportOutputDefinition17"] | components["schemas"]["ProductDocumentsExportOutputDefinition14"] | components["schemas"]["ProductDocumentsExportOutputDefinition2"] | components["schemas"]["ProductDocumentsExportOutputDefinition15"];
+        ProductDocumentsExportOutputDefinition1: components["schemas"]["ProductDocumentsExportOutputDefinition4"] | components["schemas"]["ProductDocumentsExportOutputDefinition7"];
+        ProductDocumentsExportOutputDefinition2: {
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsExportOutputDefinition3: {
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsExportOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsExportOutputDefinition5: components["schemas"]["ProductDocumentsExportOutputDefinition11"] | components["schemas"]["ProductDocumentsExportOutputDefinition18"] | components["schemas"]["ProductDocumentsExportOutputDefinition19"] | components["schemas"]["ProductDocumentsExportOutputDefinition20"] | components["schemas"]["ProductDocumentsExportOutputDefinition17"] | components["schemas"]["ProductDocumentsExportOutputDefinition14"] | components["schemas"]["ProductDocumentsExportOutputDefinition2"] | components["schemas"]["ProductDocumentsExportOutputDefinition3"] | components["schemas"]["ProductDocumentsExportOutputDefinition9"] | components["schemas"]["ProductDocumentsExportOutputDefinition10"] | components["schemas"]["ProductDocumentsExportOutputDefinition15"] | components["schemas"]["ProductDocumentsExportOutputDefinition13"] | components["schemas"]["ProductDocumentsExportOutputDefinition4"] | components["schemas"]["ProductDocumentsExportOutputDefinition7"];
+        ProductDocumentsExportOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsExportOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsExportOutputDefinition8: components["schemas"]["ProductDocumentsExportOutputDefinition16"] | components["schemas"]["ProductDocumentsExportOutputDefinition9"] | components["schemas"]["ProductDocumentsExportOutputDefinition10"];
+        ProductDocumentsExportOutputDefinition9: {
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsExportOutputDefinition10: {
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsExportOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsExportOutputDefinition12: {
+            node: components["schemas"]["ProductDocumentsExportOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsExportOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsExportOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsExportOutputDefinition13: {
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsExportOutputDefinition14: {
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsExportOutputDefinition15: {
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsExportOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsExportOutputDefinition17: {
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsExportOutputDefinition18: {
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsExportOutputDefinition19: {
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsExportOutputDefinition20: {
+            children: components["schemas"]["ProductDocumentsExportOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsExportOutput: {
+            /** Format: uuid */
+            document_id: string;
+            /** Format: uuid */
+            revision: string;
+            /** @enum {string} */
+            format: "html" | "json" | "markdown";
+            content: string;
+            losses: null | string[];
+            renderer_version: number;
+        };
+        ProductDocumentsExportError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductDocumentsExportDomainInputDefinition0: components["schemas"]["ProductDocumentsExportDomainInputDefinition11"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition18"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition19"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition20"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition17"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition14"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition2"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition15"];
+        ProductDocumentsExportDomainInputDefinition1: components["schemas"]["ProductDocumentsExportDomainInputDefinition4"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition7"];
+        ProductDocumentsExportDomainInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsExportDomainInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsExportDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsExportDomainInputDefinition5: components["schemas"]["ProductDocumentsExportDomainInputDefinition11"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition18"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition19"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition20"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition17"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition14"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition2"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition3"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition9"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition10"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition15"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition13"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition4"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition7"];
+        ProductDocumentsExportDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsExportDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsExportDomainInputDefinition8: components["schemas"]["ProductDocumentsExportDomainInputDefinition16"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition9"] | components["schemas"]["ProductDocumentsExportDomainInputDefinition10"];
+        ProductDocumentsExportDomainInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsExportDomainInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsExportDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsExportDomainInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsExportDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsExportDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsExportDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsExportDomainInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsExportDomainInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsExportDomainInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsExportDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsExportDomainInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsExportDomainInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsExportDomainInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsExportDomainInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsExportDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsExportDomainInput: {
+            /** Format: uuid */
+            document_id: string;
+            /** @enum {string} */
+            format: "html" | "json" | "markdown";
+        };
+        ProductDocumentsExportEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductDocumentsExportOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductDocumentsGetOutputDefinition0: components["schemas"]["ProductDocumentsGetOutputDefinition11"] | components["schemas"]["ProductDocumentsGetOutputDefinition18"] | components["schemas"]["ProductDocumentsGetOutputDefinition19"] | components["schemas"]["ProductDocumentsGetOutputDefinition20"] | components["schemas"]["ProductDocumentsGetOutputDefinition17"] | components["schemas"]["ProductDocumentsGetOutputDefinition14"] | components["schemas"]["ProductDocumentsGetOutputDefinition2"] | components["schemas"]["ProductDocumentsGetOutputDefinition15"];
+        ProductDocumentsGetOutputDefinition1: components["schemas"]["ProductDocumentsGetOutputDefinition4"] | components["schemas"]["ProductDocumentsGetOutputDefinition7"];
+        ProductDocumentsGetOutputDefinition2: {
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsGetOutputDefinition3: {
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsGetOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsGetOutputDefinition5: components["schemas"]["ProductDocumentsGetOutputDefinition11"] | components["schemas"]["ProductDocumentsGetOutputDefinition18"] | components["schemas"]["ProductDocumentsGetOutputDefinition19"] | components["schemas"]["ProductDocumentsGetOutputDefinition20"] | components["schemas"]["ProductDocumentsGetOutputDefinition17"] | components["schemas"]["ProductDocumentsGetOutputDefinition14"] | components["schemas"]["ProductDocumentsGetOutputDefinition2"] | components["schemas"]["ProductDocumentsGetOutputDefinition3"] | components["schemas"]["ProductDocumentsGetOutputDefinition9"] | components["schemas"]["ProductDocumentsGetOutputDefinition10"] | components["schemas"]["ProductDocumentsGetOutputDefinition15"] | components["schemas"]["ProductDocumentsGetOutputDefinition13"] | components["schemas"]["ProductDocumentsGetOutputDefinition4"] | components["schemas"]["ProductDocumentsGetOutputDefinition7"];
+        ProductDocumentsGetOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsGetOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsGetOutputDefinition8: components["schemas"]["ProductDocumentsGetOutputDefinition16"] | components["schemas"]["ProductDocumentsGetOutputDefinition9"] | components["schemas"]["ProductDocumentsGetOutputDefinition10"];
+        ProductDocumentsGetOutputDefinition9: {
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsGetOutputDefinition10: {
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsGetOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsGetOutputDefinition12: {
+            node: components["schemas"]["ProductDocumentsGetOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsGetOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsGetOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsGetOutputDefinition13: {
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsGetOutputDefinition14: {
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsGetOutputDefinition15: {
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsGetOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsGetOutputDefinition17: {
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsGetOutputDefinition18: {
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsGetOutputDefinition19: {
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsGetOutputDefinition20: {
+            children: components["schemas"]["ProductDocumentsGetOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsGetOutput: {
+            document: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @enum {string} */
+                owner_kind: "issue" | "project";
+                /** Format: uuid */
+                owner_id: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                /** Format: uuid */
+                revision: string;
+                content: components["schemas"]["ProductDocumentsGetOutputDefinition0"][];
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                };
+            };
+        };
+        ProductDocumentsGetError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductDocumentsGetDomainInputDefinition0: components["schemas"]["ProductDocumentsGetDomainInputDefinition11"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition18"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition19"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition20"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition17"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition14"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition2"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition15"];
+        ProductDocumentsGetDomainInputDefinition1: components["schemas"]["ProductDocumentsGetDomainInputDefinition4"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition7"];
+        ProductDocumentsGetDomainInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsGetDomainInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsGetDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsGetDomainInputDefinition5: components["schemas"]["ProductDocumentsGetDomainInputDefinition11"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition18"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition19"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition20"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition17"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition14"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition2"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition3"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition9"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition10"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition15"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition13"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition4"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition7"];
+        ProductDocumentsGetDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsGetDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsGetDomainInputDefinition8: components["schemas"]["ProductDocumentsGetDomainInputDefinition16"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition9"] | components["schemas"]["ProductDocumentsGetDomainInputDefinition10"];
+        ProductDocumentsGetDomainInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsGetDomainInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsGetDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsGetDomainInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsGetDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsGetDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsGetDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsGetDomainInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsGetDomainInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsGetDomainInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsGetDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsGetDomainInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsGetDomainInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsGetDomainInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsGetDomainInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsGetDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsGetDomainInput: {
+            /** Format: uuid */
+            document_id: string;
+        };
+        ProductDocumentsGetEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductDocumentsGetOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductDocumentsGetRevisionOutputDefinition0: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition11"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition18"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition19"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition20"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition17"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition14"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition2"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition15"];
+        ProductDocumentsGetRevisionOutputDefinition1: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition4"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition7"];
+        ProductDocumentsGetRevisionOutputDefinition2: {
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsGetRevisionOutputDefinition3: {
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsGetRevisionOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsGetRevisionOutputDefinition5: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition11"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition18"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition19"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition20"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition17"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition14"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition2"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition3"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition9"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition10"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition15"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition13"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition4"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition7"];
+        ProductDocumentsGetRevisionOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsGetRevisionOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsGetRevisionOutputDefinition8: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition16"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition9"] | components["schemas"]["ProductDocumentsGetRevisionOutputDefinition10"];
+        ProductDocumentsGetRevisionOutputDefinition9: {
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsGetRevisionOutputDefinition10: {
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsGetRevisionOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsGetRevisionOutputDefinition12: {
+            node: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsGetRevisionOutputDefinition13: {
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsGetRevisionOutputDefinition14: {
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsGetRevisionOutputDefinition15: {
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsGetRevisionOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsGetRevisionOutputDefinition17: {
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsGetRevisionOutputDefinition18: {
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsGetRevisionOutputDefinition19: {
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsGetRevisionOutputDefinition20: {
+            children: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsGetRevisionOutput: {
+            document: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @enum {string} */
+                owner_kind: "issue" | "project";
+                /** Format: uuid */
+                owner_id: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                /** Format: uuid */
+                revision: string;
+                content: components["schemas"]["ProductDocumentsGetRevisionOutputDefinition0"][];
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                };
+            };
+            revision: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                document_id: string;
+                parent_revision: string | null;
+                /** @enum {string} */
+                kind: "create" | "replace" | "patch" | "restore";
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: date-time */
+                occurred_at: string;
+            };
+        };
+        ProductDocumentsGetRevisionError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition0: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition11"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition18"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition19"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition20"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition17"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition14"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition2"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition15"];
+        ProductDocumentsGetRevisionDomainInputDefinition1: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition4"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition7"];
+        ProductDocumentsGetRevisionDomainInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition5: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition11"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition18"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition19"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition20"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition17"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition14"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition2"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition3"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition9"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition10"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition15"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition13"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition4"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition7"];
+        ProductDocumentsGetRevisionDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition8: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition16"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition9"] | components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition10"];
+        ProductDocumentsGetRevisionDomainInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsGetRevisionDomainInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsGetRevisionDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsGetRevisionDomainInput: {
+            /** Format: uuid */
+            document_id: string;
+            /** Format: uuid */
+            revision_id: string;
+        };
+        ProductDocumentsGetRevisionEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductDocumentsGetRevisionOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductDocumentsPatchInputDefinition0: components["schemas"]["ProductDocumentsPatchInputDefinition11"] | components["schemas"]["ProductDocumentsPatchInputDefinition18"] | components["schemas"]["ProductDocumentsPatchInputDefinition19"] | components["schemas"]["ProductDocumentsPatchInputDefinition20"] | components["schemas"]["ProductDocumentsPatchInputDefinition17"] | components["schemas"]["ProductDocumentsPatchInputDefinition14"] | components["schemas"]["ProductDocumentsPatchInputDefinition2"] | components["schemas"]["ProductDocumentsPatchInputDefinition15"];
+        ProductDocumentsPatchInputDefinition1: components["schemas"]["ProductDocumentsPatchInputDefinition4"] | components["schemas"]["ProductDocumentsPatchInputDefinition7"];
+        ProductDocumentsPatchInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsPatchInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsPatchInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsPatchInputDefinition5: components["schemas"]["ProductDocumentsPatchInputDefinition11"] | components["schemas"]["ProductDocumentsPatchInputDefinition18"] | components["schemas"]["ProductDocumentsPatchInputDefinition19"] | components["schemas"]["ProductDocumentsPatchInputDefinition20"] | components["schemas"]["ProductDocumentsPatchInputDefinition17"] | components["schemas"]["ProductDocumentsPatchInputDefinition14"] | components["schemas"]["ProductDocumentsPatchInputDefinition2"] | components["schemas"]["ProductDocumentsPatchInputDefinition3"] | components["schemas"]["ProductDocumentsPatchInputDefinition9"] | components["schemas"]["ProductDocumentsPatchInputDefinition10"] | components["schemas"]["ProductDocumentsPatchInputDefinition15"] | components["schemas"]["ProductDocumentsPatchInputDefinition13"] | components["schemas"]["ProductDocumentsPatchInputDefinition4"] | components["schemas"]["ProductDocumentsPatchInputDefinition7"];
+        ProductDocumentsPatchInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsPatchInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsPatchInputDefinition8: components["schemas"]["ProductDocumentsPatchInputDefinition16"] | components["schemas"]["ProductDocumentsPatchInputDefinition9"] | components["schemas"]["ProductDocumentsPatchInputDefinition10"];
+        ProductDocumentsPatchInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsPatchInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsPatchInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsPatchInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsPatchInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsPatchInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsPatchInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsPatchInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsPatchInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsPatchInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsPatchInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsPatchInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsPatchInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsPatchInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsPatchInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsPatchInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsPatchInput: {
+            /** Format: uuid */
+            expected_revision: string;
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            patches: components["schemas"]["ProductDocumentsPatchInputDefinition12"][];
+        };
+        ProductDocumentsPatchOutputDefinition0: components["schemas"]["ProductDocumentsPatchOutputDefinition11"] | components["schemas"]["ProductDocumentsPatchOutputDefinition18"] | components["schemas"]["ProductDocumentsPatchOutputDefinition19"] | components["schemas"]["ProductDocumentsPatchOutputDefinition20"] | components["schemas"]["ProductDocumentsPatchOutputDefinition17"] | components["schemas"]["ProductDocumentsPatchOutputDefinition14"] | components["schemas"]["ProductDocumentsPatchOutputDefinition2"] | components["schemas"]["ProductDocumentsPatchOutputDefinition15"];
+        ProductDocumentsPatchOutputDefinition1: components["schemas"]["ProductDocumentsPatchOutputDefinition4"] | components["schemas"]["ProductDocumentsPatchOutputDefinition7"];
+        ProductDocumentsPatchOutputDefinition2: {
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsPatchOutputDefinition3: {
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsPatchOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsPatchOutputDefinition5: components["schemas"]["ProductDocumentsPatchOutputDefinition11"] | components["schemas"]["ProductDocumentsPatchOutputDefinition18"] | components["schemas"]["ProductDocumentsPatchOutputDefinition19"] | components["schemas"]["ProductDocumentsPatchOutputDefinition20"] | components["schemas"]["ProductDocumentsPatchOutputDefinition17"] | components["schemas"]["ProductDocumentsPatchOutputDefinition14"] | components["schemas"]["ProductDocumentsPatchOutputDefinition2"] | components["schemas"]["ProductDocumentsPatchOutputDefinition3"] | components["schemas"]["ProductDocumentsPatchOutputDefinition9"] | components["schemas"]["ProductDocumentsPatchOutputDefinition10"] | components["schemas"]["ProductDocumentsPatchOutputDefinition15"] | components["schemas"]["ProductDocumentsPatchOutputDefinition13"] | components["schemas"]["ProductDocumentsPatchOutputDefinition4"] | components["schemas"]["ProductDocumentsPatchOutputDefinition7"];
+        ProductDocumentsPatchOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsPatchOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsPatchOutputDefinition8: components["schemas"]["ProductDocumentsPatchOutputDefinition16"] | components["schemas"]["ProductDocumentsPatchOutputDefinition9"] | components["schemas"]["ProductDocumentsPatchOutputDefinition10"];
+        ProductDocumentsPatchOutputDefinition9: {
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsPatchOutputDefinition10: {
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsPatchOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsPatchOutputDefinition12: {
+            node: components["schemas"]["ProductDocumentsPatchOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsPatchOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsPatchOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsPatchOutputDefinition13: {
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsPatchOutputDefinition14: {
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsPatchOutputDefinition15: {
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsPatchOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsPatchOutputDefinition17: {
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsPatchOutputDefinition18: {
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsPatchOutputDefinition19: {
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsPatchOutputDefinition20: {
+            children: components["schemas"]["ProductDocumentsPatchOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsPatchOutput: {
+            document: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @enum {string} */
+                owner_kind: "issue" | "project";
+                /** Format: uuid */
+                owner_id: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                /** Format: uuid */
+                revision: string;
+                content: components["schemas"]["ProductDocumentsPatchOutputDefinition0"][];
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                };
+            };
+        };
+        ProductDocumentsPatchError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductDocumentsPatchDomainInputDefinition0: components["schemas"]["ProductDocumentsPatchDomainInputDefinition11"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition18"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition19"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition20"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition17"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition14"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition2"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition15"];
+        ProductDocumentsPatchDomainInputDefinition1: components["schemas"]["ProductDocumentsPatchDomainInputDefinition4"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition7"];
+        ProductDocumentsPatchDomainInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsPatchDomainInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsPatchDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsPatchDomainInputDefinition5: components["schemas"]["ProductDocumentsPatchDomainInputDefinition11"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition18"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition19"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition20"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition17"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition14"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition2"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition3"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition9"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition10"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition15"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition13"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition4"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition7"];
+        ProductDocumentsPatchDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsPatchDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsPatchDomainInputDefinition8: components["schemas"]["ProductDocumentsPatchDomainInputDefinition16"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition9"] | components["schemas"]["ProductDocumentsPatchDomainInputDefinition10"];
+        ProductDocumentsPatchDomainInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsPatchDomainInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsPatchDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsPatchDomainInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsPatchDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsPatchDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsPatchDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsPatchDomainInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsPatchDomainInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsPatchDomainInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsPatchDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsPatchDomainInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsPatchDomainInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsPatchDomainInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsPatchDomainInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsPatchDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsPatchDomainInput: {
+            /** Format: uuid */
+            document_id: string;
+            /** Format: uuid */
+            expected_revision: string;
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            patches: components["schemas"]["ProductDocumentsPatchDomainInputDefinition12"][];
+        };
+        ProductDocumentsPatchEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductDocumentsPatchOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductDocumentsReplaceInputDefinition0: components["schemas"]["ProductDocumentsReplaceInputDefinition11"] | components["schemas"]["ProductDocumentsReplaceInputDefinition18"] | components["schemas"]["ProductDocumentsReplaceInputDefinition19"] | components["schemas"]["ProductDocumentsReplaceInputDefinition20"] | components["schemas"]["ProductDocumentsReplaceInputDefinition17"] | components["schemas"]["ProductDocumentsReplaceInputDefinition14"] | components["schemas"]["ProductDocumentsReplaceInputDefinition2"] | components["schemas"]["ProductDocumentsReplaceInputDefinition15"];
+        ProductDocumentsReplaceInputDefinition1: components["schemas"]["ProductDocumentsReplaceInputDefinition4"] | components["schemas"]["ProductDocumentsReplaceInputDefinition7"];
+        ProductDocumentsReplaceInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsReplaceInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsReplaceInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsReplaceInputDefinition5: components["schemas"]["ProductDocumentsReplaceInputDefinition11"] | components["schemas"]["ProductDocumentsReplaceInputDefinition18"] | components["schemas"]["ProductDocumentsReplaceInputDefinition19"] | components["schemas"]["ProductDocumentsReplaceInputDefinition20"] | components["schemas"]["ProductDocumentsReplaceInputDefinition17"] | components["schemas"]["ProductDocumentsReplaceInputDefinition14"] | components["schemas"]["ProductDocumentsReplaceInputDefinition2"] | components["schemas"]["ProductDocumentsReplaceInputDefinition3"] | components["schemas"]["ProductDocumentsReplaceInputDefinition9"] | components["schemas"]["ProductDocumentsReplaceInputDefinition10"] | components["schemas"]["ProductDocumentsReplaceInputDefinition15"] | components["schemas"]["ProductDocumentsReplaceInputDefinition13"] | components["schemas"]["ProductDocumentsReplaceInputDefinition4"] | components["schemas"]["ProductDocumentsReplaceInputDefinition7"];
+        ProductDocumentsReplaceInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsReplaceInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsReplaceInputDefinition8: components["schemas"]["ProductDocumentsReplaceInputDefinition16"] | components["schemas"]["ProductDocumentsReplaceInputDefinition9"] | components["schemas"]["ProductDocumentsReplaceInputDefinition10"];
+        ProductDocumentsReplaceInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsReplaceInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsReplaceInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsReplaceInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsReplaceInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsReplaceInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsReplaceInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsReplaceInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsReplaceInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsReplaceInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsReplaceInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsReplaceInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsReplaceInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsReplaceInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsReplaceInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsReplaceInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsReplaceInput: {
+            /** Format: uuid */
+            expected_revision: string;
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            content: components["schemas"]["ProductDocumentsReplaceInputDefinition0"][];
+        };
+        ProductDocumentsReplaceOutputDefinition0: components["schemas"]["ProductDocumentsReplaceOutputDefinition11"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition18"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition19"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition20"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition17"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition14"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition2"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition15"];
+        ProductDocumentsReplaceOutputDefinition1: components["schemas"]["ProductDocumentsReplaceOutputDefinition4"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition7"];
+        ProductDocumentsReplaceOutputDefinition2: {
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsReplaceOutputDefinition3: {
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsReplaceOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsReplaceOutputDefinition5: components["schemas"]["ProductDocumentsReplaceOutputDefinition11"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition18"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition19"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition20"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition17"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition14"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition2"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition3"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition9"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition10"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition15"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition13"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition4"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition7"];
+        ProductDocumentsReplaceOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsReplaceOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsReplaceOutputDefinition8: components["schemas"]["ProductDocumentsReplaceOutputDefinition16"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition9"] | components["schemas"]["ProductDocumentsReplaceOutputDefinition10"];
+        ProductDocumentsReplaceOutputDefinition9: {
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsReplaceOutputDefinition10: {
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsReplaceOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsReplaceOutputDefinition12: {
+            node: components["schemas"]["ProductDocumentsReplaceOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsReplaceOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsReplaceOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsReplaceOutputDefinition13: {
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsReplaceOutputDefinition14: {
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsReplaceOutputDefinition15: {
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsReplaceOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsReplaceOutputDefinition17: {
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsReplaceOutputDefinition18: {
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsReplaceOutputDefinition19: {
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsReplaceOutputDefinition20: {
+            children: components["schemas"]["ProductDocumentsReplaceOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsReplaceOutput: {
+            document: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @enum {string} */
+                owner_kind: "issue" | "project";
+                /** Format: uuid */
+                owner_id: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                /** Format: uuid */
+                revision: string;
+                content: components["schemas"]["ProductDocumentsReplaceOutputDefinition0"][];
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                };
+            };
+        };
+        ProductDocumentsReplaceError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductDocumentsReplaceDomainInputDefinition0: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition11"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition18"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition19"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition20"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition17"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition14"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition2"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition15"];
+        ProductDocumentsReplaceDomainInputDefinition1: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition4"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition7"];
+        ProductDocumentsReplaceDomainInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsReplaceDomainInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsReplaceDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsReplaceDomainInputDefinition5: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition11"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition18"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition19"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition20"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition17"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition14"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition2"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition3"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition9"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition10"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition15"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition13"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition4"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition7"];
+        ProductDocumentsReplaceDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsReplaceDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsReplaceDomainInputDefinition8: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition16"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition9"] | components["schemas"]["ProductDocumentsReplaceDomainInputDefinition10"];
+        ProductDocumentsReplaceDomainInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsReplaceDomainInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsReplaceDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsReplaceDomainInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsReplaceDomainInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsReplaceDomainInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsReplaceDomainInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsReplaceDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsReplaceDomainInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsReplaceDomainInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsReplaceDomainInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsReplaceDomainInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsReplaceDomainInput: {
+            /** Format: uuid */
+            document_id: string;
+            /** Format: uuid */
+            expected_revision: string;
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            content: components["schemas"]["ProductDocumentsReplaceDomainInputDefinition0"][];
+        };
+        ProductDocumentsReplaceEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductDocumentsReplaceOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductDocumentsResolveOutputDefinition0: components["schemas"]["ProductDocumentsResolveOutputDefinition11"] | components["schemas"]["ProductDocumentsResolveOutputDefinition18"] | components["schemas"]["ProductDocumentsResolveOutputDefinition19"] | components["schemas"]["ProductDocumentsResolveOutputDefinition20"] | components["schemas"]["ProductDocumentsResolveOutputDefinition17"] | components["schemas"]["ProductDocumentsResolveOutputDefinition14"] | components["schemas"]["ProductDocumentsResolveOutputDefinition2"] | components["schemas"]["ProductDocumentsResolveOutputDefinition15"];
+        ProductDocumentsResolveOutputDefinition1: components["schemas"]["ProductDocumentsResolveOutputDefinition4"] | components["schemas"]["ProductDocumentsResolveOutputDefinition7"];
+        ProductDocumentsResolveOutputDefinition2: {
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsResolveOutputDefinition3: {
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsResolveOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsResolveOutputDefinition5: components["schemas"]["ProductDocumentsResolveOutputDefinition11"] | components["schemas"]["ProductDocumentsResolveOutputDefinition18"] | components["schemas"]["ProductDocumentsResolveOutputDefinition19"] | components["schemas"]["ProductDocumentsResolveOutputDefinition20"] | components["schemas"]["ProductDocumentsResolveOutputDefinition17"] | components["schemas"]["ProductDocumentsResolveOutputDefinition14"] | components["schemas"]["ProductDocumentsResolveOutputDefinition2"] | components["schemas"]["ProductDocumentsResolveOutputDefinition3"] | components["schemas"]["ProductDocumentsResolveOutputDefinition9"] | components["schemas"]["ProductDocumentsResolveOutputDefinition10"] | components["schemas"]["ProductDocumentsResolveOutputDefinition15"] | components["schemas"]["ProductDocumentsResolveOutputDefinition13"] | components["schemas"]["ProductDocumentsResolveOutputDefinition4"] | components["schemas"]["ProductDocumentsResolveOutputDefinition7"];
+        ProductDocumentsResolveOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsResolveOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsResolveOutputDefinition8: components["schemas"]["ProductDocumentsResolveOutputDefinition16"] | components["schemas"]["ProductDocumentsResolveOutputDefinition9"] | components["schemas"]["ProductDocumentsResolveOutputDefinition10"];
+        ProductDocumentsResolveOutputDefinition9: {
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsResolveOutputDefinition10: {
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsResolveOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsResolveOutputDefinition12: {
+            node: components["schemas"]["ProductDocumentsResolveOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsResolveOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsResolveOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsResolveOutputDefinition13: {
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsResolveOutputDefinition14: {
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsResolveOutputDefinition15: {
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsResolveOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsResolveOutputDefinition17: {
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsResolveOutputDefinition18: {
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsResolveOutputDefinition19: {
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsResolveOutputDefinition20: {
+            children: components["schemas"]["ProductDocumentsResolveOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsResolveOutput: {
+            document: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @enum {string} */
+                owner_kind: "issue" | "project";
+                /** Format: uuid */
+                owner_id: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                /** Format: uuid */
+                revision: string;
+                content: components["schemas"]["ProductDocumentsResolveOutputDefinition0"][];
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                };
+            };
+            capabilities: {
+                manage: boolean;
+            };
+        };
+        ProductDocumentsResolveError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductDocumentsResolveDomainInputDefinition0: components["schemas"]["ProductDocumentsResolveDomainInputDefinition11"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition18"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition19"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition20"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition17"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition14"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition2"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition15"];
+        ProductDocumentsResolveDomainInputDefinition1: components["schemas"]["ProductDocumentsResolveDomainInputDefinition4"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition7"];
+        ProductDocumentsResolveDomainInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsResolveDomainInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsResolveDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsResolveDomainInputDefinition5: components["schemas"]["ProductDocumentsResolveDomainInputDefinition11"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition18"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition19"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition20"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition17"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition14"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition2"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition3"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition9"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition10"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition15"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition13"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition4"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition7"];
+        ProductDocumentsResolveDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsResolveDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsResolveDomainInputDefinition8: components["schemas"]["ProductDocumentsResolveDomainInputDefinition16"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition9"] | components["schemas"]["ProductDocumentsResolveDomainInputDefinition10"];
+        ProductDocumentsResolveDomainInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsResolveDomainInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsResolveDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsResolveDomainInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsResolveDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsResolveDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsResolveDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsResolveDomainInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsResolveDomainInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsResolveDomainInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsResolveDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsResolveDomainInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsResolveDomainInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsResolveDomainInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsResolveDomainInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsResolveDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsResolveDomainInput: {
+            /** @enum {string} */
+            owner_kind: "issue" | "project";
+            /** Format: uuid */
+            owner_id: string;
+        };
+        ProductDocumentsResolveEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductDocumentsResolveOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductDocumentsRestoreInputDefinition0: components["schemas"]["ProductDocumentsRestoreInputDefinition11"] | components["schemas"]["ProductDocumentsRestoreInputDefinition18"] | components["schemas"]["ProductDocumentsRestoreInputDefinition19"] | components["schemas"]["ProductDocumentsRestoreInputDefinition20"] | components["schemas"]["ProductDocumentsRestoreInputDefinition17"] | components["schemas"]["ProductDocumentsRestoreInputDefinition14"] | components["schemas"]["ProductDocumentsRestoreInputDefinition2"] | components["schemas"]["ProductDocumentsRestoreInputDefinition15"];
+        ProductDocumentsRestoreInputDefinition1: components["schemas"]["ProductDocumentsRestoreInputDefinition4"] | components["schemas"]["ProductDocumentsRestoreInputDefinition7"];
+        ProductDocumentsRestoreInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsRestoreInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsRestoreInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsRestoreInputDefinition5: components["schemas"]["ProductDocumentsRestoreInputDefinition11"] | components["schemas"]["ProductDocumentsRestoreInputDefinition18"] | components["schemas"]["ProductDocumentsRestoreInputDefinition19"] | components["schemas"]["ProductDocumentsRestoreInputDefinition20"] | components["schemas"]["ProductDocumentsRestoreInputDefinition17"] | components["schemas"]["ProductDocumentsRestoreInputDefinition14"] | components["schemas"]["ProductDocumentsRestoreInputDefinition2"] | components["schemas"]["ProductDocumentsRestoreInputDefinition3"] | components["schemas"]["ProductDocumentsRestoreInputDefinition9"] | components["schemas"]["ProductDocumentsRestoreInputDefinition10"] | components["schemas"]["ProductDocumentsRestoreInputDefinition15"] | components["schemas"]["ProductDocumentsRestoreInputDefinition13"] | components["schemas"]["ProductDocumentsRestoreInputDefinition4"] | components["schemas"]["ProductDocumentsRestoreInputDefinition7"];
+        ProductDocumentsRestoreInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsRestoreInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsRestoreInputDefinition8: components["schemas"]["ProductDocumentsRestoreInputDefinition16"] | components["schemas"]["ProductDocumentsRestoreInputDefinition9"] | components["schemas"]["ProductDocumentsRestoreInputDefinition10"];
+        ProductDocumentsRestoreInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsRestoreInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsRestoreInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsRestoreInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsRestoreInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsRestoreInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsRestoreInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsRestoreInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsRestoreInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsRestoreInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsRestoreInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsRestoreInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsRestoreInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsRestoreInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsRestoreInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsRestoreInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsRestoreInput: {
+            /** Format: uuid */
+            expected_revision: string;
+            /** Format: uuid */
+            revision_id: string;
+        };
+        ProductDocumentsRestoreOutputDefinition0: components["schemas"]["ProductDocumentsRestoreOutputDefinition11"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition18"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition19"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition20"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition17"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition14"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition2"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition15"];
+        ProductDocumentsRestoreOutputDefinition1: components["schemas"]["ProductDocumentsRestoreOutputDefinition4"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition7"];
+        ProductDocumentsRestoreOutputDefinition2: {
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsRestoreOutputDefinition3: {
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsRestoreOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsRestoreOutputDefinition5: components["schemas"]["ProductDocumentsRestoreOutputDefinition11"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition18"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition19"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition20"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition17"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition14"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition2"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition3"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition9"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition10"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition15"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition13"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition4"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition7"];
+        ProductDocumentsRestoreOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsRestoreOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsRestoreOutputDefinition8: components["schemas"]["ProductDocumentsRestoreOutputDefinition16"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition9"] | components["schemas"]["ProductDocumentsRestoreOutputDefinition10"];
+        ProductDocumentsRestoreOutputDefinition9: {
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsRestoreOutputDefinition10: {
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsRestoreOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsRestoreOutputDefinition12: {
+            node: components["schemas"]["ProductDocumentsRestoreOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsRestoreOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsRestoreOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsRestoreOutputDefinition13: {
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsRestoreOutputDefinition14: {
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsRestoreOutputDefinition15: {
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsRestoreOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsRestoreOutputDefinition17: {
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsRestoreOutputDefinition18: {
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsRestoreOutputDefinition19: {
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsRestoreOutputDefinition20: {
+            children: components["schemas"]["ProductDocumentsRestoreOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsRestoreOutput: {
+            document: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @enum {string} */
+                owner_kind: "issue" | "project";
+                /** Format: uuid */
+                owner_id: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                /** Format: uuid */
+                revision: string;
+                content: components["schemas"]["ProductDocumentsRestoreOutputDefinition0"][];
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                };
+            };
+        };
+        ProductDocumentsRestoreError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductDocumentsRestoreDomainInputDefinition0: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition11"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition18"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition19"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition20"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition17"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition14"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition2"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition15"];
+        ProductDocumentsRestoreDomainInputDefinition1: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition4"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition7"];
+        ProductDocumentsRestoreDomainInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsRestoreDomainInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsRestoreDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsRestoreDomainInputDefinition5: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition11"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition18"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition19"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition20"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition17"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition14"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition2"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition3"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition9"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition10"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition15"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition13"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition4"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition7"];
+        ProductDocumentsRestoreDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsRestoreDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsRestoreDomainInputDefinition8: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition16"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition9"] | components["schemas"]["ProductDocumentsRestoreDomainInputDefinition10"];
+        ProductDocumentsRestoreDomainInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsRestoreDomainInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsRestoreDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsRestoreDomainInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsRestoreDomainInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsRestoreDomainInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsRestoreDomainInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsRestoreDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsRestoreDomainInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsRestoreDomainInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsRestoreDomainInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsRestoreDomainInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsRestoreDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsRestoreDomainInput: {
+            /** Format: uuid */
+            document_id: string;
+            /** Format: uuid */
+            expected_revision: string;
+            /** Format: uuid */
+            revision_id: string;
+        };
+        ProductDocumentsRestoreEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductDocumentsRestoreOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductDocumentsRevisionsOutputDefinition0: components["schemas"]["ProductDocumentsRevisionsOutputDefinition11"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition18"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition19"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition20"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition17"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition14"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition2"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition15"];
+        ProductDocumentsRevisionsOutputDefinition1: components["schemas"]["ProductDocumentsRevisionsOutputDefinition4"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition7"];
+        ProductDocumentsRevisionsOutputDefinition2: {
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsRevisionsOutputDefinition3: {
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsRevisionsOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsRevisionsOutputDefinition5: components["schemas"]["ProductDocumentsRevisionsOutputDefinition11"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition18"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition19"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition20"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition17"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition14"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition2"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition3"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition9"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition10"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition15"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition13"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition4"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition7"];
+        ProductDocumentsRevisionsOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsRevisionsOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsRevisionsOutputDefinition8: components["schemas"]["ProductDocumentsRevisionsOutputDefinition16"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition9"] | components["schemas"]["ProductDocumentsRevisionsOutputDefinition10"];
+        ProductDocumentsRevisionsOutputDefinition9: {
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsRevisionsOutputDefinition10: {
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsRevisionsOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsRevisionsOutputDefinition12: {
+            node: components["schemas"]["ProductDocumentsRevisionsOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsRevisionsOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsRevisionsOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsRevisionsOutputDefinition13: {
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsRevisionsOutputDefinition14: {
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsRevisionsOutputDefinition15: {
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsRevisionsOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsRevisionsOutputDefinition17: {
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsRevisionsOutputDefinition18: {
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsRevisionsOutputDefinition19: {
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsRevisionsOutputDefinition20: {
+            children: components["schemas"]["ProductDocumentsRevisionsOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsRevisionsOutput: {
+            items: null | {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                document_id: string;
+                parent_revision: string | null;
+                /** @enum {string} */
+                kind: "create" | "replace" | "patch" | "restore";
+                /** Format: uuid */
+                actor_id: string;
+                /** Format: date-time */
+                occurred_at: string;
+            }[];
+            has_more: boolean;
+            next_cursor: string;
+        };
+        ProductDocumentsRevisionsError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductDocumentsRevisionsDomainInputDefinition0: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition11"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition18"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition19"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition20"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition17"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition14"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition2"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition15"];
+        ProductDocumentsRevisionsDomainInputDefinition1: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition4"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition7"];
+        ProductDocumentsRevisionsDomainInputDefinition2: {
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductDocumentsRevisionsDomainInputDefinition3: {
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductDocumentsRevisionsDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductDocumentsRevisionsDomainInputDefinition5: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition11"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition18"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition19"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition20"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition17"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition14"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition2"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition3"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition9"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition10"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition15"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition13"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition4"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition7"];
+        ProductDocumentsRevisionsDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductDocumentsRevisionsDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductDocumentsRevisionsDomainInputDefinition8: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition16"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition9"] | components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition10"];
+        ProductDocumentsRevisionsDomainInputDefinition9: {
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductDocumentsRevisionsDomainInputDefinition10: {
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductDocumentsRevisionsDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductDocumentsRevisionsDomainInputDefinition12: {
+            node: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductDocumentsRevisionsDomainInputDefinition13: {
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductDocumentsRevisionsDomainInputDefinition14: {
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductDocumentsRevisionsDomainInputDefinition15: {
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductDocumentsRevisionsDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductDocumentsRevisionsDomainInputDefinition17: {
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductDocumentsRevisionsDomainInputDefinition18: {
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductDocumentsRevisionsDomainInputDefinition19: {
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductDocumentsRevisionsDomainInputDefinition20: {
+            children: components["schemas"]["ProductDocumentsRevisionsDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductDocumentsRevisionsDomainInput: {
+            /** Format: uuid */
+            document_id: string;
+            limit: number;
+            after: string;
+        };
+        ProductDocumentsRevisionsEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductDocumentsRevisionsOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
         ProductIssueRelationsHistoryOutput: {
             items: null | {
                 /** Format: uuid */
@@ -4730,6 +10831,802 @@ export interface components {
             /** @constant */
             success: true;
             data: components["schemas"]["ProductIssuesCreateOutput"];
+            meta: components["schemas"]["ProductResponseMeta"];
+        };
+        ProductIssuesCreateRichInputDefinition0: components["schemas"]["ProductIssuesCreateRichInputDefinition11"] | components["schemas"]["ProductIssuesCreateRichInputDefinition18"] | components["schemas"]["ProductIssuesCreateRichInputDefinition19"] | components["schemas"]["ProductIssuesCreateRichInputDefinition20"] | components["schemas"]["ProductIssuesCreateRichInputDefinition17"] | components["schemas"]["ProductIssuesCreateRichInputDefinition14"] | components["schemas"]["ProductIssuesCreateRichInputDefinition2"] | components["schemas"]["ProductIssuesCreateRichInputDefinition15"];
+        ProductIssuesCreateRichInputDefinition1: components["schemas"]["ProductIssuesCreateRichInputDefinition4"] | components["schemas"]["ProductIssuesCreateRichInputDefinition7"];
+        ProductIssuesCreateRichInputDefinition2: {
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductIssuesCreateRichInputDefinition3: {
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductIssuesCreateRichInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductIssuesCreateRichInputDefinition5: components["schemas"]["ProductIssuesCreateRichInputDefinition11"] | components["schemas"]["ProductIssuesCreateRichInputDefinition18"] | components["schemas"]["ProductIssuesCreateRichInputDefinition19"] | components["schemas"]["ProductIssuesCreateRichInputDefinition20"] | components["schemas"]["ProductIssuesCreateRichInputDefinition17"] | components["schemas"]["ProductIssuesCreateRichInputDefinition14"] | components["schemas"]["ProductIssuesCreateRichInputDefinition2"] | components["schemas"]["ProductIssuesCreateRichInputDefinition3"] | components["schemas"]["ProductIssuesCreateRichInputDefinition9"] | components["schemas"]["ProductIssuesCreateRichInputDefinition10"] | components["schemas"]["ProductIssuesCreateRichInputDefinition15"] | components["schemas"]["ProductIssuesCreateRichInputDefinition13"] | components["schemas"]["ProductIssuesCreateRichInputDefinition4"] | components["schemas"]["ProductIssuesCreateRichInputDefinition7"];
+        ProductIssuesCreateRichInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductIssuesCreateRichInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductIssuesCreateRichInputDefinition8: components["schemas"]["ProductIssuesCreateRichInputDefinition16"] | components["schemas"]["ProductIssuesCreateRichInputDefinition9"] | components["schemas"]["ProductIssuesCreateRichInputDefinition10"];
+        ProductIssuesCreateRichInputDefinition9: {
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductIssuesCreateRichInputDefinition10: {
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductIssuesCreateRichInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductIssuesCreateRichInputDefinition12: {
+            node: components["schemas"]["ProductIssuesCreateRichInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductIssuesCreateRichInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductIssuesCreateRichInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductIssuesCreateRichInputDefinition13: {
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductIssuesCreateRichInputDefinition14: {
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductIssuesCreateRichInputDefinition15: {
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductIssuesCreateRichInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductIssuesCreateRichInputDefinition17: {
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductIssuesCreateRichInputDefinition18: {
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductIssuesCreateRichInputDefinition19: {
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductIssuesCreateRichInputDefinition20: {
+            children: components["schemas"]["ProductIssuesCreateRichInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductIssuesCreateRichInput: {
+            issue: {
+                /** Format: uuid */
+                team_id: string;
+                title: string;
+                /** @enum {string} */
+                priority: "high" | "low" | "none" | "normal" | "urgent";
+                /** Format: uuid */
+                status_id: string;
+                assignee_id: string | null;
+                project_id: string | null;
+                milestone_id: string | null;
+                start_date: string | null;
+                target_date: string | null;
+                effort: number | null;
+                label_ids: null | string[];
+            };
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            content: components["schemas"]["ProductIssuesCreateRichInputDefinition0"][];
+        };
+        ProductIssuesCreateRichOutputDefinition0: components["schemas"]["ProductIssuesCreateRichOutputDefinition11"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition18"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition19"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition20"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition17"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition14"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition2"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition15"];
+        ProductIssuesCreateRichOutputDefinition1: components["schemas"]["ProductIssuesCreateRichOutputDefinition4"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition7"];
+        ProductIssuesCreateRichOutputDefinition2: {
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductIssuesCreateRichOutputDefinition3: {
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductIssuesCreateRichOutputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductIssuesCreateRichOutputDefinition5: components["schemas"]["ProductIssuesCreateRichOutputDefinition11"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition18"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition19"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition20"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition17"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition14"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition2"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition3"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition9"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition10"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition15"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition13"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition4"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition7"];
+        ProductIssuesCreateRichOutputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductIssuesCreateRichOutputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductIssuesCreateRichOutputDefinition8: components["schemas"]["ProductIssuesCreateRichOutputDefinition16"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition9"] | components["schemas"]["ProductIssuesCreateRichOutputDefinition10"];
+        ProductIssuesCreateRichOutputDefinition9: {
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductIssuesCreateRichOutputDefinition10: {
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductIssuesCreateRichOutputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductIssuesCreateRichOutputDefinition12: {
+            node: components["schemas"]["ProductIssuesCreateRichOutputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductIssuesCreateRichOutputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductIssuesCreateRichOutputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductIssuesCreateRichOutputDefinition13: {
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductIssuesCreateRichOutputDefinition14: {
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductIssuesCreateRichOutputDefinition15: {
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductIssuesCreateRichOutputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductIssuesCreateRichOutputDefinition17: {
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductIssuesCreateRichOutputDefinition18: {
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductIssuesCreateRichOutputDefinition19: {
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductIssuesCreateRichOutputDefinition20: {
+            children: components["schemas"]["ProductIssuesCreateRichOutputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductIssuesCreateRichOutput: {
+            issue: {
+                issue: {
+                    /** Format: uuid */
+                    id: string;
+                    /** Format: uuid */
+                    workspace_id: string;
+                    /** Format: uuid */
+                    team_id: string;
+                    identifier: string;
+                    number: number;
+                    title: string;
+                    /** @enum {string} */
+                    priority: "high" | "low" | "none" | "normal" | "urgent";
+                    /** Format: uuid */
+                    status_id: string;
+                    assignee_id: string | null;
+                    project_id: string | null;
+                    milestone_id: string | null;
+                    start_date: string | null;
+                    target_date: string | null;
+                    effort: number | null;
+                    label_ids: null | string[];
+                    version: number;
+                    archived: boolean;
+                    /** Format: date-time */
+                    created_at: string;
+                    /** Format: date-time */
+                    updated_at: string;
+                };
+                capabilities: {
+                    move: boolean;
+                    manage: boolean;
+                    restore: boolean;
+                };
+            };
+            document: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                workspace_id: string;
+                /** @enum {string} */
+                owner_kind: "issue" | "project";
+                /** Format: uuid */
+                owner_id: string;
+                /** @constant */
+                format: "plate";
+                /** @constant */
+                schema_version: 1;
+                /** Format: uuid */
+                revision: string;
+                content: components["schemas"]["ProductIssuesCreateRichOutputDefinition0"][];
+                /** Format: date-time */
+                created_at: string;
+                /** Format: date-time */
+                updated_at: string;
+                capabilities: {
+                    manage: boolean;
+                };
+            };
+        };
+        ProductIssuesCreateRichError: {
+            /** @enum {string} */
+            code: "UNAUTHORIZED" | "FORBIDDEN" | "VALIDATION_ERROR" | "NOT_FOUND" | "CONFLICT" | "IDEMPOTENCY_CONFLICT" | "VERSION_CONFLICT" | "OPERATION_UNAVAILABLE" | "CANCELED" | "INTERNAL_ERROR";
+            details?: null | {
+                field: string;
+                code: string;
+            }[];
+        };
+        ProductIssuesCreateRichDomainInputDefinition0: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition11"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition18"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition19"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition20"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition17"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition14"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition2"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition15"];
+        ProductIssuesCreateRichDomainInputDefinition1: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition4"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition7"];
+        ProductIssuesCreateRichDomainInputDefinition2: {
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition3"][];
+            /** Format: uuid */
+            id: string;
+            lang?: string;
+            /** @constant */
+            type: "code_block";
+        };
+        ProductIssuesCreateRichDomainInputDefinition3: {
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "code_line";
+        };
+        ProductIssuesCreateRichDomainInputDefinition4: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "td";
+        };
+        ProductIssuesCreateRichDomainInputDefinition5: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition11"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition18"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition19"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition20"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition17"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition14"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition2"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition3"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition9"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition10"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition15"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition13"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition4"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition7"];
+        ProductIssuesCreateRichDomainInputDefinition6: {
+            /** @constant */
+            text: "";
+        };
+        ProductIssuesCreateRichDomainInputDefinition7: {
+            background?: string;
+            borders?: {
+                bottom?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                left?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                right?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+                top?: {
+                    color: string;
+                    size: number;
+                    /** @enum {string} */
+                    style: "dashed" | "dotted" | "none" | "solid";
+                };
+            };
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition0"][];
+            colSpan?: number;
+            /** Format: uuid */
+            id: string;
+            rowSpan?: number;
+            size?: number;
+            /** @constant */
+            type: "th";
+        };
+        ProductIssuesCreateRichDomainInputDefinition8: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition16"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition9"] | components["schemas"]["ProductIssuesCreateRichDomainInputDefinition10"];
+        ProductIssuesCreateRichDomainInputDefinition9: {
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition16"][];
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            target?: "_blank" | "_self";
+            /** @constant */
+            type: "a";
+            url: string;
+        };
+        ProductIssuesCreateRichDomainInputDefinition10: {
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            key: string;
+            /** Format: uuid */
+            target_id: string;
+            /** @enum {string} */
+            target_kind: "issue" | "project" | "user";
+            /** @constant */
+            type: "mention";
+            value: string;
+        };
+        ProductIssuesCreateRichDomainInputDefinition11: {
+            checked?: boolean;
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            indent?: number;
+            listRestart?: number;
+            listStart?: number;
+            /** @enum {string} */
+            listStyleType?: "decimal" | "disc" | "todo";
+            /** @constant */
+            type: "p";
+        };
+        ProductIssuesCreateRichDomainInputDefinition12: {
+            node: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition5"];
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "replace_node";
+        } | {
+            before_id: string | null;
+            nodes: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition5"][];
+            /** @constant */
+            op: "insert_nodes";
+            parent_id: string | null;
+        } | {
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "remove_node";
+        } | {
+            before_id: string | null;
+            /** Format: uuid */
+            node_id: string;
+            /** @constant */
+            op: "move_node";
+            parent_id: string | null;
+        } | {
+            expected_member_ids: string[];
+            /** Format: uuid */
+            heading_id: string;
+            nodes: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition0"][];
+            /** @constant */
+            op: "replace_section";
+        };
+        ProductIssuesCreateRichDomainInputDefinition13: {
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition1"][];
+            /** Format: uuid */
+            id: string;
+            size?: number;
+            /** @constant */
+            type: "tr";
+        };
+        ProductIssuesCreateRichDomainInputDefinition14: {
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition6"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "hr";
+        };
+        ProductIssuesCreateRichDomainInputDefinition15: {
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition13"][];
+            colSizes?: number[];
+            /** Format: uuid */
+            id: string;
+            marginLeft?: number;
+            /** @constant */
+            type: "table";
+        };
+        ProductIssuesCreateRichDomainInputDefinition16: {
+            bold?: boolean;
+            code?: boolean;
+            italic?: boolean;
+            strikethrough?: boolean;
+            text: string;
+            underline?: boolean;
+        };
+        ProductIssuesCreateRichDomainInputDefinition17: {
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "blockquote";
+        };
+        ProductIssuesCreateRichDomainInputDefinition18: {
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h1";
+        };
+        ProductIssuesCreateRichDomainInputDefinition19: {
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h2";
+        };
+        ProductIssuesCreateRichDomainInputDefinition20: {
+            children: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition8"][];
+            /** Format: uuid */
+            id: string;
+            /** @constant */
+            type: "h3";
+        };
+        ProductIssuesCreateRichDomainInput: {
+            issue: {
+                /** Format: uuid */
+                team_id: string;
+                title: string;
+                /** @enum {string} */
+                priority: "high" | "low" | "none" | "normal" | "urgent";
+                /** Format: uuid */
+                status_id: string;
+                assignee_id: string | null;
+                project_id: string | null;
+                milestone_id: string | null;
+                start_date: string | null;
+                target_date: string | null;
+                effort: number | null;
+                label_ids: null | string[];
+            };
+            /** @constant */
+            format: "plate";
+            /** @constant */
+            schema_version: 1;
+            content: components["schemas"]["ProductIssuesCreateRichDomainInputDefinition0"][];
+        };
+        ProductIssuesCreateRichEnvelope: {
+            /** @constant */
+            success: true;
+            data: components["schemas"]["ProductIssuesCreateRichOutput"];
             meta: components["schemas"]["ProductResponseMeta"];
         };
         ProductIssuesGetOutput: {
@@ -9698,6 +16595,1041 @@ export interface operations {
             };
         };
     };
+    documents_backlinks: {
+        parameters: {
+            query?: {
+                target_kind?: "issue" | "project" | "user";
+                target_id?: string;
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductDocumentsBacklinksEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    documents_create: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductDocumentsCreateInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductDocumentsCreateEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    documents_export: {
+        parameters: {
+            query?: {
+                format?: "html" | "json" | "markdown";
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                documentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductDocumentsExportEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    documents_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+                documentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductDocumentsGetEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    documents_replace: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                documentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductDocumentsReplaceInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductDocumentsReplaceEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    documents_get_revision: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                workspaceID: string;
+                documentID: string;
+                revisionID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductDocumentsGetRevisionEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    documents_patch: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                documentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductDocumentsPatchInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductDocumentsPatchEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    documents_resolve: {
+        parameters: {
+            query?: {
+                owner_kind?: "issue" | "project";
+                owner_id?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductDocumentsResolveEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    documents_restore: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+                documentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductDocumentsRestoreInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductDocumentsRestoreEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    documents_revisions: {
+        parameters: {
+            query?: {
+                limit?: number;
+                after?: string;
+            };
+            header?: never;
+            path: {
+                workspaceID: string;
+                documentID: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Success */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductDocumentsRevisionsEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
     issue_relations_history: {
         parameters: {
             query?: {
@@ -10816,6 +18748,117 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ProductIssuesCreateEnvelope"];
+                };
+            };
+            /** @description Application operation failed. */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError400"];
+                };
+            };
+            /** @description Verified application identity or HTTP authentication failed. */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError401"];
+                };
+            };
+            /** @description Application operation failed. */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError403"];
+                };
+            };
+            /** @description Application operation failed. */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError404"];
+                };
+            };
+            /** @description Application operation failed. */
+            408: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError408"];
+                };
+            };
+            /** @description Application operation failed. */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError409"];
+                };
+            };
+            /** @description JSON request media type required. */
+            415: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError415"];
+                };
+            };
+            /** @description Application operation failed. */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError500"];
+                };
+            };
+            /** @description Application operation failed. */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductHTTPError503"];
+                };
+            };
+        };
+    };
+    issues_create_rich: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description One stable key per complete immutable mutation input; retries replay the original result. */
+                "Idempotency-Key": string;
+            };
+            path: {
+                workspaceID: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProductIssuesCreateRichInput"];
+            };
+        };
+        responses: {
+            /** @description Success */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductIssuesCreateRichEnvelope"];
                 };
             };
             /** @description Application operation failed. */

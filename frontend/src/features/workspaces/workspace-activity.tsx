@@ -18,6 +18,10 @@ import { useWorkspaceActivity } from "./queries";
 
 const activityActionKeys: Record<string, string> = {
   ...relationActivityKeys,
+  "documents.created": "documents.activityCreated",
+  "documents.replaced": "documents.activityReplaced",
+  "documents.patched": "documents.activityPatched",
+  "documents.restored": "documents.activityRestored",
   "issues.created": "issues.event_issues_created",
   "issues.updated": "issues.event_issues_updated",
   "issues.moved": "issues.event_issues_moved",

@@ -15,6 +15,7 @@ type Querier interface {
 	ActiveProjectContribution(ctx context.Context, arg ActiveProjectContributionParams) (int64, error)
 	AddOrganizationMember(ctx context.Context, arg AddOrganizationMemberParams) (OrganizationMember, error)
 	AddProductWorkspaceOwner(ctx context.Context, arg AddProductWorkspaceOwnerParams) error
+	AdvanceDocument(ctx context.Context, arg AdvanceDocumentParams) (Document, error)
 	AllProductProjects(ctx context.Context, arg AllProductProjectsParams) ([]AllProductProjectsRow, error)
 	AllProjectContributions(ctx context.Context, arg AllProjectContributionsParams) ([]AllProjectContributionsRow, error)
 	AllWorkflowStatuses(ctx context.Context, teamID int64) ([]WorkflowStatus, error)
@@ -82,6 +83,7 @@ type Querier interface {
 	CreateWorkflowStatus(ctx context.Context, arg CreateWorkflowStatusParams) (WorkflowStatus, error)
 	CreateWorkspaceToolCredential(ctx context.Context, arg CreateWorkspaceToolCredentialParams) (WorkspaceToolCredential, error)
 	DatabaseTime(ctx context.Context) (pgtype.Timestamptz, error)
+	DeactivateDocumentReference(ctx context.Context, arg DeactivateDocumentReferenceParams) error
 	DeactivateProductProjects(ctx context.Context, arg DeactivateProductProjectsParams) error
 	DeactivateProjectTeams(ctx context.Context, arg DeactivateProjectTeamsParams) error
 	// Self-service account deletion: keep every row, mark the user disabled.
@@ -104,6 +106,8 @@ type Querier interface {
 	DeleteWebAuthnCredentialByCredentialID(ctx context.Context, credentialID string) error
 	DeleteWebAuthnCredentialByUUID(ctx context.Context, arg DeleteWebAuthnCredentialByUUIDParams) error
 	DisablePushDevice(ctx context.Context, arg DisablePushDeviceParams) error
+	DocumentBacklinkAnchorExists(ctx context.Context, arg DocumentBacklinkAnchorExistsParams) (bool, error)
+	DocumentRevisionAnchorExists(ctx context.Context, arg DocumentRevisionAnchorExistsParams) (bool, error)
 	EnsureIssueRelationRevision(ctx context.Context, arg EnsureIssueRelationRevisionParams) error
 	// First device registration opts the user into push (the OS permission
 	// prompt is the consent). An existing preference row is left untouched.
@@ -171,6 +175,9 @@ type Querier interface {
 	InsertActivityEvent(ctx context.Context, arg InsertActivityEventParams) (ActivityEvent, error)
 	InsertAppLog(ctx context.Context, arg InsertAppLogParams) error
 	InsertBulkChange(ctx context.Context, arg InsertBulkChangeParams) (BulkChange, error)
+	InsertDocument(ctx context.Context, arg InsertDocumentParams) (Document, error)
+	InsertDocumentReference(ctx context.Context, arg InsertDocumentReferenceParams) error
+	InsertDocumentRevision(ctx context.Context, arg InsertDocumentRevisionParams) (DocumentRevision, error)
 	InsertEventDeliveries(ctx context.Context, arg InsertEventDeliveriesParams) error
 	InsertImportChange(ctx context.Context, arg InsertImportChangeParams) (ImportChange, error)
 	InsertIssueAlias(ctx context.Context, arg InsertIssueAliasParams) error
@@ -210,6 +217,9 @@ type Querier interface {
 	ListAppLogs(ctx context.Context, arg ListAppLogsParams) ([]AppLog, error)
 	ListBulkChangesForJob(ctx context.Context, jobID int64) ([]BulkChange, error)
 	ListBulkJobsForActor(ctx context.Context, arg ListBulkJobsForActorParams) ([]BulkJob, error)
+	ListCurrentDocumentReferences(ctx context.Context, arg ListCurrentDocumentReferencesParams) ([]DocumentReferencePublic, error)
+	ListDocumentBacklinks(ctx context.Context, arg ListDocumentBacklinksParams) ([]DocumentReferencePublic, error)
+	ListDocumentRevisions(ctx context.Context, arg ListDocumentRevisionsParams) ([]DocumentRevision, error)
 	ListDuePushTickets(ctx context.Context, arg ListDuePushTicketsParams) ([]ListDuePushTicketsRow, error)
 	ListEnabledLogPurgeRules(ctx context.Context) ([]LogPurgeRule, error)
 	ListEventDeliveries(ctx context.Context, arg ListEventDeliveriesParams) ([]ListEventDeliveriesRow, error)
@@ -277,6 +287,7 @@ type Querier interface {
 	ListWorkflowStatuses(ctx context.Context, arg ListWorkflowStatusesParams) ([]WorkflowStatus, error)
 	ListWorkspaceActivity(ctx context.Context, arg ListWorkspaceActivityParams) ([]WorkspaceHistory, error)
 	ListWorkspaceToolCredentials(ctx context.Context, arg ListWorkspaceToolCredentialsParams) ([]WorkspaceToolCredential, error)
+	LockDocument(ctx context.Context, arg LockDocumentParams) (Document, error)
 	LockEventDelivery(ctx context.Context, arg LockEventDeliveryParams) (EventDelivery, error)
 	LockIssue(ctx context.Context, arg LockIssueParams) (Issue, error)
 	LockIssueRelationGraph(ctx context.Context, workspaceUuid uuid.UUID) error
@@ -318,6 +329,10 @@ type Querier interface {
 	ProjectWorkspaceActivity(ctx context.Context, arg ProjectWorkspaceActivityParams) (int64, error)
 	QueueImportJob(ctx context.Context, argUuid uuid.UUID) (ImportJob, error)
 	ReadActiveIssueRelation(ctx context.Context, arg ReadActiveIssueRelationParams) (IssueRelation, error)
+	ReadDocument(ctx context.Context, arg ReadDocumentParams) (Document, error)
+	ReadDocumentOwner(ctx context.Context, arg ReadDocumentOwnerParams) (DocumentOwner, error)
+	ReadDocumentOwnerByID(ctx context.Context, arg ReadDocumentOwnerByIDParams) (DocumentOwner, error)
+	ReadDocumentRevision(ctx context.Context, arg ReadDocumentRevisionParams) (DocumentRevision, error)
 	ReadIssue(ctx context.Context, arg ReadIssueParams) ([]byte, error)
 	ReadIssueRelation(ctx context.Context, arg ReadIssueRelationParams) ([]byte, error)
 	ReadOutgoingSingleRelation(ctx context.Context, arg ReadOutgoingSingleRelationParams) (IssueRelation, error)
@@ -325,6 +340,7 @@ type Querier interface {
 	ReadRelationIssue(ctx context.Context, arg ReadRelationIssueParams) ([]byte, error)
 	ReadRelationState(ctx context.Context, arg ReadRelationStateParams) ([]byte, error)
 	ReclaimExpiredEventDeliveries(ctx context.Context, maxAttempts int32) (int64, error)
+	ReconstructDocumentJournal(ctx context.Context, arg ReconstructDocumentJournalParams) ([]ReconstructDocumentJournalRow, error)
 	RelationAnchorExists(ctx context.Context, arg RelationAnchorExistsParams) (bool, error)
 	RelationIssueUUID(ctx context.Context, arg RelationIssueUUIDParams) (uuid.UUID, error)
 	RemoveIssueRelation(ctx context.Context, arg RemoveIssueRelationParams) error
@@ -332,9 +348,13 @@ type Querier interface {
 	ReplaceUserRoles(ctx context.Context, userID int64) error
 	ReplayEventDelivery(ctx context.Context, arg ReplayEventDeliveryParams) (EventDelivery, error)
 	RepositionWorkflowStatus(ctx context.Context, arg RepositionWorkflowStatusParams) error
+	ResolveDocumentIssueReference(ctx context.Context, arg ResolveDocumentIssueReferenceParams) (int64, error)
+	ResolveDocumentProjectReference(ctx context.Context, arg ResolveDocumentProjectReferenceParams) (int64, error)
+	ResolveDocumentUserReference(ctx context.Context, arg ResolveDocumentUserReferenceParams) (int64, error)
 	ResolveIssue(ctx context.Context, arg ResolveIssueParams) ([]byte, error)
 	ResolveOrganizationScopeBySlug(ctx context.Context, arg ResolveOrganizationScopeBySlugParams) (ResolveOrganizationScopeBySlugRow, error)
 	ResolveOrganizationScopeByUUID(ctx context.Context, arg ResolveOrganizationScopeByUUIDParams) (ResolveOrganizationScopeByUUIDRow, error)
+	ResolveOwnerDocument(ctx context.Context, arg ResolveOwnerDocumentParams) (Document, error)
 	ResolveProductWorkspace(ctx context.Context, arg ResolveProductWorkspaceParams) (ResolveProductWorkspaceRow, error)
 	ResolveWorkspaceToolCredential(ctx context.Context, tokenHash []byte) (ResolveWorkspaceToolCredentialRow, error)
 	RetryEventDelivery(ctx context.Context, arg RetryEventDeliveryParams) (int64, error)
@@ -359,6 +379,7 @@ type Querier interface {
 	SoftDeleteOrganization(ctx context.Context, argUuid uuid.UUID) (Organization, error)
 	UpdateAppSettings(ctx context.Context, arg UpdateAppSettingsParams) (AppSetting, error)
 	UpdateAuthSettings(ctx context.Context, arg UpdateAuthSettingsParams) (AuthSetting, error)
+	UpdateDocumentReference(ctx context.Context, arg UpdateDocumentReferenceParams) error
 	UpdateGitHubAppSettings(ctx context.Context, arg UpdateGitHubAppSettingsParams) (GithubAppSetting, error)
 	UpdateImportJobFileKey(ctx context.Context, arg UpdateImportJobFileKeyParams) (ImportJob, error)
 	UpdateImportJobMapping(ctx context.Context, arg UpdateImportJobMappingParams) (ImportJob, error)

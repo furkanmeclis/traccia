@@ -7,6 +7,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/furkanmeclis/traccia/backend/internal/database/db"
+	docsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/documents/repository"
+	docs "github.com/furkanmeclis/traccia/backend/internal/modules/documents/usecase"
 	productsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/products/repository"
 	products "github.com/furkanmeclis/traccia/backend/internal/modules/products/usecase"
 	projectsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/projects/repository"
@@ -59,7 +61,7 @@ var transportCatalog sync.Map
 func newIssueTransport(t *testing.T) *issueTransport {
 	t.Helper()
 	f := newIssueFixture(t)
-	reg, err := product.Registry(f.workspace, teams.New(teamsrepo.New(f.pool, db.New(f.pool)), f.workspace), projects.New(projectsrepo.New(f.pool, db.New(f.pool)), f.workspace), products.New(productsrepo.New(f.pool, db.New(f.pool)), f.workspace), issue.New(f.repo, f.workspace), relations.New(relationsrepo.New(f.pool, db.New(f.pool)), f.workspace))
+	reg, err := product.Registry(f.workspace, teams.New(teamsrepo.New(f.pool, db.New(f.pool)), f.workspace), projects.New(projectsrepo.New(f.pool, db.New(f.pool)), f.workspace), products.New(productsrepo.New(f.pool, db.New(f.pool)), f.workspace), issue.New(f.repo, f.workspace), relations.New(relationsrepo.New(f.pool, db.New(f.pool)), f.workspace), docs.New(docsrepo.New(f.pool, db.New(f.pool)), f.workspace, issue.New(f.repo, f.workspace)))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -328,7 +330,7 @@ func TestIssuesTransportLifecycleExactReplayAndAliases(t *testing.T) {
 			}
 		}
 	}
-	if count != 9 || len(f.registry.Catalog()) != 77 {
+	if count != 10 || len(f.registry.Catalog()) != 88 {
 		t.Fatalf("issues=%d total=%d", count, len(f.registry.Catalog()))
 	}
 	a, b := f.createTeam(t, "AAA"), f.createTeam(t, "BBB")

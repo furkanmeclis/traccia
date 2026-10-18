@@ -26,6 +26,7 @@ type SchemaRefiner func(input, output *jsonschema.Schema) error
 
 // Operation is immutable after construction and can be shared by transports.
 type Operation struct {
+	wire           func(any, json.RawMessage) []FieldError
 	validateResult func([]byte) error
 	contract       Contract
 	prepare        func(json.RawMessage) (func(context.Context, Scope) (json.RawMessage, error), error)
@@ -76,6 +77,12 @@ func New[I, O any](meta Metadata, validate Validator[I], handler Handler[I, O], 
 		return nil, fmt.Errorf("operations: error schema: %w", err)
 	}
 	op := &Operation{contract: Contract{Metadata: meta, Input: inJSON, Output: outJSON, Error: errJSON, Available: handler != nil}}
+	var wireInput I
+	if bounded, ok := any(wireInput).(interface {
+		ValidateWire(any, json.RawMessage) []FieldError
+	}); ok {
+		op.wire = bounded.ValidateWire
+	}
 	op.validateResult = func(raw []byte) error {
 		value, err := decodeJSON(raw)
 		if err != nil {
@@ -90,6 +97,11 @@ func New[I, O any](meta Metadata, validate Validator[I], handler Handler[I, O], 
 		value, err := decodeJSON(raw)
 		if err != nil {
 			return nil, failure(Validation, err)
+		}
+		if op.wire != nil {
+			if details := op.wire(value, raw); len(details) > 0 {
+				return nil, &Error{Code: Validation, Details: details}
+			}
 		}
 		if err := inSchema.Validate(value); err != nil {
 			return nil, failure(Validation, err)

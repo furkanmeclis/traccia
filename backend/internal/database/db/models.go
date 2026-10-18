@@ -92,6 +92,88 @@ type BulkJob struct {
 	OrganizationID pgtype.Int8        `json:"organization_id"`
 }
 
+type Document struct {
+	ID            int64              `json:"id"`
+	Uuid          uuid.UUID          `json:"uuid"`
+	WorkspaceID   int64              `json:"workspace_id"`
+	IssueID       pgtype.Int8        `json:"issue_id"`
+	ProjectID     pgtype.Int8        `json:"project_id"`
+	Format        string             `json:"format"`
+	SchemaVersion int32              `json:"schema_version"`
+	HeadRevision  uuid.UUID          `json:"head_revision"`
+	Version       int64              `json:"version"`
+	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt     pgtype.Timestamptz `json:"updated_at"`
+}
+
+type DocumentOwner struct {
+	WorkspaceID   int64       `json:"workspace_id"`
+	WorkspaceUuid uuid.UUID   `json:"workspace_uuid"`
+	Kind          string      `json:"kind"`
+	ID            int64       `json:"id"`
+	Uuid          uuid.UUID   `json:"uuid"`
+	Name          string      `json:"name"`
+	Active        pgtype.Bool `json:"active"`
+	TeamUuid      uuid.UUID   `json:"team_uuid"`
+	ProjectUuid   pgtype.UUID `json:"project_uuid"`
+	Identifier    string      `json:"identifier"`
+}
+
+type DocumentReference struct {
+	ID           int64              `json:"id"`
+	Uuid         uuid.UUID          `json:"uuid"`
+	WorkspaceID  int64              `json:"workspace_id"`
+	DocumentID   int64              `json:"document_id"`
+	NodeUuid     uuid.UUID          `json:"node_uuid"`
+	RevisionUuid uuid.UUID          `json:"revision_uuid"`
+	UserID       pgtype.Int8        `json:"user_id"`
+	IssueID      pgtype.Int8        `json:"issue_id"`
+	ProjectID    pgtype.Int8        `json:"project_id"`
+	Value        string             `json:"value"`
+	Active       bool               `json:"active"`
+	CreatedAt    pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt    pgtype.Timestamptz `json:"updated_at"`
+}
+
+type DocumentReferencePublic struct {
+	ID            int64              `json:"id"`
+	Uuid          uuid.UUID          `json:"uuid"`
+	WorkspaceID   int64              `json:"workspace_id"`
+	DocumentID    int64              `json:"document_id"`
+	NodeUuid      uuid.UUID          `json:"node_uuid"`
+	RevisionUuid  uuid.UUID          `json:"revision_uuid"`
+	UserID        pgtype.Int8        `json:"user_id"`
+	IssueID       pgtype.Int8        `json:"issue_id"`
+	ProjectID     pgtype.Int8        `json:"project_id"`
+	Value         string             `json:"value"`
+	Active        bool               `json:"active"`
+	CreatedAt     pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt     pgtype.Timestamptz `json:"updated_at"`
+	WorkspaceUuid uuid.UUID          `json:"workspace_uuid"`
+	DocumentUuid  uuid.UUID          `json:"document_uuid"`
+	OwnerKind     string             `json:"owner_kind"`
+	OwnerUuid     uuid.UUID          `json:"owner_uuid"`
+	TargetKind    string             `json:"target_kind"`
+	TargetUuid    uuid.UUID          `json:"target_uuid"`
+}
+
+type DocumentRevision struct {
+	ID             int64              `json:"id"`
+	Uuid           uuid.UUID          `json:"uuid"`
+	WorkspaceID    int64              `json:"workspace_id"`
+	DocumentID     int64              `json:"document_id"`
+	ParentRevision pgtype.UUID        `json:"parent_revision"`
+	SourceRevision pgtype.UUID        `json:"source_revision"`
+	Version        int64              `json:"version"`
+	SchemaVersion  int32              `json:"schema_version"`
+	Kind           string             `json:"kind"`
+	Checkpoint     []byte             `json:"checkpoint"`
+	Patches        []byte             `json:"patches"`
+	ActorUuid      uuid.UUID          `json:"actor_uuid"`
+	EventID        int64              `json:"event_id"`
+	OccurredAt     pgtype.Timestamptz `json:"occurred_at"`
+}
+
 type EventConsumer struct {
 	Name       string             `json:"name"`
 	Version    int32              `json:"version"`

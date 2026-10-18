@@ -164,3 +164,39 @@ func lengthDelimited(fields ...[]byte) []byte {
 	}
 	return out
 }
+
+// ValidateWireInput applies an opted-in instance budget before a transport walks
+// recursive schemas. It grants no identity, permission or execution capability.
+func (r *Registry) ValidateWireInput(id string, raw json.RawMessage) error {
+	op := r.operations[id]
+	if op == nil || op.wire == nil {
+		return nil
+	}
+	value, e := decodeJSON(raw)
+	if e != nil {
+		return failure(Validation, e)
+	}
+	if details := op.wire(value, raw); len(details) > 0 {
+		return &Error{Code: Validation, Details: details}
+	}
+	return nil
+}
+
+// InputReadError retains released operation errors and adds actionable byte
+// diagnostics only for inputs that explicitly implement a wire budget.
+func (r *Registry) InputReadError(id string) error {
+	out := &Error{Code: Validation}
+	if op := r.operations[id]; op != nil && op.wire != nil {
+		out.Details = []FieldError{{Field: "input", Code: "bytes_limit"}}
+	}
+	return out
+}
+
+// InputReadLimit allows explicitly bounded document inputs to account for JSON
+// escape expansion while preserving the released transport limit elsewhere.
+func (r *Registry) InputReadLimit(id string) int64 {
+	if op := r.operations[id]; op != nil && op.wire != nil {
+		return 4 << 20
+	}
+	return 1 << 20
+}
