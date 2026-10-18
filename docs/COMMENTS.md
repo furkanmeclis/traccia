@@ -1,0 +1,15 @@
+# Issue comments and timeline
+
+Comments use the same closed Plate schema version 1, node identities, validation budgets and safe HTML / explicit lossy Markdown exports as documents. The comment aggregate is separate from issue metadata and document ownership. Existing document operations and their issue/project owner enum are unchanged.
+
+A comment has an immutable public UUID, workspace, issue, original author and creation channel. Every change appends an immutable revision with its own actor and trusted channel. The revision UUID is the write CAS token. API and MCP use the same service, permission checks, receipt identity and transactions. The same key and input replay the original result even through another authorized channel; channel is not part of the receipt fingerprint.
+
+Create, replace, patch and restore require an active issue and team. Delete permits an archived owner so an authorized owner can remove a retained comment. All writes require current `workspace.write` access and the existing owner management policy. Members can read comments, deleted content and revision history. Management capability is independent from state-specific action capabilities, allowing explicit receipt recovery after a lost response.
+
+Deletion appends a tombstone without removing content or previous revisions. Restore selects a nondeleted historical revision and appends a new live head. Node/section patches write typed deltas to the immutable journal; create, replace, delete and restore write checkpoints. Historical reads reconstruct the entire content without pagination or silent truncation. Mentions resolve real users, issues and projects in the same workspace, including retained archived targets under the document reference policy.
+
+Comment lists, revisions and backlinks have explicit `has_more` and `next_cursor` fields. Cursors bind the workspace, aggregate and filters. Immutable anchors remain usable after deletion, reference replacement or issue moves. Content itself is never silently paginated.
+
+The additive issue timeline is ordered by canonical server history. Each event has a closed typed issue, document, comment, relation, attachment or legacy detail. Document/comment details reference immutable revisions for full content reads. Relation events already record each affected endpoint separately. Eligibility uses the immutable workspace and issue binding, not current identifiers or mutable names. Unbound attachment uploads stay outside issue timelines; bound and removed file details expose public byte identity and lifecycle metadata without draft/upload command context.
+
+Provenance comes only from the trusted operation dispatcher. HTTP and the same-origin browser API record `api`; MCP records `mcp`. The reserved trusted `panel` value is not inferred from user agents or client headers. Historical events without recorded provenance explicitly return `unknown`. A transaction-local database setting supplies the channel for new canonical history rows and clears on commit or rollback.

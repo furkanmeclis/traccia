@@ -221,7 +221,7 @@ Panel ve widget için ortak Plate.js plugin/node sözleşmesi kur; kanonik sür�
 
 ### T11 Issue ekleri ve tam dosya aktarımını geliştir
 
-Status: In Progress. Persistent upload ownership, bounded chunk transfer, independent file identity and lifecycle, and recurring cleanup are under implementation and verification.
+Status: Done. Persistent upload ownership, bounded chunk transfer, independent file identity and lifecycle, recurring cleanup, privacy and shared storage namespace isolation are implemented and verified.
 
 Phase 3; depends on: T08, T03.
 
@@ -233,6 +233,8 @@ Attachment UUID, geçici upload, finalize, indirme, metadata ve devamlı listele
 - Çalışma alanı kapsamı giriş, sorgu ve sonuçta korunur; başka alana veri veya dosya sızması test edilir
 
 ### T12 Yorum değişiklik geçmişi ve belge revision işlemlerini ekle
+
+Status: In Progress. Separate comment revisions, immutable authorship, trusted channel provenance and a typed issue timeline are under implementation and verification.
 
 Phase 3; depends on: T08, T10, T04.
 

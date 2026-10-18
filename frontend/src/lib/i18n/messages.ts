@@ -1,3 +1,5 @@
+import enComments from "@/locales/en/comments.json";
+import trComments from "@/locales/tr/comments.json";
 import enAttachments from "@/locales/en/attachments.json";
 import trAttachments from "@/locales/tr/attachments.json";
 import enDocuments from "@/locales/en/documents.json";
@@ -92,6 +94,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     relations: trRelations,
     documents: trDocuments,
     attachments: trAttachments,
+    comments: trComments,
     layout: trLayout,
     editor: trEditor,
     table: trTable,
@@ -130,6 +133,7 @@ const catalogs: Record<AppLocale, Record<string, MessageDictionary>> = {
     relations: enRelations,
     documents: enDocuments,
     attachments: enAttachments,
+    comments: enComments,
     layout: enLayout,
     editor: enEditor,
     table: enTable,

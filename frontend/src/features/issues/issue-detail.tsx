@@ -1,4 +1,6 @@
 "use client";
+import { CommentPanel } from "@/features/comments/comment-panel";
+import { IssueTimeline } from "@/features/comments/issue-timeline";
 import { AttachmentPanel } from "@/features/attachments/attachment-panel";
 import { useAuth } from "@/providers/auth-provider";
 import { useState } from "react";
@@ -202,6 +204,12 @@ export function IssueDetail({
             issueID={issueId}
             metadataVersion={current.version}
           />
+          <CommentPanel
+            workspaceID={workspaceId}
+            issueID={issueId}
+            metadataVersion={current.version}
+          />
+          <IssueTimeline workspaceID={workspaceId} issueID={issueId} />
           <IssueHistory
             workspaceId={workspaceId}
             issueId={issueId}

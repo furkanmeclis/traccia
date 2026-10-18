@@ -71,17 +71,20 @@ func isolatedDatabase(t *testing.T) *pgxpool.Pool {
 		if _, err := pool.Exec(ctx, string(raw)); err != nil {
 			t.Fatalf("migration %s: %v", filepath.Base(file), err)
 		}
-	}
-	// Round-trip latest migration in a fresh private schema.
-	for _, suffix := range []string{"down", "up"} {
-		raw, err := os.ReadFile("../../../migrations/000036_product_catalog." + suffix + ".sql")
-		if err != nil {
-			t.Fatal(err)
+		// Verify migration36 before applying later views that depend on its columns.
+		if filepath.Base(file) == "000036_product_catalog.up.sql" {
+			for _, suffix := range []string{"down", "up"} {
+				raw, err := os.ReadFile("../../../migrations/000036_product_catalog." + suffix + ".sql")
+				if err != nil {
+					t.Fatal(err)
+				}
+				if _, err := pool.Exec(ctx, string(raw)); err != nil {
+					t.Fatal(err)
+				}
+			}
 		}
-		if _, err := pool.Exec(ctx, string(raw)); err != nil {
-			t.Fatal(err)
-		}
 	}
+
 	return pool
 }
 

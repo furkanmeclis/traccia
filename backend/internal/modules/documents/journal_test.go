@@ -80,7 +80,7 @@ func TestDocumentJournalRoundtrip(t *testing.T) {
 }
 func TestDocumentMigrationAndRichAtomicity(t *testing.T) {
 	f := newDocumentFixture(t)
-	if len(f.registry.Catalog()) != 102 {
+	if len(f.registry.Catalog()) != 114 {
 		t.Fatalf("registry %d", len(f.registry.Catalog()))
 	}
 	team := f.createTeam(t, "RCH")

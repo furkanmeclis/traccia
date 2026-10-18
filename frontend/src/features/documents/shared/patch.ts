@@ -25,8 +25,35 @@ export type Patch =
       expected_member_ids: string[];
       nodes: Block[];
     };
-const same = (a: unknown, b: unknown) =>
-  JSON.stringify(a) === JSON.stringify(b);
+// JSON object property order carries no content meaning. Array order and every
+// own property/value still matter; comparison never rewrites either tree.
+function same(a: unknown, b: unknown): boolean {
+  if (Object.is(a, b)) return true;
+  if (
+    a === null ||
+    b === null ||
+    typeof a !== "object" ||
+    typeof b !== "object"
+  )
+    return false;
+  if (Array.isArray(a) || Array.isArray(b)) {
+    return (
+      Array.isArray(a) &&
+      Array.isArray(b) &&
+      a.length === b.length &&
+      a.every((value, index) => same(value, b[index]))
+    );
+  }
+  const keys = Object.keys(a);
+  return (
+    keys.length === Object.keys(b).length &&
+    keys.every(
+      (key) =>
+        Object.prototype.hasOwnProperty.call(b, key) &&
+        same(Reflect.get(a, key), Reflect.get(b, key)),
+    )
+  );
+}
 /** Never silently discard sibling draft changes when saving a targeted patch. */
 export function nodePatch(
   baseline: Element[],

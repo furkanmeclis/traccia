@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { StepUpProvider } from "@/features/step-up-engine";
 import { AuthProvider } from "@/providers/auth-provider";
+import { CommentContextBoundary } from "@/features/comments/context-boundary";
 import { LocaleHydrator } from "@/components/layout/locale-hydrator";
 import { DialogProvider } from "@/providers/dialog-provider";
 import { LocaleProvider } from "@/providers/locale-provider";
@@ -20,6 +21,7 @@ export function AppProviders({ children }: { children: ReactNode }) {
         <QueryProvider>
           <AuthProvider>
             <LocaleHydrator />
+            <CommentContextBoundary />
             <PermissionProvider>
               <StepUpProvider>
                 <ToastProvider>

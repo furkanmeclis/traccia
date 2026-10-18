@@ -1,4 +1,5 @@
 "use client";
+import { CommentPendingOperations } from "@/features/comments/comment-operation";
 import { AttachmentShelf } from "@/features/attachments/attachment-panel";
 import { issueFieldKeys, issuePriorityKeys } from "./issue-copy";
 import { useAuth } from "@/providers/auth-provider";
@@ -66,6 +67,7 @@ export function IssueList({
       <PendingOperations workspaceId={workspaceId} canRun={() => !!manage} />
       <RelationPendingOperations workspaceId={workspaceId} />
       <DocumentPendingOperations workspaceId={workspaceId} />
+      <CommentPendingOperations workspaceID={workspaceId} />
       <AttachmentShelf workspaceID={workspaceId} />
       <div hidden={!allowed} className="space-y-8">
         <div className="flex flex-wrap gap-3">

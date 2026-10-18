@@ -10,6 +10,8 @@ import (
 	"github.com/furkanmeclis/traccia/backend/internal/database/db"
 	attachmentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/repository"
 	attachments "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/usecase"
+	commentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/comments/repository"
+	comments "github.com/furkanmeclis/traccia/backend/internal/modules/comments/usecase"
 	docsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/documents/repository"
 	docs "github.com/furkanmeclis/traccia/backend/internal/modules/documents/usecase"
 	productsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/products/repository"
@@ -81,7 +83,7 @@ func newIssueTransport(t *testing.T) *issueTransport {
 	if e != nil {
 		t.Fatal(e)
 	}
-	reg, err := product.Registry(f.workspace, teams.New(teamsrepo.New(f.pool, db.New(f.pool)), f.workspace), projects.New(projectsrepo.New(f.pool, db.New(f.pool)), f.workspace), products.New(productsrepo.New(f.pool, db.New(f.pool)), f.workspace), issue.New(f.repo, f.workspace), relations.New(relationsrepo.New(f.pool, db.New(f.pool)), f.workspace), docs.New(docsrepo.New(f.pool, db.New(f.pool)), f.workspace, issue.New(f.repo, f.workspace)), attachments.New(attachmentRepo, f.workspace))
+	reg, err := product.Registry(f.workspace, teams.New(teamsrepo.New(f.pool, db.New(f.pool)), f.workspace), projects.New(projectsrepo.New(f.pool, db.New(f.pool)), f.workspace), products.New(productsrepo.New(f.pool, db.New(f.pool)), f.workspace), issue.New(f.repo, f.workspace), relations.New(relationsrepo.New(f.pool, db.New(f.pool)), f.workspace), docs.New(docsrepo.New(f.pool, db.New(f.pool)), f.workspace, issue.New(f.repo, f.workspace)), attachments.New(attachmentRepo, f.workspace), comments.New(commentsrepo.New(f.pool, db.New(f.pool)), f.workspace))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -350,7 +352,7 @@ func TestIssuesTransportLifecycleExactReplayAndAliases(t *testing.T) {
 			}
 		}
 	}
-	if count != 10 || len(f.registry.Catalog()) != 102 {
+	if count != 10 || len(f.registry.Catalog()) != 114 {
 		t.Fatalf("issues=%d total=%d", count, len(f.registry.Catalog()))
 	}
 	a, b := f.createTeam(t, "AAA"), f.createTeam(t, "BBB")

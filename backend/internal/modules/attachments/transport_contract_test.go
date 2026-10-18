@@ -412,7 +412,7 @@ func TestAttachmentsTransportInventoryAndBinaryLifecycle(t *testing.T) {
 			}
 		}
 	}
-	if len(catalog) != 102 || n != 14 || writes != 6 {
+	if len(catalog) != 114 || n != 14 || writes != 6 {
 		t.Fatalf("inventory %d/%d/%d", len(catalog), n, writes)
 	}
 	t.Run("configured_limits", func(t *testing.T) {

@@ -7,6 +7,8 @@ import (
 	"github.com/furkanmeclis/traccia/backend/internal/config"
 	attachmentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/repository"
 	attachments "github.com/furkanmeclis/traccia/backend/internal/modules/attachments/usecase"
+	commentsrepo "github.com/furkanmeclis/traccia/backend/internal/modules/comments/repository"
+	comments "github.com/furkanmeclis/traccia/backend/internal/modules/comments/usecase"
 	"github.com/furkanmeclis/traccia/backend/internal/platform/storage"
 	"os"
 	"path/filepath"
@@ -132,7 +134,7 @@ func newDocumentFixture(t *testing.T) documentFixture {
 	if e != nil {
 		t.Fatal(e)
 	}
-	reg, e := product.Registry(wsvc, team.New(teamrepo.New(p, db.New(p)), wsvc), project.New(projectrepo.New(p, db.New(p)), wsvc), issue.New(r, wsvc), products.New(productsrepo.New(p, db.New(p)), wsvc), relation.New(relationrepo.New(p, db.New(p)), wsvc), doc.New(docsrepo.New(p, db.New(p)), wsvc, issue.New(r, wsvc)), attachments.New(attachmentRepo, wsvc))
+	reg, e := product.Registry(wsvc, team.New(teamrepo.New(p, db.New(p)), wsvc), project.New(projectrepo.New(p, db.New(p)), wsvc), issue.New(r, wsvc), products.New(productsrepo.New(p, db.New(p)), wsvc), relation.New(relationrepo.New(p, db.New(p)), wsvc), doc.New(docsrepo.New(p, db.New(p)), wsvc, issue.New(r, wsvc)), attachments.New(attachmentRepo, wsvc), comments.New(commentsrepo.New(p, db.New(p)), wsvc))
 	if e != nil {
 		t.Fatal(e)
 	}
